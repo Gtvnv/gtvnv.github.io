@@ -36,13 +36,13 @@ const PROJECTS = {
       links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
     },
     {
-      title: "Acesso Alunos",
-      statusKey: "case-study",
-      status: "CASE STUDY",
-      summary: "Controle de acesso biométrico e automação financeira, em Arquitetura Hexagonal.",
+      title: "Vertex",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Internal Developer Platform que transforma uma especificação YAML num microsserviço Go pronto pra rodar.",
       description:
-        "Backend que decide, em tempo real, se libera a entrada de um aluno: cruza horário permitido com situação financeira ('EM_DIA'). Cadastra hash biométrico e se integra ao gateway de pagamento Asaas para gerar boleto/PIX e liberar o acesso automaticamente quando o pagamento é confirmado via webhook. O núcleo de regras de negócio (core) não conhece banco de dados, framework ou API externa — só interfaces (ports & adapters). Primeira versão do controle de acesso da AKPL, antes de eu migrar o projeto para a stack atual.",
-      tags: ["Java 21", "Spring Boot", "PostgreSQL", "OpenFeign", "Docker"],
+        "Motor determinístico que lê uma especificação (Spec-Kit YAML) e gera um microsserviço em Go com Arquitetura Hexagonal — compila, passa no go vet e roda, com o núcleo da regra de negócio em branco pra ser preenchido. Tem uma camada opcional de IA local que traduz intenção em linguagem natural pra essa especificação, mas a IA nunca escreve código diretamente: só propõe, e um validador determinístico decide. Todo serviço gerado passa por verificação isolada (build e testes num container sem rede) antes de ser entregue, com um teste garantindo que o caminho crítico funciona mesmo com a IA totalmente offline.",
+      tags: ["Go", "Internal Developer Platform", "Arquitetura Hexagonal", "IaC (Pulumi)"],
       links: { live: null, repo: null },
     },
     {
@@ -64,6 +64,16 @@ const PROJECTS = {
         "Em vez de converter um formato direto para outro, o sistema traduz qualquer entrada para um modelo canônico em memória e depois serializa no formato de saída desejado — arquitetura hexagonal, então plugar um novo formato de entrada ou saída não exige tocar nas regras de negócio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+    },
+    {
+      title: "ZenithCode OS",
+      statusKey: "development",
+      status: "PESQUISA EM ANDAMENTO",
+      summary: "Meta-framework pessoal sobre governança, segurança e arquitetura de plataformas internas.",
+      description:
+        "Conjunto de padrões e decisões de arquitetura que venho documentando e testando informalmente no trabalho, pensando em transformar isso na pesquisa do meu mestrado: como organizar squads, política de segurança, observabilidade e ciclo de vida de código em plataformas internas de forma coerente, em vez de decidir cada projeto isoladamente. O Vertex é o primeiro pedaço desse estudo que virou código de verdade.",
+      tags: ["Arquitetura de Plataformas", "DevSecOps", "Governança Técnica", "Pesquisa Acadêmica"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",
@@ -102,13 +112,13 @@ const PROJECTS = {
       links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
     },
     {
-      title: "Acesso Alunos",
-      statusKey: "case-study",
-      status: "CASE STUDY",
-      summary: "Biometric access control and payment automation, built in Hexagonal Architecture.",
+      title: "Vertex",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "An Internal Developer Platform that turns a YAML spec into a ready-to-run Go microservice.",
       description:
-        "A backend that decides, in real time, whether to let a student in: it checks allowed hours against payment status ('current'). It stores a biometric hash and integrates with the Asaas payment gateway to issue invoices/PIX and automatically unlock access once payment is confirmed via webhook. The business-rule core has no knowledge of the database, framework, or any external API — only interfaces (ports & adapters). This was AKPL's first access-control version, before I moved the project to its current stack.",
-      tags: ["Java 21", "Spring Boot", "PostgreSQL", "OpenFeign", "Docker"],
+        "A deterministic engine that reads a Spec-Kit YAML file and generates a Go microservice in Hexagonal Architecture — it compiles, passes go vet, and runs, with the business-rule core left blank to be filled in. An optional local-LLM layer translates natural-language intent into that spec, but the AI never writes code directly — it only proposes, and a deterministic validator decides. Every generated service goes through isolated verification (build and tests in a network-less container) before it's handed over, with a dedicated test proving the critical path still works with the AI fully offline.",
+      tags: ["Go", "Internal Developer Platform", "Hexagonal Architecture", "IaC (Pulumi)"],
       links: { live: null, repo: null },
     },
     {
@@ -130,6 +140,16 @@ const PROJECTS = {
         "Instead of converting one format directly into another, the system translates any input into an in-memory canonical model and then serializes it into the desired output format — a hexagonal architecture, so plugging in a new input or output format never touches the existing business rules.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+    },
+    {
+      title: "ZenithCode OS",
+      statusKey: "development",
+      status: "ONGOING RESEARCH",
+      summary: "A personal meta-framework on governance, security, and internal platform architecture.",
+      description:
+        "A set of architecture patterns and decisions I've been documenting and testing informally at work, with an eye toward turning it into my master's research: how to organize squads, security policy, observability, and code lifecycle across internal platforms coherently, instead of deciding each project in isolation. Vertex is the first piece of this study that turned into real code.",
+      tags: ["Platform Architecture", "DevSecOps", "Technical Governance", "Academic Research"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",
@@ -168,13 +188,13 @@ const PROJECTS = {
       links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
     },
     {
-      title: "Acesso Alunos",
-      statusKey: "case-study",
-      status: "CASO DE ESTUDIO",
-      summary: "Control de acceso biométrico y automatización financiera, en Arquitectura Hexagonal.",
+      title: "Vertex",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Internal Developer Platform que convierte una especificación YAML en un microservicio Go listo para ejecutar.",
       description:
-        "Backend que decide, en tiempo real, si autoriza el ingreso de un alumno: cruza el horario permitido con la situación financiera ('al día'). Registra un hash biométrico y se integra con la pasarela de pago Asaas para generar boleto/PIX y liberar el acceso automáticamente cuando el pago se confirma vía webhook. El núcleo de reglas de negocio no conoce la base de datos, el framework ni ninguna API externa — solo interfaces (ports & adapters). Fue la primera versión del control de acceso de AKPL, antes de migrar el proyecto a la pila actual.",
-      tags: ["Java 21", "Spring Boot", "PostgreSQL", "OpenFeign", "Docker"],
+        "Motor determinístico que lee una especificación (Spec-Kit YAML) y genera un microservicio en Go con Arquitectura Hexagonal — compila, pasa el go vet y ejecuta, con el núcleo de la regla de negocio en blanco para completarse. Tiene una capa opcional de IA local que traduce intención en lenguaje natural a esa especificación, pero la IA nunca escribe código directamente: solo propone, y un validador determinístico decide. Cada servicio generado pasa por una verificación aislada (build y tests en un contenedor sin red) antes de entregarse, con una prueba que garantiza que el camino crítico funciona incluso con la IA completamente offline.",
+      tags: ["Go", "Internal Developer Platform", "Arquitectura Hexagonal", "IaC (Pulumi)"],
       links: { live: null, repo: null },
     },
     {
@@ -196,6 +216,16 @@ const PROJECTS = {
         "En lugar de convertir un formato directamente a otro, el sistema traduce cualquier entrada a un modelo canónico en memoria y luego lo serializa al formato de salida deseado — arquitectura hexagonal, así que agregar un nuevo formato de entrada o salida no exige tocar las reglas de negocio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+    },
+    {
+      title: "ZenithCode OS",
+      statusKey: "development",
+      status: "INVESTIGACIÓN EN CURSO",
+      summary: "Meta-framework personal sobre gobernanza, seguridad y arquitectura de plataformas internas.",
+      description:
+        "Conjunto de patrones y decisiones de arquitectura que vengo documentando y probando de forma informal en el trabajo, pensando en convertirlo en la investigación de mi maestría: cómo organizar equipos, política de seguridad, observabilidad y ciclo de vida del código en plataformas internas de forma coherente, en lugar de decidir cada proyecto por separado. Vertex es el primer fragmento de este estudio que se convirtió en código real.",
+      tags: ["Arquitectura de Plataformas", "DevSecOps", "Gobernanza Técnica", "Investigación Académica"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",

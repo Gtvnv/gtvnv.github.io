@@ -179,7 +179,7 @@
     clear(container);
     NOTES[locale].forEach((note) => {
       const item = el("div", "note-item");
-      item.appendChild(el("h3", "note-title", `// ${note.title}`));
+      item.appendChild(el("h3", "note-title", note.title));
       item.appendChild(el("p", "note-body", note.body));
       container.appendChild(item);
     });
