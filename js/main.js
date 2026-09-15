@@ -46,7 +46,6 @@
     document.querySelectorAll("[data-btn-resume]").forEach((n) => (n.textContent = ui.heroButtons.resume));
 
     document.querySelectorAll("[data-meta-location-label]").forEach((n) => (n.textContent = ui.heroMeta.location));
-    document.querySelectorAll("[data-meta-github-label]").forEach((n) => (n.textContent = ui.heroMeta.github));
     document.querySelectorAll("[data-meta-stack-label]").forEach((n) => (n.textContent = ui.heroMeta.stack));
 
     const sectionKeys = ["sobre", "experiencia", "projetos", "notas", "formacao", "idiomas", "contato"];

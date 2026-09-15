@@ -24,7 +24,7 @@ const UI = {
     nav: { sobre: "Sobre", experiencia: "Experiência", projetos: "Projetos", formacao: "Formação", contato: "Contato" },
     navToggleLabel: "Abrir menu",
     heroButtons: { projects: "Ver projetos", contact: "Entrar em contato", resume: "Currículo" },
-    heroMeta: { location: "Local", github: "GitHub", stack: "Stack" },
+    heroMeta: { location: "Local", stack: "Stack" },
     sections: {
       sobre: { index: "01 / Sobre", title: "Como cheguei até aqui" },
       experiencia: { index: "02 / Experiência", title: "Trajetória profissional" },
@@ -45,7 +45,7 @@ const UI = {
     nav: { sobre: "About", experiencia: "Experience", projetos: "Projects", formacao: "Education", contato: "Contact" },
     navToggleLabel: "Open menu",
     heroButtons: { projects: "View projects", contact: "Get in touch", resume: "Résumé" },
-    heroMeta: { location: "Location", github: "GitHub", stack: "Stack" },
+    heroMeta: { location: "Location", stack: "Stack" },
     sections: {
       sobre: { index: "01 / About", title: "How I got here" },
       experiencia: { index: "02 / Experience", title: "Professional background" },
@@ -66,7 +66,7 @@ const UI = {
     nav: { sobre: "Sobre mí", experiencia: "Experiencia", projetos: "Proyectos", formacao: "Formación", contato: "Contacto" },
     navToggleLabel: "Abrir menú",
     heroButtons: { projects: "Ver proyectos", contact: "Contactarme", resume: "Currículum" },
-    heroMeta: { location: "Ubicación", github: "GitHub", stack: "Stack" },
+    heroMeta: { location: "Ubicación", stack: "Stack" },
     sections: {
       sobre: { index: "01 / Sobre mí", title: "Cómo llegué hasta aquí" },
       experiencia: { index: "02 / Experiencia", title: "Trayectoria profesional" },
