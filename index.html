@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gustavo Vianna — Engenheiro de Software</title>
+  <meta
+    name="description"
+    content="Gustavo Vianna — engenheiro de software focado em arquitetura, segurança e sistemas SaaS em produção."
+  />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!--
+    Open Graph / Twitter Card — controla o preview quando o link é colado no
+    LinkedIn, WhatsApp etc. Esses leitores NÃO executam JavaScript, então o
+    preview sempre mostra esta versão em PT-BR, mesmo com o seletor de idioma
+    no site. og:image e og:url precisam de URL ABSOLUTA: troque
+    "SEU-USUARIO.github.io/SEU-REPO" pelo endereço real depois do deploy.
+  -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Gustavo Vianna" />
+  <meta property="og:title" content="Gustavo Vianna — Engenheiro de Software" />
+  <meta property="og:description" content="Arquiteturas seguras, sistemas que aguentam produção." />
+  <meta property="og:image" content="https://gtvnv.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://gtvnv.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gustavo Vianna — Engenheiro de Software" />
+  <meta name="twitter:description" content="Arquiteturas seguras, sistemas que aguentam produção." />
+  <meta name="twitter:image" content="https://gtvnv.github.io/assets/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="#top" class="brand">
+        <span class="dot"></span>
+        <span data-name>Gustavo Vianna</span>
+      </a>
+
+      <div class="nav-wrap">
+        <nav class="main-nav">
+          <ul>
+            <li><a href="#sobre" data-nav-sobre>Sobre</a></li>
+            <li><a href="#experiencia" data-nav-experiencia>Experiência</a></li>
+            <li><a href="#projetos" data-nav-projetos>Projetos</a></li>
+            <li><a href="#formacao" data-nav-formacao>Formação</a></li>
+            <li><a href="#contato" data-nav-contato>Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="lang-switch" role="group" aria-label="Idioma / Language / Idioma">
+          <button type="button" data-lang="pt-BR">PT</button>
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="es">ES</button>
+        </div>
+
+        <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="grid-field" data-parallax aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-status">
+          <span class="dot"></span>
+          <span data-status>Aberto a oportunidades</span>
+        </div>
+
+        <h1>
+          <span data-name>Gustavo Vianna</span>
+          <span class="role" data-role>Engenheiro de Software</span>
+        </h1>
+
+        <p class="hero-summary" data-summary>
+          Construo backends e produtos SaaS com foco em arquitetura limpa, segurança desde o
+          design e viabilidade de negócio.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projetos" class="btn btn-primary" data-btn-projects>Ver projetos</a>
+          <a href="#contato" class="btn btn-ghost" data-btn-contact>Entrar em contato</a>
+          <a href="#" class="btn btn-ghost" data-resume data-btn-resume target="_blank" rel="noopener">Currículo</a>
+        </div>
+
+        <div class="hero-meta">
+          <span><strong data-meta-location-label>Local</strong>: <span data-location>Pedro Leopoldo, MG</span></span>
+          <span><strong data-meta-github-label>GitHub</strong>: github.com/Gtvnv</span>
+          <span><strong data-meta-stack-label>Stack</strong>: Java · Node.js · C# · Next.js</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE + SKILLS ============ -->
+    <section id="sobre" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="sobre">01 / Sobre</span>
+          <h2 class="section-title" data-section-title="sobre">Como cheguei até aqui</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text" data-about-text></div>
+
+          <div class="skills-block" data-skills></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIÊNCIA ============ -->
+    <section id="experiencia" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="experiencia">02 / Experiência</span>
+          <h2 class="section-title" data-section-title="experiencia">Trajetória profissional</h2>
+        </div>
+
+        <div class="timeline" data-experience></div>
+      </div>
+    </section>
+
+    <!-- ============ PROJETOS ============ -->
+    <section id="projetos" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="projetos">03 / Projetos</span>
+          <h2 class="section-title" data-section-title="projetos">O que eu construí</h2>
+        </div>
+
+        <div class="project-grid" data-projects></div>
+      </div>
+    </section>
+
+    <!-- ============ NOTAS TÉCNICAS ============ -->
+    <section id="notas" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="notas">04 / Notas Técnicas</span>
+          <h2 class="section-title" data-section-title="notas">Por que eu construo assim</h2>
+        </div>
+
+        <div class="notes-list" data-notes></div>
+      </div>
+    </section>
+
+    <!-- ============ FORMAÇÃO ============ -->
+    <section id="formacao" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="formacao">05 / Formação</span>
+          <h2 class="section-title" data-section-title="formacao">Formação</h2>
+        </div>
+
+        <div class="education-list" data-education></div>
+      </div>
+    </section>
+
+    <!-- ============ IDIOMAS ============ -->
+    <section id="idiomas" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="idiomas">06 / Idiomas</span>
+          <h2 class="section-title" data-section-title="idiomas">Idiomas</h2>
+        </div>
+
+        <div class="language-list" data-languages></div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section id="contato" class="contact-section" data-reveal>
+      <div class="container">
+        <div class="section-head">
+          <span class="section-index" data-section-index="contato">07 / Contato</span>
+          <h2 class="section-title" data-section-title="contato">Vamos conversar</h2>
+        </div>
+
+        <a href="mailto:" class="contact-email" data-email>seuemail@exemplo.com</a>
+        <div>
+          <button class="copy-btn" data-copy-email>copiar e-mail</button>
+        </div>
+
+        <div class="contact-links">
+          <a data-linkedin href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a data-github href="#" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-year>2026</span> <span data-name>Gustavo Vianna</span></span>
+      <span data-footer-note>Construído com HTML, CSS e JS puro</span>
+    </div>
+  </footer>
+
+  <button class="back-to-top" data-back-to-top aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/skills-data.js"></script>
+  <script src="js/languages-data.js"></script>
+  <script src="js/experience-data.js"></script>
+  <script src="js/education-data.js"></script>
+  <script src="js/projects-data.js"></script>
+  <script src="js/notes-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
