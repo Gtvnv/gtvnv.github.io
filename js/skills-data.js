@@ -29,7 +29,18 @@ const SKILLS = {
     },
     {
       category: "Dados & Infraestrutura",
-      items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
+      items: [
+        "PostgreSQL",
+        "MySQL",
+        "SQL Server",
+        "Redis",
+        "AWS",
+        "Azure",
+        "Docker",
+        "Linux",
+        "CI/CD (GitHub Actions)",
+        "Socket.IO",
+      ],
     },
     {
       category: "IA & Automação",
@@ -70,7 +81,18 @@ const SKILLS = {
     },
     {
       category: "Data & Infrastructure",
-      items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
+      items: [
+        "PostgreSQL",
+        "MySQL",
+        "SQL Server",
+        "Redis",
+        "AWS",
+        "Azure",
+        "Docker",
+        "Linux",
+        "CI/CD (GitHub Actions)",
+        "Socket.IO",
+      ],
     },
     {
       category: "AI & Automation",
@@ -111,7 +133,18 @@ const SKILLS = {
     },
     {
       category: "Datos e Infraestructura",
-      items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
+      items: [
+        "PostgreSQL",
+        "MySQL",
+        "SQL Server",
+        "Redis",
+        "AWS",
+        "Azure",
+        "Docker",
+        "Linux",
+        "CI/CD (GitHub Actions)",
+        "Socket.IO",
+      ],
     },
     {
       category: "IA y Automatización",
