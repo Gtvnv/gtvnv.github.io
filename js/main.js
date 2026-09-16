@@ -345,18 +345,20 @@
     });
   }
 
-  // Parallax da hero (grid de fundo + foto) e fade do topo conforme rola —
-  // a lava de fundo também ganha uma deriva bem sutil pra dar sensação de
-  // profundidade ao longo do documento inteiro, não só na hero. Tudo
-  // desativado se o visitante pedir menos movimento (prefers-reduced-motion).
+  // Parallax da hero (grid de fundo + foto) e fade do topo conforme rola.
+  // Desativado se o visitante pedir menos movimento (prefers-reduced-motion).
+  //
+  // Importante: NUNCA aplicar esse deslocamento no .lava-bg — ele é
+  // position:fixed cobrindo exatamente o viewport (inset:0); mover seu
+  // transform via scroll desloca esse retângulo pra fora do viewport e
+  // expõe um vão branco (o fundo default de html/body) no topo da tela.
   function setupParallax() {
     if (prefersReducedMotion) return;
     const grid = document.querySelector("[data-parallax]");
     const heroContent = document.querySelector(".hero-content");
     const heroPhoto = document.querySelector(".hero-photo-wrap");
-    const lavaBg = document.querySelector(".lava-bg");
     const hero = document.querySelector(".hero");
-    if (!grid && !heroContent && !heroPhoto && !lavaBg) return;
+    if (!grid && !heroContent && !heroPhoto) return;
 
     let ticking = false;
     function update() {
@@ -373,10 +375,6 @@
       if (heroContent) heroContent.style.opacity = String(heroOpacity);
       if (heroPhoto) heroPhoto.style.opacity = String(heroOpacity);
 
-      // Deriva bem leve do fundo animado — dá continuidade ao efeito em
-      // toda a página, não só no topo.
-      if (lavaBg) lavaBg.style.transform = `translate3d(0, ${scrollY * 0.04}px, 0)`;
-
       ticking = false;
     }
     window.addEventListener(
@@ -389,7 +387,18 @@
       },
       { passive: true }
     );
+
+    // No carregamento, a hero está com opacity:0 (ver CSS) e essa primeira
+    // chamada de update() já manda opacity:1 — como o elemento tem
+    // transition:opacity definida, isso já basta pra reproduzir o fade de
+    // entrada de 1s. Depois de tocar, removemos a transition pra que os
+    // ajustes de opacidade ao rolar (feitos acima) fiquem instantâneos,
+    // sem "arrastar" atrás da posição do scroll.
     update();
+    setTimeout(() => {
+      if (heroContent) heroContent.style.transition = "none";
+      if (heroPhoto) heroPhoto.style.transition = "none";
+    }, 1050);
   }
 
   // Revela seções e cards suavemente conforme entram na tela.

@@ -423,8 +423,20 @@ section:last-of-type {
   will-change: transform, opacity;
 }
 
-.hero-content {
-  will-change: opacity;
+.hero-content,
+.hero-photo-wrap {
+  /* Estado inicial: some ao carregar a página e o JS (setupParallax) faz
+     aparecer com um fade de 1s assim que a hero é montada — ver main.js. */
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content,
+  .hero-photo-wrap {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 .hero-photo-glow {
