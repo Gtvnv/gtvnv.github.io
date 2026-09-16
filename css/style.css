@@ -2,18 +2,25 @@
    TOKENS
    ========================================================= */
 :root {
-  --bg: #0e1a2b;
-  --bg-deep: #0a141f;
-  --panel: #142338;
-  --panel-hover: #182a44;
-  --border: #263b56;
-  --border-soft: #1b2c42;
-  --text: #eaeff6;
-  --muted: #93a4bc;
-  --muted-dim: #61728a;
-  --accent: #dd9a52;
-  --accent-dim: #a97841;
-  --accent-soft: rgba(221, 154, 82, 0.12);
+  --bg: #07060f;
+  --bg-deep: #030209;
+  --panel: #14122a;
+  --panel-hover: #1c1938;
+  --border: #322e5c;
+  --border-soft: #211f3d;
+  --text: #eef0fb;
+  --muted: #a3a4cf;
+  --muted-dim: #6d6e9c;
+  --accent: #22d3ee;
+  --accent-dim: #1596ac;
+  --accent-soft: rgba(34, 211, 238, 0.14);
+  --accent2: #a855f7;
+  --accent3: #6366f1;
+  --accent-grad: linear-gradient(135deg, #a855f7 0%, #6366f1 45%, #22d3ee 100%);
+
+  --lava-purple: #8b3ef0;
+  --lava-blue: #2b4bf2;
+  --lava-cyan: #17c9e8;
 
   --font-display: "Space Grotesk", "Segoe UI", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
@@ -52,12 +59,102 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   LAVA BACKGROUND — camada fixa atrás de tudo, com "blobs"
+   borrados em roxo/azul/ciano que se movem devagar e se misturam
+   (mix-blend-mode: screen) como uma lâmpada de lava.
+   ========================================================= */
+.lava-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bg);
+  pointer-events: none;
+}
+
+.lava-blob {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  max-width: 640px;
+  max-height: 640px;
+  min-width: 340px;
+  min-height: 340px;
+  border-radius: 50%;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform;
+  pointer-events: none;
+  /* Borda suave via radial-gradient em vez de filter: blur() — visualmente
+     equivalente, mas não exige re-borrar o pixel a cada frame da animação
+     (filter + scale juntos forçavam recomputar o blur inteiro por frame,
+     o que pesava bastante numa GPU integrada). */
+  background: radial-gradient(circle, var(--lava-color) 0%, var(--lava-color-transparent) 70%);
+}
+
+.lava-blob-1 {
+  --lava-color: #8b3ef0;
+  --lava-color-transparent: rgba(139, 62, 240, 0);
+  top: -14%;
+  left: -12%;
+  animation: lava-drift-1 26s ease-in-out infinite;
+}
+
+.lava-blob-2 {
+  --lava-color: #17c9e8;
+  --lava-color-transparent: rgba(23, 201, 232, 0);
+  top: 26%;
+  right: -16%;
+  animation: lava-drift-2 32s ease-in-out infinite;
+}
+
+.lava-blob-3 {
+  --lava-color: #2b4bf2;
+  --lava-color-transparent: rgba(43, 75, 242, 0);
+  bottom: -18%;
+  left: 18%;
+  animation: lava-drift-3 22s ease-in-out infinite;
+}
+
+.lava-blob-4 {
+  --lava-color: #8b3ef0;
+  --lava-color-transparent: rgba(139, 62, 240, 0);
+  bottom: 6%;
+  right: 13%;
+  opacity: 0.4;
+  animation: lava-drift-4 38s ease-in-out infinite;
+}
+
+@keyframes lava-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(9vw, 7vh) scale(1.18); }
+  66% { transform: translate(-5vw, 11vh) scale(0.88); }
+}
+
+@keyframes lava-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-10vw, 9vh) scale(0.85); }
+  70% { transform: translate(-4vw, -6vh) scale(1.15); }
+}
+
+@keyframes lava-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  35% { transform: translate(7vw, -10vh) scale(1.12); }
+  65% { transform: translate(12vw, -2vh) scale(0.9); }
+}
+
+@keyframes lava-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8vw, -8vh) scale(1.2); }
 }
 
 h1,
@@ -162,8 +259,8 @@ section:last-of-type {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(14, 26, 43, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(7, 6, 15, 0.75);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -183,13 +280,19 @@ section:last-of-type {
   gap: 0.5rem;
 }
 
-.brand .dot {
+.brand .dot,
+.hero-status .dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--accent-grad);
   box-shadow: 0 0 0 3px var(--accent-soft);
   flex-shrink: 0;
+}
+
+.hero-status .dot {
+  width: 6px;
+  height: 6px;
 }
 
 .nav-wrap {
@@ -284,12 +387,12 @@ section:last-of-type {
   margin-bottom: 2rem;
 }
 
-.hero-status .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: clamp(2rem, 6vw, 4rem);
+  align-items: center;
 }
 
 .hero h1 {
@@ -300,10 +403,56 @@ section:last-of-type {
 
 .hero .role {
   font-family: var(--font-mono);
-  color: var(--accent);
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   margin-top: 1.1rem;
   display: block;
+}
+
+/* ---- Foto de perfil no hero ---- */
+.hero-photo-wrap {
+  position: relative;
+  justify-self: center;
+}
+
+.hero-photo-glow {
+  position: absolute;
+  inset: -16%;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, var(--lava-purple), var(--lava-blue), var(--lava-cyan), var(--lava-purple));
+  filter: blur(34px);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  animation: hero-photo-spin 14s linear infinite;
+}
+
+.hero-photo {
+  position: relative;
+  z-index: 1;
+  width: clamp(170px, 22vw, 250px);
+  height: clamp(170px, 22vw, 250px);
+  border-radius: 28px;
+  overflow: hidden;
+  border: 2px solid rgba(238, 240, 251, 0.16);
+  box-shadow: 0 25px 60px rgba(3, 2, 9, 0.65);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes hero-photo-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hero-summary {
@@ -337,12 +486,12 @@ section:last-of-type {
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: #16110a;
+  background: var(--accent-grad);
+  color: #06040f;
 }
 
 .btn-primary:hover {
-  background: #e7a869;
+  filter: brightness(1.12);
 }
 
 .btn-ghost {
@@ -657,6 +806,18 @@ section:last-of-type {
   line-height: 1.7;
 }
 
+.note-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.note-link:hover {
+  color: var(--accent);
+}
+
 /* =========================================================
    EDUCATION
    ========================================================= */
@@ -744,6 +905,7 @@ section:last-of-type {
 }
 
 .contact-email {
+  display: inline-block;
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 500;
@@ -757,6 +919,27 @@ section:last-of-type {
 .contact-email:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+.contact-phone {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  color: var(--muted);
+  margin-top: 0.9rem;
+  transition: color 0.15s ease;
+}
+
+.contact-phone:hover {
+  color: var(--accent);
+}
+
+.contact-copy-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
 }
 
 .contact-links {
@@ -777,7 +960,6 @@ section:last-of-type {
 }
 
 .copy-btn {
-  margin-top: 1.25rem;
   background: none;
   border: none;
   color: var(--muted-dim);
@@ -818,6 +1000,15 @@ section:last-of-type {
   .project-grid {
     grid-template-columns: 1fr;
   }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo-wrap {
+    order: -1;
+    margin-bottom: 0.5rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -834,7 +1025,7 @@ section:last-of-type {
   }
 
   .main-nav.open {
-    max-height: 260px;
+    max-height: 420px;
   }
 
   .main-nav ul {
@@ -912,13 +1103,6 @@ section:last-of-type {
 .note-item.revealed {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* A hero nunca precisa entrar animada — já é a primeira coisa visível */
-.hero,
-.hero * {
-  opacity: 1;
-  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

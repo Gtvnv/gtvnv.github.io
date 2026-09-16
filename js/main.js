@@ -30,7 +30,9 @@
       "[data-nav-sobre]": ui.nav.sobre,
       "[data-nav-experiencia]": ui.nav.experiencia,
       "[data-nav-projetos]": ui.nav.projetos,
+      "[data-nav-notas]": ui.nav.notas,
       "[data-nav-formacao]": ui.nav.formacao,
+      "[data-nav-idiomas]": ui.nav.idiomas,
       "[data-nav-contato]": ui.nav.contato,
     };
     Object.entries(navMap).forEach(([selector, text]) => {
@@ -58,6 +60,8 @@
 
     const copyBtn = document.querySelector("[data-copy-email]");
     if (copyBtn) copyBtn.textContent = ui.copyEmail.idle;
+    const copyPhoneBtn = document.querySelector("[data-copy-phone]");
+    if (copyPhoneBtn) copyPhoneBtn.textContent = ui.copyPhone.idle;
 
     document.querySelectorAll("[data-footer-note]").forEach((n) => (n.textContent = ui.footerNote));
 
@@ -86,11 +90,17 @@
       n.textContent = CONFIG_SHARED.email;
       n.href = `mailto:${CONFIG_SHARED.email}`;
     });
+    document.querySelectorAll("[data-phone]").forEach((n) => {
+      n.textContent = CONFIG_SHARED.phone;
+      n.href = `tel:${CONFIG_SHARED.phoneDial}`;
+    });
 
     const linkedin = document.querySelector("[data-linkedin]");
     if (linkedin) linkedin.href = CONFIG_SHARED.social.linkedin;
     const github = document.querySelector("[data-github]");
     if (github) github.href = CONFIG_SHARED.social.github;
+    const whatsapp = document.querySelector("[data-whatsapp]");
+    if (whatsapp) whatsapp.href = CONFIG_SHARED.social.whatsapp;
 
     const resumeLink = document.querySelector("[data-resume]");
     if (resumeLink) {
@@ -180,6 +190,13 @@
       const item = el("div", "note-item");
       item.appendChild(el("h3", "note-title", note.title));
       item.appendChild(el("p", "note-body", note.body));
+      if (note.link) {
+        const a = el("a", "note-link", UI[locale].noteLink);
+        a.href = note.link;
+        a.target = "_blank";
+        a.rel = "noopener";
+        item.appendChild(a);
+      }
       container.appendChild(item);
     });
   }
@@ -273,16 +290,18 @@
     });
   }
 
-  function setupCopyEmail() {
-    const btn = document.querySelector("[data-copy-email]");
+  // Botão genérico de "copiar X" — usado para e-mail e telefone. `uiKey` é a
+  // chave em UI[locale] com os textos { idle, done } daquele botão.
+  function setupCopyButton(selector, value, uiKey) {
+    const btn = document.querySelector(selector);
     if (!btn) return;
     btn.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(CONFIG_SHARED.email);
-        btn.textContent = UI[currentLocale].copyEmail.done;
-        setTimeout(() => (btn.textContent = UI[currentLocale].copyEmail.idle), 1800);
+        await navigator.clipboard.writeText(value);
+        btn.textContent = UI[currentLocale][uiKey].done;
+        setTimeout(() => (btn.textContent = UI[currentLocale][uiKey].idle), 1800);
       } catch (e) {
-        // Clipboard indisponível — o link mailto acima já resolve.
+        // Clipboard indisponível — o link mailto/tel acima já resolve.
       }
     });
   }
@@ -379,7 +398,8 @@
     renderAll(currentLocale);
     setupNavToggle();
     setupLangSwitch();
-    setupCopyEmail();
+    setupCopyButton("[data-copy-email]", CONFIG_SHARED.email, "copyEmail");
+    setupCopyButton("[data-copy-phone]", CONFIG_SHARED.phone, "copyPhone");
     setupScrollSpy();
     setupBackToTop();
     setupParallax();

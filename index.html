@@ -41,6 +41,13 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="lava-bg" aria-hidden="true">
+    <span class="lava-blob lava-blob-1"></span>
+    <span class="lava-blob lava-blob-2"></span>
+    <span class="lava-blob lava-blob-3"></span>
+    <span class="lava-blob lava-blob-4"></span>
+  </div>
+
   <header class="site-header">
     <div class="container">
       <a href="#top" class="brand">
@@ -54,7 +61,9 @@
             <li><a href="#sobre" data-nav-sobre>Sobre</a></li>
             <li><a href="#experiencia" data-nav-experiencia>Experiência</a></li>
             <li><a href="#projetos" data-nav-projetos>Projetos</a></li>
+            <li><a href="#notas" data-nav-notas>Notas Técnicas</a></li>
             <li><a href="#formacao" data-nav-formacao>Formação</a></li>
+            <li><a href="#idiomas" data-nav-idiomas>Idiomas</a></li>
             <li><a href="#contato" data-nav-contato>Contato</a></li>
           </ul>
         </nav>
@@ -75,30 +84,41 @@
     <section class="hero">
       <div class="grid-field" data-parallax aria-hidden="true"></div>
       <div class="container">
-        <div class="hero-status">
-          <span class="dot"></span>
-          <span data-status>Aberto a oportunidades</span>
-        </div>
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-status">
+              <span class="dot"></span>
+              <span data-status>Aberto a oportunidades</span>
+            </div>
 
-        <h1>
-          <span data-name>Gustavo Vianna</span>
-          <span class="role" data-role>Engenheiro de Software</span>
-        </h1>
+            <h1>
+              <span data-name>Gustavo Vianna</span>
+              <span class="role" data-role>Engenheiro de Software</span>
+            </h1>
 
-        <p class="hero-summary" data-summary>
-          Construo backends e produtos SaaS com foco em arquitetura limpa, segurança desde o
-          design e viabilidade de negócio.
-        </p>
+            <p class="hero-summary" data-summary>
+              Construo backends e produtos SaaS com foco em arquitetura limpa, segurança desde o
+              design e viabilidade de negócio.
+            </p>
 
-        <div class="hero-actions">
-          <a href="#projetos" class="btn btn-primary" data-btn-projects>Ver projetos</a>
-          <a href="#contato" class="btn btn-ghost" data-btn-contact>Entrar em contato</a>
-          <a href="#" class="btn btn-ghost" data-resume data-btn-resume target="_blank" rel="noopener">Currículo</a>
-        </div>
+            <div class="hero-actions">
+              <a href="#projetos" class="btn btn-primary" data-btn-projects>Ver projetos</a>
+              <a href="#contato" class="btn btn-ghost" data-btn-contact>Entrar em contato</a>
+              <a href="#" class="btn btn-ghost" data-resume data-btn-resume target="_blank" rel="noopener">Currículo</a>
+            </div>
 
-        <div class="hero-meta">
-          <span><strong data-meta-location-label>Local</strong>: <span data-location>Pedro Leopoldo, MG</span></span>
-          <span><strong data-meta-stack-label>Stack</strong>: Java · Node.js · C# · Next.js · TypeScript · PostgreSQL</span>
+            <div class="hero-meta">
+              <span><strong data-meta-location-label>Local</strong>: <span data-location>Pedro Leopoldo, MG</span></span>
+              <span><strong data-meta-stack-label>Stack</strong>: Java · Node.js · C# · Next.js · TypeScript · PostgreSQL</span>
+            </div>
+          </div>
+
+          <div class="hero-photo-wrap">
+            <span class="hero-photo-glow" aria-hidden="true"></span>
+            <div class="hero-photo">
+              <img src="assets/perfil.jpg" alt="Foto de Gustavo Vianna" width="250" height="250" />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -188,11 +208,15 @@
         </div>
 
         <a href="mailto:" class="contact-email" data-email>seuemail@exemplo.com</a>
-        <div>
+        <a href="tel:" class="contact-phone" data-phone>+55 11 92090-6946</a>
+
+        <div class="contact-copy-row">
           <button class="copy-btn" data-copy-email>copiar e-mail</button>
+          <button class="copy-btn" data-copy-phone>copiar telefone</button>
         </div>
 
         <div class="contact-links">
+          <a data-whatsapp href="#" target="_blank" rel="noopener">WhatsApp</a>
           <a data-linkedin href="#" target="_blank" rel="noopener">LinkedIn</a>
           <a data-github href="#" target="_blank" rel="noopener">GitHub</a>
         </div>

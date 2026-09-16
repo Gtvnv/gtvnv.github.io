@@ -13,6 +13,11 @@ const NOTES = {
       title: "Por que Zero Trust",
       body: "A maioria dos sistemas ainda confia por padrão em tudo que está 'dentro da rede'. Zero Trust parte do oposto: nenhuma requisição é confiável até provar quem é, mesmo vindo de dentro. No AegisProtocol isso vira token assinado com RSA-2048, expiração curta, revogação distribuída via Redis e política de acesso granular por recurso — não por usuário. É mais fricção pra implementar. É a diferença entre um vazamento de credencial custar uma sessão e custar o sistema inteiro.",
     },
+    {
+      title: "Por que formação importa mais que velocidade",
+      body: "Escrevi um artigo acadêmico sobre exatamente essa tensão: o mercado de TI cobra qualificação em ritmo ágil, enquanto engenharia de verdade exige um amadurecimento lento e estrutural — e é nessa lacuna que nascem 'desenvolvedores' que sabem operar um framework mas nunca questionam a lógica por trás dele. O texto usa casos como o Therac-25 pra argumentar que delegar decisão arquitetural a atalhos — bootcamps rasos, IA usada sem crítica — tem custo jurídico e físico real, não só técnico. É a base teórica por trás de por que eu insisto em Clean Architecture e Zero Trust mesmo quando dá mais trabalho.",
+      link: "assets/artigo-dissonancia-estrutural-ti.pdf",
+    },
   ],
   en: [
     {
@@ -23,6 +28,11 @@ const NOTES = {
       title: "Why Zero Trust",
       body: "Most systems still trust everything 'inside the network' by default. Zero Trust starts from the opposite assumption: no request is trusted until it proves who it is, even from the inside. In AegisProtocol that becomes RSA-2048-signed tokens, short expiry, distributed revocation via Redis, and access policy scoped per resource — not per user. It's more friction to implement. It's the difference between a leaked credential costing one session versus costing the entire system.",
     },
+    {
+      title: "Why formal training beats speed",
+      body: "I wrote an academic paper about exactly this tension: the IT market demands agile-paced qualification, while real engineering requires slow, structural maturity — and that gap is where 'developers' who can operate a framework but never question the logic behind it come from. The paper uses cases like Therac-25 to argue that outsourcing architectural decisions to shortcuts — shallow bootcamps, uncritical AI use — carries real legal and physical cost, not just a technical one. It's the theoretical backbone behind why I insist on Clean Architecture and Zero Trust even when it's more work.",
+      link: "assets/artigo-dissonancia-estrutural-ti.pdf",
+    },
   ],
   es: [
     {
@@ -32,6 +42,11 @@ const NOTES = {
     {
       title: "Por qué Zero Trust",
       body: "La mayoría de los sistemas todavía confía por defecto en todo lo que está 'dentro de la red'. Zero Trust parte de lo contrario: ninguna solicitud es confiable hasta que prueba quién es, incluso viniendo de adentro. En AegisProtocol eso se traduce en tokens firmados con RSA-2048, expiración corta, revocación distribuida vía Redis y políticas de acceso granulares por recurso — no por usuario. Cuesta más fricción implementarlo. Es la diferencia entre que una credencial filtrada cueste una sesión o cueste el sistema entero.",
+    },
+    {
+      title: "Por qué la formación importa más que la velocidad",
+      body: "Escribí un artículo académico sobre exactamente esa tensión: el mercado de TI exige calificación al ritmo ágil, mientras que la ingeniería de verdad requiere una maduración lenta y estructural — y en esa brecha nacen 'desarrolladores' que saben operar un framework pero nunca cuestionan la lógica detrás de él. El texto usa casos como el Therac-25 para argumentar que delegar decisiones arquitectónicas a atajos — bootcamps superficiales, IA usada sin crítica — tiene un costo jurídico y físico real, no solo técnico. Es la base teórica detrás de por qué insisto en Clean Architecture y Zero Trust incluso cuando cuesta más trabajo.",
+      link: "assets/artigo-dissonancia-estrutural-ti.pdf",
     },
   ],
 };
