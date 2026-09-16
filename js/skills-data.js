@@ -32,6 +32,16 @@ const SKILLS = {
       items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
     },
     {
+      category: "IA & Automação",
+      items: [
+        "IA Generativa / LLMs",
+        "Prompt Engineering",
+        "Spec-Driven Development (SDD)",
+        "GitHub Copilot / Claude Code",
+        "Power Platform (PowerApps / Power Automate)",
+      ],
+    },
+    {
       category: "Governança & Negócio",
       items: ["FinOps", "Gestão de riscos", "Compliance", "Scrum / Kanban"],
     },
@@ -63,6 +73,16 @@ const SKILLS = {
       items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
     },
     {
+      category: "AI & Automation",
+      items: [
+        "Generative AI / LLMs",
+        "Prompt Engineering",
+        "Spec-Driven Development (SDD)",
+        "GitHub Copilot / Claude Code",
+        "Power Platform (PowerApps / Power Automate)",
+      ],
+    },
+    {
       category: "Governance & Business",
       items: ["FinOps", "Risk management", "Compliance", "Scrum / Kanban"],
     },
@@ -92,6 +112,16 @@ const SKILLS = {
     {
       category: "Datos e Infraestructura",
       items: ["PostgreSQL", "MySQL", "Redis", "Docker", "Linux", "CI/CD (GitHub Actions)", "Socket.IO"],
+    },
+    {
+      category: "IA y Automatización",
+      items: [
+        "IA Generativa / LLMs",
+        "Prompt Engineering",
+        "Spec-Driven Development (SDD)",
+        "GitHub Copilot / Claude Code",
+        "Power Platform (PowerApps / Power Automate)",
+      ],
     },
     {
       category: "Gobernanza y Negocio",
