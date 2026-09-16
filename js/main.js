@@ -345,16 +345,38 @@
     });
   }
 
-  // Parallax sutil no grid de fundo da hero — desativado se o visitante
-  // pedir menos movimento (prefers-reduced-motion) ou em telas bem estreitas.
+  // Parallax da hero (grid de fundo + foto) e fade do topo conforme rola —
+  // a lava de fundo também ganha uma deriva bem sutil pra dar sensação de
+  // profundidade ao longo do documento inteiro, não só na hero. Tudo
+  // desativado se o visitante pedir menos movimento (prefers-reduced-motion).
   function setupParallax() {
     if (prefersReducedMotion) return;
-    const layer = document.querySelector("[data-parallax]");
-    if (!layer) return;
+    const grid = document.querySelector("[data-parallax]");
+    const heroContent = document.querySelector(".hero-content");
+    const heroPhoto = document.querySelector(".hero-photo-wrap");
+    const lavaBg = document.querySelector(".lava-bg");
+    const hero = document.querySelector(".hero");
+    if (!grid && !heroContent && !heroPhoto && !lavaBg) return;
+
     let ticking = false;
     function update() {
-      const offset = window.scrollY * 0.25;
-      layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+      const scrollY = window.scrollY;
+      const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+
+      if (grid) grid.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0)`;
+      if (heroPhoto) heroPhoto.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`;
+
+      // Foto e texto da hero somem suavemente até ~85% da altura da hero,
+      // sem chegar a opacidade zero (evita um "sumiço" abrupto).
+      const fadeProgress = Math.min(scrollY / (heroHeight * 0.85), 1);
+      const heroOpacity = 1 - fadeProgress * 0.9;
+      if (heroContent) heroContent.style.opacity = String(heroOpacity);
+      if (heroPhoto) heroPhoto.style.opacity = String(heroOpacity);
+
+      // Deriva bem leve do fundo animado — dá continuidade ao efeito em
+      // toda a página, não só no topo.
+      if (lavaBg) lavaBg.style.transform = `translate3d(0, ${scrollY * 0.04}px, 0)`;
+
       ticking = false;
     }
     window.addEventListener(
@@ -367,6 +389,7 @@
       },
       { passive: true }
     );
+    update();
   }
 
   // Revela seções e cards suavemente conforme entram na tela.

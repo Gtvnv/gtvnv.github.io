@@ -79,6 +79,7 @@ body {
   overflow: hidden;
   background: var(--bg);
   pointer-events: none;
+  will-change: transform;
 }
 
 .lava-blob {
@@ -234,6 +235,7 @@ section:last-of-type {
 
 .section-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Faint blueprint grid, used behind the hero */
@@ -399,6 +401,7 @@ section:last-of-type {
   font-size: clamp(2.4rem, 6vw, 4rem);
   max-width: 15ch;
   letter-spacing: -0.01em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 .hero .role {
@@ -407,6 +410,7 @@ section:last-of-type {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   margin-top: 1.1rem;
   display: block;
@@ -416,6 +420,11 @@ section:last-of-type {
 .hero-photo-wrap {
   position: relative;
   justify-self: center;
+  will-change: transform, opacity;
+}
+
+.hero-content {
+  will-change: opacity;
 }
 
 .hero-photo-glow {

@@ -69,6 +69,7 @@ const PROJECTS = {
       title: "ZenithCode OS",
       statusKey: "development",
       status: "PESQUISA EM ANDAMENTO",
+      featured: true,
       summary: "Meta-framework pessoal sobre governança, segurança e arquitetura de plataformas internas.",
       description:
         "Conjunto de padrões e decisões de arquitetura que venho documentando e testando informalmente no trabalho, pensando em transformar isso na pesquisa do meu mestrado: como organizar squads, política de segurança, observabilidade e ciclo de vida de código em plataformas internas de forma coerente, em vez de decidir cada projeto isoladamente. O Vertex é o primeiro pedaço desse estudo que virou código de verdade.",
@@ -145,6 +146,7 @@ const PROJECTS = {
       title: "ZenithCode OS",
       statusKey: "development",
       status: "ONGOING RESEARCH",
+      featured: true,
       summary: "A personal meta-framework on governance, security, and internal platform architecture.",
       description:
         "A set of architecture patterns and decisions I've been documenting and testing informally at work, with an eye toward turning it into my master's research: how to organize squads, security policy, observability, and code lifecycle across internal platforms coherently, instead of deciding each project in isolation. Vertex is the first piece of this study that turned into real code.",
@@ -221,6 +223,7 @@ const PROJECTS = {
       title: "ZenithCode OS",
       statusKey: "development",
       status: "INVESTIGACIÓN EN CURSO",
+      featured: true,
       summary: "Meta-framework personal sobre gobernanza, seguridad y arquitectura de plataformas internas.",
       description:
         "Conjunto de patrones y decisiones de arquitectura que vengo documentando y probando de forma informal en el trabajo, pensando en convertirlo en la investigación de mi maestría: cómo organizar equipos, política de seguridad, observabilidad y ciclo de vida del código en plataformas internas de forma coherente, en lugar de decidir cada proyecto por separado. Vertex es el primer fragmento de este estudio que se convirtió en código real.",
