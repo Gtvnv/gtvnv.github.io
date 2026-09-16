@@ -391,14 +391,14 @@
     // No carregamento, a hero está com opacity:0 (ver CSS) e essa primeira
     // chamada de update() já manda opacity:1 — como o elemento tem
     // transition:opacity definida, isso já basta pra reproduzir o fade de
-    // entrada de 1s. Depois de tocar, removemos a transition pra que os
+    // entrada de 2s. Depois de tocar, removemos a transition pra que os
     // ajustes de opacidade ao rolar (feitos acima) fiquem instantâneos,
     // sem "arrastar" atrás da posição do scroll.
     update();
     setTimeout(() => {
       if (heroContent) heroContent.style.transition = "none";
       if (heroPhoto) heroPhoto.style.transition = "none";
-    }, 1050);
+    }, 2050);
   }
 
   // Revela seções e cards suavemente conforme entram na tela.

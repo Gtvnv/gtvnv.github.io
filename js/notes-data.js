@@ -7,7 +7,7 @@ const NOTES = {
   "pt-BR": [
     {
       title: "Por que Clean Architecture",
-      body: "Toda vez que uma regra de negócio depende diretamente de um framework, de um banco específico ou de uma API externa, ela fica presa a essa decisão pra sempre. Clean Architecture — e Hexagonal, no caso do Acesso Alunos e do AegisProtocol — resolve isso invertendo a dependência: o núcleo do sistema define interfaces, e é a infraestrutura que se adapta a ele, nunca o contrário. Na prática, dá pra trocar o banco, o gateway de pagamento ou até o framework web sem reescrever uma linha de regra de negócio. Custa mais tempo no início. Paga a diferença na primeira vez que algo externo muda — e sempre muda.",
+      body: "Toda vez que uma regra de negócio depende diretamente de um framework, de um banco específico ou de uma API externa, ela fica presa a essa decisão pra sempre. Clean Architecture — e Hexagonal, no caso do Vertex e do AegisProtocol — resolve isso invertendo a dependência: o núcleo do sistema define interfaces, e é a infraestrutura que se adapta a ele, nunca o contrário. Na prática, dá pra trocar o banco, o gateway de pagamento ou até o framework web sem reescrever uma linha de regra de negócio. Custa mais tempo no início. Paga a diferença na primeira vez que algo externo muda — e sempre muda.",
     },
     {
       title: "Por que Zero Trust",
@@ -22,7 +22,7 @@ const NOTES = {
   en: [
     {
       title: "Why Clean Architecture",
-      body: "Every time a business rule depends directly on a framework, a specific database, or an external API, it stays locked into that decision forever. Clean Architecture — and Hexagonal, in the case of Acesso Alunos and AegisProtocol — fixes this by inverting the dependency: the core defines interfaces, and infrastructure adapts to it, never the other way around. In practice, that means swapping the database, the payment gateway, or even the web framework without rewriting a single line of business logic. It costs more time up front. It pays off the first time something external changes — and it always does.",
+      body: "Every time a business rule depends directly on a framework, a specific database, or an external API, it stays locked into that decision forever. Clean Architecture — and Hexagonal, in the case of Vertex and AegisProtocol — fixes this by inverting the dependency: the core defines interfaces, and infrastructure adapts to it, never the other way around. In practice, that means swapping the database, the payment gateway, or even the web framework without rewriting a single line of business logic. It costs more time up front. It pays off the first time something external changes — and it always does.",
     },
     {
       title: "Why Zero Trust",
@@ -37,7 +37,7 @@ const NOTES = {
   es: [
     {
       title: "Por qué Clean Architecture",
-      body: "Cada vez que una regla de negocio depende directamente de un framework, de una base de datos específica o de una API externa, queda atada a esa decisión para siempre. Clean Architecture — y Hexagonal, en el caso de Acesso Alunos y AegisProtocol — resuelve esto invirtiendo la dependencia: el núcleo define interfaces, y es la infraestructura la que se adapta a él, nunca al revés. En la práctica, se puede cambiar la base de datos, la pasarela de pago o incluso el framework web sin reescribir una sola línea de regla de negocio. Cuesta más tiempo al principio. Se paga la diferencia la primera vez que algo externo cambia — y siempre cambia.",
+      body: "Cada vez que una regla de negocio depende directamente de un framework, de una base de datos específica o de una API externa, queda atada a esa decisión para siempre. Clean Architecture — y Hexagonal, en el caso de Vertex y AegisProtocol — resuelve esto invirtiendo la dependencia: el núcleo define interfaces, y es la infraestructura la que se adapta a él, nunca al revés. En la práctica, se puede cambiar la base de datos, la pasarela de pago o incluso el framework web sin reescribir una sola línea de regla de negocio. Cuesta más tiempo al principio. Se paga la diferencia la primera vez que algo externo cambia — y siempre cambia.",
     },
     {
       title: "Por qué Zero Trust",
