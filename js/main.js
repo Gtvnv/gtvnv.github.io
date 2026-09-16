@@ -368,9 +368,11 @@
       if (grid) grid.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0)`;
       if (heroPhoto) heroPhoto.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`;
 
-      // Foto e texto da hero somem suavemente até ~85% da altura da hero,
-      // sem chegar a opacidade zero (evita um "sumiço" abrupto).
-      const fadeProgress = Math.min(scrollY / (heroHeight * 0.85), 1);
+      // Foto e texto da hero somem suavemente até ~105% da altura da hero,
+      // sem chegar a opacidade zero (evita um "sumiço" abrupto). Esse
+      // percentual controla o "tempo" do parallax: quanto maior, mais
+      // scroll é preciso pra transição terminar, deixando-a mais perceptível.
+      const fadeProgress = Math.min(scrollY / (heroHeight * 1.05), 1);
       const heroOpacity = 1 - fadeProgress * 0.9;
       if (heroContent) heroContent.style.opacity = String(heroOpacity);
       if (heroPhoto) heroPhoto.style.opacity = String(heroOpacity);
