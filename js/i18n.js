@@ -20,7 +20,7 @@ const LOCALE_LABELS = {
 const UI = {
   "pt-BR": {
     htmlLang: "pt-BR",
-    pageTitle: (name, role) => `${name} — ${role}`,
+    pageTitle: (name, role) => `${name} - ${role}`,
     nav: {
       sobre: "Sobre",
       experiencia: "Experiência",
@@ -51,7 +51,7 @@ const UI = {
   },
   en: {
     htmlLang: "en",
-    pageTitle: (name, role) => `${name} — ${role}`,
+    pageTitle: (name, role) => `${name} - ${role}`,
     nav: {
       sobre: "About",
       experiencia: "Experience",
@@ -82,7 +82,7 @@ const UI = {
   },
   es: {
     htmlLang: "es",
-    pageTitle: (name, role) => `${name} — ${role}`,
+    pageTitle: (name, role) => `${name} - ${role}`,
     nav: {
       sobre: "Sobre mí",
       experiencia: "Experiencia",
