@@ -309,8 +309,27 @@
 
 .zc-satellites-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.1rem;
+  align-items: start;
+}
+
+/* Grade fixa de 4 colunas no desktop: com 14 satélites a última linha
+   fica com 2, então centralizamos eles nas colunas do meio em vez de
+   deixar alinhados à esquerda (o framework não deve ganhar novos
+   pilares tão cedo — se ganhar, é só remover o nth-child abaixo). */
+@media (min-width: 900px) {
+  .zc-satellites-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .zc-satellite-card:nth-child(13) {
+    grid-column: 2;
+  }
+
+  .zc-satellite-card:nth-child(14) {
+    grid-column: 3;
+  }
 }
 
 .zc-satellite-card {
@@ -320,7 +339,13 @@
   padding: 1.25rem 1.1rem;
   text-align: center;
   scroll-margin-top: 84px;
+  cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease, background 0.6s ease;
+}
+
+.zc-satellite-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .zc-satellite-card:target {
@@ -369,6 +394,42 @@
   line-height: 1.5;
 }
 
+.zc-sat-chevron {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--muted-dim);
+  font-size: 0.75rem;
+  transition: transform 0.2s ease, color 0.15s ease;
+}
+
+.zc-satellite-card:hover .zc-sat-chevron {
+  color: var(--accent);
+}
+
+.zc-satellite-card.expanded .zc-sat-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.zc-sat-detail {
+  text-align: left;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0px solid var(--border-soft);
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.35s ease, padding-top 0.35s ease;
+}
+
+.zc-satellite-card.expanded .zc-sat-detail {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-soft);
+}
+
 .zc-when-not {
   list-style: none;
   display: flex;
@@ -405,6 +466,9 @@
 }
 
 @media (max-width: 640px) {
+  .zc-satellites-grid {
+    grid-template-columns: 1fr;
+  }
   .zc-measure-item {
     grid-template-columns: 1fr;
     gap: 0.3rem;

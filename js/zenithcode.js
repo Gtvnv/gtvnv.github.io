@@ -120,6 +120,9 @@
       zc.satellites.items.forEach((sat) => {
         const card = el("div", "zc-satellite-card");
         card.id = sat.slug;
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-expanded", "false");
         const img = document.createElement("img");
         img.src = `assets/z2a/emblemas/${sat.id}_${sat.slug}.png`;
         img.alt = sat.name;
@@ -129,6 +132,21 @@
         card.appendChild(el("h3", null, sat.name));
         card.appendChild(el("span", "zc-sat-domain", sat.domain));
         card.appendChild(el("p", null, sat.gloss));
+        if (sat.detail) {
+          card.appendChild(el("p", "zc-sat-detail", sat.detail));
+          card.appendChild(el("span", "zc-sat-chevron", "▾"));
+          const toggle = () => {
+            const expanded = card.classList.toggle("expanded");
+            card.setAttribute("aria-expanded", String(expanded));
+          };
+          card.addEventListener("click", toggle);
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggle();
+            }
+          });
+        }
         satGrid.appendChild(card);
       });
     }
