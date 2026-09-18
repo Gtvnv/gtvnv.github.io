@@ -55,6 +55,7 @@ const PROJECTS = {
         "Motor determinístico que lê uma especificação (Spec-Kit YAML) e gera um microsserviço em Go com Arquitetura Hexagonal: compila, passa no go vet e roda, com o núcleo da regra de negócio em branco pra ser preenchido. Tem uma camada opcional de IA local que traduz intenção em linguagem natural pra essa especificação, mas a IA nunca escreve código diretamente: só propõe, e um validador determinístico decide. Todo serviço gerado passa por verificação isolada (build e testes num container sem rede) antes de ser entregue, com um teste garantindo que o caminho crítico funciona mesmo com a IA totalmente offline.",
       tags: ["Go", "Internal Developer Platform", "Arquitetura Hexagonal", "IaC (Pulumi)"],
       links: { live: null, repo: null },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
       title: "AegisProtocol",
@@ -65,6 +66,7 @@ const PROJECTS = {
         "Identity Provider próprio: emissão de tokens JWT assinados com RSA-2048, revogação distribuída via Redis (blacklist), políticas de acesso granulares (RBAC/ABAC) e nenhuma requisição confiável por padrão. Construído para servir como camada de autenticação de outros produtos do meu ecossistema.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
       links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
       title: "OmniShift",
@@ -75,6 +77,7 @@ const PROJECTS = {
         "Em vez de converter um formato direto para outro, o sistema traduz qualquer entrada para um modelo canônico em memória e depois serializa no formato de saída desejado: arquitetura hexagonal, então plugar um novo formato de entrada ou saída não exige tocar nas regras de negócio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      satellite: { id: "13", slug: "oraculo", name: "Oráculo" },
     },
     {
       title: "Ultrafoot 26",
@@ -132,6 +135,7 @@ const PROJECTS = {
         "A deterministic engine that reads a Spec-Kit YAML file and generates a Go microservice in Hexagonal Architecture: it compiles, passes go vet, and runs, with the business-rule core left blank to be filled in. An optional local-LLM layer translates natural-language intent into that spec, but the AI never writes code directly, it only proposes, and a deterministic validator decides. Every generated service goes through isolated verification (build and tests in a network-less container) before it's handed over, with a dedicated test proving the critical path still works with the AI fully offline.",
       tags: ["Go", "Internal Developer Platform", "Hexagonal Architecture", "IaC (Pulumi)"],
       links: { live: null, repo: null },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
       title: "AegisProtocol",
@@ -142,6 +146,7 @@ const PROJECTS = {
         "A homegrown Identity Provider: JWT tokens signed with RSA-2048, distributed revocation via Redis (blacklist), granular access policies (RBAC/ABAC), and no request trusted by default. Built to serve as the authentication layer for other products in my ecosystem.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
       links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
       title: "OmniShift",
@@ -152,6 +157,7 @@ const PROJECTS = {
         "Instead of converting one format directly into another, the system translates any input into an in-memory canonical model and then serializes it into the desired output format: a hexagonal architecture, so plugging in a new input or output format never touches the existing business rules.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      satellite: { id: "13", slug: "oraculo", name: "Oraculo" },
     },
     {
       title: "Ultrafoot 26",
@@ -209,6 +215,7 @@ const PROJECTS = {
         "Motor determinístico que lee una especificación (Spec-Kit YAML) y genera un microservicio en Go con Arquitectura Hexagonal: compila, pasa el go vet y ejecuta, con el núcleo de la regla de negocio en blanco para completarse. Tiene una capa opcional de IA local que traduce intención en lenguaje natural a esa especificación, pero la IA nunca escribe código directamente: solo propone, y un validador determinístico decide. Cada servicio generado pasa por una verificación aislada (build y tests en un contenedor sin red) antes de entregarse, con una prueba que garantiza que el camino crítico funciona incluso con la IA completamente offline.",
       tags: ["Go", "Internal Developer Platform", "Arquitectura Hexagonal", "IaC (Pulumi)"],
       links: { live: null, repo: null },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
       title: "AegisProtocol",
@@ -219,6 +226,7 @@ const PROJECTS = {
         "Identity Provider propio: tokens JWT firmados con RSA-2048, revocación distribuida vía Redis (lista negra), políticas de acceso granulares (RBAC/ABAC) y ninguna solicitud confiable por defecto. Construido para servir como capa de autenticación de otros productos de mi ecosistema.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
       links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
       title: "OmniShift",
@@ -229,6 +237,7 @@ const PROJECTS = {
         "En lugar de convertir un formato directamente a otro, el sistema traduce cualquier entrada a un modelo canónico en memoria y luego lo serializa al formato de salida deseado: arquitectura hexagonal, así que agregar un nuevo formato de entrada o salida no exige tocar las reglas de negocio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      satellite: { id: "13", slug: "oraculo", name: "Oráculo" },
     },
     {
       title: "Ultrafoot 26",

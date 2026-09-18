@@ -211,6 +211,18 @@
       const card = el("article", "project-card");
       if (project.featured) card.classList.add("featured");
 
+      if (project.satellite) {
+        const badge = el("a", "project-satellite-badge");
+        badge.href = `zenithcode.html#${project.satellite.slug}`;
+        badge.title = `${UI[locale].satelliteLabel}: ${project.satellite.name}`;
+        const img = document.createElement("img");
+        img.src = `assets/z2a/emblemas/${project.satellite.id}_${project.satellite.slug}.png`;
+        img.alt = project.satellite.name;
+        img.loading = "lazy";
+        badge.appendChild(img);
+        card.appendChild(badge);
+      }
+
       const head = el("div", "project-head");
       head.appendChild(el("h3", "project-title", project.title));
       const pill = el("span", "status-pill", project.status);

@@ -686,6 +686,31 @@ section:last-of-type {
   border-color: var(--border);
 }
 
+/* Brasão do satélite Z2A do qual o projeto "descende" — como um selo de
+   cera no canto do card. Só aparece nos projetos que de fato nasceram
+   de um satélite do meta-framework (ver satellite em projects-data.js). */
+.project-satellite-badge {
+  position: absolute;
+  top: -16px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  z-index: 2;
+  filter: drop-shadow(0 4px 10px rgba(3, 2, 9, 0.6));
+  transition: transform 0.15s ease;
+}
+
+.project-satellite-badge:hover {
+  transform: translateY(-2px) scale(1.08);
+}
+
+.project-satellite-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .project-card.featured .project-title {
   font-size: 1.4rem;
 }

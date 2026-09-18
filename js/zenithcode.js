@@ -119,6 +119,7 @@
       clear(satGrid);
       zc.satellites.items.forEach((sat) => {
         const card = el("div", "zc-satellite-card");
+        card.id = sat.slug;
         const img = document.createElement("img");
         img.src = `assets/z2a/emblemas/${sat.id}_${sat.slug}.png`;
         img.alt = sat.name;
