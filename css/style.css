@@ -686,22 +686,27 @@ section:last-of-type {
   border-color: var(--border);
 }
 
-/* Brasão do satélite Z2A do qual o projeto "descende" — como um selo de
-   cera no canto do card. Só aparece nos projetos que de fato nasceram
-   de um satélite do meta-framework (ver satellite em projects-data.js). */
+/* Brasão do satélite Z2A do qual o projeto "descende", ao lado do nome.
+   Só aparece nos projetos que de fato nasceram de um satélite do
+   meta-framework (ver satellite em projects-data.js). Fica no fluxo
+   normal do layout (nada de position:absolute) pra nunca sobrepor o
+   status-pill ou vazar do card. */
+.project-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
 .project-satellite-badge {
-  position: absolute;
-  top: -16px;
-  right: 22px;
-  width: 42px;
-  height: 42px;
-  z-index: 2;
-  filter: drop-shadow(0 4px 10px rgba(3, 2, 9, 0.6));
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
   transition: transform 0.15s ease;
 }
 
 .project-satellite-badge:hover {
-  transform: translateY(-2px) scale(1.08);
+  transform: scale(1.12);
 }
 
 .project-satellite-badge img {
