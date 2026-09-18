@@ -231,6 +231,11 @@
       card.appendChild(tags);
 
       const links = el("div", "project-links");
+      if (project.links.details) {
+        const a = el("a", null, labels.details);
+        a.href = project.links.details;
+        links.appendChild(a);
+      }
       if (project.links.live) {
         const a = el("a", null, labels.live);
         a.href = project.links.live;

@@ -1,0 +1,409 @@
+/**
+ * ZENITHCODE — estilos exclusivos da página de detalhe do Z2A
+ * (zenithcode.html). Reaproveita os tokens e classes genéricas de
+ * style.css (container, section-head, tag, btn...); aqui só o que é
+ * específico desta página.
+ */
+
+.zc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+  transition: color 0.15s ease;
+}
+
+.zc-back:hover {
+  color: var(--accent);
+}
+
+.zc-hero {
+  padding-top: clamp(3.5rem, 8vw, 6rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zc-hero {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+.zc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+
+.zc-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-grad);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.zc-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.01em;
+  max-width: 18ch;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.zc-hero .zc-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 1rem;
+  max-width: 42ch;
+}
+
+.zc-hero .zc-summary {
+  color: var(--muted);
+  max-width: 68ch;
+  margin-top: 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-hero .zc-masters-note {
+  color: var(--muted-dim);
+  font-size: 0.88rem;
+  max-width: 60ch;
+  margin-top: 1rem;
+  border-left: 2px solid var(--accent-dim);
+  padding-left: 0.8rem;
+}
+
+.zc-callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.zc-callout h2 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+.zc-callout p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-section {
+  margin-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.zc-section > p {
+  color: var(--muted);
+  max-width: 72ch;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  font-weight: 600;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 1rem 0 1.5rem;
+  max-width: 18ch;
+}
+
+.zc-analogy {
+  color: var(--muted-dim);
+  font-size: 0.88rem;
+  max-width: 68ch;
+  margin-top: 1.25rem;
+  border-left: 2px solid var(--border);
+  padding-left: 0.8rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-rules-intro {
+  color: var(--muted);
+  max-width: 68ch;
+  margin-bottom: 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.zc-rule-card {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+}
+
+.zc-rule-card .zc-rule-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.zc-rule-card h3 {
+  font-size: 0.98rem;
+  margin-bottom: 0.5rem;
+}
+
+.zc-rule-card p {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.zc-blackout {
+  border: 1px solid var(--accent-dim);
+  background: linear-gradient(160deg, var(--panel-hover), var(--panel));
+  border-radius: 8px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.zc-blackout::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto auto;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, var(--lava-cyan) 0%, rgba(23, 201, 232, 0) 70%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.zc-blackout-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.zc-blackout h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.zc-blackout dl {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.zc-blackout dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+}
+
+.zc-blackout dd {
+  color: var(--text);
+  font-size: 0.92rem;
+  max-width: 68ch;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-blackout .zc-blackout-closing {
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.zc-measure-intro {
+  color: var(--muted);
+  max-width: 68ch;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-measure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.zc-measure-item {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr auto;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.zc-measure-item .zc-measure-name {
+  font-weight: 500;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.zc-measure-item .zc-measure-what {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.zc-measure-item .zc-measure-role {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  white-space: nowrap;
+  justify-self: end;
+}
+
+.zc-satellites-intro {
+  color: var(--muted);
+  max-width: 72ch;
+  margin-bottom: 2rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-satellites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.1rem;
+}
+
+.zc-satellite-card {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 1.25rem 1.1rem;
+  text-align: center;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.zc-satellite-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.zc-satellite-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin: 0 auto 0.85rem;
+  display: block;
+}
+
+.zc-satellite-card .zc-sat-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--muted-dim);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.zc-satellite-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.zc-satellite-card .zc-sat-domain {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.zc-satellite-card p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.zc-when-not {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 72ch;
+}
+
+.zc-when-not li {
+  color: var(--muted);
+  font-size: 0.92rem;
+  padding-left: 1.4rem;
+  position: relative;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-when-not li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--muted-dim);
+}
+
+.zc-footer-cta {
+  border-top: 1px solid var(--border-soft);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+}
+
+.zc-footer-cta p {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .zc-measure-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .zc-measure-item .zc-measure-role {
+    justify-self: start;
+  }
+}
