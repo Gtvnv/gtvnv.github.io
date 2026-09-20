@@ -26,13 +26,6 @@
   transition: opacity 1s ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .zc-hero {
-    opacity: 1;
-    transition: none;
-  }
-}
-
 .zc-eyebrow {
   display: inline-flex;
   align-items: center;

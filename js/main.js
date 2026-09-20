@@ -7,7 +7,9 @@
   "use strict";
 
   let currentLocale = getLocale();
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Forçado para false de propósito: as animações do site rodam sempre,
+  // mesmo com "reduzir movimento" ativado no sistema do visitante.
+  const prefersReducedMotion = false;
 
   function el(tag, className, html) {
     const node = document.createElement(tag);
@@ -364,7 +366,6 @@
   }
 
   // Parallax da hero (grid de fundo + foto) e fade do topo conforme rola.
-  // Desativado se o visitante pedir menos movimento (prefers-reduced-motion).
   //
   // Importante: NUNCA aplicar esse deslocamento no .lava-bg — ele é
   // position:fixed cobrindo exatamente o viewport (inset:0); mover seu

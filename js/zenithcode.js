@@ -8,7 +8,9 @@
   "use strict";
 
   let currentLocale = getLocale();
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Forçado para false de propósito: as animações do site rodam sempre,
+  // mesmo com "reduzir movimento" ativado no sistema do visitante.
+  const prefersReducedMotion = false;
 
   function el(tag, className, html) {
     const node = document.createElement(tag);

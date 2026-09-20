@@ -43,20 +43,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 body {
   margin: 0;
   background: transparent;
@@ -429,14 +415,6 @@ section:last-of-type {
      aparecer com um fade de 2s assim que a hero é montada — ver main.js. */
   opacity: 0;
   transition: opacity 2s ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-content,
-  .hero-photo-wrap {
-    opacity: 1;
-    transition: none;
-  }
 }
 
 .hero-photo-glow {
@@ -1164,17 +1142,3 @@ section:last-of-type {
   transform: translateY(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal],
-  .project-card,
-  .timeline-item,
-  .note-item {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .back-to-top {
-    transition: opacity 0.01ms, transform 0.01ms;
-  }
-}
