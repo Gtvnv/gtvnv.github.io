@@ -613,6 +613,20 @@ section:last-of-type {
   margin-bottom: 0.4rem;
 }
 
+.timeline-role-group {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.timeline-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
 .timeline-role {
   font-size: 1.1rem;
   font-family: var(--font-display);

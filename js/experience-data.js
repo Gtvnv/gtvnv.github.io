@@ -7,6 +7,14 @@
 const EXPERIENCE = {
   "pt-BR": [
     {
+      role: "Fundador & Arquiteto de Software",
+      company: "ZenithCode · Autônomo",
+      period: "out. 2025 a atual",
+      logo: "assets/z2a/emblemas/21_zenithcode.png",
+      description:
+        "Idealização e fundação da ZenithCode, um ecossistema focado em soluções de software de alto desempenho, arquiteturas corporativas e produtos inovadores: uma constituição arquitetural que dita os padrões de governança, segurança e arquitetura das minhas plataformas internas. No ápice está o Z2A (Zenith to Aether), o meta-framework que sustenta minha pesquisa de mestrado e orquestra o ciclo de vida de todo código em produção — sustentando projetos como AegisProtocol, OmniShift, VertexFlow, Panoptes e Nidhogg.",
+    },
+    {
       role: "Analista Desenvolvedor de Software",
       company: "Agência do Japa",
       period: "dez. 2025 a atual",
@@ -43,6 +51,14 @@ const EXPERIENCE = {
   ],
   en: [
     {
+      role: "Founder & Software Architect",
+      company: "ZenithCode · Independent",
+      period: "Oct 2025 to present",
+      logo: "assets/z2a/emblemas/21_zenithcode.png",
+      description:
+        "Conceived and founded ZenithCode, an ecosystem focused on high-performance software solutions, corporate architectures, and innovative products: an architectural constitution dictating the governance, security, and architecture standards for my internal platforms. At its apex sits Z2A (Zenith to Aether), the meta-framework behind my master's research, orchestrating the lifecycle of all production code — underpinning projects like AegisProtocol, OmniShift, VertexFlow, Panoptes, and Nidhogg.",
+    },
+    {
       role: "Software Development Analyst",
       company: "Agência do Japa",
       period: "Dec 2025 to present",
@@ -78,6 +94,14 @@ const EXPERIENCE = {
     },
   ],
   es: [
+    {
+      role: "Fundador y Arquitecto de Software",
+      company: "ZenithCode · Autónomo",
+      period: "oct. 2025 a actualidad",
+      logo: "assets/z2a/emblemas/21_zenithcode.png",
+      description:
+        "Idealización y fundación de ZenithCode, un ecosistema enfocado en soluciones de software de alto rendimiento, arquitecturas corporativas y productos innovadores: una constitución arquitectónica que dicta los estándares de gobernanza, seguridad y arquitectura de mis plataformas internas. En el ápice está Z2A (Zenith to Aether), el meta-framework que sustenta mi investigación de maestría y orquesta el ciclo de vida de todo el código en producción — sosteniendo proyectos como AegisProtocol, OmniShift, VertexFlow, Panoptes y Nidhogg.",
+    },
     {
       role: "Analista Desarrollador de Software",
       company: "Agência do Japa",

@@ -160,7 +160,17 @@
     EXPERIENCE[locale].forEach((job) => {
       const item = el("div", "timeline-item");
       item.appendChild(el("span", "timeline-period", job.period));
-      item.appendChild(el("h3", "timeline-role", job.role));
+      const roleGroup = el("div", "timeline-role-group");
+      if (job.logo) {
+        const img = document.createElement("img");
+        img.className = "timeline-logo";
+        img.src = job.logo;
+        img.alt = "";
+        img.loading = "lazy";
+        roleGroup.appendChild(img);
+      }
+      roleGroup.appendChild(el("h3", "timeline-role", job.role));
+      item.appendChild(roleGroup);
       item.appendChild(el("span", "timeline-company", job.company));
       item.appendChild(el("p", "timeline-desc", job.description));
       container.appendChild(item);
