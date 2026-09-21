@@ -77,7 +77,7 @@ const PROJECTS = {
         "Em vez de converter um formato direto para outro, o sistema traduz qualquer entrada para um modelo canônico em memória e depois serializa no formato de saída desejado: arquitetura hexagonal, então plugar um novo formato de entrada ou saída não exige tocar nas regras de negócio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
-      satellite: { id: "13", slug: "oraculo", name: "Oráculo" },
+      satellite: { id: "11", slug: "oraculo", name: "Oráculo" },
     },
     {
       title: "Panoptes",
@@ -179,7 +179,7 @@ const PROJECTS = {
         "Instead of converting one format directly into another, the system translates any input into an in-memory canonical model and then serializes it into the desired output format: a hexagonal architecture, so plugging in a new input or output format never touches the existing business rules.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
-      satellite: { id: "13", slug: "oraculo", name: "Oraculo" },
+      satellite: { id: "11", slug: "oraculo", name: "Oraculo" },
     },
     {
       title: "Panoptes",
@@ -281,7 +281,7 @@ const PROJECTS = {
         "En lugar de convertir un formato directamente a otro, el sistema traduce cualquier entrada a un modelo canónico en memoria y luego lo serializa al formato de salida deseado: arquitectura hexagonal, así que agregar un nuevo formato de entrada o salida no exige tocar las reglas de negocio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
       links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
-      satellite: { id: "13", slug: "oraculo", name: "Oráculo" },
+      satellite: { id: "11", slug: "oraculo", name: "Oráculo" },
     },
     {
       title: "Panoptes",
