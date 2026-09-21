@@ -48,6 +48,19 @@
   flex-shrink: 0;
 }
 
+.zc-hero-title-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 1.1rem);
+}
+
+.zc-hero-badge {
+  width: clamp(44px, 7vw, 68px);
+  height: clamp(44px, 7vw, 68px);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .zc-hero h1 {
   font-size: clamp(2.4rem, 6vw, 3.6rem);
   letter-spacing: -0.01em;

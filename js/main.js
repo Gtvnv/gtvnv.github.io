@@ -235,6 +235,19 @@
         img.loading = "lazy";
         badge.appendChild(img);
         titleGroup.appendChild(badge);
+      } else if (project.badge) {
+        // Emblema genérico (fora do mecanismo de satélite): usado pelo
+        // próprio ZenithCode OS, que é o núcleo do Z2A, não um satélite —
+        // por isso não usa satelliteLabel nem a âncora #slug.
+        const badge = el("a", "project-satellite-badge");
+        badge.href = project.links.details || "#";
+        badge.title = project.badge.name;
+        const img = document.createElement("img");
+        img.src = `assets/z2a/emblemas/${project.badge.id}_${project.badge.slug}.png`;
+        img.alt = project.badge.name;
+        img.loading = "lazy";
+        badge.appendChild(img);
+        titleGroup.appendChild(badge);
       }
       titleGroup.appendChild(el("h3", "project-title", project.title));
       head.appendChild(titleGroup);
