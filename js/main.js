@@ -258,6 +258,15 @@
         a.rel = "noopener";
         links.appendChild(a);
       }
+      if (project.links.liveExtra) {
+        project.links.liveExtra.forEach((extra) => {
+          const a = el("a", null, extra.label);
+          a.href = extra.href;
+          a.target = "_blank";
+          a.rel = "noopener";
+          links.appendChild(a);
+        });
+      }
       if (project.links.repo) {
         const a = el("a", null, labels.repo);
         a.href = project.links.repo;
