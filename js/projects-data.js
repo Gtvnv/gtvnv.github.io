@@ -89,7 +89,7 @@ const PROJECTS = {
       status: "EM DESENVOLVIMENTO",
       summary: "Ingestor de métricas em Go: controladoria e gestão financeira interna em tempo real.",
       description:
-        "Sistema de controladoria que escuta telemetria e eventos operacionais de múltiplas fontes ao mesmo tempo (arquitetura pipes-and-filters orientada a eventos), filtra e consolida isso em métricas de custo, publicando o pacote de custo unitário num message broker pro Nidhogg consumir de forma assíncrona. Uso Go pela concorrência via goroutines (throughput alto, footprint baixo na infra) e PostgreSQL com TimescaleDB pra tratar burn rate e telemetria como série temporal de verdade.",
+        "Sistema de controladoria que escuta telemetria e eventos operacionais de múltiplas fontes ao mesmo tempo (arquitetura pipes-and-filters orientada a eventos), filtra e consolida isso em métricas de custo, publicando o pacote de custo unitário num message broker pro Nidhogg consumir de forma assíncrona. Uso Go pela concorrência via goroutines (throughput alto, footprint baixo na infra) e PostgreSQL com TimescaleDB pra tratar burn rate e telemetria como série temporal de verdade. É de uso estritamente interno — sem tela ou API voltada a cliente externo, serve só a controladoria da própria empresa.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
       links: { live: null, repo: null },
       satellite: { id: "02", slug: "argus", name: "Árgus" },
@@ -98,9 +98,9 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "EM DESENVOLVIMENTO",
-      summary: "Motor de pricing em Java que audita se a \"economia perfeita interna\" do Panoptes bate com o mercado real.",
+      summary: "Motor de pricing e planejamento tributário em Java: audita a \"economia perfeita interna\" do Panoptes contra o mercado real e projeta o futuro fiscal da empresa.",
       description:
-        "Motor financeiro que consome os dados de custo consolidados pelo Panoptes e aplica regras de precificação e proteção de margem com Arquitetura Hexagonal, isolando esse domínio complexo (mesmo padrão que uso no OmniShift e no AegisProtocol). A comunicação entre os dois sistemas é desacoplada: se o Nidhogg cair ou for atualizado, o Panoptes continua calculando custo sem travar; consultas síncronas em tempo real, quando precisam existir, passam por gRPC. A função central é validação: minerar dados do mercado externo pra checar se a economia interna calculada é de fato a forma mais eficiente de operar, ou só parece ser.",
+        "Motor financeiro que consome os dados de custo consolidados pelo Panoptes e aplica regras de precificação e proteção de margem com Arquitetura Hexagonal, isolando esse domínio complexo (mesmo padrão que uso no OmniShift e no AegisProtocol). A comunicação entre os dois sistemas é desacoplada: se o Nidhogg cair ou for atualizado, o Panoptes continua calculando custo sem travar; consultas síncronas em tempo real, quando precisam existir, passam por gRPC. A função central é validação: minerar dados do mercado externo pra checar se a economia interna calculada é de fato a forma mais eficiente de operar, ou só parece ser. Também age como planejador tributário: projeta cenários de carga fiscal e antecipa o impacto de decisões de negócio no futuro da organização, em vez de descobrir o estrago só no fechamento contábil.",
       tags: ["Java 21", "Spring Boot 3", "Arquitetura Hexagonal", "PostgreSQL", "gRPC"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
@@ -195,7 +195,7 @@ const PROJECTS = {
       status: "IN DEVELOPMENT",
       summary: "A Go-based metrics ingestor: real-time internal controllership and financial management.",
       description:
-        "A controllership system that listens to telemetry and operational events from multiple sources at once (an event-driven pipes-and-filters architecture), filters and consolidates it into cost metrics, and publishes the unit-cost package to a message broker for Nidhogg to consume asynchronously. I use Go for goroutine-based concurrency (high throughput, low infra footprint) and PostgreSQL with TimescaleDB to treat burn rate and telemetry as proper time-series data.",
+        "A controllership system that listens to telemetry and operational events from multiple sources at once (an event-driven pipes-and-filters architecture), filters and consolidates it into cost metrics, and publishes the unit-cost package to a message broker for Nidhogg to consume asynchronously. I use Go for goroutine-based concurrency (high throughput, low infra footprint) and PostgreSQL with TimescaleDB to treat burn rate and telemetry as proper time-series data. It's strictly internal — no screen or API facing external clients, it only feeds the company's own controllership.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
       links: { live: null, repo: null },
       satellite: { id: "02", slug: "argus", name: "Argus" },
@@ -204,9 +204,9 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "IN DEVELOPMENT",
-      summary: "A Java pricing engine that audits whether Panoptes's \"perfect internal economy\" actually holds up against the real market.",
+      summary: "A Java pricing and tax-planning engine that audits Panoptes's \"perfect internal economy\" against the real market and projects the company's fiscal future.",
       description:
-        "A financial engine that consumes the cost data consolidated by Panoptes and applies pricing and margin-protection rules using Hexagonal Architecture, isolating that complex domain (the same pattern I use in OmniShift and AegisProtocol). Communication between the two systems is fully decoupled: if Nidhogg goes down or gets updated, Panoptes keeps calculating cost without blocking; synchronous real-time queries, when needed, go through gRPC. Its core job is validation: mining external market data to check whether the calculated internal economy is actually the most efficient way to operate, or just looks like it.",
+        "A financial engine that consumes the cost data consolidated by Panoptes and applies pricing and margin-protection rules using Hexagonal Architecture, isolating that complex domain (the same pattern I use in OmniShift and AegisProtocol). Communication between the two systems is fully decoupled: if Nidhogg goes down or gets updated, Panoptes keeps calculating cost without blocking; synchronous real-time queries, when needed, go through gRPC. Its core job is validation: mining external market data to check whether the calculated internal economy is actually the most efficient way to operate, or just looks like it. It also acts as a tax planner: it projects tax-burden scenarios and forecasts how business decisions will play out for the organization's future, instead of finding out the damage only at the accounting close.",
       tags: ["Java 21", "Spring Boot 3", "Hexagonal Architecture", "PostgreSQL", "gRPC"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
@@ -301,7 +301,7 @@ const PROJECTS = {
       status: "EN DESARROLLO",
       summary: "Ingestor de métricas en Go: controladoría y gestión financiera interna en tiempo real.",
       description:
-        "Sistema de controladoría que escucha telemetría y eventos operativos de múltiples fuentes a la vez (arquitectura pipes-and-filters orientada a eventos), filtra y consolida todo en métricas de costo, publicando el paquete de costo unitario en un message broker para que Nidhogg lo consuma de forma asíncrona. Uso Go por la concurrencia vía goroutines (alto throughput, bajo footprint de infraestructura) y PostgreSQL con TimescaleDB para tratar el burn rate y la telemetría como series temporales de verdad.",
+        "Sistema de controladoría que escucha telemetría y eventos operativos de múltiples fuentes a la vez (arquitectura pipes-and-filters orientada a eventos), filtra y consolida todo en métricas de costo, publicando el paquete de costo unitario en un message broker para que Nidhogg lo consuma de forma asíncrona. Uso Go por la concurrencia vía goroutines (alto throughput, bajo footprint de infraestructura) y PostgreSQL con TimescaleDB para tratar el burn rate y la telemetría como series temporales de verdad. Es de uso estrictamente interno — sin pantalla ni API orientada a cliente externo, solo alimenta la controladoría de la propia empresa.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
       links: { live: null, repo: null },
       satellite: { id: "02", slug: "argus", name: "Argus" },
@@ -310,9 +310,9 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "EN DESARROLLO",
-      summary: "Motor de pricing en Java que audita si la \"economía perfecta interna\" de Panoptes realmente se sostiene frente al mercado real.",
+      summary: "Motor de pricing y planificación tributaria en Java que audita la \"economía perfecta interna\" de Panoptes contra el mercado real y proyecta el futuro fiscal de la empresa.",
       description:
-        "Motor financiero que consume los datos de costo consolidados por Panoptes y aplica reglas de precificación y protección de margen con Arquitectura Hexagonal, aislando ese dominio complejo (el mismo patrón que uso en OmniShift y AegisProtocol). La comunicación entre los dos sistemas es totalmente desacoplada: si Nidhogg cae o se actualiza, Panoptes sigue calculando el costo sin bloquearse; las consultas síncronas en tiempo real, cuando hacen falta, pasan por gRPC. Su función central es de validación: minar datos del mercado externo para comprobar si la economía interna calculada es realmente la forma más eficiente de operar, o solo lo parece.",
+        "Motor financiero que consume los datos de costo consolidados por Panoptes y aplica reglas de precificación y protección de margen con Arquitectura Hexagonal, aislando ese dominio complejo (el mismo patrón que uso en OmniShift y AegisProtocol). La comunicación entre los dos sistemas es totalmente desacoplada: si Nidhogg cae o se actualiza, Panoptes sigue calculando el costo sin bloquearse; las consultas síncronas en tiempo real, cuando hacen falta, pasan por gRPC. Su función central es de validación: minar datos del mercado externo para comprobar si la economía interna calculada es realmente la forma más eficiente de operar, o solo lo parece. También actúa como planificador tributario: proyecta escenarios de carga fiscal y anticipa el impacto de decisiones de negocio en el futuro de la organización, en vez de descubrir el daño recién en el cierre contable.",
       tags: ["Java 21", "Spring Boot 3", "Arquitectura Hexagonal", "PostgreSQL", "gRPC"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeo" },
