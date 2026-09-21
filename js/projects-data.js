@@ -19,8 +19,8 @@ const PROJECTS = {
       impact: "Em produção real desde jan. 2026: ERP completo rodando numa indústria de verdade.",
       summary: "ERP SaaS industrial multi-tenant, com clientes reais desde janeiro de 2026.",
       description:
-        "Plataforma que cobre o ciclo operacional completo de uma indústria: vendas, compras, PCP, financeiro, estoque, RH e emissão fiscal (NF-e via SEFAZ, CNAB 240). Atuo fullstack (do frontend às regras de negócio) com foco recente em reforçar o controle de acesso (RBAC) e reduzir a superfície de ataque dos módulos.",
-      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "PWA", "Android"],
+        "Plataforma que cobre o ciclo operacional completo de uma indústria: vendas, compras, PCP, financeiro, estoque, RH e emissão fiscal (NF-e via SEFAZ, CNAB 240). Atuo fullstack (do frontend às regras de negócio) com foco recente em reforçar o controle de acesso (RBAC) e reduzir a superfície de ataque dos módulos. Ganhou recentemente um módulo de chat interno (o Concord, inspirado no Discord), com um assistente de suporte via IA embutido — a Axios, batizada de Bob pelos usuários — que já abre e acompanha chamados de TI direto na conversa.",
+      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "SLM (Python)", "PWA", "Android"],
       links: { live: "https://zyntraerp.com.br", repo: "https://github.com/jovemegidio/Zyntra" },
     },
     {
@@ -121,8 +121,8 @@ const PROJECTS = {
       impact: "In real production since Jan 2026: a full ERP running inside an actual factory.",
       summary: "Multi-tenant industrial SaaS ERP, with real customers since January 2026.",
       description:
-        "A platform covering a factory's entire operating cycle: sales, purchasing, production planning, finance, inventory, HR, and tax filing (Brazilian e-invoicing via SEFAZ, CNAB 240 banking files). I work fullstack (from the frontend to business rules), recently focused on tightening access control (RBAC) and reducing the modules' attack surface.",
-      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "PWA", "Android"],
+        "A platform covering a factory's entire operating cycle: sales, purchasing, production planning, finance, inventory, HR, and tax filing (Brazilian e-invoicing via SEFAZ, CNAB 240 banking files). I work fullstack (from the frontend to business rules), recently focused on tightening access control (RBAC) and reducing the modules' attack surface. It recently gained an internal chat module (Concord, modeled on Discord), with a built-in AI support assistant — Axios, nicknamed Bob by users — that already opens and tracks IT tickets right inside the conversation.",
+      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "SLM (Python)", "PWA", "Android"],
       links: { live: "https://zyntraerp.com.br", repo: "https://github.com/jovemegidio/Zyntra" },
     },
     {
@@ -223,8 +223,8 @@ const PROJECTS = {
       impact: "En producción real desde ene. 2026: un ERP completo dentro de una fábrica de verdad.",
       summary: "ERP SaaS industrial multi-tenant, con clientes reales desde enero de 2026.",
       description:
-        "Plataforma que cubre el ciclo operativo completo de una industria: ventas, compras, planificación de producción, finanzas, inventario, RRHH y facturación fiscal (NF-e vía SEFAZ, CNAB 240). Trabajo fullstack (del frontend a las reglas de negocio) con foco reciente en reforzar el control de acceso (RBAC) y reducir la superficie de ataque de los módulos.",
-      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "PWA", "Android"],
+        "Plataforma que cubre el ciclo operativo completo de una industria: ventas, compras, planificación de producción, finanzas, inventario, RRHH y facturación fiscal (NF-e vía SEFAZ, CNAB 240). Trabajo fullstack (del frontend a las reglas de negocio) con foco reciente en reforzar el control de acceso (RBAC) y reducir la superficie de ataque de los módulos. Ganó recientemente un módulo de chat interno (Concord, al estilo Discord), con un asistente de soporte por IA integrado — Axios, apodada Bob por los usuarios — que ya abre y da seguimiento a tickets de TI directo en la conversación.",
+      tags: ["Node.js", "Express", "MySQL", "Socket.IO", "SLM (Python)", "PWA", "Android"],
       links: { live: "https://zyntraerp.com.br", repo: "https://github.com/jovemegidio/Zyntra" },
     },
     {
