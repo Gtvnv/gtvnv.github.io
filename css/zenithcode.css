@@ -300,32 +300,34 @@
   hyphens: auto;
 }
 
-.zc-satellites-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.1rem;
-  align-items: start;
+/* Cada grupo (Núcleo / Expansão / Labs) renderiza sua própria grade,
+   com sua própria contagem de satélites — por isso flexbox com
+   justify-content:center em vez de CSS grid + nth-child: centraliza
+   a última linha incompleta automaticamente, não importa quantos
+   satélites o grupo tenha (12, 6, 2, ou o que vier depois). */
+.zc-sat-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.5rem 0 1.1rem;
 }
 
-/* Grade fixa de 4 colunas no desktop: com 14 satélites a última linha
-   fica com 2, então centralizamos eles nas colunas do meio em vez de
-   deixar alinhados à esquerda (o framework não deve ganhar novos
-   pilares tão cedo — se ganhar, é só remover o nth-child abaixo). */
-@media (min-width: 900px) {
-  .zc-satellites-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.zc-sat-group-title:first-child {
+  margin-top: 0;
+}
 
-  .zc-satellite-card:nth-child(13) {
-    grid-column: 2;
-  }
-
-  .zc-satellite-card:nth-child(14) {
-    grid-column: 3;
-  }
+.zc-satellites-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem;
 }
 
 .zc-satellite-card {
+  flex: 1 1 calc(50% - 0.55rem);
+  max-width: calc(50% - 0.55rem);
   border: 1px solid var(--border);
   background: var(--panel);
   border-radius: 8px;
@@ -334,6 +336,13 @@
   scroll-margin-top: 84px;
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease, background 0.6s ease;
+}
+
+@media (min-width: 900px) {
+  .zc-satellite-card {
+    flex-basis: calc(25% - 0.825rem);
+    max-width: calc(25% - 0.825rem);
+  }
 }
 
 .zc-satellite-card:focus-visible {
@@ -459,8 +468,9 @@
 }
 
 @media (max-width: 640px) {
-  .zc-satellites-grid {
-    grid-template-columns: 1fr;
+  .zc-satellite-card {
+    flex-basis: 100%;
+    max-width: 100%;
   }
   .zc-measure-item {
     grid-template-columns: 1fr;

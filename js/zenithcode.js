@@ -75,19 +75,38 @@
     text("[data-zc-thesis-body]", zc.thesis.body);
     text("[data-zc-thesis-analogy]", zc.thesis.analogy);
 
+    // ---- Grade genérica de cards numerados: reaproveitada pelo Núcleo
+    // mínimo, Topologia de dados, Leis/axiomas e Ferramental físico —
+    // todos têm o mesmo formato (título + um parágrafo de descrição).
+    function renderCardGrid(gridEl, items) {
+      if (!gridEl) return;
+      clear(gridEl);
+      items.forEach((item, i) => {
+        const card = el("div", "zc-rule-card");
+        card.appendChild(el("span", "zc-rule-num", String(i + 1).padStart(2, "0")));
+        card.appendChild(el("h3", null, item.title));
+        card.appendChild(el("p", null, item.mechanic || item.body));
+        gridEl.appendChild(card);
+      });
+    }
+
     // ---- Núcleo mínimo (6 regras) ----
     text("[data-zc-rules-title]", zc.coreRules.title);
     text("[data-zc-rules-intro]", zc.coreRules.intro);
-    const rulesGrid = document.querySelector("[data-zc-rules-grid]");
-    if (rulesGrid) {
-      clear(rulesGrid);
-      zc.coreRules.items.forEach((rule, i) => {
-        const card = el("div", "zc-rule-card");
-        card.appendChild(el("span", "zc-rule-num", String(i + 1).padStart(2, "0")));
-        card.appendChild(el("h3", null, rule.title));
-        card.appendChild(el("p", null, rule.mechanic));
-        rulesGrid.appendChild(card);
-      });
+    renderCardGrid(document.querySelector("[data-zc-rules-grid]"), zc.coreRules.items);
+
+    // ---- Topologia de dados (3 camadas) ----
+    if (zc.topology) {
+      text("[data-zc-topology-title]", zc.topology.title);
+      text("[data-zc-topology-intro]", zc.topology.intro);
+      renderCardGrid(document.querySelector("[data-zc-topology-grid]"), zc.topology.items);
+    }
+
+    // ---- Leis, axiomas e protocolos ----
+    if (zc.laws) {
+      text("[data-zc-laws-title]", zc.laws.title);
+      text("[data-zc-laws-intro]", zc.laws.intro);
+      renderCardGrid(document.querySelector("[data-zc-laws-grid]"), zc.laws.items);
     }
 
     // ---- Teste do Apagão ----
@@ -113,13 +132,25 @@
       });
     }
 
-    // ---- Os 14 satélites ----
+    // ---- Os 20 satélites, agrupados em 3 linhas de atuação ----
+    // (Núcleo Operacional & Infraestrutura / Expansão de Mercado &
+    // Integração / Z2A Labs — zc.satellites.groups). O array items
+    // já vem ordenado por grupo; a cada troca de `group` a gente
+    // fecha a grade atual e abre uma nova, com seu próprio header.
     text("[data-zc-satellites-title]", zc.satellites.title);
     text("[data-zc-satellites-intro]", zc.satellites.intro);
-    const satGrid = document.querySelector("[data-zc-satellites-grid]");
-    if (satGrid) {
-      clear(satGrid);
+    const satWrap = document.querySelector("[data-zc-satellites-wrap]");
+    if (satWrap) {
+      clear(satWrap);
+      let currentGrid = null;
+      let lastGroup = null;
       zc.satellites.items.forEach((sat) => {
+        if (sat.group !== lastGroup) {
+          lastGroup = sat.group;
+          satWrap.appendChild(el("h3", "zc-sat-group-title", zc.satellites.groups[sat.group] || sat.group));
+          currentGrid = el("div", "zc-satellites-grid");
+          satWrap.appendChild(currentGrid);
+        }
         const card = el("div", "zc-satellite-card");
         card.id = sat.slug;
         card.tabIndex = 0;
@@ -149,8 +180,15 @@
             }
           });
         }
-        satGrid.appendChild(card);
+        currentGrid.appendChild(card);
       });
+    }
+
+    // ---- Ferramental físico ----
+    if (zc.tooling) {
+      text("[data-zc-tooling-title]", zc.tooling.title);
+      text("[data-zc-tooling-intro]", zc.tooling.intro);
+      renderCardGrid(document.querySelector("[data-zc-tooling-grid]"), zc.tooling.items);
     }
 
     // ---- Quando não adotar ----
