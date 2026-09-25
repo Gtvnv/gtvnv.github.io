@@ -22,7 +22,7 @@ const EXPERIENCE = {
         "Atuação fullstack em um ERP industrial em produção: diagnóstico e correção de módulos, melhoria do RBAC com foco em security by design, e desenvolvimento ponta a ponta: do frontend até APIs e regras de negócio complexas.",
     },
     {
-      role: "Estagiário de Desenvolvimento",
+      role: "Desenvolvedor de Sustentação",
       company: "Rumo Soluções",
       period: "jul. 2026 a atual",
       description:
