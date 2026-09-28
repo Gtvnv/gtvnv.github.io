@@ -155,6 +155,20 @@
   hyphens: auto;
 }
 
+.zc-arch-tree {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--muted);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 1.1rem 1.3rem;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
 .zc-rules-intro {
   color: var(--muted);
   max-width: 68ch;

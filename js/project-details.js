@@ -87,6 +87,25 @@
     text("[data-pd-about-title]", p.about.title);
     text("[data-pd-about-body]", p.about.body);
 
+    // ---- Arquitetura ----
+    const archSection = document.querySelector("[data-pd-architecture-section]");
+    if (p.architecture) {
+      if (archSection) archSection.style.display = "";
+      text("[data-pd-architecture-title]", p.architecture.title);
+      text("[data-pd-architecture-body]", p.architecture.body);
+      const treeEl = document.querySelector("[data-pd-architecture-tree]");
+      if (treeEl) {
+        if (p.architecture.tree) {
+          treeEl.textContent = p.architecture.tree.join("\n");
+          treeEl.style.display = "";
+        } else {
+          treeEl.style.display = "none";
+        }
+      }
+    } else if (archSection) {
+      archSection.style.display = "none";
+    }
+
     // ---- Stack ----
     text("[data-pd-stack-title]", p.stack.title);
     const stackGrid = document.querySelector("[data-pd-stack-grid]");

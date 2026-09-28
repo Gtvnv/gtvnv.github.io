@@ -25,6 +25,7 @@ const PROJECTS = {
         live: "https://zyntraerp.com.br",
         liveExtra: [{ href: "https://agenciadojapa.zyntraerp.com.br", label: "Ver (Agência) ↗" }],
         repo: "https://github.com/jovemegidio/Zyntra",
+        details: "projects/zyntra.html",
       },
     },
     {
@@ -37,7 +38,7 @@ const PROJECTS = {
       description:
         "Sistema com 6 perfis de acesso (administrador, secretaria, financeiro, professor, aluno...) cobrindo do cadastro de curso à cobrança: matriz curricular, diário do professor com notas e frequência, mensalidades em lote com renegociação de dívida, e um site institucional que se atualiza sozinho com o que a secretaria cadastra. Construído com atenção a acessibilidade (WCAG 2.1 AA) e segurança de sessão. Sou instrutor na Academia de Karatê Pedro Leopoldo e presido a Associação Ventura e Vianna, parceira da escola. Foi essa necessidade real, de dentro do tatame, que motivou o projeto.",
       tags: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-      links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
+      links: { live: "https://karatepl.zyntraerp.com.br", repo: null, details: "projects/akpl.html" },
     },
     {
       title: "ZenithCode OS",
@@ -59,7 +60,7 @@ const PROJECTS = {
       description:
         "Motor determinístico que lê uma especificação (Spec-Kit YAML) e gera um microsserviço em Go com Arquitetura Hexagonal: compila, passa no go vet e roda, com o núcleo da regra de negócio em branco pra ser preenchido. Tem uma camada opcional de IA local que traduz intenção em linguagem natural pra essa especificação, mas a IA nunca escreve código diretamente: só propõe, e um validador determinístico decide. Todo serviço gerado passa por verificação isolada (build e testes num container sem rede) antes de ser entregue, com um teste garantindo que o caminho crítico funciona mesmo com a IA totalmente offline.",
       tags: ["Go", "Internal Developer Platform", "Arquitetura Hexagonal", "IaC (Pulumi)"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/vertexflow.html" },
       satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
@@ -81,7 +82,7 @@ const PROJECTS = {
       description:
         "Em vez de converter um formato direto para outro, o sistema traduz qualquer entrada para um modelo canônico em memória e depois serializa no formato de saída desejado: arquitetura hexagonal, então plugar um novo formato de entrada ou saída não exige tocar nas regras de negócio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
-      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift", details: "projects/omnishift.html" },
       satellite: { id: "11", slug: "oraculo", name: "Oráculo" },
     },
     {
@@ -92,7 +93,7 @@ const PROJECTS = {
       description:
         "Sistema de controladoria que escuta telemetria e eventos operacionais de múltiplas fontes ao mesmo tempo (arquitetura pipes-and-filters orientada a eventos), filtra e consolida isso em métricas de custo, publicando o pacote de custo unitário num message broker pro Nidhogg consumir de forma assíncrona. Uso Go pela concorrência via goroutines (throughput alto, footprint baixo na infra) e PostgreSQL com TimescaleDB pra tratar burn rate e telemetria como série temporal de verdade. É de uso estritamente interno — sem tela ou API voltada a cliente externo, serve só a controladoria da própria empresa.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/panoptes.html" },
       satellite: { id: "02", slug: "argus", name: "Árgus" },
     },
     {
@@ -103,7 +104,7 @@ const PROJECTS = {
       description:
         "O motor financeiro, de controladoria e de regras de negócio estratégicas do ecossistema Z2A: cruza o custo real da operação técnica com a volatilidade do mercado externo pra garantir saúde financeira e rentabilidade. Define e ajusta preços dinamicamente, reagindo tanto ao aumento de custo computacional interno (reportado pelo Panoptes) quanto a movimentos da concorrência, com travas rígidas contra qualquer operação que resulte em margem de contribuição negativa, a menos que exista uma política deliberada de exceção. Também funciona como ponte entre CTO e CFO: traduz telemetria e custo de infraestrutura pra linguagem de unit economics, e monitora o cenário macro pra alertar sobre ameaças ao break-even. Blindado por Arquitetura Hexagonal e DDD, roda em Java 21 + Spring Boot + PostgreSQL, ingerindo os eventos de custo do Panoptes de forma assíncrona via mensageria — com espaço pra acoplar workers em Python quando precisar rodar algoritmos preditivos de mercado.",
       tags: ["Java 21", "Spring Boot 3", "Arquitetura Hexagonal", "DDD", "PostgreSQL"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/nidhogg.html" },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
     },
     {
@@ -142,6 +143,7 @@ const PROJECTS = {
         live: "https://zyntraerp.com.br",
         liveExtra: [{ href: "https://agenciadojapa.zyntraerp.com.br", label: "View (Agency) ↗" }],
         repo: "https://github.com/jovemegidio/Zyntra",
+        details: "projects/zyntra.html",
       },
     },
     {
@@ -154,7 +156,7 @@ const PROJECTS = {
       description:
         "A system with 6 access profiles (admin, front office, finance, teacher, student...) covering everything from course setup to billing: curriculum management, a teacher gradebook with grades and attendance, batch tuition billing with debt renegotiation, and a public site that updates itself from whatever staff registers. Built with attention to accessibility (WCAG 2.1 AA) and session security. I'm an instructor at Academia de Karatê Pedro Leopoldo and preside over Associação Ventura e Vianna, a partner of the school. That real, on-the-mat need is what started this project.",
       tags: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-      links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
+      links: { live: "https://karatepl.zyntraerp.com.br", repo: null, details: "projects/akpl.html" },
     },
     {
       title: "ZenithCode OS",
@@ -176,7 +178,7 @@ const PROJECTS = {
       description:
         "A deterministic engine that reads a Spec-Kit YAML file and generates a Go microservice in Hexagonal Architecture: it compiles, passes go vet, and runs, with the business-rule core left blank to be filled in. An optional local-LLM layer translates natural-language intent into that spec, but the AI never writes code directly, it only proposes, and a deterministic validator decides. Every generated service goes through isolated verification (build and tests in a network-less container) before it's handed over, with a dedicated test proving the critical path still works with the AI fully offline.",
       tags: ["Go", "Internal Developer Platform", "Hexagonal Architecture", "IaC (Pulumi)"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/vertexflow.html" },
       satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
@@ -198,7 +200,7 @@ const PROJECTS = {
       description:
         "Instead of converting one format directly into another, the system translates any input into an in-memory canonical model and then serializes it into the desired output format: a hexagonal architecture, so plugging in a new input or output format never touches the existing business rules.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
-      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift", details: "projects/omnishift.html" },
       satellite: { id: "11", slug: "oraculo", name: "Oraculo" },
     },
     {
@@ -209,7 +211,7 @@ const PROJECTS = {
       description:
         "A controllership system that listens to telemetry and operational events from multiple sources at once (an event-driven pipes-and-filters architecture), filters and consolidates it into cost metrics, and publishes the unit-cost package to a message broker for Nidhogg to consume asynchronously. I use Go for goroutine-based concurrency (high throughput, low infra footprint) and PostgreSQL with TimescaleDB to treat burn rate and telemetry as proper time-series data. It's strictly internal — no screen or API facing external clients, it only feeds the company's own controllership.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/panoptes.html" },
       satellite: { id: "02", slug: "argus", name: "Argus" },
     },
     {
@@ -220,7 +222,7 @@ const PROJECTS = {
       description:
         "The financial engine, controllership layer, and strategic business-rule brain of the Z2A ecosystem: it weighs the technical operation's real cost against external market volatility to protect financial health and profitability. It sets and dynamically adjusts pricing, reacting to both rising internal compute cost (reported by Panoptes) and competitor moves, with hard locks against any operation that would land on negative contribution margin, short of a deliberate exception policy. It also bridges CTO and CFO: translating telemetry and infrastructure cost into unit-economics language, and watching the macro picture to flag threats to break-even. Shielded by Hexagonal Architecture and DDD, it runs on Java 21 + Spring Boot + PostgreSQL, ingesting Panoptes's cost events asynchronously via messaging — with room to bolt on Python workers when it needs to run predictive market algorithms.",
       tags: ["Java 21", "Spring Boot 3", "Hexagonal Architecture", "DDD", "PostgreSQL"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/nidhogg.html" },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
     },
     {
@@ -259,6 +261,7 @@ const PROJECTS = {
         live: "https://zyntraerp.com.br",
         liveExtra: [{ href: "https://agenciadojapa.zyntraerp.com.br", label: "Ver (Agencia) ↗" }],
         repo: "https://github.com/jovemegidio/Zyntra",
+        details: "projects/zyntra.html",
       },
     },
     {
@@ -271,7 +274,7 @@ const PROJECTS = {
       description:
         "Sistema con 6 perfiles de acceso (administrador, secretaría, finanzas, profesor, alumno...) que cubre desde el alta de cursos hasta el cobro: matriz curricular, diario del profesor con notas y asistencia, cobranza en lote con renegociación de deuda, y un sitio institucional que se actualiza solo con lo que la secretaría registra. Construido con atención a la accesibilidad (WCAG 2.1 AA) y seguridad de sesión. Soy instructor en la Academia de Karatê Pedro Leopoldo y presido la Associação Ventura e Vianna, socia de la escuela. Esa necesidad real, desde el propio tatami, fue lo que motivó el proyecto.",
       tags: ["Next.js 15", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],
-      links: { live: "https://karatepl.zyntraerp.com.br", repo: null },
+      links: { live: "https://karatepl.zyntraerp.com.br", repo: null, details: "projects/akpl.html" },
     },
     {
       title: "ZenithCode OS",
@@ -293,7 +296,7 @@ const PROJECTS = {
       description:
         "Motor determinístico que lee una especificación (Spec-Kit YAML) y genera un microservicio en Go con Arquitectura Hexagonal: compila, pasa el go vet y ejecuta, con el núcleo de la regla de negocio en blanco para completarse. Tiene una capa opcional de IA local que traduce intención en lenguaje natural a esa especificación, pero la IA nunca escribe código directamente: solo propone, y un validador determinístico decide. Cada servicio generado pasa por una verificación aislada (build y tests en un contenedor sin red) antes de entregarse, con una prueba que garantiza que el camino crítico funciona incluso con la IA completamente offline.",
       tags: ["Go", "Internal Developer Platform", "Arquitectura Hexagonal", "IaC (Pulumi)"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/vertexflow.html" },
       satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
     },
     {
@@ -315,7 +318,7 @@ const PROJECTS = {
       description:
         "En lugar de convertir un formato directamente a otro, el sistema traduce cualquier entrada a un modelo canónico en memoria y luego lo serializa al formato de salida deseado: arquitectura hexagonal, así que agregar un nuevo formato de entrada o salida no exige tocar las reglas de negocio existentes.",
       tags: ["Java 21", "Spring Boot", "gRPC", "Protobuf", "Jackson"],
-      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift" },
+      links: { live: null, repo: "https://github.com/Gtvnv/OmniShift", details: "projects/omnishift.html" },
       satellite: { id: "11", slug: "oraculo", name: "Oráculo" },
     },
     {
@@ -326,7 +329,7 @@ const PROJECTS = {
       description:
         "Sistema de controladoría que escucha telemetría y eventos operativos de múltiples fuentes a la vez (arquitectura pipes-and-filters orientada a eventos), filtra y consolida todo en métricas de costo, publicando el paquete de costo unitario en un message broker para que Nidhogg lo consuma de forma asíncrona. Uso Go por la concurrencia vía goroutines (alto throughput, bajo footprint de infraestructura) y PostgreSQL con TimescaleDB para tratar el burn rate y la telemetría como series temporales de verdad. Es de uso estrictamente interno — sin pantalla ni API orientada a cliente externo, solo alimenta la controladoría de la propia empresa.",
       tags: ["Go", "PostgreSQL", "TimescaleDB", "Event-Driven"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/panoptes.html" },
       satellite: { id: "02", slug: "argus", name: "Argus" },
     },
     {
@@ -337,7 +340,7 @@ const PROJECTS = {
       description:
         "El motor financiero, de controladoría y de reglas de negocio estratégicas del ecosistema Z2A: cruza el costo real de la operación técnica con la volatilidad del mercado externo para garantizar salud financiera y rentabilidad. Define y ajusta precios dinámicamente, reaccionando tanto al aumento del costo computacional interno (reportado por Panoptes) como a movimientos de la competencia, con trabas rígidas contra cualquier operación que resulte en margen de contribución negativo, salvo que exista una política deliberada de excepción. También funciona como puente entre CTO y CFO: traduce telemetría y costo de infraestructura a lenguaje de unit economics, y monitorea el escenario macro para alertar sobre amenazas al break-even. Blindado por Arquitectura Hexagonal y DDD, corre en Java 21 + Spring Boot + PostgreSQL, ingiriendo los eventos de costo de Panoptes de forma asíncrona vía mensajería — con espacio para acoplar workers en Python cuando necesite correr algoritmos predictivos de mercado.",
       tags: ["Java 21", "Spring Boot 3", "Arquitectura Hexagonal", "DDD", "PostgreSQL"],
-      links: { live: null, repo: null },
+      links: { live: null, repo: null, details: "projects/nidhogg.html" },
       satellite: { id: "08", slug: "prometeu", name: "Prometeo" },
     },
     {
