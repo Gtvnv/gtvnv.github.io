@@ -70,7 +70,7 @@ const PROJECTS = {
       description:
         "Identity Provider próprio: emissão de tokens JWT assinados com RSA-2048, revogação distribuída via Redis (blacklist), políticas de acesso granulares (RBAC/ABAC) e nenhuma requisição confiável por padrão. Construído para servir como camada de autenticação de outros produtos do meu ecossistema.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
-      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core", details: "projects/aegisprotocol.html" },
       satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
@@ -187,7 +187,7 @@ const PROJECTS = {
       description:
         "A homegrown Identity Provider: JWT tokens signed with RSA-2048, distributed revocation via Redis (blacklist), granular access policies (RBAC/ABAC), and no request trusted by default. Built to serve as the authentication layer for other products in my ecosystem.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
-      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core", details: "projects/aegisprotocol.html" },
       satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
@@ -304,7 +304,7 @@ const PROJECTS = {
       description:
         "Identity Provider propio: tokens JWT firmados con RSA-2048, revocación distribuida vía Redis (lista negra), políticas de acceso granulares (RBAC/ABAC) y ninguna solicitud confiable por defecto. Construido para servir como capa de autenticación de otros productos de mi ecosistema.",
       tags: ["Java 21", "Spring Boot", "Spring Security", "JWT (RS256)", "Redis", "PostgreSQL"],
-      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core" },
+      links: { live: null, repo: "https://github.com/Gtvnv/AegisProtocol-Core", details: "projects/aegisprotocol.html" },
       satellite: { id: "01", slug: "themis", name: "Themis" },
     },
     {
