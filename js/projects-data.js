@@ -99,12 +99,22 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "EM DESENVOLVIMENTO",
-      summary: "Motor de pricing e planejamento tributário em Java: audita a \"economia perfeita interna\" do Panoptes contra o mercado real e projeta o futuro fiscal da empresa.",
+      summary: "Motor de pricing e proteção de margem em Java: cruza o custo real da operação com a volatilidade do mercado externo pra manter a rentabilidade do ecossistema Z2A.",
       description:
-        "Motor financeiro que consome os dados de custo consolidados pelo Panoptes e aplica regras de precificação e proteção de margem com Arquitetura Hexagonal, isolando esse domínio complexo (mesmo padrão que uso no OmniShift e no AegisProtocol). A comunicação entre os dois sistemas é desacoplada: se o Nidhogg cair ou for atualizado, o Panoptes continua calculando custo sem travar; consultas síncronas em tempo real, quando precisam existir, passam por gRPC. A função central é validação: minerar dados do mercado externo pra checar se a economia interna calculada é de fato a forma mais eficiente de operar, ou só parece ser. Também age como planejador tributário: projeta cenários de carga fiscal e antecipa o impacto de decisões de negócio no futuro da organização, em vez de descobrir o estrago só no fechamento contábil.",
-      tags: ["Java 21", "Spring Boot 3", "Arquitetura Hexagonal", "PostgreSQL", "gRPC"],
+        "O motor financeiro, de controladoria e de regras de negócio estratégicas do ecossistema Z2A: cruza o custo real da operação técnica com a volatilidade do mercado externo pra garantir saúde financeira e rentabilidade. Define e ajusta preços dinamicamente, reagindo tanto ao aumento de custo computacional interno (reportado pelo Panoptes) quanto a movimentos da concorrência, com travas rígidas contra qualquer operação que resulte em margem de contribuição negativa, a menos que exista uma política deliberada de exceção. Também funciona como ponte entre CTO e CFO: traduz telemetria e custo de infraestrutura pra linguagem de unit economics, e monitora o cenário macro pra alertar sobre ameaças ao break-even. Blindado por Arquitetura Hexagonal e DDD, roda em Java 21 + Spring Boot + PostgreSQL, ingerindo os eventos de custo do Panoptes de forma assíncrona via mensageria — com espaço pra acoplar workers em Python quando precisar rodar algoritmos preditivos de mercado.",
+      tags: ["Java 21", "Spring Boot 3", "Arquitetura Hexagonal", "DDD", "PostgreSQL"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
+    },
+    {
+      title: "Fafnir",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "O terceiro motor da trindade financeira do Z2A: busca as melhores estratégias fiscais pra economia interna.",
+      description:
+        "Completa a trindade financeira do Z2A ao lado do Panoptes (custo interno) e do Nidhogg (pricing e proteção de margem): o Fafnir cuida da elisão fiscal, buscando as rotas tributárias mais vantajosas pra operação sem tocar no que já foi validado pelos outros dois motores. Ainda nas fases iniciais de design — stack e arquitetura por definir.",
+      tags: ["Planejamento Tributário", "Trindade Z2A"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",
@@ -206,12 +216,22 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "IN DEVELOPMENT",
-      summary: "A Java pricing and tax-planning engine that audits Panoptes's \"perfect internal economy\" against the real market and projects the company's fiscal future.",
+      summary: "A Java pricing and margin-protection engine that weighs the operation's real cost against external market volatility to keep the Z2A ecosystem profitable.",
       description:
-        "A financial engine that consumes the cost data consolidated by Panoptes and applies pricing and margin-protection rules using Hexagonal Architecture, isolating that complex domain (the same pattern I use in OmniShift and AegisProtocol). Communication between the two systems is fully decoupled: if Nidhogg goes down or gets updated, Panoptes keeps calculating cost without blocking; synchronous real-time queries, when needed, go through gRPC. Its core job is validation: mining external market data to check whether the calculated internal economy is actually the most efficient way to operate, or just looks like it. It also acts as a tax planner: it projects tax-burden scenarios and forecasts how business decisions will play out for the organization's future, instead of finding out the damage only at the accounting close.",
-      tags: ["Java 21", "Spring Boot 3", "Hexagonal Architecture", "PostgreSQL", "gRPC"],
+        "The financial engine, controllership layer, and strategic business-rule brain of the Z2A ecosystem: it weighs the technical operation's real cost against external market volatility to protect financial health and profitability. It sets and dynamically adjusts pricing, reacting to both rising internal compute cost (reported by Panoptes) and competitor moves, with hard locks against any operation that would land on negative contribution margin, short of a deliberate exception policy. It also bridges CTO and CFO: translating telemetry and infrastructure cost into unit-economics language, and watching the macro picture to flag threats to break-even. Shielded by Hexagonal Architecture and DDD, it runs on Java 21 + Spring Boot + PostgreSQL, ingesting Panoptes's cost events asynchronously via messaging — with room to bolt on Python workers when it needs to run predictive market algorithms.",
+      tags: ["Java 21", "Spring Boot 3", "Hexagonal Architecture", "DDD", "PostgreSQL"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
+    },
+    {
+      title: "Fafnir",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "The third engine in Z2A's financial trinity: it hunts for the best tax strategy for the internal economy.",
+      description:
+        "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir handles tax planning, hunting for the most advantageous tax routes for the operation without touching what the other two engines already validated. Still in early design — stack and architecture to be defined.",
+      tags: ["Tax Planning", "Z2A Trinity"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",
@@ -313,12 +333,22 @@ const PROJECTS = {
       title: "Nidhogg",
       statusKey: "development",
       status: "EN DESARROLLO",
-      summary: "Motor de pricing y planificación tributaria en Java que audita la \"economía perfecta interna\" de Panoptes contra el mercado real y proyecta el futuro fiscal de la empresa.",
+      summary: "Motor de pricing y protección de margen en Java que cruza el costo real de la operación con la volatilidad del mercado externo para mantener la rentabilidad del ecosistema Z2A.",
       description:
-        "Motor financiero que consume los datos de costo consolidados por Panoptes y aplica reglas de precificación y protección de margen con Arquitectura Hexagonal, aislando ese dominio complejo (el mismo patrón que uso en OmniShift y AegisProtocol). La comunicación entre los dos sistemas es totalmente desacoplada: si Nidhogg cae o se actualiza, Panoptes sigue calculando el costo sin bloquearse; las consultas síncronas en tiempo real, cuando hacen falta, pasan por gRPC. Su función central es de validación: minar datos del mercado externo para comprobar si la economía interna calculada es realmente la forma más eficiente de operar, o solo lo parece. También actúa como planificador tributario: proyecta escenarios de carga fiscal y anticipa el impacto de decisiones de negocio en el futuro de la organización, en vez de descubrir el daño recién en el cierre contable.",
-      tags: ["Java 21", "Spring Boot 3", "Arquitectura Hexagonal", "PostgreSQL", "gRPC"],
+        "El motor financiero, de controladoría y de reglas de negocio estratégicas del ecosistema Z2A: cruza el costo real de la operación técnica con la volatilidad del mercado externo para garantizar salud financiera y rentabilidad. Define y ajusta precios dinámicamente, reaccionando tanto al aumento del costo computacional interno (reportado por Panoptes) como a movimientos de la competencia, con trabas rígidas contra cualquier operación que resulte en margen de contribución negativo, salvo que exista una política deliberada de excepción. También funciona como puente entre CTO y CFO: traduce telemetría y costo de infraestructura a lenguaje de unit economics, y monitorea el escenario macro para alertar sobre amenazas al break-even. Blindado por Arquitectura Hexagonal y DDD, corre en Java 21 + Spring Boot + PostgreSQL, ingiriendo los eventos de costo de Panoptes de forma asíncrona vía mensajería — con espacio para acoplar workers en Python cuando necesite correr algoritmos predictivos de mercado.",
+      tags: ["Java 21", "Spring Boot 3", "Arquitectura Hexagonal", "DDD", "PostgreSQL"],
       links: { live: null, repo: null },
       satellite: { id: "08", slug: "prometeu", name: "Prometeo" },
+    },
+    {
+      title: "Fafnir",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "El tercer motor de la trinidad financiera del Z2A: busca las mejores estrategias fiscales para la economía interna.",
+      description:
+        "Completa la trinidad financiera del Z2A junto al Panoptes (costo interno) y al Nidhogg (pricing y protección de margen): el Fafnir se encarga de la elusión fiscal, buscando las rutas tributarias más ventajosas para la operación sin tocar lo que ya validaron los otros dos motores. Todavía en fases iniciales de diseño — stack y arquitectura por definir.",
+      tags: ["Planificación Tributaria", "Trinidad Z2A"],
+      links: { live: null, repo: null },
     },
     {
       title: "Ultrafoot 26",
