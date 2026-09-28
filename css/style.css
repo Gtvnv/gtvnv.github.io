@@ -77,7 +77,7 @@ body {
   min-width: 340px;
   min-height: 340px;
   border-radius: 50%;
-  opacity: 0.55;
+  opacity: 0.3;
   mix-blend-mode: screen;
   will-change: transform;
   pointer-events: none;
@@ -117,7 +117,7 @@ body {
   --lava-color-transparent: rgba(139, 62, 240, 0);
   bottom: 6%;
   right: 13%;
-  opacity: 0.4;
+  opacity: 0.2;
   animation: lava-drift-4 38s ease-in-out infinite;
 }
 
@@ -422,12 +422,12 @@ section:last-of-type {
   inset: -16%;
   border-radius: 50%;
   background: conic-gradient(from 180deg, var(--lava-purple), var(--lava-blue), var(--lava-cyan), var(--lava-purple));
-  filter: blur(34px);
-  opacity: 0.6;
+  filter: blur(44px);
+  opacity: 0.35;
   z-index: 0;
   pointer-events: none;
   will-change: transform;
-  animation: hero-photo-spin 14s linear infinite;
+  animation: hero-photo-spin 24s linear infinite;
 }
 
 .hero-photo {
@@ -463,11 +463,56 @@ section:last-of-type {
   hyphens: auto;
 }
 
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.hero-proof-item {
+  max-width: 22ch;
+}
+
+.hero-proof-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-proof-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.9rem;
   margin-top: 2.5rem;
+}
+
+.link-plain {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.15s ease;
+}
+
+.link-plain:hover {
+  color: var(--accent);
 }
 
 .btn {

@@ -88,6 +88,24 @@
     document.querySelectorAll("[data-status]").forEach((n) => (n.textContent = cfg.status));
     document.querySelectorAll("[data-location]").forEach((n) => (n.textContent = CONFIG_SHARED.location));
     document.querySelectorAll("[data-summary]").forEach((n) => (n.textContent = cfg.heroSummary));
+
+    const proofWrap = document.querySelector("[data-hero-proof]");
+    if (proofWrap && cfg.heroProof) {
+      proofWrap.innerHTML = "";
+      cfg.heroProof.forEach((item) => {
+        const el = document.createElement("div");
+        el.className = "hero-proof-item";
+        const value = document.createElement("span");
+        value.className = "hero-proof-value";
+        value.textContent = item.value;
+        const label = document.createElement("span");
+        label.className = "hero-proof-label";
+        label.textContent = item.label;
+        el.appendChild(value);
+        el.appendChild(label);
+        proofWrap.appendChild(el);
+      });
+    }
     document.querySelectorAll("[data-email]").forEach((n) => {
       n.textContent = CONFIG_SHARED.email;
       n.href = `mailto:${CONFIG_SHARED.email}`;

@@ -28,10 +28,15 @@ const CONFIG_SHARED = {
 
 const CONFIG = {
   "pt-BR": {
-    role: "Engenheiro de Software",
+    role: "Arquiteto de Soluções",
     status: "Aberto a oportunidades",
     heroSummary:
       "Construo backends e produtos SaaS com foco em arquitetura limpa, segurança desde o design e viabilidade de negócio. Hoje transito entre Java/Spring, o ecossistema JS/TS e C#/.NET, sempre olhando pro sistema inteiro, não só pro código.",
+    heroProof: [
+      { value: "+3 anos", label: "de experiência profissional em TI" },
+      { value: "15 anos → 0", label: "de estoque em planilha — hoje automatizado no ERP" },
+      { value: "Promovido", label: "em suporte de TI por impacto direto nas métricas" },
+    ],
     aboutParagraphs: [
       "Minha primeira inclinação acadêmica foi a Física, mas a decisão pela TI me trouxe um fascínio que eu não esperava: a capacidade de entender como as coisas funcionam na realidade e conseguir traduzir isso para o meio digital.",
       "Minha base em tecnologia refletiu muito essa relação com o mundo físico. Antes do código, passei pelo almoxarifado e pelo suporte técnico. Lidando com infraestrutura, hardware e redes, aprendi a diagnosticar o problema na origem antes de aplicar qualquer correção, uma mentalidade de análise de causa raiz que se tornou a base da minha visão sobre arquitetura de software e o que me levou, naturalmente, a me especializar em segurança da informação.",
@@ -43,10 +48,15 @@ const CONFIG = {
     ],
   },
   en: {
-    role: "Software Engineer",
+    role: "Solutions Architect",
     status: "Open to opportunities",
     heroSummary:
       "I build backends and SaaS products with a focus on clean architecture, security by design, and business viability. These days I move between Java/Spring, the JS/TS ecosystem, and C#/.NET, always looking at the whole system, not just the code.",
+    heroProof: [
+      { value: "+3 years", label: "of professional experience in IT" },
+      { value: "15 years → 0", label: "of spreadsheet inventory — now automated in the ERP" },
+      { value: "Promoted", label: "in IT support for direct impact on team metrics" },
+    ],
     aboutParagraphs: [
       "My first academic inclination was Physics, but choosing IT brought me a fascination I didn't expect: the ability to understand how things actually work and translate that into the digital world.",
       "My technical background closely reflects that relationship with the physical world. Before code, I went through the warehouse and technical support. Working with infrastructure, hardware, and networks, I learned to diagnose the problem at its source before applying any fix, a root-cause mindset that became the foundation of how I think about software architecture, and what naturally led me to specialize in information security.",
@@ -58,10 +68,15 @@ const CONFIG = {
     ],
   },
   es: {
-    role: "Ingeniero de Software",
+    role: "Arquitecto de Soluciones",
     status: "Abierto a oportunidades",
     heroSummary:
       "Construyo backends y productos SaaS con foco en arquitectura limpia, seguridad desde el diseño y viabilidad de negocio. Hoy transito entre Java/Spring, el ecosistema JS/TS y C#/.NET, siempre mirando el sistema completo, no solo el código.",
+    heroProof: [
+      { value: "+3 años", label: "de experiencia profesional en TI" },
+      { value: "15 años → 0", label: "de inventario en planilla — hoy automatizado en el ERP" },
+      { value: "Promovido", label: "en soporte de TI por impacto directo en las métricas" },
+    ],
     aboutParagraphs: [
       "Mi primera inclinación académica fue la Física, pero la decisión de ir por TI me trajo una fascinación que no esperaba: la capacidad de entender cómo funcionan las cosas en la realidad y lograr traducir eso al mundo digital.",
       "Mi base en tecnología reflejó bastante esa relación con el mundo físico. Antes del código, pasé por el almacén y por el soporte técnico. Trabajando con infraestructura, hardware y redes, aprendí a diagnosticar el problema en su origen antes de aplicar cualquier corrección, una mentalidad de análisis de causa raíz que se convirtió en la base de mi visión sobre arquitectura de software y lo que me llevó, naturalmente, a especializarme en seguridad de la información.",
