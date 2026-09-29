@@ -417,6 +417,114 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: "https://zyntraerp.com.br" },
       footer: { backCta: "← Voltar ao portfólio" },
     },
+    fafnir: {
+      meta: {
+        title: "Fafnir — Gustavo Vianna",
+        description: "Motor de elisão fiscal via SLM: intercepta a transação antes do Split Payment, com um motor de regras determinístico decidindo a última palavra.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/fafnir.png",
+      hero: {
+        eyebrow: "Elisão Fiscal via SLM · trindade financeira do Z2A",
+        title: "Fafnir",
+        subtitle: "Intercepta a transação antes do Split Payment fatiar o pagamento errado",
+        summary:
+          "O terceiro motor da trindade financeira do Z2A: usa um SLM pra sugerir a classificação fiscal correta (NCM) de um produto a partir da descrição, mas só aplica a otimização se um motor de regras determinístico validar a sugestão contra as tabelas oficiais (Sefaz, IBPT). Nomeado em referência ao dragão da mitologia nórdica que protege ferozmente seu tesouro.",
+        statusNote: "Ainda em fase de design — arquitetura desenhada, implementação não iniciada.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu de um problema concreto: gateways de Split Payment frequentemente cobram imposto errado porque não têm o contexto exato do produto, só o valor bruto da transação — bitributação e perda de isenções (como produtos monofásicos de PIS/COFINS) são comuns. O Fafnir resolve isso no momento da transação, não na apuração mensal: aplica o conceito de Shift-Left (como em segurança) pra contabilidade, corrigindo a classificação fiscal antes do dinheiro ser fatiado.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Hexagonal + DDD: o núcleo (TaxOptimizationService) não sabe se está processando uma API REST, um evento de mensageria ou um XML de nota fiscal — só se importa com a regra de negócio. Um pipeline de 4 etapas, cada uma só passando adiante o que já foi validado:",
+        tree: [
+          "1. Ingestão e sanitização     normaliza o payload (pré-faturamento ou XML de NF-e)",
+          "2. Enriquecimento via SLM     modelo sugere NCM + confidence_score a partir da descrição",
+          "3. Validação determinística   abaixo do limiar, descarta; acima, cruza com Sefaz/IBPT",
+          "4. Orquestração do split      calcula a carga tributária real e chama o Gateway de Pagamento",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Llama 3 8B / Phi-3)", "Ollama", "QLoRA (Unsloth)"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "A IA sugere; a regra decide — a mesma tese do Z2A, aplicada à contabilidade.",
+        items: [
+          { title: "Elisão, não evasão", mechanic: "O SLM nunca decide sozinho: abaixo de um limiar de confiança, a sugestão é descartada e o NCM original é mantido." },
+          { title: "Fine-tuning local, serving na nuvem", mechanic: "QLoRA treina o modelo numa GPU doméstica (12GB de VRAM já bastam pra um Llama 3 8B); o resultado exportado em GGUF roda via Ollama numa instância cloud sem GPU." },
+          { title: "Dataset com LGPD desde a ingestão", mechanic: "O pipeline de ETL descarta as tags de cliente, fornecedor e valores totais dos XMLs de nota fiscal antes de qualquer dado chegar perto do ambiente de treinamento." },
+          { title: "Ground truth por consenso", mechanic: "Quando uma descrição de produto tem NCMs divergentes no histórico, o pipeline usa a classificação majoritária e descarta as exceções como ruído, não como verdade." },
+          { title: "Motor de regras como policy enforcement point", mechanic: "Mesmo raciocínio do Zero Trust: a carga tributária não é confiável até o motor determinístico validar a regra do estado/governo." },
+        ],
+      },
+      security: {
+        title: "Elisão vs. evasão: a fronteira jurídica",
+        body: "Classificar um produto corretamente pra aproveitar uma isenção é elisão fiscal — 100% legal. O risco técnico é que modelos de linguagem são probabilísticos: se o SLM classificar errado pra otimizar o imposto, isso pode ser interpretado como evasão fiscal. Por isso o SLM nunca tem a palavra final — ele funciona como um oráculo que sugere, e a decisão de aplicar a alíquota sempre passa por um motor de regras determinístico.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    ultrafoot26: {
+      meta: {
+        title: "Ultrafoot 26 — Gustavo Vianna",
+        description: "Management + Tycoon + Roguelike: remake de um clássico jogo de futebol com gestão de crise de verdade.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/ultrafoot26.png",
+      hero: {
+        eyebrow: "Management + Tycoon + Roguelike · remake de um clássico",
+        title: "Ultrafoot 26",
+        subtitle: "Não é mais um gerenciador de planilhas: é gestão de crise de um clube de futebol de verdade",
+        summary:
+          "Remake de um clássico jogo de futebol que funde a jogabilidade direta de um Management com a profundidade de infraestrutura e crise de um Tycoon. O jogador assume não só o papel de técnico, mas de gestor: bastidores políticos, psicologia do elenco, segurança de dados e as pressões reais do futebol moderno.",
+        statusNote: "Já rodando online — desktop (Windows/Mac/Linux) e mobile, com versão free e paga.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "O MVP prioriza um core sólido antes de qualquer complexidade: motor de partidas com calendário FIFA real, sistema de sócio-torcedor (a receita flutua com a moral do time), fator casa/fora com modificadores mentais por idade do jogador, e scouting básico. A complexidade de Tycoon e os eventos aleatórios entram depois, em cima de uma base testada — a arquitetura evita processamento pesado (sem motor 3D de física de partida) e usa simulação matemática simplificada pros times controlados pela máquina.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Hexagonal + DDD isola o motor do jogo (as regras de negócio) da interface: o cálculo de uma partida e os modificadores de atributo nunca precisam abrir a tela pra serem testados. Efeitos de status (traumas, moral, pressão de patrocínio) são modelados como uma lista de modificadores na entidade Jogador — o motor da partida só soma os atributos base e subtrai os ativos, sem saber a regra de negócio por trás de cada um. Eventos de domínio conectam módulos (marketing, saúde, moral) sem acoplar o código entre eles.",
+        tree: [
+          "Frontend desktop     Tauri + TypeScript — Windows, Mac, Linux",
+          "Frontend mobile      C# — versão nativa",
+          "Motor do jogo        Java 21 + Spring Boot, orientado a eventos",
+          "Banco de dados       PostgreSQL — jogadores, histórico, cláusulas contratuais",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Next.js", "Tauri", "TypeScript", "C#", "Java 21", "Spring Boot", "PostgreSQL"],
+      },
+      features: {
+        title: "Mecânicas de destaque",
+        intro: "Cinco sistemas que fogem do lugar-comum dos gerenciadores de futebol.",
+        items: [
+          { title: "Traumas e virtudes persistentes", mechanic: "Um \"Maracanaço\" vira uma condição fixa no perfil dos jogadores envolvidos — um debuff de -15% que só sai com uma conquista específica, não com o tempo passando." },
+          { title: "Fator geográfico", mechanic: "Jogar em altitude aplica um multiplicador real de consumo de estamina, forçando rodízio no elenco ou compra de consumíveis." },
+          { title: "Guerra de dados entre clubes", mechanic: "Se a infraestrutura de segurança do clube for fraca, times rivais podem interceptar os relatórios dos seus olheiros — a mesma lógica de Zero Trust aplicada à espionagem esportiva." },
+          { title: "Panelinhas no vestiário", mechanic: "O motor identifica afinidades (nacionalidade, idade, clube de origem) e forma grupos; punir o líder de um grupo derruba a moral de todos ao redor dele." },
+          { title: "Marketing de risco", mechanic: "Campanhas agressivas injetam verba rápido, mas criam cláusulas de desempenho — quebrar a expectativa dobra a pressão da torcida e pode romper patrocínios." },
+        ],
+      },
+      endpoints: {
+        title: "Roadmap",
+        intro: "MVP primeiro, complexidade depois — pra não sofrer de feature creep.",
+        items: [
+          { name: "Fase 1 — Core (MVP)", what: "Motor de partidas, calendário FIFA, sócio-torcedor, fator casa/fora, scouting básico", role: "" },
+          { name: "Fase 2 — Tycoon", what: "Infraestrutura do estádio, segurança privada, fator geográfico/altitude", role: "" },
+          { name: "Fase 3 — Fator humano", what: "Traumas e virtudes, eventos de crise, panelinhas de vestiário", role: "" },
+          { name: "Fase 4 — Futebol moderno", what: "Transição associação→SAF, guerra de dados, contratos tóxicos, banco híbrido real+procedural", role: "" },
+        ],
+      },
+      links: { repo: "https://github.com/jovemegidio/Ultrafoot26", live: "https://remake-ultrafoot.vercel.app" },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
   },
   en: {
     aegisprotocol: {
@@ -828,6 +936,114 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: "https://zyntraerp.com.br" },
       footer: { backCta: "← Back to the portfolio" },
     },
+    fafnir: {
+      meta: {
+        title: "Fafnir — Gustavo Vianna",
+        description: "A tax-elision engine via SLM: intercepts the transaction before Split Payment, with a deterministic rules engine having the final word.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/fafnir.png",
+      hero: {
+        eyebrow: "Tax Elision via SLM · Z2A's financial trinity",
+        title: "Fafnir",
+        subtitle: "Intercepts the transaction before Split Payment slices up the wrong amount",
+        summary:
+          "The third engine in Z2A's financial trinity: uses an SLM to suggest the correct tax classification (NCM) for a product from its description, but only applies the optimization if a deterministic rules engine validates the suggestion against the official tables (Sefaz, IBPT). Named after the dragon from Norse mythology that fiercely guards its treasure.",
+        statusNote: "Still in the design phase — architecture drawn up, implementation not yet started.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born from a concrete problem: Split Payment gateways often charge the wrong tax because they lack the product's exact context, only the transaction's gross value — double taxation and lost exemptions (like single-phase PIS/COFINS products) are common. Fafnir fixes this at the moment of the transaction, not at monthly filing: it applies the Shift-Left concept (like in security) to accounting, correcting the tax classification before the money gets sliced.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Hexagonal + DDD: the core (TaxOptimizationService) doesn't know whether it's processing a REST API, a messaging event, or an NF-e XML file — it only cares about the business rule. A 4-step pipeline, each stage only passing forward what's already validated:",
+        tree: [
+          "1. Ingestion and sanitization   normalizes the payload (pre-invoice or NF-e XML)",
+          "2. SLM enrichment               the model suggests an NCM + confidence_score from the description",
+          "3. Deterministic validation     below the threshold it's discarded; above it, cross-checked against Sefaz/IBPT",
+          "4. Split orchestration          calculates the real tax burden and calls the Payment Gateway",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Llama 3 8B / Phi-3)", "Ollama", "QLoRA (Unsloth)"],
+      },
+      features: {
+        title: "Key features",
+        intro: "AI suggests; the rule decides — Z2A's own thesis, applied to accounting.",
+        items: [
+          { title: "Elision, not evasion", mechanic: "The SLM never decides alone: below a confidence threshold, the suggestion is discarded and the original NCM is kept." },
+          { title: "Local fine-tuning, cloud serving", mechanic: "QLoRA trains the model on a home GPU (12GB of VRAM is enough for a Llama 3 8B); the resulting GGUF export runs via Ollama on a GPU-less cloud instance." },
+          { title: "LGPD-compliant dataset from ingestion", mechanic: "The ETL pipeline strips customer, supplier, and total-value tags from the invoice XMLs before any data gets near the training environment." },
+          { title: "Ground truth by consensus", mechanic: "When a product description has conflicting NCMs in the history, the pipeline uses the majority classification and discards the exceptions as noise, not truth." },
+          { title: "Rules engine as policy enforcement point", mechanic: "Same reasoning as Zero Trust: the tax burden isn't trusted until the deterministic engine validates the state/government's rule." },
+        ],
+      },
+      security: {
+        title: "Elision vs. evasion: the legal boundary",
+        body: "Classifying a product correctly to claim an exemption is tax elision — 100% legal. The technical risk is that language models are probabilistic: if the SLM misclassifies something to optimize the tax, that can look like evasion. That's why the SLM never has the final word — it acts as an oracle that suggests, and the decision to apply the tax rate always goes through a deterministic rules engine.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    ultrafoot26: {
+      meta: {
+        title: "Ultrafoot 26 — Gustavo Vianna",
+        description: "Management + Tycoon + Roguelike: a remake of a classic football game with real crisis management.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/ultrafoot26.png",
+      hero: {
+        eyebrow: "Management + Tycoon + Roguelike · remake of a classic",
+        title: "Ultrafoot 26",
+        subtitle: "Not just another spreadsheet manager: real crisis management for a football club",
+        summary:
+          "A remake of a classic football game that fuses the direct gameplay of a Management sim with the infrastructure and crisis depth of a Tycoon. The player takes on not just the role of coach, but of manager: political backstage, squad psychology, data security, and the real pressures of modern football.",
+        statusNote: "Already live — desktop (Windows/Mac/Linux) and mobile, with a free and a paid tier.",
+      },
+      about: {
+        title: "About the project",
+        body: "The MVP prioritizes a solid core before any added complexity: a match engine with a real FIFA calendar, a fan-club membership system (revenue floats with team morale), home/away factors with age-based mental modifiers, and basic scouting. Tycoon-level complexity and random events come later, on top of a tested foundation — the architecture avoids heavy processing (no 3D match-physics engine) and uses simplified math simulation for CPU-controlled teams.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Hexagonal + DDD isolates the game engine (the business rules) from the interface: calculating a match and its attribute modifiers never needs to open the game screen to be tested. Status effects (traumas, morale, sponsor pressure) are modeled as a list of modifiers on the Player entity — the match engine just sums base attributes and subtracts the active ones, with no knowledge of the business rule behind each. Domain events connect modules (marketing, health, morale) without coupling their code.",
+        tree: [
+          "Desktop frontend     Tauri + TypeScript — Windows, Mac, Linux",
+          "Mobile frontend      C# — native version",
+          "Game engine          Java 21 + Spring Boot, event-driven",
+          "Database             PostgreSQL — players, history, contract clauses",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Next.js", "Tauri", "TypeScript", "C#", "Java 21", "Spring Boot", "PostgreSQL"],
+      },
+      features: {
+        title: "Standout mechanics",
+        intro: "Five systems that break from the football-manager status quo.",
+        items: [
+          { title: "Persistent traumas and virtues", mechanic: "A crushing collapse becomes a fixed condition on the involved players' profile — a -15% debuff removed only by a specific achievement, not by time passing." },
+          { title: "Geographic factor", mechanic: "Playing at altitude applies a real stamina-consumption multiplier, forcing squad rotation or consumable purchases." },
+          { title: "Inter-club data warfare", mechanic: "If a club's security infrastructure is weak, rival teams can intercept your scouts' reports — the same Zero-Trust logic applied to sports espionage." },
+          { title: "Locker-room cliques", mechanic: "The engine detects affinities (nationality, age, former club) and forms groups; punishing a group's leader tanks morale for everyone around him." },
+          { title: "High-risk marketing", mechanic: "Aggressive campaigns inject cash fast but create performance clauses — breaking the expectation doubles fan pressure and can void sponsorships." },
+        ],
+      },
+      endpoints: {
+        title: "Roadmap",
+        intro: "MVP first, complexity later — to avoid feature creep.",
+        items: [
+          { name: "Phase 1 — Core (MVP)", what: "Match engine, FIFA calendar, fan-club system, home/away factor, basic scouting", role: "" },
+          { name: "Phase 2 — Tycoon", what: "Stadium infrastructure, private security, geographic/altitude factor", role: "" },
+          { name: "Phase 3 — Human factor", what: "Traumas and virtues, crisis events, locker-room cliques", role: "" },
+          { name: "Phase 4 — Modern football", what: "Association-to-corporate-ownership transition, data warfare, toxic contracts, hybrid real+procedural database", role: "" },
+        ],
+      },
+      links: { repo: "https://github.com/jovemegidio/Ultrafoot26", live: "https://remake-ultrafoot.vercel.app" },
+      footer: { backCta: "← Back to the portfolio" },
+    },
   },
   es: {
     aegisprotocol: {
@@ -1237,6 +1453,114 @@ const PROJECT_DETAILS = {
         body: "JWT con refresh tokens y rotación automática, bcrypt para contraseñas, tokens CSRF, rate limiting vía Redis, sanitización contra XSS, cifrado de PII para cumplimiento LGPD, y audit trail completo — toda acción relevante queda registrada.",
       },
       links: { repo: null, live: "https://zyntraerp.com.br" },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    fafnir: {
+      meta: {
+        title: "Fafnir — Gustavo Vianna",
+        description: "Motor de elisión fiscal vía SLM: intercepta la transacción antes del Split Payment, con un motor de reglas determinístico teniendo la última palabra.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/fafnir.png",
+      hero: {
+        eyebrow: "Elisión Fiscal vía SLM · trinidad financiera del Z2A",
+        title: "Fafnir",
+        subtitle: "Intercepta la transacción antes de que el Split Payment fraccione el monto equivocado",
+        summary:
+          "El tercer motor de la trinidad financiera del Z2A: usa un SLM para sugerir la clasificación fiscal correcta (NCM) de un producto a partir de su descripción, pero solo aplica la optimización si un motor de reglas determinístico valida la sugerencia contra las tablas oficiales (Sefaz, IBPT). Nombrado en referencia al dragón de la mitología nórdica que protege ferozmente su tesoro.",
+        statusNote: "Todavía en fase de diseño — arquitectura definida, implementación aún no iniciada.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació de un problema concreto: los gateways de Split Payment a menudo cobran el impuesto equivocado porque no tienen el contexto exacto del producto, solo el valor bruto de la transacción — la doble tributación y la pérdida de exenciones (como productos monofásicos de PIS/COFINS) son comunes. El Fafnir resuelve esto en el momento de la transacción, no en la declaración mensual: aplica el concepto de Shift-Left (como en seguridad) a la contabilidad, corrigiendo la clasificación fiscal antes de que el dinero se fraccione.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Hexagonal + DDD: el núcleo (TaxOptimizationService) no sabe si está procesando una API REST, un evento de mensajería o un XML de factura — solo le importa la regla de negocio. Un pipeline de 4 etapas, cada una pasando adelante solo lo que ya fue validado:",
+        tree: [
+          "1. Ingesta y sanitización     normaliza el payload (prefactura o XML de NF-e)",
+          "2. Enriquecimiento vía SLM    el modelo sugiere un NCM + confidence_score a partir de la descripción",
+          "3. Validación determinística  por debajo del umbral se descarta; por encima, se cruza con Sefaz/IBPT",
+          "4. Orquestación del split     calcula la carga tributaria real y llama al Gateway de Pago",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Llama 3 8B / Phi-3)", "Ollama", "QLoRA (Unsloth)"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "La IA sugiere; la regla decide — la misma tesis del Z2A, aplicada a la contabilidad.",
+        items: [
+          { title: "Elisión, no evasión", mechanic: "El SLM nunca decide solo: por debajo de un umbral de confianza, la sugerencia se descarta y se mantiene el NCM original." },
+          { title: "Fine-tuning local, serving en la nube", mechanic: "QLoRA entrena el modelo en una GPU doméstica (12GB de VRAM alcanzan para un Llama 3 8B); el resultado exportado en GGUF corre vía Ollama en una instancia cloud sin GPU." },
+          { title: "Dataset con LGPD desde la ingesta", mechanic: "El pipeline de ETL descarta las etiquetas de cliente, proveedor y valores totales de los XML de factura antes de que cualquier dato se acerque al entorno de entrenamiento." },
+          { title: "Ground truth por consenso", mechanic: "Cuando una descripción de producto tiene NCMs divergentes en el histórico, el pipeline usa la clasificación mayoritaria y descarta las excepciones como ruido, no como verdad." },
+          { title: "Motor de reglas como policy enforcement point", mechanic: "Mismo razonamiento que Zero Trust: la carga tributaria no es confiable hasta que el motor determinístico valida la regla del estado/gobierno." },
+        ],
+      },
+      security: {
+        title: "Elisión vs. evasión: la frontera jurídica",
+        body: "Clasificar un producto correctamente para aprovechar una exención es elisión fiscal — 100% legal. El riesgo técnico es que los modelos de lenguaje son probabilísticos: si el SLM clasifica mal para optimizar el impuesto, eso puede interpretarse como evasión fiscal. Por eso el SLM nunca tiene la última palabra — funciona como un oráculo que sugiere, y la decisión de aplicar la alícuota siempre pasa por un motor de reglas determinístico.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    ultrafoot26: {
+      meta: {
+        title: "Ultrafoot 26 — Gustavo Vianna",
+        description: "Management + Tycoon + Roguelike: remake de un clásico juego de fútbol con gestión de crisis real.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/ultrafoot26.png",
+      hero: {
+        eyebrow: "Management + Tycoon + Roguelike · remake de un clásico",
+        title: "Ultrafoot 26",
+        subtitle: "No es otro gestor de planillas: es gestión de crisis real de un club de fútbol",
+        summary:
+          "Remake de un clásico juego de fútbol que fusiona la jugabilidad directa de un Management con la profundidad de infraestructura y crisis de un Tycoon. El jugador asume no solo el rol de técnico, sino de gestor: bastidores políticos, psicología del plantel, seguridad de datos y las presiones reales del fútbol moderno.",
+        statusNote: "Ya en funcionamiento — escritorio (Windows/Mac/Linux) y móvil, con versión gratuita y de pago.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "El MVP prioriza un núcleo sólido antes de cualquier complejidad agregada: motor de partidos con calendario FIFA real, sistema de socio-hincha (el ingreso fluctúa con la moral del equipo), factores de local/visitante con modificadores mentales según edad, y scouting básico. La complejidad de Tycoon y los eventos aleatorios llegan después, sobre una base ya probada — la arquitectura evita procesamiento pesado (sin motor 3D de física de partido) y usa simulación matemática simplificada para los equipos controlados por la máquina.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Hexagonal + DDD aísla el motor del juego (las reglas de negocio) de la interfaz: calcular un partido y sus modificadores de atributos nunca necesita abrir la pantalla del juego para probarse. Los efectos de estado (traumas, moral, presión de patrocinio) se modelan como una lista de modificadores en la entidad Jugador — el motor del partido solo suma los atributos base y resta los activos, sin conocer la regla de negocio detrás de cada uno. Los eventos de dominio conectan módulos (marketing, salud, moral) sin acoplar el código entre ellos.",
+        tree: [
+          "Frontend de escritorio   Tauri + TypeScript — Windows, Mac, Linux",
+          "Frontend móvil           C# — versión nativa",
+          "Motor del juego          Java 21 + Spring Boot, orientado a eventos",
+          "Base de datos            PostgreSQL — jugadores, historial, cláusulas contractuales",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Next.js", "Tauri", "TypeScript", "C#", "Java 21", "Spring Boot", "PostgreSQL"],
+      },
+      features: {
+        title: "Mecánicas destacadas",
+        intro: "Cinco sistemas que se alejan del lugar común de los gestores de fútbol.",
+        items: [
+          { title: "Traumas y virtudes persistentes", mechanic: "Un colapso colectivo se convierte en una condición fija en el perfil de los jugadores involucrados — un debuff de -15% que solo se quita con un logro específico, no con el paso del tiempo." },
+          { title: "Factor geográfico", mechanic: "Jugar en altitud aplica un multiplicador real de consumo de resistencia, forzando rotación de plantel o compra de consumibles." },
+          { title: "Guerra de datos entre clubes", mechanic: "Si la infraestructura de seguridad del club es débil, equipos rivales pueden interceptar los informes de tus ojeadores — la misma lógica de Zero Trust aplicada al espionaje deportivo." },
+          { title: "Grupos de afinidad en el vestuario", mechanic: "El motor detecta afinidades (nacionalidad, edad, club de origen) y forma grupos; castigar al líder de un grupo hunde la moral de todos a su alrededor." },
+          { title: "Marketing de riesgo", mechanic: "Campañas agresivas inyectan dinero rápido, pero crean cláusulas de desempeño — romper la expectativa duplica la presión de la hinchada y puede anular patrocinios." },
+        ],
+      },
+      endpoints: {
+        title: "Roadmap",
+        intro: "MVP primero, complejidad después — para no sufrir de feature creep.",
+        items: [
+          { name: "Fase 1 — Core (MVP)", what: "Motor de partidos, calendario FIFA, socio-hincha, factor local/visitante, scouting básico", role: "" },
+          { name: "Fase 2 — Tycoon", what: "Infraestructura del estadio, seguridad privada, factor geográfico/altitud", role: "" },
+          { name: "Fase 3 — Factor humano", what: "Traumas y virtudes, eventos de crisis, grupos de afinidad", role: "" },
+          { name: "Fase 4 — Fútbol moderno", what: "Transición asociación→SAF, guerra de datos, contratos tóxicos, base de datos híbrida real+procedural", role: "" },
+        ],
+      },
+      links: { repo: "https://github.com/jovemegidio/Ultrafoot26", live: "https://remake-ultrafoot.vercel.app" },
       footer: { backCta: "← Volver al portafolio" },
     },
   },

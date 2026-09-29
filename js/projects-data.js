@@ -111,11 +111,12 @@ const PROJECTS = {
       title: "Fafnir",
       statusKey: "development",
       status: "EM DESENVOLVIMENTO",
-      summary: "O terceiro motor da trindade financeira do Z2A: busca as melhores estratégias fiscais pra economia interna.",
+      summary: "O terceiro motor da trindade financeira do Z2A: um SLM sugere a classificação fiscal, uma regra determinística decide se aplica.",
       description:
-        "Completa a trindade financeira do Z2A ao lado do Panoptes (custo interno) e do Nidhogg (pricing e proteção de margem): o Fafnir cuida da elisão fiscal, buscando as rotas tributárias mais vantajosas pra operação sem tocar no que já foi validado pelos outros dois motores. Ainda nas fases iniciais de design — stack e arquitetura por definir.",
-      tags: ["Planejamento Tributário", "Trindade Z2A"],
-      links: { live: null, repo: null },
+        "Completa a trindade financeira do Z2A ao lado do Panoptes (custo interno) e do Nidhogg (pricing e proteção de margem): o Fafnir intercepta a transação antes do Split Payment fatiar o pagamento, usa um SLM pra sugerir a classificação fiscal correta (NCM) a partir da descrição do produto, e só aplica a otimização se um motor de regras determinístico validar contra as tabelas oficiais (Sefaz, IBPT) — a mesma tese do Z2A aplicada à contabilidade: a IA sugere, a regra decide. Arquitetura Hexagonal + DDD, com o núcleo isolado de qualquer detalhe de framework.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Ollama)", "Arquitetura Hexagonal", "DDD"],
+      links: { live: null, repo: null, details: "projects/fafnir.html" },
+      satellite: { id: "07", slug: "atlas", name: "Atlas" },
     },
     {
       title: "Ultrafoot 26",
@@ -125,7 +126,7 @@ const PROJECTS = {
       description:
         "Projeto pessoal fora do escopo corporativo, já rodando online. Tem duas versões, cada uma com stack própria: desktop (Windows, Mac e Linux) em Next.js empacotado com Tauri, e mobile em C#, ambas com visualização de partida em 3D. O desktop tem pipeline de release próprio (versão e assinatura via GitHub Actions, com auto-update no cliente instalado), e as duas versões compartilham um sistema de licenças que distingue quem usa a versão free de quem tem a versão completa.",
       tags: ["Next.js", "Tauri", "TypeScript", "C#", "3D"],
-      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26" },
+      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26", details: "projects/ultrafoot26.html" },
     },
   ],
   en: [
@@ -229,11 +230,12 @@ const PROJECTS = {
       title: "Fafnir",
       statusKey: "development",
       status: "IN DEVELOPMENT",
-      summary: "The third engine in Z2A's financial trinity: it hunts for the best tax strategy for the internal economy.",
+      summary: "The third engine in Z2A's financial trinity: an SLM suggests the tax classification, a deterministic rule decides whether to apply it.",
       description:
-        "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir handles tax planning, hunting for the most advantageous tax routes for the operation without touching what the other two engines already validated. Still in early design — stack and architecture to be defined.",
-      tags: ["Tax Planning", "Z2A Trinity"],
-      links: { live: null, repo: null },
+        "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir intercepts the transaction before Split Payment slices up the payment, uses an SLM to suggest the correct tax classification (NCM) from the product description, and only applies the optimization if a deterministic rules engine validates it against the official tables (Sefaz, IBPT) — Z2A's own thesis applied to accounting: AI suggests, the rule decides. Hexagonal Architecture + DDD, with the core isolated from any framework detail.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Ollama)", "Hexagonal Architecture", "DDD"],
+      links: { live: null, repo: null, details: "projects/fafnir.html" },
+      satellite: { id: "07", slug: "atlas", name: "Atlas" },
     },
     {
       title: "Ultrafoot 26",
@@ -243,7 +245,7 @@ const PROJECTS = {
       description:
         "A personal project outside the day job, already live. It ships as two versions, each with its own stack: desktop (Windows, Mac, and Linux) built with Next.js packaged in Tauri, and mobile built in C#, both with a 3D match viewer. The desktop version has its own release pipeline (versioning and signing via GitHub Actions, with auto-update on the installed client), and both versions share a licensing system that distinguishes free users from full-version users.",
       tags: ["Next.js", "Tauri", "TypeScript", "C#", "3D"],
-      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26" },
+      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26", details: "projects/ultrafoot26.html" },
     },
   ],
   es: [
@@ -347,11 +349,12 @@ const PROJECTS = {
       title: "Fafnir",
       statusKey: "development",
       status: "EN DESARROLLO",
-      summary: "El tercer motor de la trinidad financiera del Z2A: busca las mejores estrategias fiscales para la economía interna.",
+      summary: "El tercer motor de la trinidad financiera del Z2A: un SLM sugiere la clasificación fiscal, una regla determinística decide si se aplica.",
       description:
-        "Completa la trinidad financiera del Z2A junto al Panoptes (costo interno) y al Nidhogg (pricing y protección de margen): el Fafnir se encarga de la elusión fiscal, buscando las rutas tributarias más ventajosas para la operación sin tocar lo que ya validaron los otros dos motores. Todavía en fases iniciales de diseño — stack y arquitectura por definir.",
-      tags: ["Planificación Tributaria", "Trinidad Z2A"],
-      links: { live: null, repo: null },
+        "Completa la trinidad financiera del Z2A junto al Panoptes (costo interno) y al Nidhogg (pricing y protección de margen): el Fafnir intercepta la transacción antes de que el Split Payment fraccione el pago, usa un SLM para sugerir la clasificación fiscal correcta (NCM) a partir de la descripción del producto, y solo aplica la optimización si un motor de reglas determinístico la valida contra las tablas oficiales (Sefaz, IBPT) — la misma tesis del Z2A aplicada a la contabilidad: la IA sugiere, la regla decide. Arquitectura Hexagonal + DDD, con el núcleo aislado de cualquier detalle de framework.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Ollama)", "Arquitectura Hexagonal", "DDD"],
+      links: { live: null, repo: null, details: "projects/fafnir.html" },
+      satellite: { id: "07", slug: "atlas", name: "Atlas" },
     },
     {
       title: "Ultrafoot 26",
@@ -361,7 +364,7 @@ const PROJECTS = {
       description:
         "Proyecto personal fuera del ámbito corporativo, ya en funcionamiento. Tiene dos versiones, cada una con su propia stack: escritorio (Windows, Mac y Linux) hecho con Next.js empaquetado en Tauri, y móvil en C#, ambas con visualización de partidos en 3D. La versión de escritorio tiene su propio pipeline de lanzamiento (versión y firma vía GitHub Actions, con auto-actualización en el cliente instalado), y las dos versiones comparten un sistema de licencias que distingue entre quien usa la versión gratuita y quien tiene la versión completa.",
       tags: ["Next.js", "Tauri", "TypeScript", "C#", "3D"],
-      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26" },
+      links: { live: "https://remake-ultrafoot.vercel.app", repo: "https://github.com/jovemegidio/Ultrafoot26", details: "projects/ultrafoot26.html" },
     },
   ],
 };
