@@ -489,6 +489,19 @@
   text-align: center;
 }
 
+/* project-links é pensada pra ficar dentro de um card, com border-top
+   separando ela das tags acima. Reaproveitada aqui como CTA de link
+   solto (páginas de projeto), a própria borda de cima do
+   .zc-footer-cta já cumpre esse papel — sem isso, ficam duas linhas
+   finas empilhadas antes do conteúdo aparecer. */
+.zc-footer-cta .project-links {
+  border-top: none;
+  padding-top: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
 .zc-footer-cta p {
   color: var(--muted);
   margin-bottom: 1.25rem;
