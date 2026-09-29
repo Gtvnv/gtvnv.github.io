@@ -33,20 +33,20 @@ const EXPERIENCE = {
       company: "R2 Internet",
       period: "fev. 2025 a jul. 2026",
       description:
-        "Diagnóstico e resolução de falhas lógicas em sistemas e redes, manutenção remota para clientes e análise de causa raiz de incidentes em produção, isolando bugs de arquitetura de falhas de ambiente/rede. Construiu um protótipo em Python para automatizar tarefas do setor.",
+        "Comecei como auxiliar e fui promovido a técnico de suporte em TI — fui destaque do setor, a promoção mais rápida que a equipe já teve. Diagnóstico e resolução de falhas lógicas em sistemas e redes, manutenção remota para clientes e análise de causa raiz de incidentes em produção, isolando bugs de arquitetura de falhas de ambiente/rede. Construção de um protótipo em Python para automatizar tarefas do setor.",
     },
     {
-      role: "Almoxarife",
+      role: "Assistente de Supervisão",
       company: "Grupo CMD",
       period: "abr. 2024 a fev. 2025",
       description:
-        "Controle e organização de estoque, com liderança na digitalização do processo: migração de planilhas para um sistema eletrônico, melhorando a acuracidade dos dados.",
+        "Comecei como almoxarife e fui promovido a assistente de supervisão, com autonomia pra gerir o estoque do jeito que eu achava que melhorava o trabalho dos meus colegas. Controle e organização de estoque, com liderança na digitalização do processo: migração de planilhas para um sistema eletrônico, melhorando a acuracidade dos dados.",
     },
     {
       role: "Técnico de Manutenção",
       company: "Turrek Informática",
       period: "jun. 2023 a mar. 2024",
-      description: "Manutenção e reparo de eletrônicos, controle de estoque e suporte ao cliente na loja.",
+      description: "Comecei como auxiliar de loja e fui promovido a técnico de manutenção. Manutenção e reparo de eletrônicos, controle de estoque e suporte ao cliente na loja.",
     },
   ],
   en: [
@@ -77,20 +77,20 @@ const EXPERIENCE = {
       company: "R2 Internet",
       period: "Feb 2025 to Jul 2026",
       description:
-        "Diagnosed and resolved logic failures in systems and networks, remote maintenance for clients, and root-cause analysis of production incidents, isolating architecture bugs from environment/network failures. Built a Python prototype to automate departmental tasks.",
+        "Started as an assistant and got promoted to IT support technician — I was the department's standout, the fastest promotion the team had ever given. Diagnosed and resolved logic failures in systems and networks, remote maintenance for clients, and root-cause analysis of production incidents, isolating architecture bugs from environment/network failures. Built a Python prototype to automate departmental tasks.",
     },
     {
-      role: "Warehouse Clerk",
+      role: "Supervisory Assistant",
       company: "Grupo CMD",
       period: "Apr 2024 to Feb 2025",
       description:
-        "Inventory control and organization, leading the digitization of the process: migrating spreadsheets to an electronic system and improving data accuracy.",
+        "Started as a warehouse clerk and got promoted to supervisory assistant, with the autonomy to run inventory the way I thought would work best for my colleagues. Inventory control and organization, leading the digitization of the process: migrating spreadsheets to an electronic system and improving data accuracy.",
     },
     {
       role: "Maintenance Technician",
       company: "Turrek Informática",
       period: "Jun 2023 to Mar 2024",
-      description: "Electronics maintenance and repair, inventory control, and in-store customer support.",
+      description: "Started as a store assistant and got promoted to maintenance technician. Electronics maintenance and repair, inventory control, and in-store customer support.",
     },
   ],
   es: [
@@ -121,20 +121,20 @@ const EXPERIENCE = {
       company: "R2 Internet",
       period: "feb. 2025 a jul. 2026",
       description:
-        "Diagnóstico y resolución de fallas lógicas en sistemas y redes, mantenimiento remoto para clientes y análisis de causa raíz de incidentes en producción, aislando errores de arquitectura de fallas de entorno/red. Construyó un prototipo en Python para automatizar tareas del sector.",
+        "Empecé como auxiliar y fui promovido a técnico de soporte en TI — fui el destacado del sector, la promoción más rápida que el equipo había dado. Diagnóstico y resolución de fallas lógicas en sistemas y redes, mantenimiento remoto para clientes y análisis de causa raíz de incidentes en producción, aislando errores de arquitectura de fallas de entorno/red. Construcción de un prototipo en Python para automatizar tareas del sector.",
     },
     {
-      role: "Auxiliar de Almacén",
+      role: "Asistente de Supervisión",
       company: "Grupo CMD",
       period: "abr. 2024 a feb. 2025",
       description:
-        "Control y organización de inventario, liderando la digitalización del proceso: migración de hojas de cálculo a un sistema electrónico, mejorando la precisión de los datos.",
+        "Empecé como auxiliar de almacén y fui promovido a asistente de supervisión, con autonomía para gestionar el inventario de la forma que yo creía que mejoraba el trabajo de mis compañeros. Control y organización de inventario, liderando la digitalización del proceso: migración de hojas de cálculo a un sistema electrónico, mejorando la precisión de los datos.",
     },
     {
       role: "Técnico de Mantenimiento",
       company: "Turrek Informática",
       period: "jun. 2023 a mar. 2024",
-      description: "Mantenimiento y reparación de electrónicos, control de inventario y atención al cliente en tienda.",
+      description: "Empecé como auxiliar de tienda y fui promovido a técnico de mantenimiento. Mantenimiento y reparación de electrónicos, control de inventario y atención al cliente en tienda.",
     },
   ],
 };

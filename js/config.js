@@ -35,7 +35,7 @@ const CONFIG = {
     heroProof: [
       { value: "+3 anos", label: "de experiência profissional em TI" },
       { value: "15 anos → 0", label: "de estoque em planilha — hoje automatizado no ERP" },
-      { value: "Promovido", label: "em suporte de TI por impacto direto nas métricas" },
+      { value: "Promovido 3x", label: "em três empregos — a mais rápida foi recorde no setor de suporte" },
     ],
     aboutParagraphs: [
       "Minha primeira inclinação acadêmica foi a Física, mas a decisão pela TI me trouxe um fascínio que eu não esperava: a capacidade de entender como as coisas funcionam na realidade e conseguir traduzir isso para o meio digital.",
@@ -55,7 +55,7 @@ const CONFIG = {
     heroProof: [
       { value: "+3 years", label: "of professional experience in IT" },
       { value: "15 years → 0", label: "of spreadsheet inventory — now automated in the ERP" },
-      { value: "Promoted", label: "in IT support for direct impact on team metrics" },
+      { value: "Promoted 3x", label: "across three jobs — the fastest was a record in the support team" },
     ],
     aboutParagraphs: [
       "My first academic inclination was Physics, but choosing IT brought me a fascination I didn't expect: the ability to understand how things actually work and translate that into the digital world.",
@@ -75,7 +75,7 @@ const CONFIG = {
     heroProof: [
       { value: "+3 años", label: "de experiencia profesional en TI" },
       { value: "15 años → 0", label: "de inventario en planilla — hoy automatizado en el ERP" },
-      { value: "Promovido", label: "en soporte de TI por impacto directo en las métricas" },
+      { value: "Promovido 3x", label: "en tres empleos — la más rápida fue récord en el equipo de soporte" },
     ],
     aboutParagraphs: [
       "Mi primera inclinación académica fue la Física, pero la decisión de ir por TI me trajo una fascinación que no esperaba: la capacidad de entender cómo funcionan las cosas en la realidad y lograr traducir eso al mundo digital.",
