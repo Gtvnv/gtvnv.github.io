@@ -433,8 +433,10 @@ section:last-of-type {
 .hero-photo {
   position: relative;
   z-index: 1;
-  width: clamp(220px, 30vw, 380px);
-  height: clamp(220px, 30vw, 380px);
+  /* Proporção 3:4, igual à foto de origem — evita cortar topo/base à toa
+     (cabelo, ombros) que um recorte quadrado forçaria. */
+  width: clamp(200px, 26vw, 320px);
+  height: clamp(266px, 34.6vw, 426px);
   border-radius: 28px;
   overflow: hidden;
   border: 2px solid rgba(238, 240, 251, 0.16);
@@ -445,6 +447,7 @@ section:last-of-type {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 15%;
   display: block;
 }
 
