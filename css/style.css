@@ -433,8 +433,8 @@ section:last-of-type {
 .hero-photo {
   position: relative;
   z-index: 1;
-  width: clamp(170px, 22vw, 250px);
-  height: clamp(170px, 22vw, 250px);
+  width: clamp(220px, 30vw, 380px);
+  height: clamp(220px, 30vw, 380px);
   border-radius: 28px;
   overflow: hidden;
   border: 2px solid rgba(238, 240, 251, 0.16);
