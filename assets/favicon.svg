@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
     <linearGradient id="gv-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#a855f7"/>
-      <stop offset="45%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#22d3ee"/>
+      <stop offset="0%" stop-color="#003d82"/>
+      <stop offset="45%" stop-color="#0072ce"/>
+      <stop offset="100%" stop-color="#00a8ff"/>
     </linearGradient>
   </defs>
-  <rect width="32" height="32" rx="6" fill="#07060f"/>
+  <rect width="32" height="32" rx="6" fill="#0b0f14"/>
   <rect x="1" y="1" width="30" height="30" rx="5" fill="none" stroke="url(#gv-grad)" stroke-width="1.4"/>
   <text x="16" y="22" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700"
-        fill="#eef0fb" text-anchor="middle">GV</text>
+        fill="#f0f4f8" text-anchor="middle">GV</text>
 </svg>
