@@ -2,25 +2,25 @@
    TOKENS
    ========================================================= */
 :root {
-  --bg: #07060f;
-  --bg-deep: #030209;
-  --panel: #14122a;
-  --panel-hover: #1c1938;
-  --border: #322e5c;
-  --border-soft: #211f3d;
-  --text: #eef0fb;
-  --muted: #a3a4cf;
-  --muted-dim: #6d6e9c;
-  --accent: #22d3ee;
-  --accent-dim: #1596ac;
-  --accent-soft: rgba(34, 211, 238, 0.14);
-  --accent2: #a855f7;
-  --accent3: #6366f1;
-  --accent-grad: linear-gradient(135deg, #a855f7 0%, #6366f1 45%, #22d3ee 100%);
+  --bg: #0b0f14;
+  --bg-deep: #05080b;
+  --panel: #131a22;
+  --panel-hover: #1a232d;
+  --border: #2a3744;
+  --border-soft: #1c242c;
+  --text: #f0f4f8;
+  --muted: #8a99ad;
+  --muted-dim: #5c6b7d;
+  --accent: #00a8ff;
+  --accent-dim: #0080c8;
+  --accent-soft: rgba(0, 168, 255, 0.16);
+  --accent2: #ffb100;
+  --accent3: #0072ce;
+  --accent-grad: linear-gradient(135deg, #003d82 0%, #0072ce 45%, #00a8ff 100%);
 
-  --lava-purple: #8b3ef0;
-  --lava-blue: #2b4bf2;
-  --lava-cyan: #17c9e8;
+  --lava-purple: #0c3d8f;
+  --lava-blue: #1450c4;
+  --lava-cyan: #00c2ff;
 
   --font-display: "Space Grotesk", "Segoe UI", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
@@ -89,35 +89,35 @@ body {
 }
 
 .lava-blob-1 {
-  --lava-color: #8b3ef0;
-  --lava-color-transparent: rgba(139, 62, 240, 0);
+  --lava-color: #0c3d8f;
+  --lava-color-transparent: rgba(12, 61, 143, 0);
   top: -14%;
   left: -12%;
   animation: lava-drift-1 26s ease-in-out infinite;
 }
 
 .lava-blob-2 {
-  --lava-color: #17c9e8;
-  --lava-color-transparent: rgba(23, 201, 232, 0);
+  --lava-color: #00c2ff;
+  --lava-color-transparent: rgba(0, 194, 255, 0);
   top: 26%;
   right: -16%;
   animation: lava-drift-2 32s ease-in-out infinite;
 }
 
 .lava-blob-3 {
-  --lava-color: #2b4bf2;
-  --lava-color-transparent: rgba(43, 75, 242, 0);
+  --lava-color: #1450c4;
+  --lava-color-transparent: rgba(20, 80, 196, 0);
   bottom: -18%;
   left: 18%;
   animation: lava-drift-3 22s ease-in-out infinite;
 }
 
 .lava-blob-4 {
-  --lava-color: #8b3ef0;
-  --lava-color-transparent: rgba(139, 62, 240, 0);
+  --lava-color: #ffb100;
+  --lava-color-transparent: rgba(255, 177, 0, 0);
   bottom: 6%;
   right: 13%;
-  opacity: 0.2;
+  opacity: 0.12;
   animation: lava-drift-4 38s ease-in-out infinite;
 }
 
