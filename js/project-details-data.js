@@ -468,6 +468,68 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Voltar ao portfólio" },
     },
+    kinetixeros: {
+      meta: {
+        title: "Kinetix Eros — Gustavo Vianna",
+        description: "Hub de orquestração de vídeo B2B: roteia jobs entre ComfyUI, MoneyPrinterTurbo e HeyGen atrás de uma única API em Java 21.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/kinetixeros.png",
+      hero: {
+        eyebrow: "Hub de Orquestração de Vídeo B2B · ecossistema Aetherium/ZenithCode",
+        title: "Kinetix Eros",
+        subtitle: "Uma API, três motores de renderização — o Control Plane decide qual GPU acorda",
+        summary:
+          "SaaS B2B que orquestra a geração de vídeo por IA: um Control Plane em Java 21 recebe o job do cliente, cobra créditos do Ledger e despacha pro motor certo — ComfyUI em GPUs serverless do RunPod, MoneyPrinterTurbo pra volume, ou HeyGen pra avatares hiper-realistas. A metade \"motor\" da dupla leva o nome de Psiquê, o satélite de UX do Z2A que veste a camada de interface.",
+        statusNote: "Ainda em fase de design de arquitetura — nenhuma linha de produção escrita, mas todo o pipeline (Control Plane, filas, IaC) já está especificado.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu como um estudo de arquitetura pra uma dor real de agências B2B: gerar vídeo com IA em escala exige orquestrar GPUs caras (ComfyUI/RunPod) pra arte customizada, motores mais baratos (MoneyPrinterTurbo) pra volume, e provedores terceiros (HeyGen) pra avatares realistas — três perfis de custo e latência completamente diferentes atrás de uma única cobrança em créditos. O Kinetix Eros existe pra esconder essa complexidade do cliente: ele manda um templateId e algumas variáveis, e o Control Plane decide sozinho qual motor acorda.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Hexagonal + Strategy Pattern: o Control Plane em Java 21 nunca fala diretamente com RunPod, MoneyPrinterTurbo ou HeyGen — ele conversa com um RenderEngineStrategy, e cada adaptador decide se sabe lidar com aquele engineType. RabbitMQ amortece o pico entre a resposta HTTP 202 e o disparo real pra GPU, com Dead Letter Queue cuidando do pior caso.",
+        tree: [
+          "API pública (REST)          recebe o job B2B, valida a API Key, devolve 202 em ms",
+          "RabbitMQ (buffer)           amortece a carga, roteia por engineType",
+          "Strategy: ComfyUI           RunPod serverless, Node Tagging no grafo do workflow",
+          "Strategy: MoneyPrinterTurbo  worker Docker dedicado, fila própria (zenith.mpt.queue)",
+          "Strategy: HeyGen             proxy autenticado, aguarda o Webhook de conclusão",
+          "Worker de Montagem           FFmpeg junta o vídeo mudo (S3/R2) com o áudio (ElevenLabs)",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot 3", "RabbitMQ (Amazon MQ)", "PostgreSQL", "AWS Fargate", "Terraform", "AWS WAF", "Testcontainers"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Cada peça existe pra fechar um jeito específico de perder dinheiro ou cliente.",
+        items: [
+          { title: "Node Tagging no ComfyUI", mechanic: "O workflow do ComfyUI é um grafo com IDs numéricos que mudam a cada edição; em vez de acoplar no ID, o backend varre por título de nó ([ZENITH_POSITIVE_PROMPT], [ZENITH_AUDIO_INPUT]...) — a equipe de IA reestrutura o grafo à vontade sem quebrar o lado Java." },
+          { title: "Presigned URLs, nunca storage público", mechanic: "Os buckets S3/R2 são 100% privados; o cliente baixa o vídeo por uma URL assinada com expiração (2h), nunca salva no Postgres — só o objectKey fica persistido." },
+          { title: "DLQ com estorno automático", mechanic: "Se a renderização falhar 3 vezes seguidas, a mensagem cai numa Dead Letter Queue que estorna o crédito no Ledger e — se a fatura do mês já tiver fechado — credita o saldo direto na Stripe via Customer Balance API." },
+          { title: "Zero chave estática no CI/CD", mechanic: "O GitHub Actions assume uma IAM Role via OIDC, com tempo de vida em minutos — nenhum AWS_ACCESS_KEY_ID salvo em secrets." },
+          { title: "WAF na borda, Bucket4j por dentro", mechanic: "O AWS WAF barra scanner e força bruta pelo IP antes de custar CPU no Fargate; o Bucket4j, já autenticado, barra o cliente legítimo que manda vídeo em looping." },
+        ],
+      },
+      endpoints: {
+        title: "Motores de Renderização",
+        intro: "O templateId decide qual Strategy o Control Plane invoca — o cliente nunca escolhe a infraestrutura, só o resultado.",
+        items: [
+          { name: "ComfyUI (RunPod)", what: "GPUs serverless pra arte generativa pesada: SDXL, AnimateDiff, ControlNet", role: "Customização" },
+          { name: "MoneyPrinterTurbo", what: "Worker de fila dedicado pra vídeos faceless narrados, em volume e custo baixo", role: "Escala" },
+          { name: "HeyGen", what: "Proxy autenticado pra avatares hiper-realistas via API de terceiro", role: "Realismo humano" },
+        ],
+      },
+      security: {
+        title: "Zero Trust ponta a ponta",
+        body: "Cada camada valida de novo, mesmo confiando na anterior: o webhook interno do RunPod exige um segredo estático em header (X-RunPod-Secret) que a API pública nunca usa; o AWS WAF filtra reputação de IP e força bruta na borda antes de qualquer requisição chegar no Fargate; e o Ledger financeiro trata todo estorno como uma transação de compensação — nunca uma deleção — pra manter rastro de auditoria completo.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -987,6 +1049,68 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Back to the portfolio" },
     },
+    kinetixeros: {
+      meta: {
+        title: "Kinetix Eros — Gustavo Vianna",
+        description: "A B2B video orchestration hub: routes jobs across ComfyUI, MoneyPrinterTurbo, and HeyGen behind a single Java 21 API.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/kinetixeros.png",
+      hero: {
+        eyebrow: "B2B Video Orchestration Hub · Aetherium/ZenithCode ecosystem",
+        title: "Kinetix Eros",
+        subtitle: "One API, three render engines — the Control Plane decides which GPU wakes up",
+        summary:
+          "A B2B SaaS that orchestrates AI video generation: a Java 21 Control Plane takes the client's job, charges credits from the Ledger, and dispatches it to the right engine — ComfyUI on serverless RunPod GPUs, MoneyPrinterTurbo for volume, or HeyGen for hyper-realistic avatars. The \"engine\" half of the pair is named after Psyche, Z2A's UX satellite, who wears the interface layer.",
+        statusNote: "Still at the architecture-design stage — no production code written yet, but the whole pipeline (Control Plane, queues, IaC) is already specified.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born as an architecture study for a real B2B agency pain point: generating AI video at scale means orchestrating expensive GPUs (ComfyUI/RunPod) for custom art, cheaper engines (MoneyPrinterTurbo) for volume, and third-party providers (HeyGen) for realistic avatars — three completely different cost and latency profiles behind a single credit-based bill. Kinetix Eros exists to hide that complexity from the client: they send a templateId and a few variables, and the Control Plane alone decides which engine wakes up.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Hexagonal + Strategy Pattern: the Java 21 Control Plane never talks directly to RunPod, MoneyPrinterTurbo, or HeyGen — it talks to a RenderEngineStrategy, and each adapter decides whether it can handle that engineType. RabbitMQ buffers the spike between the HTTP 202 response and the actual GPU dispatch, with a Dead Letter Queue handling the worst case.",
+        tree: [
+          "Public API (REST)           takes the B2B job, validates the API Key, returns 202 in ms",
+          "RabbitMQ (buffer)           absorbs the load, routes by engineType",
+          "Strategy: ComfyUI           serverless RunPod, Node Tagging on the workflow graph",
+          "Strategy: MoneyPrinterTurbo  dedicated Docker worker, its own queue (zenith.mpt.queue)",
+          "Strategy: HeyGen             authenticated proxy, waits on the completion Webhook",
+          "Assembly Worker              FFmpeg merges the mute video (S3/R2) with the audio (ElevenLabs)",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Java 21", "Spring Boot 3", "RabbitMQ (Amazon MQ)", "PostgreSQL", "AWS Fargate", "Terraform", "AWS WAF", "Testcontainers"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Each piece exists to close off one specific way to lose money or a client.",
+        items: [
+          { title: "Node Tagging in ComfyUI", mechanic: "ComfyUI's workflow is a graph with numeric IDs that shift on every edit; instead of coupling to the ID, the backend scans by node title ([ZENITH_POSITIVE_PROMPT], [ZENITH_AUDIO_INPUT]...) — the AI team can restructure the graph freely without breaking the Java side." },
+          { title: "Presigned URLs, never public storage", mechanic: "S3/R2 buckets are 100% private; the client downloads the video through a signed, time-limited URL (2h), never stored in Postgres — only the objectKey is persisted." },
+          { title: "DLQ with automatic refund", mechanic: "If rendering fails three times in a row, the message lands in a Dead Letter Queue that refunds the credit in the Ledger and — if that month's invoice already closed — credits the balance straight to Stripe via the Customer Balance API." },
+          { title: "Zero static keys in CI/CD", mechanic: "GitHub Actions assumes an IAM Role via OIDC with a lifetime measured in minutes — no AWS_ACCESS_KEY_ID ever sits in secrets." },
+          { title: "WAF at the edge, Bucket4j inside", mechanic: "AWS WAF blocks scanners and brute force by IP before they cost any Fargate CPU; Bucket4j, already authenticated, catches the legitimate client stuck in a video-generation loop." },
+        ],
+      },
+      endpoints: {
+        title: "Render Engines",
+        intro: "The templateId decides which Strategy the Control Plane invokes — the client never picks the infrastructure, only the result.",
+        items: [
+          { name: "ComfyUI (RunPod)", what: "Serverless GPUs for heavy generative art: SDXL, AnimateDiff, ControlNet", role: "Customization" },
+          { name: "MoneyPrinterTurbo", what: "Dedicated queue worker for narrated faceless videos, high volume, low cost", role: "Scale" },
+          { name: "HeyGen", what: "Authenticated proxy for hyper-realistic avatars via a third-party API", role: "Human realism" },
+        ],
+      },
+      security: {
+        title: "Zero Trust end to end",
+        body: "Every layer re-validates, even while trusting the one before it: RunPod's internal webhook requires a static header secret (X-RunPod-Secret) the public API never uses; AWS WAF filters IP reputation and brute force at the edge before any request reaches Fargate; and the financial Ledger treats every refund as a compensating transaction — never a deletion — to keep a full audit trail.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -1502,6 +1626,68 @@ const PROJECT_DETAILS = {
       security: {
         title: "Elisión vs. evasión: la frontera jurídica",
         body: "Clasificar un producto correctamente para aprovechar una exención es elisión fiscal — 100% legal. El riesgo técnico es que los modelos de lenguaje son probabilísticos: si el SLM clasifica mal para optimizar el impuesto, eso puede interpretarse como evasión fiscal. Por eso el SLM nunca tiene la última palabra — funciona como un oráculo que sugiere, y la decisión de aplicar la alícuota siempre pasa por un motor de reglas determinístico.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    kinetixeros: {
+      meta: {
+        title: "Kinetix Eros — Gustavo Vianna",
+        description: "Hub de orquestación de video B2B: enruta trabajos entre ComfyUI, MoneyPrinterTurbo y HeyGen detrás de una única API en Java 21.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/kinetixeros.png",
+      hero: {
+        eyebrow: "Hub de Orquestación de Video B2B · ecosistema Aetherium/ZenithCode",
+        title: "Kinetix Eros",
+        subtitle: "Una API, tres motores de renderizado — el Control Plane decide qué GPU despierta",
+        summary:
+          "SaaS B2B que orquesta la generación de video por IA: un Control Plane en Java 21 recibe el trabajo del cliente, cobra créditos del Ledger y lo despacha al motor correcto — ComfyUI en GPUs serverless de RunPod, MoneyPrinterTurbo para volumen, o HeyGen para avatares hiperrealistas. La mitad \"motor\" de la dupla lleva el nombre de Psique, el satélite de UX del Z2A que viste la capa de interfaz.",
+        statusNote: "Todavía en fase de diseño de arquitectura — ninguna línea de producción escrita, pero todo el pipeline (Control Plane, colas, IaC) ya está especificado.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació como un estudio de arquitectura para un dolor real de agencias B2B: generar video con IA a escala exige orquestar GPUs caras (ComfyUI/RunPod) para arte personalizado, motores más baratos (MoneyPrinterTurbo) para volumen, y proveedores externos (HeyGen) para avatares realistas — tres perfiles de costo y latencia completamente distintos detrás de una única facturación en créditos. Kinetix Eros existe para esconder esa complejidad del cliente: envía un templateId y algunas variables, y el Control Plane decide solo qué motor despierta.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Hexagonal + patrón Strategy: el Control Plane en Java 21 nunca habla directamente con RunPod, MoneyPrinterTurbo o HeyGen — habla con un RenderEngineStrategy, y cada adaptador decide si sabe manejar ese engineType. RabbitMQ amortigua el pico entre la respuesta HTTP 202 y el disparo real hacia la GPU, con una Dead Letter Queue cuidando el peor caso.",
+        tree: [
+          "API pública (REST)           recibe el trabajo B2B, valida la API Key, devuelve 202 en ms",
+          "RabbitMQ (buffer)            amortigua la carga, enruta por engineType",
+          "Strategy: ComfyUI            RunPod serverless, Node Tagging en el grafo del workflow",
+          "Strategy: MoneyPrinterTurbo   worker Docker dedicado, cola propia (zenith.mpt.queue)",
+          "Strategy: HeyGen              proxy autenticado, espera el Webhook de finalización",
+          "Worker de Montaje             FFmpeg une el video mudo (S3/R2) con el audio (ElevenLabs)",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot 3", "RabbitMQ (Amazon MQ)", "PostgreSQL", "AWS Fargate", "Terraform", "AWS WAF", "Testcontainers"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Cada pieza existe para cerrar una forma específica de perder dinero o cliente.",
+        items: [
+          { title: "Node Tagging en ComfyUI", mechanic: "El workflow de ComfyUI es un grafo con IDs numéricos que cambian en cada edición; en vez de acoplarse al ID, el backend escanea por título de nodo ([ZENITH_POSITIVE_PROMPT], [ZENITH_AUDIO_INPUT]...) — el equipo de IA reestructura el grafo libremente sin romper el lado Java." },
+          { title: "Presigned URLs, nunca storage público", mechanic: "Los buckets S3/R2 son 100% privados; el cliente descarga el video mediante una URL firmada con expiración (2h), nunca guardada en Postgres — solo el objectKey persiste." },
+          { title: "DLQ con reembolso automático", mechanic: "Si la renderización falla tres veces seguidas, el mensaje cae en una Dead Letter Queue que reembolsa el crédito en el Ledger y — si la factura del mes ya cerró — acredita el saldo directo en Stripe vía la Customer Balance API." },
+          { title: "Cero claves estáticas en CI/CD", mechanic: "GitHub Actions asume un IAM Role vía OIDC con vida útil de minutos — ningún AWS_ACCESS_KEY_ID guardado en secrets." },
+          { title: "WAF en el borde, Bucket4j por dentro", mechanic: "AWS WAF bloquea escáneres y fuerza bruta por IP antes de costar CPU en Fargate; Bucket4j, ya autenticado, detiene al cliente legítimo que manda video en bucle." },
+        ],
+      },
+      endpoints: {
+        title: "Motores de Renderizado",
+        intro: "El templateId decide qué Strategy invoca el Control Plane — el cliente nunca elige la infraestructura, solo el resultado.",
+        items: [
+          { name: "ComfyUI (RunPod)", what: "GPUs serverless para arte generativo pesado: SDXL, AnimateDiff, ControlNet", role: "Personalización" },
+          { name: "MoneyPrinterTurbo", what: "Worker de cola dedicado para videos faceless narrados, en volumen y bajo costo", role: "Escala" },
+          { name: "HeyGen", what: "Proxy autenticado para avatares hiperrealistas vía API de terceros", role: "Realismo humano" },
+        ],
+      },
+      security: {
+        title: "Zero Trust de punta a punta",
+        body: "Cada capa valida de nuevo, aunque confíe en la anterior: el webhook interno de RunPod exige un secreto estático en el header (X-RunPod-Secret) que la API pública nunca usa; el AWS WAF filtra reputación de IP y fuerza bruta en el borde antes de que cualquier solicitud llegue a Fargate; y el Ledger financiero trata cada reembolso como una transacción de compensación — nunca una eliminación — para mantener un rastro de auditoría completo.",
       },
       links: { repo: null, live: null },
       footer: { backCta: "← Volver al portafolio" },

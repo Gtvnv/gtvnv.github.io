@@ -119,6 +119,17 @@ const PROJECTS = {
       satellite: { id: "07", slug: "atlas", name: "Atlas" },
     },
     {
+      title: "Kinetix Eros",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Hub de orquestração de vídeo B2B: roteia cada job entre GPUs próprias (ComfyUI), motores de volume (MoneyPrinterTurbo) e avatares hiper-realistas (HeyGen) por trás de uma única API.",
+      description:
+        "A plataforma SaaS de geração de vídeo do ecossistema Aetherium/ZenithCode: um Control Plane em Java 21 recebe o job do cliente B2B, debita créditos do Ledger e despacha pro motor certo via Strategy Pattern — GPUs serverless no RunPod rodando ComfyUI pra arte generativa pesada, um worker de MoneyPrinterTurbo pra vídeos faceless em volume, ou um proxy autenticado pro HeyGen quando o cliente precisa de um porta-voz hiper-realista. RabbitMQ amortece a carga entre a API e as GPUs, com uma Dead Letter Queue estornando crédito automaticamente (e devolvendo o saldo direto na Stripe se a fatura do mês já tiver fechado) sempre que um provedor de IA falha de forma irrecuperável. A experiência do cliente B2B é trabalho da Psiquê, o satélite de UX e neurométricas do Z2A — reaproveitado aqui como codinome da camada de interface que traduz toda essa complexidade de orquestração em algo fluido de usar.",
+      tags: ["Java 21", "Spring Boot 3", "RabbitMQ", "AWS Fargate", "Terraform", "PostgreSQL"],
+      links: { live: null, repo: null, details: "projects/kinetixeros.html" },
+      satellite: { id: "20", slug: "psique", name: "Psiquê" },
+    },
+    {
       title: "Ultrafoot 26",
       statusKey: "live",
       status: "LIVE",
@@ -230,12 +241,23 @@ const PROJECTS = {
       title: "Fafnir",
       statusKey: "development",
       status: "IN DEVELOPMENT",
-      summary: "The third engine in Z2A's financial trinity: an SLM suggests the tax classification, a deterministic rule decides whether to apply it.",
+      summary: "The third engine of Z2A's financial trinity: an SLM suggests the tax classification, a deterministic rule decides whether it applies.",
       description:
-        "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir intercepts the transaction before Split Payment slices up the payment, uses an SLM to suggest the correct tax classification (NCM) from the product description, and only applies the optimization if a deterministic rules engine validates it against the official tables (Sefaz, IBPT) — Z2A's own thesis applied to accounting: AI suggests, the rule decides. Hexagonal Architecture + DDD, with the core isolated from any framework detail.",
+        "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir intercepts the transaction before Split Payment slices the payment, uses an SLM to suggest the correct tax classification (NCM) from the product description, and only applies the optimization if a deterministic rule engine validates it against the official tables (Sefaz, IBPT) — the same Z2A thesis applied to accounting: the AI suggests, the rule decides. Hexagonal Architecture + DDD, with the core isolated from any framework detail.",
       tags: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Ollama)", "Hexagonal Architecture", "DDD"],
       links: { live: null, repo: null, details: "projects/fafnir.html" },
       satellite: { id: "07", slug: "atlas", name: "Atlas" },
+    },
+    {
+      title: "Kinetix Eros",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A B2B video orchestration hub: routes every job across owned GPUs (ComfyUI), volume engines (MoneyPrinterTurbo), and hyper-realistic avatars (HeyGen) behind a single API.",
+      description:
+        "The video-generation SaaS platform of the Aetherium/ZenithCode ecosystem: a Java 21 Control Plane takes the B2B client's job, debits credits from the Ledger, and dispatches it to the right engine via a Strategy Pattern — serverless RunPod GPUs running ComfyUI for heavy generative art, a MoneyPrinterTurbo worker for high-volume faceless videos, or an authenticated proxy to HeyGen when the client needs a hyper-realistic spokesperson. RabbitMQ buffers the load between the API and the GPUs, with a Dead Letter Queue automatically refunding credits (and crediting the balance straight to Stripe if that month's invoice already closed) whenever an AI provider fails unrecoverably. The B2B client's experience is Psyche's job — Z2A's UX and neurometrics satellite, reused here as the codename for the interface layer that turns all that orchestration complexity into something that feels effortless.",
+      tags: ["Java 21", "Spring Boot 3", "RabbitMQ", "AWS Fargate", "Terraform", "PostgreSQL"],
+      links: { live: null, repo: null, details: "projects/kinetixeros.html" },
+      satellite: { id: "20", slug: "psique", name: "Psyche" },
     },
     {
       title: "Ultrafoot 26",
@@ -355,6 +377,17 @@ const PROJECTS = {
       tags: ["Java 21", "Spring Boot", "PostgreSQL", "SLM (Ollama)", "Arquitectura Hexagonal", "DDD"],
       links: { live: null, repo: null, details: "projects/fafnir.html" },
       satellite: { id: "07", slug: "atlas", name: "Atlas" },
+    },
+    {
+      title: "Kinetix Eros",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un hub de orquestación de video B2B: enruta cada trabajo entre GPUs propias (ComfyUI), motores de volumen (MoneyPrinterTurbo) y avatares hiperrealistas (HeyGen) detrás de una única API.",
+      description:
+        "La plataforma SaaS de generación de video del ecosistema Aetherium/ZenithCode: un Control Plane en Java 21 recibe el trabajo del cliente B2B, descuenta créditos del Ledger y lo despacha al motor correcto vía un patrón Strategy — GPUs serverless en RunPod corriendo ComfyUI para arte generativo pesado, un worker de MoneyPrinterTurbo para videos faceless en volumen, o un proxy autenticado hacia HeyGen cuando el cliente necesita un portavoz hiperrealista. RabbitMQ amortigua la carga entre la API y las GPUs, con una Dead Letter Queue que devuelve créditos automáticamente (y acredita el saldo directo en Stripe si la factura del mes ya cerró) cuando un proveedor de IA falla de forma irrecuperable. La experiencia del cliente B2B es responsabilidad de Psique, el satélite de UX y neurométricas del Z2A — reutilizado aquí como el nombre en clave de la capa de interfaz que traduce toda esa complejidad de orquestación en algo fluido de usar.",
+      tags: ["Java 21", "Spring Boot 3", "RabbitMQ", "AWS Fargate", "Terraform", "PostgreSQL"],
+      links: { live: null, repo: null, details: "projects/kinetixeros.html" },
+      satellite: { id: "20", slug: "psique", name: "Psique" },
     },
     {
       title: "Ultrafoot 26",
