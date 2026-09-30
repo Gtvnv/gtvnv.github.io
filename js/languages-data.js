@@ -5,17 +5,17 @@
 const LANGUAGES = {
   "pt-BR": [
     { language: "Português", level: "Nativo" },
-    { language: "Inglês", level: "Básico (A2, em andamento)" },
+    { language: "Inglês", level: "Intermediário (B1)" },
     { language: "Espanhol", level: "Básico" },
   ],
   en: [
     { language: "Portuguese", level: "Native" },
-    { language: "English", level: "Basic (A2, in progress)" },
+    { language: "English", level: "Intermediate (B1)" },
     { language: "Spanish", level: "Basic" },
   ],
   es: [
     { language: "Portugués", level: "Nativo" },
-    { language: "Inglés", level: "Básico (A2, en curso)" },
+    { language: "Inglés", level: "Intermediario (B1)" },
     { language: "Español", level: "Básico" },
   ],
 };
