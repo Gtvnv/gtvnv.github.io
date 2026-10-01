@@ -530,6 +530,252 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Voltar ao portfólio" },
     },
+    heimdall: {
+      meta: {
+        title: "Heimdall — Gustavo Vianna",
+        description: "SIEM + NOC unificado: agrega telemetria de toda a frota Z2A, aciona auto-healing de rede e revoga acesso em tempo real.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/heimdall.png",
+      hero: {
+        eyebrow: "SIEM & NOC Unificado · os olhos e ouvidos do ecossistema Z2A",
+        title: "Heimdall",
+        subtitle: "Não alerta e espera — enfileira o failover e revoga o acesso sozinho",
+        summary:
+          "Middleware de observabilidade e segurança ativa dividido em três domínios: o Gjallarhorn age sobre degradação de rede em vez de só alertar, o Olho de Asgard estende o Zero Trust pra além do login monitorando comportamento em tempo real, e a Bifrost Telemetry agrega os logs de toda a frota com uma SLM local resumindo causa raiz em linguagem natural. Nomeado em referência ao guardião nórdico de visão e audição supremas que protege a ponte Bifrost.",
+        statusNote: "Ainda em fase de design — arquitetura desenhada a partir de um script real de automação de NOC que já cortou o tempo de mitigação de 17 para 7 minutos.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Num ecossistema com múltiplos satélites rodando ao mesmo tempo (Zyntra, Kinetix Eros, OmniShift, AegisProtocol...), debugar caçando logs em containers separados é inviável, e esperar um humano perceber uma queda de rede custa minutos caros. O Heimdall nasce pra resolver os dois problemas de uma vez: um endpoint único de observabilidade que também age, em vez de só mostrar gráfico.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Três domínios independentes, todos alimentados pela mesma ingestão de telemetria: o NOC reage a degradação de infraestrutura, o SIEM reage a comportamento suspeito de usuário, e a camada de log dá contexto humano pros outros dois quando algo foge do script.",
+        tree: [
+          "Bifrost Telemetry       endpoint único de ingestão de logs de toda a frota Z2A",
+          "Gjallarhorn (NOC)       detecta degradação, enfileira failover/restart no RabbitMQ",
+          "Workers Python          executam os scripts de automação de rede assincronamente",
+          "Olho de Asgard (SIEM)   cruza telemetria do AegisProtocol/OmniShift em tempo real",
+          "SLM local (Ollama)      resume causa raiz de uma montanha de logs em linguagem natural",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama", "gRPC"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Transforma um dashboard passivo num operador de rede automatizado e num caçador de ameaças.",
+        items: [
+          { title: "Auto-healing, não só alerta", mechanic: "Evolui a lógica de um script de manipulação de links (que já cortou o tempo de mitigação de 17 pra 7 minutos) pra um microserviço assíncrono: detecta degradação e enfileira failover via RabbitMQ sem esperar intervenção humana." },
+          { title: "Zero Trust contínuo, não só no login", mechanic: "Monitora o comportamento das requisições depois da autenticação; se uma sessão ativa começar a agir fora do padrão, aciona o AegisProtocol via gRPC pra revogar o token e colocar o IP em quarentena na hora." },
+          { title: "Causa raiz em linguagem natural", mechanic: "Uma SLM local (Ollama) lê a montanha de logs estruturados vindos de toda a frota e resume o porquê do erro direto no painel — sem o engenheiro precisar caçar log container por container." },
+          { title: "Endpoint único pra frota inteira", mechanic: "Zyntra, Kinetix Eros, OmniShift e qualquer satélite novo mandam telemetria pro mesmo lugar, em vez de cada um logar isolado em seu próprio canto." },
+        ],
+      },
+      endpoints: {
+        title: "Os Três Domínios",
+        intro: "Observabilidade passiva de um lado, ação automática do outro.",
+        items: [
+          { name: "Gjallarhorn", what: "Motor de auto-healing e NOC: failover de links, reinício de containers Docker", role: "Rede" },
+          { name: "Olho de Asgard", what: "SIEM e Zero Trust contínuo: detecta anomalia comportamental, revoga token via AegisProtocol", role: "Segurança" },
+          { name: "Bifrost Telemetry", what: "Agregador de logs com SLM local pra causa raiz em linguagem natural", role: "Observabilidade" },
+        ],
+      },
+      security: {
+        title: "Quando o Heimdall desconfia de você",
+        body: "A autenticação não termina no login. O OmniShift e o AegisProtocol enviam logs de auditoria e telemetria continuamente pro Heimdall; se uma anomalia comportamental for detectada numa sessão já autenticada — um padrão de acesso atípico, uma execução fora do esperado —, o Heimdall aciona o AegisProtocol via gRPC ou mensageria pra revogar o token de acesso instantaneamente e colocar o usuário ou IP em quarentena, sem esperar o próximo login pra agir.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    alexandria: {
+      meta: {
+        title: "Alexandria (Axios) — Gustavo Vianna",
+        description: "Copiloto socrático de ensino de lógica de programação: a IA nunca entrega a resposta pronta, só a pergunta que leva o aluno até ela.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/alexandria.png",
+      hero: {
+        eyebrow: "Copiloto Socrático de Ensino · Lógica de Programação",
+        title: "Alexandria",
+        subtitle: "A IA nunca dá a resposta pronta — ela faz a pergunta certa",
+        summary:
+          "Plataforma de reforço escolar híbrida: uma camada scriptada determinística controla a trilha de evolução do aluno e valida respostas via teste unitário; uma SLM local (codinome Axios) entra em cena só na dificuldade, como tutor socrático que guia por perguntas em vez de entregar código pronto. Nomeado em referência à Biblioteca de Alexandria — o acervo que guarda as trilhas, o contexto histórico e as referências etimológicas por trás de cada conceito ensinado.",
+        statusNote: "MVP focado em Lógica de Programação, testado primeiro com colegas de faculdade antes de expandir pra Idiomas e História.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Pensado pra resolver uma dor concreta: ferramentas de reforço escolar que jogam tudo pra uma IA genérica resolver acabam ou caras demais pra rodar em escala, ou alucinando respostas que atrapalham o aprendizado em vez de ajudar. A Alexandria separa as duas responsabilidades — o scriptado garante que o aluno segue uma metodologia pedagógica sólida sem alucinação, e a SLM (rodando localmente via Ollama, com espaço pra fine-tuning via QLoRA) só intervém no momento exato da dificuldade, com um tom socrático que nunca entrega a resposta de bandeja.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Poliglota por necessidade, não por modismo: o domínio da educação (progresso, pagamento, permissões) pede um ecossistema maduro em DDD, enquanto o ecossistema de fine-tuning e orquestração de LLMs pertence ao Python. A divisão entre gRPC (streaming síncrono do chat) e RabbitMQ (processamento assíncrono pesado) garante que o tráfego do Copiloto nunca trave o motor de regras.",
+        tree: [
+          "Angular + Monaco Editor     editor de código e chat do Copiloto via WebSocket",
+          "BFF / Gateway                roteia 'salvar progresso' pro Java, 'conversar' pro Python",
+          "Core Domain (Spring Boot)    trilha de evolução, testes unitários ocultos, métricas",
+          "Docker efêmero               roda o código do aluno isolado, destruído após o teste",
+          "AI Orchestrator (FastAPI)    monta o prompt socrático, consome o Ollama local",
+          "gRPC streaming               devolve a intervenção token a token pro Gateway",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "TypeScript", "gRPC", "RabbitMQ", "Ollama", "PostgreSQL", "Redis"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Um mentor socrático, não um gerador de respostas prontas.",
+        items: [
+          { title: "Tutor socrático, nunca a resposta pronta", mechanic: "O system prompt da SLM proíbe explicitamente entregar código: 'não dê a resposta, faça uma pergunta que ajude o aluno a perceber o erro sozinho'." },
+          { title: "Sandbox efêmero contra código malicioso", mechanic: "Cada submissão roda isolada num container Docker descartável — um while(true) acidental (ou proposital, já que os primeiros usuários são futuros engenheiros testando os limites) nunca derruba o servidor." },
+          { title: "Streaming token a token via gRPC", mechanic: "O aluno vê o Copiloto 'digitando' a explicação em tempo real, mascarando a latência da inferência local em vez de travar numa tela de loading." },
+          { title: "Núcleo poliglota, não monolito", mechanic: "Java cuida das regras de negócio (trilha, progresso, pagamento); Python cuida só da IA — nenhum dos dois precisa conhecer o domínio do outro." },
+          { title: "Contexto cruzado de Idiomas e História", mechanic: "Ao explicar por que 'String' se chama assim, a SLM também puxa a etimologia e o contexto histórico do conceito, não só o 'como consertar o código'." },
+        ],
+      },
+      endpoints: {
+        title: "Fluxo da Intervenção",
+        intro: "Do erro de sintaxe até a explicação socrática, em cinco passos assíncronos.",
+        items: [
+          { name: "1. Submissão", what: "Aluno testa o código; o Gateway publica CodeEvaluationRequested no RabbitMQ", role: "" },
+          { name: "2. Validação", what: "Java roda o teste no container Docker isolado e detecta a falha", role: "" },
+          { name: "3. Preparo da IA", what: "Python consome o evento de falha e monta o contexto socrático", role: "" },
+          { name: "4. Streaming", what: "A SLM gera a intervenção; o Python envia via gRPC token a token", role: "" },
+          { name: "5. Persistência", what: "Java salva o histórico da conversa no PostgreSQL em background", role: "" },
+        ],
+      },
+      security: {
+        title: "Isolamento Zero Trust do código do aluno",
+        body: "Assumir que todo código submetido é potencialmente malicioso é o ponto de partida. Nenhuma submissão roda solta no servidor: cada tentativa é empacotada e executada num container Docker efêmero, destruído logo após o teste passar ou falhar. Isso importa dobrado aqui, porque os primeiros usuários reais da plataforma são colegas de engenharia de software — exatamente o perfil que vai tentar quebrar os limites do isolamento só pra ver se consegue, o que acaba blindando a segurança do sistema rápido.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    inaritrails: {
+      meta: {
+        title: "Inari Trails — Gustavo Vianna",
+        description: "Turismo gamificado estilo Pokémon Go: platine bairros fotografando pontos de interesse reais, com comércios locais como Stops patrocinados.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/inaritrails.png",
+      hero: {
+        eyebrow: "Turismo Gamificado · geolocalização estilo Pokémon Go",
+        title: "Inari Trails",
+        subtitle: "Platinar um bairro é a recompensa; o comércio parceiro é quem paga a conta",
+        summary:
+          "Transforma roteiro turístico engessado em colecionismo: cada ponto de interesse é um Stop com raio de proximidade geoespacial, e o acervo de fotos de cada usuário funciona como uma Pokédex pessoal de lugares descobertos. Nomeado em referência a Inari, divindade japonesa das rotas, das raposas mensageiras e, fundamentalmente, do comércio — o pilar B2B que sustenta o modelo de negócio.",
+        statusNote: "Em fase de design — arquitetura do pipeline de imagem e do motor geoespacial já especificada, implementação não iniciada.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "O maior desafio de lançamento de qualquer app de descoberta é o problema do ovo e da galinha: sem conteúdo não há usuário, sem usuário não há conteúdo. A estratégia de MVP é começar numa região turística específica e bem delimitada, mapeando manualmente os pontos iniciais (seed data) antes de abrir pro público — e usar a gamificação (o gatilho de 'platinar' uma região, a Pokédex de fotos) como o motor de retenção que mantém o usuário voltando depois que o acervo inicial já existe.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "O núcleo geoespacial exige consultas de proximidade rápidas e constantes (PostGIS com índice GiST), enquanto o upload de fotos em massa pede uma arquitetura orientada a eventos pra nunca travar o usuário numa tela de loading esperando sanitização e moderação.",
+        tree: [
+          "App mobile              mapa com os Stops num raio de 500m, câmera pro acervo",
+          "BFF                       uma chamada leve ('estou em X,Y') orquestra mapa + fotos",
+          "PostgreSQL + PostGIS      consulta espacial ST_DWithin com índice GiST",
+          "Pre-signed URL (S3)       o app sobe a foto direto pro bucket raw, sem passar pela API",
+          "Worker de sanitização     remove EXIF, reconverte pra WebP, destrói payload malicioso",
+          "Moderação (Visão IA)      só fotos públicas passam por nudez/violência antes de publicar",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Hibernate Spatial", "PostgreSQL", "PostGIS", "Redis", "RabbitMQ", "AWS S3"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Gamificação pra retenção, Zero Trust pra cada foto que chega.",
+        items: [
+          { title: "Platinar como loop de retenção", mechanic: "Achievements por categoria (ex: 'Explorador Histórico') e o diário de fotos vira uma Pokédex pessoal de lugares descobertos, criando apego emocional ao acervo." },
+          { title: "Público x privado corta o custo de moderação", mechanic: "O diário pessoal é instantâneo e nunca passa por revisão; só o que o usuário marca como público entra no pipeline de sanitização e visão computacional." },
+          { title: "EXIF e script morrem no re-encode", mechanic: "Converter a imagem pra WebP destrói qualquer payload malicioso escondido no cabeçalho EXIF original — sem precisar de um antivírus dedicado rodando em cima." },
+          { title: "Stops pagam pra aparecer", mechanic: "Comércios locais assinam pra virar destaque na geração automática de roteiros, monetizando o fluxo de pedestre que o app já gera de graça." },
+          { title: "DLQ pra nunca perder a foto", mechanic: "Se o worker falhar (arquivo corrompido, timeout na IA de moderação), a mensagem vai pra uma Dead Letter Queue de reprocessamento em vez de travar o resto da fila." },
+        ],
+      },
+      endpoints: {
+        title: "Pipeline de Upload",
+        intro: "Do clique na câmera até aparecer no mapa da comunidade, em cinco passos assíncronos.",
+        items: [
+          { name: "1. Pre-signed URL", what: "App pede ao backend um link de escrita direta no bucket turismo-raw-images", role: "" },
+          { name: "2. Registro e fila", what: "Backend grava status PENDING_PROCESSING e publica no RabbitMQ", role: "" },
+          { name: "3. Sanitização", what: "Worker remove o EXIF e reconverte a imagem pra WebP", role: "" },
+          { name: "4. Moderação", what: "Só fotos públicas passam pela API de visão computacional antes de aprovar", role: "" },
+          { name: "5. Publicação", what: "Imagem aprovada vai pro bucket turismo-processed-images, servido via CDN", role: "" },
+        ],
+      },
+      security: {
+        title: "Zero Trust em cada upload",
+        body: "Assumir que todo upload é potencialmente malicioso é o ponto de partida: o arquivo original nunca é salvo direto no bucket público. O bucket de entrada (raw) bloqueia qualquer leitura pública, e o worker de sanitização arranca o cabeçalho EXIF — que guarda metadados do celular e é frequentemente usado pra esconder payloads maliciosos — antes de reconverter a imagem pra WebP, o que por si só já destrói qualquer script embutido no arquivo original.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    terminushorizon: {
+      meta: {
+        title: "Terminus Horizon — Gustavo Vianna",
+        description: "Motor matemático de missão crítica: audita funções simbolicamente pra achar saltos, pólos e Jerk infinito antes que o hardware sinta o impacto.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/terminushorizon.png",
+      hero: {
+        eyebrow: "Motor Matemático de Missão Crítica · computação simbólica pra hardware",
+        title: "Terminus Horizon",
+        subtitle: "Se a trajetória cruza o limite físico, a operação é abortada antes do motor energizar",
+        summary:
+          "Domain Service puro em Python que usa computação simbólica (SymPy) em vez de ponto flutuante pra provar matematicamente a sanidade de uma função antes dela tocar um atuador real — detecta saltos, pólos de ressonância e Jerk infinito em trajetórias mecânicas. Nomeado em referência a Terminus, a única divindade romana que se recusava a ceder espaço nem pra Júpiter: as leis da física e da matemática aqui também são inegociáveis.",
+        statusNote: "Núcleo matemático (SymPy) e API (FastAPI) já estruturados; integração com hardware real ainda não iniciada.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu de uma frustração concreta com cálculo manual de integrais, limites e trigonometria pra validar comportamento de hardware. A ideia central não é só calcular — é apontar pontos de atenção antes que um engenheiro precise descobrir na marra: se uma função tem um salto ou uma assíntota, o motor sinaliza isso como um ponto de atenção a ser revisado, não como um resultado qualquer. A inspiração histórica foi corrigida no processo: a falha que primeiro veio à mente como 'os anéis de vedação que explodiram a Apollo' na verdade aconteceu no ônibus espacial Challenger, em 1986 — mas a premissa segue válida: a modelagem matemática já previa o limite térmico de falha que a decisão gerencial ignorou.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Arquitetura Hexagonal com um Core de domínio puro — sem nenhuma dependência de I/O — que recebe uma expressão matemática, processa com SymPy e devolve um diagnóstico estruturado. A API em FastAPI funciona como Driving Adapter: o framework web não toca na lógica matemática, só valida o payload na fronteira via Pydantic antes de repassar pro domínio.",
+        tree: [
+          "FastAPI (Driving Adapter)    valida o payload via Pydantic antes de tocar o domínio",
+          "SignalContinuityAnalyzer     limites laterais, detecta salto e pólo (SymPy)",
+          "KinematicStressAnalyzer      deriva posição → velocidade → aceleração → Jerk",
+          "mpmath                       precisão arbitrária, blinda contra floating-point error",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Python", "SymPy", "SciPy", "NumPy", "mpmath", "FastAPI", "Pydantic", "Arquitetura Hexagonal"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Prova matemática preventiva, não aproximação numérica cega.",
+        items: [
+          { title: "Prova matemática, não aproximação", mechanic: "O SymPy retém 1/3 simbolicamente em vez de calcular 0.3333 — a mesma classe de erro de arredondamento que já causou acidentes aeroespaciais reais (como o foguete Ariane 5) é blindada por design." },
+          { title: "Detector de salto e de pólo", mechanic: "Compara os limites laterais num ponto crítico; se divergem, é um salto (choque físico no hardware); se tendem ao infinito, é um pólo (ressonância catastrófica de sinal)." },
+          { title: "Jerk contínuo ou a operação trava", mechanic: "Deriva a trajetória até a 3ª ordem (Jerk, a variação da aceleração); uma parada brusca gera Jerk infinito — fisicamente, o equivalente a uma martelada na engrenagem, não um movimento." },
+          { title: "Domínio puro, zero I/O", mechanic: "O Core nunca sabe se o dado veio de um sensor real, de uma simulação ou de um teste automatizado — API, validação e toda a infraestrutura vivem fora, como Adapters substituíveis." },
+        ],
+      },
+      endpoints: {
+        title: "Endpoints",
+        intro: "Dois serviços de auditoria matemática expostos como REST, protegidos por validação Pydantic na fronteira.",
+        items: [
+          { name: "POST /api/v1/horizon/signal/audit", what: "Avalia uma função em busca de saltos e pólos num ponto crítico de operação", role: "POST" },
+          { name: "POST /api/v1/horizon/kinematics/audit", what: "Deriva uma trajetória até o Jerk e aponta risco de fadiga mecânica", role: "POST" },
+        ],
+      },
+      security: {
+        title: "O limite que não negocia",
+        body: "O nome vem da mitologia romana: Terminus era o deus dos marcos de fronteira, o único que se recusava a ceder espaço nem para Júpiter — a postura exata que o motor assume. Se o cálculo aponta que o Jerk vai divergir ou que a trajetória vai cruzar uma assíntota, a operação é abortada, independente do que o software de gestão mandou fazer. A referência histórica que inspirou o projeto foi corrigida no processo de design: não foi a Apollo, foi o desastre do ônibus espacial Challenger (1986) — os anéis de vedação de borracha (O-rings) tinham um limite térmico de falha que a matemática já apontava, mas a decisão gerencial de lançar mesmo assim ignorou o que o cálculo já sabia.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -1111,6 +1357,252 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Back to the portfolio" },
     },
+    heimdall: {
+      meta: {
+        title: "Heimdall — Gustavo Vianna",
+        description: "A unified SIEM + NOC: aggregates telemetry from the whole Z2A fleet, triggers network auto-healing, and revokes access in real time.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/heimdall.png",
+      hero: {
+        eyebrow: "Unified SIEM & NOC · the eyes and ears of the Z2A ecosystem",
+        title: "Heimdall",
+        subtitle: "It doesn't alert and wait — it queues the failover and revokes access on its own",
+        summary:
+          "An observability and active-security middleware split into three domains: Gjallarhorn acts on network degradation instead of just alerting, the Eye of Asgard extends Zero Trust past login by watching behavior in real time, and Bifrost Telemetry aggregates logs from the whole fleet with a local SLM summarizing root cause in plain language. Named after the Norse guardian of supreme sight and hearing who protects the Bifrost bridge.",
+        statusNote: "Still at the design stage — the architecture was drawn up from a real NOC automation script that already cut mitigation time from 17 to 7 minutes.",
+      },
+      about: {
+        title: "About the project",
+        body: "In an ecosystem with multiple satellites running at once (Zyntra, Kinetix Eros, OmniShift, AegisProtocol...), debugging by hunting logs across separate containers isn't viable, and waiting for a human to notice a network outage costs expensive minutes. Heimdall exists to solve both problems at once: a single observability endpoint that also acts, instead of just showing a chart.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Three independent domains, all fed by the same telemetry ingestion: the NOC reacts to infrastructure degradation, the SIEM reacts to suspicious user behavior, and the log layer gives the other two human-readable context when something strays from the script.",
+        tree: [
+          "Bifrost Telemetry       single log-ingestion endpoint for the whole Z2A fleet",
+          "Gjallarhorn (NOC)       detects degradation, queues failover/restart on RabbitMQ",
+          "Python Workers          run the network automation scripts asynchronously",
+          "Eye of Asgard (SIEM)    cross-references AegisProtocol/OmniShift telemetry in real time",
+          "Local SLM (Ollama)      summarizes root cause from a mountain of logs in plain language",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama", "gRPC"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Turns a passive dashboard into an automated network operator and threat hunter.",
+        items: [
+          { title: "Auto-healing, not just alerting", mechanic: "Evolves the logic of a link-manipulation script (that already cut mitigation time from 17 to 7 minutes) into an async microservice: detects degradation and queues failover over RabbitMQ without waiting for a human." },
+          { title: "Zero Trust that doesn't stop at login", mechanic: "Watches request behavior after authentication; if an active session starts acting out of pattern, it calls AegisProtocol over gRPC to revoke the token and quarantine the IP on the spot." },
+          { title: "Root cause in plain language", mechanic: "A local SLM (Ollama) reads the mountain of structured logs coming from the whole fleet and summarizes the error's root cause right on the dashboard — no engineer hunting logs container by container." },
+          { title: "One endpoint for the whole fleet", mechanic: "Zyntra, Kinetix Eros, OmniShift, and any new satellite send telemetry to the same place, instead of each one logging in its own isolated corner." },
+        ],
+      },
+      endpoints: {
+        title: "The Three Domains",
+        intro: "Passive observability on one side, automatic action on the other.",
+        items: [
+          { name: "Gjallarhorn", what: "Auto-healing and NOC engine: link failover, Docker container restarts", role: "Network" },
+          { name: "Eye of Asgard", what: "Continuous SIEM and Zero Trust: detects behavioral anomalies, revokes tokens via AegisProtocol", role: "Security" },
+          { name: "Bifrost Telemetry", what: "Log aggregator with a local SLM for plain-language root cause", role: "Observability" },
+        ],
+      },
+      security: {
+        title: "When Heimdall stops trusting you",
+        body: "Authentication doesn't end at login. OmniShift and AegisProtocol continuously send audit logs and telemetry to Heimdall; if a behavioral anomaly is detected in an already-authenticated session — an unusual access pattern, an unexpected execution —, Heimdall calls AegisProtocol over gRPC or messaging to revoke the access token instantly and quarantine the user or IP, without waiting for the next login to act.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    alexandria: {
+      meta: {
+        title: "Alexandria (Axios) — Gustavo Vianna",
+        description: "A Socratic copilot for teaching programming logic: the AI never hands over the ready-made answer, only the question that leads the student to it.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/alexandria.png",
+      hero: {
+        eyebrow: "Socratic Teaching Copilot · Programming Logic",
+        title: "Alexandria",
+        subtitle: "The AI never gives the ready-made answer — it asks the right question",
+        summary:
+          "A hybrid school-reinforcement platform: a deterministic scripted layer controls the student's learning track and validates answers via unit tests; a local SLM (codenamed Axios) steps in only at the moment of difficulty, as a Socratic tutor that guides through questions instead of handing over finished code. Named after the Library of Alexandria — the archive holding the tracks, the historical context, and the etymological references behind every concept taught.",
+        statusNote: "MVP focused on Programming Logic, tested first with college friends before expanding into Languages and History.",
+      },
+      about: {
+        title: "About the project",
+        body: "Built to solve a concrete pain point: school-reinforcement tools that throw everything at a generic AI to solve end up either too expensive to run at scale, or hallucinating answers that get in the way of learning instead of helping. Alexandria splits the two responsibilities — the scripted layer guarantees the student follows a solid pedagogical methodology with no hallucination, and the SLM (running locally via Ollama, with room for fine-tuning via QLoRA) only steps in at the exact moment of difficulty, with a Socratic tone that never hands over the answer on a plate.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Polyglot out of necessity, not fashion: the education domain (progress, payment, permissions) calls for a mature DDD ecosystem, while the fine-tuning and LLM-orchestration ecosystem belongs to Python. Splitting gRPC (synchronous chat streaming) from RabbitMQ (heavy async processing) guarantees the Copilot's traffic never stalls the rules engine.",
+        tree: [
+          "Angular + Monaco Editor     code editor and Copilot chat over WebSocket",
+          "BFF / Gateway                routes 'save progress' to Java, 'chat' to Python",
+          "Core Domain (Spring Boot)    learning track, hidden unit tests, metrics",
+          "Ephemeral Docker              runs the student's code isolated, destroyed after the test",
+          "AI Orchestrator (FastAPI)    builds the Socratic prompt, queries local Ollama",
+          "gRPC streaming               streams the intervention token by token to the Gateway",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "TypeScript", "gRPC", "RabbitMQ", "Ollama", "PostgreSQL", "Redis"],
+      },
+      features: {
+        title: "Key features",
+        intro: "A Socratic mentor, not a ready-made-answer generator.",
+        items: [
+          { title: "Socratic tutor, never the ready-made answer", mechanic: "The SLM's system prompt explicitly forbids handing over code: 'don't give the answer, ask a question that helps the student spot the mistake themselves'." },
+          { title: "Ephemeral sandbox against malicious code", mechanic: "Every submission runs isolated in a disposable Docker container — an accidental (or deliberate, since the first users are future software engineers testing the limits) while(true) never takes down the server." },
+          { title: "Token-by-token streaming over gRPC", mechanic: "The student watches the Copilot 'typing' the explanation in real time, masking local-inference latency instead of staring at a loading screen." },
+          { title: "Polyglot core, not a monolith", mechanic: "Java handles the business rules (track, progress, payment); Python handles only the AI — neither one needs to know the other's domain." },
+          { title: "Cross-referenced Languages and History context", mechanic: "When explaining why it's called 'String', the SLM also pulls in the etymology and historical context of the concept, not just 'how to fix the code'." },
+        ],
+      },
+      endpoints: {
+        title: "Intervention Flow",
+        intro: "From a syntax error to a Socratic explanation, in five async steps.",
+        items: [
+          { name: "1. Submission", what: "Student tests the code; the Gateway publishes CodeEvaluationRequested on RabbitMQ", role: "" },
+          { name: "2. Validation", what: "Java runs the test in the isolated Docker container and detects the failure", role: "" },
+          { name: "3. AI prep", what: "Python consumes the failure event and builds the Socratic context", role: "" },
+          { name: "4. Streaming", what: "The SLM generates the intervention; Python streams it over gRPC token by token", role: "" },
+          { name: "5. Persistence", what: "Java saves the conversation history to PostgreSQL in the background", role: "" },
+        ],
+      },
+      security: {
+        title: "Zero Trust isolation for student code",
+        body: "Assuming every submitted code is potentially malicious is the starting point. No submission ever runs loose on the server: every attempt is packaged and executed in an ephemeral Docker container, destroyed right after the test passes or fails. That matters doubly here, because the platform's first real users are software-engineering classmates — exactly the profile that will try to break the isolation's limits just to see if they can, which ends up hardening the system's security fast.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    inaritrails: {
+      meta: {
+        title: "Inari Trails — Gustavo Vianna",
+        description: "Pokémon-Go-style gamified tourism: platinum neighborhoods by photographing real points of interest, with local businesses as sponsored Stops.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/inaritrails.png",
+      hero: {
+        eyebrow: "Gamified Tourism · Pokémon-Go-style geolocation",
+        title: "Inari Trails",
+        subtitle: "Platinum-ing a neighborhood is the reward; the partner business is who foots the bill",
+        summary:
+          "Turns a rigid tourist itinerary into collecting: every point of interest is a Stop with a geospatial proximity radius, and each user's photo archive works like a personal Pokédex of discovered places. Named after Inari, the Japanese deity of roads, messenger foxes, and — fundamentally — commerce, the B2B pillar that sustains the business model.",
+        statusNote: "At the design stage — the image pipeline and geospatial engine architecture are specified, implementation hasn't started.",
+      },
+      about: {
+        title: "About the project",
+        body: "The biggest launch challenge for any discovery app is the chicken-and-egg problem: no content, no users; no users, no content. The MVP strategy is to start in one specific, well-bounded tourist region, manually mapping the initial points (seed data) before opening to the public — and using gamification (the 'platinum' trigger for a region, the photo Pokédex) as the retention engine that keeps users coming back once the initial archive already exists.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "The geospatial core needs fast, constant proximity queries (PostGIS with a GiST index), while bulk photo uploads call for an event-driven architecture so the user is never stuck on a loading screen waiting for sanitization and moderation.",
+        tree: [
+          "Mobile app              map with Stops in a 500m radius, camera for the archive",
+          "BFF                       one lightweight call ('I'm at X,Y') orchestrates map + photos",
+          "PostgreSQL + PostGIS      ST_DWithin spatial query with a GiST index",
+          "Pre-signed URL (S3)       the app uploads the photo straight to the raw bucket, bypassing the API",
+          "Sanitization worker       strips EXIF, re-encodes to WebP, destroys malicious payloads",
+          "Moderation (Vision AI)    only public photos get screened for nudity/violence before publishing",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Java 21", "Spring Boot", "Hibernate Spatial", "PostgreSQL", "PostGIS", "Redis", "RabbitMQ", "AWS S3"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Gamification for retention, Zero Trust for every photo that comes in.",
+        items: [
+          { title: "Platinum-ing as a retention loop", mechanic: "Achievements by category (e.g. 'History Explorer') and the photo diary becomes a personal Pokédex of discovered places, building emotional attachment to the archive." },
+          { title: "Public vs. private cuts moderation cost at the root", mechanic: "The personal diary is instant and never gets reviewed; only what the user marks public enters the sanitization and computer-vision pipeline." },
+          { title: "EXIF and scripts die in the re-encode", mechanic: "Converting the image to WebP destroys any malicious payload hidden in the original EXIF header — no dedicated antivirus layer needed on top." },
+          { title: "Stops pay to get featured", mechanic: "Local businesses subscribe to appear featured in auto-generated routes, monetizing the foot traffic the app already generates for free." },
+          { title: "A DLQ so a photo never gets lost", mechanic: "If the worker fails (corrupted file, moderation-AI timeout), the message goes to a Dead Letter Queue for reprocessing instead of stalling the rest of the queue." },
+        ],
+      },
+      endpoints: {
+        title: "Upload Pipeline",
+        intro: "From the camera click to showing up on the community map, in five async steps.",
+        items: [
+          { name: "1. Pre-signed URL", what: "App asks the backend for a direct write link to the turismo-raw-images bucket", role: "" },
+          { name: "2. Register & queue", what: "Backend writes PENDING_PROCESSING status and publishes on RabbitMQ", role: "" },
+          { name: "3. Sanitization", what: "Worker strips EXIF and re-encodes the image to WebP", role: "" },
+          { name: "4. Moderation", what: "Only public photos go through the computer-vision API before approval", role: "" },
+          { name: "5. Publication", what: "Approved image moves to the turismo-processed-images bucket, served over CDN", role: "" },
+        ],
+      },
+      security: {
+        title: "Zero Trust on every upload",
+        body: "Assuming every upload is potentially malicious is the starting point: the original file is never saved straight to the public bucket. The entry (raw) bucket blocks any public read, and the sanitization worker strips the EXIF header — which holds phone metadata and is often used to hide malicious payloads — before re-encoding the image to WebP, which alone already destroys any script embedded in the original file.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    terminushorizon: {
+      meta: {
+        title: "Terminus Horizon — Gustavo Vianna",
+        description: "A mission-critical math engine: symbolically audits functions for jumps, poles, and infinite jerk before the hardware ever feels the impact.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/terminushorizon.png",
+      hero: {
+        eyebrow: "Mission-Critical Math Engine · symbolic computation for hardware",
+        title: "Terminus Horizon",
+        subtitle: "If the trajectory crosses the physical limit, the operation is aborted before the motor energizes",
+        summary:
+          "A pure Python Domain Service that uses symbolic computation (SymPy) instead of floating point to mathematically prove a function is sane before it ever touches a real actuator — detecting jumps, resonance poles, and infinite jerk in mechanical trajectories. Named after Terminus, the one Roman god who refused to yield ground even to Jupiter: here too, the laws of physics and math are non-negotiable.",
+        statusNote: "The math core (SymPy) and API (FastAPI) are already structured; integration with real hardware hasn't started.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born out of a concrete frustration with manually calculating integrals, limits, and trigonometry to validate hardware behavior. The core idea isn't just to compute — it's to flag points of attention before an engineer has to find out the hard way: if a function has a jump or an asymptote, the engine flags it as something to review, not just another result. The historical inspiration got corrected along the way: the failure that first came to mind as 'the rubber seals that blew up Apollo' actually happened on the Challenger space shuttle in 1986 — but the premise still holds: the math modeling had already predicted the thermal failure limit that the management decision ignored.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Hexagonal Architecture with a pure domain Core — zero I/O dependencies — that takes a math expression, processes it with SymPy, and returns a structured diagnosis. The FastAPI layer acts as a Driving Adapter: the web framework never touches the math logic, it only validates the payload at the boundary via Pydantic before handing it to the domain.",
+        tree: [
+          "FastAPI (Driving Adapter)    validates the payload via Pydantic before touching the domain",
+          "SignalContinuityAnalyzer     one-sided limits, detects jumps and poles (SymPy)",
+          "KinematicStressAnalyzer      differentiates position → velocity → acceleration → jerk",
+          "mpmath                       arbitrary precision, shields against floating-point error",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Python", "SymPy", "SciPy", "NumPy", "mpmath", "FastAPI", "Pydantic", "Hexagonal Architecture"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Preventive mathematical proof, not blind numerical approximation.",
+        items: [
+          { title: "Mathematical proof, not approximation", mechanic: "SymPy retains 1/3 symbolically instead of computing 0.3333 — the same class of rounding error that caused real aerospace accidents (like the Ariane 5 rocket) is shielded by design." },
+          { title: "Jump and pole detector", mechanic: "Compares one-sided limits at a critical point; if they diverge, that's a jump (physical shock to the hardware); if they tend to infinity, that's a pole (catastrophic signal resonance)." },
+          { title: "Continuous jerk or the operation halts", mechanic: "Differentiates the trajectory to the 3rd order (jerk, the rate of change of acceleration); an abrupt stop generates infinite jerk — physically, the equivalent of a hammer blow to the gears, not a motion." },
+          { title: "Pure domain, zero I/O", mechanic: "The Core never knows whether the data came from a real sensor, a simulation, or an automated test — the API, validation, and all infrastructure live outside, as swappable Adapters." },
+        ],
+      },
+      endpoints: {
+        title: "Endpoints",
+        intro: "Two math-auditing services exposed as REST, guarded by Pydantic validation at the boundary.",
+        items: [
+          { name: "POST /api/v1/horizon/signal/audit", what: "Evaluates a function for jumps and poles at a critical operating point", role: "POST" },
+          { name: "POST /api/v1/horizon/kinematics/audit", what: "Differentiates a trajectory to jerk and flags mechanical-fatigue risk", role: "POST" },
+        ],
+      },
+      security: {
+        title: "The limit that doesn't negotiate",
+        body: "The name comes from Roman mythology: Terminus was the god of boundary markers, the only one who refused to yield ground even to Jupiter — the exact stance the engine takes. If the math shows jerk will diverge or the trajectory will cross an asymptote, the operation is aborted, no matter what the management software ordered. The historical reference that inspired the project got corrected during design: it wasn't Apollo, it was the Challenger space shuttle disaster (1986) — the rubber O-rings had a thermal failure limit the math had already flagged, but the management decision to launch anyway ignored what the calculation already knew.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -1688,6 +2180,252 @@ const PROJECT_DETAILS = {
       security: {
         title: "Zero Trust de punta a punta",
         body: "Cada capa valida de nuevo, aunque confíe en la anterior: el webhook interno de RunPod exige un secreto estático en el header (X-RunPod-Secret) que la API pública nunca usa; el AWS WAF filtra reputación de IP y fuerza bruta en el borde antes de que cualquier solicitud llegue a Fargate; y el Ledger financiero trata cada reembolso como una transacción de compensación — nunca una eliminación — para mantener un rastro de auditoría completo.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    heimdall: {
+      meta: {
+        title: "Heimdall — Gustavo Vianna",
+        description: "SIEM + NOC unificado: agrega telemetría de toda la flota Z2A, dispara auto-healing de red y revoca acceso en tiempo real.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/heimdall.png",
+      hero: {
+        eyebrow: "SIEM & NOC Unificado · los ojos y oídos del ecosistema Z2A",
+        title: "Heimdall",
+        subtitle: "No alerta y espera — encola el failover y revoca el acceso por sí solo",
+        summary:
+          "Middleware de observabilidad y seguridad activa dividido en tres dominios: Gjallarhorn actúa sobre la degradación de red en vez de solo alertar, el Ojo de Asgard extiende el Zero Trust más allá del login monitoreando el comportamiento en tiempo real, y Bifrost Telemetry agrega los logs de toda la flota con una SLM local que resume la causa raíz en lenguaje natural. Nombrado en referencia al guardián nórdico de vista y oído supremos que protege el puente Bifrost.",
+        statusNote: "Todavía en fase de diseño — arquitectura definida a partir de un script real de automatización de NOC que ya redujo el tiempo de mitigación de 17 a 7 minutos.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "En un ecosistema con múltiples satélites corriendo al mismo tiempo (Zyntra, Kinetix Eros, OmniShift, AegisProtocol...), depurar cazando logs en contenedores separados es inviable, y esperar a que un humano note una caída de red cuesta minutos caros. Heimdall nace para resolver ambos problemas a la vez: un endpoint único de observabilidad que también actúa, en vez de solo mostrar un gráfico.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Tres dominios independientes, todos alimentados por la misma ingesta de telemetría: el NOC reacciona a la degradación de infraestructura, el SIEM reacciona a comportamiento sospechoso de usuario, y la capa de logs da contexto humano a los otros dos cuando algo se sale del script.",
+        tree: [
+          "Bifrost Telemetry       endpoint único de ingesta de logs de toda la flota Z2A",
+          "Gjallarhorn (NOC)       detecta degradación, encola failover/restart en RabbitMQ",
+          "Workers Python          ejecutan los scripts de automatización de red de forma asíncrona",
+          "Ojo de Asgard (SIEM)    cruza telemetría de AegisProtocol/OmniShift en tiempo real",
+          "SLM local (Ollama)      resume la causa raíz de una montaña de logs en lenguaje natural",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama", "gRPC"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Convierte un dashboard pasivo en un operador de red automatizado y un cazador de amenazas.",
+        items: [
+          { title: "Auto-healing, no solo alerta", mechanic: "Evoluciona la lógica de un script de manipulación de enlaces (que ya redujo el tiempo de mitigación de 17 a 7 minutos) a un microservicio asíncrono: detecta degradación y encola failover vía RabbitMQ sin esperar intervención humana." },
+          { title: "Zero Trust continuo, no solo en el login", mechanic: "Monitorea el comportamiento de las solicitudes después de la autenticación; si una sesión activa empieza a actuar fuera de patrón, llama a AegisProtocol vía gRPC para revocar el token y poner la IP en cuarentena al instante." },
+          { title: "Causa raíz en lenguaje natural", mechanic: "Una SLM local (Ollama) lee la montaña de logs estructurados de toda la flota y resume el porqué del error directo en el panel — sin que el ingeniero tenga que cazar logs contenedor por contenedor." },
+          { title: "Endpoint único para toda la flota", mechanic: "Zyntra, Kinetix Eros, OmniShift y cualquier satélite nuevo mandan telemetría al mismo lugar, en vez de que cada uno registre aislado en su propio rincón." },
+        ],
+      },
+      endpoints: {
+        title: "Los Tres Dominios",
+        intro: "Observabilidad pasiva de un lado, acción automática del otro.",
+        items: [
+          { name: "Gjallarhorn", what: "Motor de auto-healing y NOC: failover de enlaces, reinicio de contenedores Docker", role: "Red" },
+          { name: "Ojo de Asgard", what: "SIEM y Zero Trust continuo: detecta anomalía de comportamiento, revoca token vía AegisProtocol", role: "Seguridad" },
+          { name: "Bifrost Telemetry", what: "Agregador de logs con SLM local para causa raíz en lenguaje natural", role: "Observabilidad" },
+        ],
+      },
+      security: {
+        title: "Cuando Heimdall desconfía de ti",
+        body: "La autenticación no termina en el login. OmniShift y AegisProtocol envían logs de auditoría y telemetría continuamente a Heimdall; si se detecta una anomalía de comportamiento en una sesión ya autenticada — un patrón de acceso atípico, una ejecución inesperada —, Heimdall llama a AegisProtocol vía gRPC o mensajería para revocar el token de acceso al instante y poner al usuario o la IP en cuarentena, sin esperar al próximo login para actuar.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    alexandria: {
+      meta: {
+        title: "Alexandria (Axios) — Gustavo Vianna",
+        description: "Copiloto socrático para enseñar lógica de programación: la IA nunca entrega la respuesta lista, solo la pregunta que lleva al alumno hasta ella.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/alexandria.png",
+      hero: {
+        eyebrow: "Copiloto Socrático de Enseñanza · Lógica de Programación",
+        title: "Alexandria",
+        subtitle: "La IA nunca da la respuesta lista — hace la pregunta correcta",
+        summary:
+          "Plataforma de refuerzo escolar híbrida: una capa scripteada determinística controla la trayectoria de evolución del alumno y valida respuestas vía test unitario; una SLM local (nombre en clave Axios) entra en escena solo ante la dificultad, como tutor socrático que guía con preguntas en vez de entregar código listo. Nombrada en referencia a la Biblioteca de Alejandría — el acervo que guarda las trayectorias, el contexto histórico y las referencias etimológicas detrás de cada concepto enseñado.",
+        statusNote: "MVP enfocado en Lógica de Programación, probado primero con compañeros de universidad antes de expandirse a Idiomas e Historia.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Pensada para resolver un dolor concreto: las herramientas de refuerzo escolar que le tiran todo a una IA genérica terminan o demasiado caras para correr a escala, o alucinando respuestas que estorban el aprendizaje en vez de ayudar. Alexandria separa las dos responsabilidades — lo scripteado garantiza que el alumno siga una metodología pedagógica sólida sin alucinación, y la SLM (corriendo localmente vía Ollama, con espacio para fine-tuning vía QLoRA) solo interviene en el momento exacto de la dificultad, con un tono socrático que nunca entrega la respuesta servida.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Poliglota por necesidad, no por moda: el dominio de la educación (progreso, pago, permisos) pide un ecosistema maduro en DDD, mientras que el ecosistema de fine-tuning y orquestación de LLMs pertenece a Python. La división entre gRPC (streaming síncrono del chat) y RabbitMQ (procesamiento asíncrono pesado) garantiza que el tráfico del Copiloto nunca trabe el motor de reglas.",
+        tree: [
+          "Angular + Monaco Editor     editor de código y chat del Copiloto vía WebSocket",
+          "BFF / Gateway                enruta 'guardar progreso' a Java, 'conversar' a Python",
+          "Core Domain (Spring Boot)    trayectoria de evolución, tests unitarios ocultos, métricas",
+          "Docker efímero               corre el código del alumno aislado, destruido tras el test",
+          "AI Orchestrator (FastAPI)    arma el prompt socrático, consume el Ollama local",
+          "gRPC streaming               devuelve la intervención token a token al Gateway",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "TypeScript", "gRPC", "RabbitMQ", "Ollama", "PostgreSQL", "Redis"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Un mentor socrático, no un generador de respuestas listas.",
+        items: [
+          { title: "Tutor socrático, nunca la respuesta lista", mechanic: "El system prompt de la SLM prohíbe explícitamente entregar código: 'no des la respuesta, haz una pregunta que ayude al alumno a notar el error por sí mismo'." },
+          { title: "Sandbox efímero contra código malicioso", mechanic: "Cada envío corre aislado en un contenedor Docker descartable — un while(true) accidental (o deliberado, ya que los primeros usuarios son futuros ingenieros probando los límites) nunca tumba el servidor." },
+          { title: "Streaming token a token vía gRPC", mechanic: "El alumno ve al Copiloto 'escribiendo' la explicación en tiempo real, enmascarando la latencia de la inferencia local en vez de quedarse en una pantalla de carga." },
+          { title: "Núcleo poliglota, no monolito", mechanic: "Java se encarga de las reglas de negocio (trayectoria, progreso, pago); Python se encarga solo de la IA — ninguno de los dos necesita conocer el dominio del otro." },
+          { title: "Contexto cruzado de Idiomas e Historia", mechanic: "Al explicar por qué se llama 'String', la SLM también trae la etimología y el contexto histórico del concepto, no solo el 'cómo arreglar el código'." },
+        ],
+      },
+      endpoints: {
+        title: "Flujo de la Intervención",
+        intro: "Del error de sintaxis a la explicación socrática, en cinco pasos asíncronos.",
+        items: [
+          { name: "1. Envío", what: "El alumno prueba el código; el Gateway publica CodeEvaluationRequested en RabbitMQ", role: "" },
+          { name: "2. Validación", what: "Java corre el test en el contenedor Docker aislado y detecta la falla", role: "" },
+          { name: "3. Preparación de la IA", what: "Python consume el evento de falla y arma el contexto socrático", role: "" },
+          { name: "4. Streaming", what: "La SLM genera la intervención; Python la envía vía gRPC token a token", role: "" },
+          { name: "5. Persistencia", what: "Java guarda el historial de la conversación en PostgreSQL en segundo plano", role: "" },
+        ],
+      },
+      security: {
+        title: "Aislamiento Zero Trust del código del alumno",
+        body: "Asumir que todo código enviado es potencialmente malicioso es el punto de partida. Ningún envío corre suelto en el servidor: cada intento se empaqueta y ejecuta en un contenedor Docker efímero, destruido justo después de que el test pasa o falla. Esto importa el doble aquí, porque los primeros usuarios reales de la plataforma son compañeros de ingeniería de software — exactamente el perfil que va a intentar romper los límites del aislamiento solo para ver si puede, lo que termina blindando la seguridad del sistema rápido.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    inaritrails: {
+      meta: {
+        title: "Inari Trails — Gustavo Vianna",
+        description: "Turismo gamificado estilo Pokémon Go: platina barrios fotografiando puntos de interés reales, con comercios locales como Stops patrocinados.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/inaritrails.png",
+      hero: {
+        eyebrow: "Turismo Gamificado · geolocalización estilo Pokémon Go",
+        title: "Inari Trails",
+        subtitle: "Platinar un barrio es la recompensa; el comercio aliado es quien paga la cuenta",
+        summary:
+          "Convierte un itinerario turístico rígido en colección: cada punto de interés es un Stop con radio de proximidad geoespacial, y el acervo de fotos de cada usuario funciona como una Pokédex personal de lugares descubiertos. Nombrado en referencia a Inari, deidad japonesa de las rutas, de los zorros mensajeros y, fundamentalmente, del comercio — el pilar B2B que sostiene el modelo de negocio.",
+        statusNote: "En fase de diseño — la arquitectura del pipeline de imágenes y del motor geoespacial ya está especificada, la implementación no ha comenzado.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "El mayor desafío de lanzamiento de cualquier app de descubrimiento es el problema del huevo y la gallina: sin contenido no hay usuarios, sin usuarios no hay contenido. La estrategia de MVP es empezar en una región turística específica y bien delimitada, mapeando manualmente los puntos iniciales (seed data) antes de abrir al público — y usar la gamificación (el gatillo de 'platinar' una región, la Pokédex de fotos) como el motor de retención que mantiene al usuario volviendo una vez que el acervo inicial ya existe.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "El núcleo geoespacial exige consultas de proximidad rápidas y constantes (PostGIS con índice GiST), mientras que la subida masiva de fotos pide una arquitectura orientada a eventos para que el usuario nunca quede atrapado en una pantalla de carga esperando sanitización y moderación.",
+        tree: [
+          "App móvil               mapa con los Stops en un radio de 500m, cámara para el acervo",
+          "BFF                       una llamada liviana ('estoy en X,Y') orquesta mapa + fotos",
+          "PostgreSQL + PostGIS      consulta espacial ST_DWithin con índice GiST",
+          "Pre-signed URL (S3)       la app sube la foto directo al bucket raw, sin pasar por la API",
+          "Worker de sanitización    quita el EXIF, reconvierte a WebP, destruye payload malicioso",
+          "Moderación (Visión IA)    solo las fotos públicas pasan por desnudez/violencia antes de publicar",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Java 21", "Spring Boot", "Hibernate Spatial", "PostgreSQL", "PostGIS", "Redis", "RabbitMQ", "AWS S3"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Gamificación para la retención, Zero Trust para cada foto que llega.",
+        items: [
+          { title: "Platinar como loop de retención", mechanic: "Logros por categoría (ej: 'Explorador Histórico') y el diario de fotos se convierte en una Pokédex personal de lugares descubiertos, generando apego emocional al acervo." },
+          { title: "Público vs. privado reduce el costo de moderación", mechanic: "El diario personal es instantáneo y nunca pasa por revisión; solo lo que el usuario marca como público entra al pipeline de sanitización y visión computacional." },
+          { title: "El EXIF y el script mueren en el re-encode", mechanic: "Convertir la imagen a WebP destruye cualquier payload malicioso escondido en el encabezado EXIF original — sin necesitar un antivirus dedicado corriendo encima." },
+          { title: "Los Stops pagan por aparecer", mechanic: "Los comercios locales se suscriben para aparecer destacados en la generación automática de rutas, monetizando el flujo de peatones que la app ya genera gratis." },
+          { title: "DLQ para nunca perder la foto", mechanic: "Si el worker falla (archivo corrupto, timeout en la IA de moderación), el mensaje va a una Dead Letter Queue de reprocesamiento en vez de trabar el resto de la cola." },
+        ],
+      },
+      endpoints: {
+        title: "Pipeline de Subida",
+        intro: "Del clic en la cámara a aparecer en el mapa de la comunidad, en cinco pasos asíncronos.",
+        items: [
+          { name: "1. Pre-signed URL", what: "La app pide al backend un link de escritura directa al bucket turismo-raw-images", role: "" },
+          { name: "2. Registro y cola", what: "El backend graba el estado PENDING_PROCESSING y publica en RabbitMQ", role: "" },
+          { name: "3. Sanitización", what: "El worker quita el EXIF y reconvierte la imagen a WebP", role: "" },
+          { name: "4. Moderación", what: "Solo las fotos públicas pasan por la API de visión computacional antes de aprobar", role: "" },
+          { name: "5. Publicación", what: "La imagen aprobada va al bucket turismo-processed-images, servido vía CDN", role: "" },
+        ],
+      },
+      security: {
+        title: "Zero Trust en cada subida",
+        body: "Asumir que toda subida es potencialmente maliciosa es el punto de partida: el archivo original nunca se guarda directo en el bucket público. El bucket de entrada (raw) bloquea cualquier lectura pública, y el worker de sanitización arranca el encabezado EXIF — que guarda metadatos del celular y suele usarse para esconder payloads maliciosos — antes de reconvertir la imagen a WebP, lo que por sí solo ya destruye cualquier script incrustado en el archivo original.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    terminushorizon: {
+      meta: {
+        title: "Terminus Horizon — Gustavo Vianna",
+        description: "Motor matemático de misión crítica: audita funciones simbólicamente para encontrar saltos, polos y Jerk infinito antes de que el hardware sienta el impacto.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/terminushorizon.png",
+      hero: {
+        eyebrow: "Motor Matemático de Misión Crítica · computación simbólica para hardware",
+        title: "Terminus Horizon",
+        subtitle: "Si la trayectoria cruza el límite físico, la operación se aborta antes de que el motor se energice",
+        summary:
+          "Domain Service puro en Python que usa computación simbólica (SymPy) en vez de punto flotante para probar matemáticamente la sanidad de una función antes de que toque un actuador real — detecta saltos, polos de resonancia y Jerk infinito en trayectorias mecánicas. Nombrado en referencia a Terminus, la única divinidad romana que se negaba a ceder terreno ni siquiera ante Júpiter: aquí también las leyes de la física y la matemática son innegociables.",
+        statusNote: "Núcleo matemático (SymPy) y API (FastAPI) ya estructurados; la integración con hardware real todavía no ha comenzado.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació de una frustración concreta con el cálculo manual de integrales, límites y trigonometría para validar el comportamiento de hardware. La idea central no es solo calcular — es señalar puntos de atención antes de que un ingeniero tenga que descubrirlos a las malas: si una función tiene un salto o una asíntota, el motor lo marca como un punto de atención a revisar, no como un resultado cualquiera. La inspiración histórica se corrigió en el proceso: la falla que primero vino a la mente como 'los anillos de sellado que explotaron al Apollo' en realidad ocurrió en el transbordador espacial Challenger, en 1986 — pero la premisa sigue siendo válida: el modelado matemático ya preveía el límite térmico de falla que la decisión gerencial ignoró.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Arquitectura Hexagonal con un Core de dominio puro — sin ninguna dependencia de I/O — que recibe una expresión matemática, la procesa con SymPy y devuelve un diagnóstico estructurado. La API en FastAPI funciona como Driving Adapter: el framework web nunca toca la lógica matemática, solo valida el payload en la frontera vía Pydantic antes de pasarlo al dominio.",
+        tree: [
+          "FastAPI (Driving Adapter)    valida el payload vía Pydantic antes de tocar el dominio",
+          "SignalContinuityAnalyzer     límites laterales, detecta salto y polo (SymPy)",
+          "KinematicStressAnalyzer      deriva posición → velocidad → aceleración → Jerk",
+          "mpmath                       precisión arbitraria, blinda contra floating-point error",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Python", "SymPy", "SciPy", "NumPy", "mpmath", "FastAPI", "Pydantic", "Arquitectura Hexagonal"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Prueba matemática preventiva, no aproximación numérica ciega.",
+        items: [
+          { title: "Prueba matemática, no aproximación", mechanic: "SymPy retiene 1/3 simbólicamente en vez de calcular 0.3333 — la misma clase de error de redondeo que ya causó accidentes aeroespaciales reales (como el cohete Ariane 5) queda blindada por diseño." },
+          { title: "Detector de salto y de polo", mechanic: "Compara los límites laterales en un punto crítico; si divergen, es un salto (choque físico en el hardware); si tienden a infinito, es un polo (resonancia catastrófica de señal)." },
+          { title: "Jerk continuo o la operación se detiene", mechanic: "Deriva la trayectoria hasta el 3er orden (Jerk, la variación de la aceleración); una parada brusca genera Jerk infinito — físicamente, el equivalente a un martillazo en el engranaje, no un movimiento." },
+          { title: "Dominio puro, cero I/O", mechanic: "El Core nunca sabe si el dato vino de un sensor real, de una simulación o de un test automatizado — API, validación y toda la infraestructura viven afuera, como Adapters intercambiables." },
+        ],
+      },
+      endpoints: {
+        title: "Endpoints",
+        intro: "Dos servicios de auditoría matemática expuestos como REST, protegidos por validación Pydantic en la frontera.",
+        items: [
+          { name: "POST /api/v1/horizon/signal/audit", what: "Evalúa una función en busca de saltos y polos en un punto crítico de operación", role: "POST" },
+          { name: "POST /api/v1/horizon/kinematics/audit", what: "Deriva una trayectoria hasta el Jerk y señala riesgo de fatiga mecánica", role: "POST" },
+        ],
+      },
+      security: {
+        title: "El límite que no negocia",
+        body: "El nombre viene de la mitología romana: Terminus era el dios de los marcos de frontera, el único que se negaba a ceder terreno ni ante Júpiter — la postura exacta que asume el motor. Si el cálculo indica que el Jerk va a divergir o que la trayectoria va a cruzar una asíntota, la operación se aborta, sin importar lo que el software de gestión haya ordenado. La referencia histórica que inspiró el proyecto se corrigió durante el diseño: no fue el Apollo, fue el desastre del transbordador espacial Challenger (1986) — los anillos de sellado de goma (O-rings) tenían un límite térmico de falla que la matemática ya señalaba, pero la decisión gerencial de lanzar de todas formas ignoró lo que el cálculo ya sabía.",
       },
       links: { repo: null, live: null },
       footer: { backCta: "← Volver al portafolio" },

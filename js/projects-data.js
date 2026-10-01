@@ -130,6 +130,47 @@ const PROJECTS = {
       satellite: { id: "20", slug: "psique", name: "Psiquê" },
     },
     {
+      title: "Heimdall",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "SIEM + NOC unificado do ecossistema Z2A: agrega a telemetria de todos os satélites, aciona auto-healing de rede e revoga acesso em tempo real se detectar anomalia.",
+      description:
+        "Os olhos e ouvidos da infraestrutura: um middleware de observabilidade e segurança ativa dividido em três domínios. O Gjallarhorn (NOC) não só alerta sobre degradação de rede, ele age — enfileira comandos de failover e reinício de containers via RabbitMQ pra workers Python, reduzindo o tempo de mitigação de minutos pra milissegundos. O Olho de Asgard estende o Zero Trust pra além do login: monitora o comportamento das requisições em tempo real e, se detectar uma anomalia numa sessão ativa, aciona o AegisProtocol via gRPC pra revogar o token na hora. E a Bifrost Telemetry é o endpoint único de ingestão de logs de toda a frota — com uma SLM local (Ollama) resumindo a causa raiz de um erro em linguagem natural, direto no painel, em vez do engenheiro caçar log por container.",
+      tags: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama"],
+      links: { live: null, repo: null, details: "projects/heimdall.html" },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
+    },
+    {
+      title: "Alexandria (Axios)",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Copiloto socrático de ensino de lógica de programação: o motor scriptado valida o código, uma SLM local intervém só quando o aluno trava — e nunca entrega a resposta pronta.",
+      description:
+        "Nasceu pra ajudar colegas da faculdade e virou um estudo de arquitetura híbrida: uma camada scriptada determinística (Java/Spring, Clean Architecture) controla a trilha de evolução do aluno e roda os testes unitários ocultos do exercício; quando o teste falha três vezes seguidas, um orquestrador de IA em Python (FastAPI + Ollama) entra em cena como tutor socrático — o system prompt proíbe explicitamente dar a resposta pronta, só pode fazer a pergunta que leva o aluno a perceber o próprio erro. A resposta da SLM chega token a token via streaming gRPC, mascarando a latência da inferência local, enquanto RabbitMQ isola o processamento pesado (compilar e testar o código num container Docker efêmero) do chat em tempo real. Projetado pra começar em Lógica de Programação e se estender a Idiomas e História — ensinar o 'porquê' de um paradigma existir, não só a sintaxe.",
+      tags: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "gRPC", "RabbitMQ", "Ollama"],
+      links: { live: null, repo: null, details: "projects/alexandria.html" },
+    },
+    {
+      title: "Inari Trails",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Turismo estilo Pokémon Go: o usuário 'platina' bairros fotografando pontos de interesse reais, enquanto comércios locais pagam pra virar Stop em destaque.",
+      description:
+        "Transforma roteiro turístico engessado em colecionismo: cada ponto de interesse é um Stop com raio de proximidade (PostgreSQL + PostGIS, índice GiST pra consulta espacial rápida), e o acervo de fotos do usuário funciona como uma Pokédex pessoal de lugares descobertos. A divisão entre acervo público e privado corta o custo de moderação pela raiz — o diário pessoal é instantâneo, só o que vira público entra no pipeline: upload via Pre-signed URL direto pro S3, um worker que arranca o EXIF e reconverte a imagem pra WebP (o que já destrói qualquer script malicioso embutido no arquivo original), e só então uma API de visão computacional libera a publicação. Uma Dead Letter Queue no RabbitMQ garante que uma foto corrompida ou uma IA de moderação fora do ar nunca trava o resto da fila. Do lado de negócio, comércios locais assinam pra aparecer em destaque na geração automática de roteiros — monetizando o fluxo de pedestre que o app já gera de graça.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "PostGIS", "RabbitMQ", "AWS S3", "Redis"],
+      links: { live: null, repo: null, details: "projects/inaritrails.html" },
+    },
+    {
+      title: "Terminus Horizon",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Motor matemático de missão crítica em Python: audita funções simbolicamente pra achar saltos, pólos e Jerk infinito antes que o hardware sinta o impacto.",
+      description:
+        "Um Domain Service puro (Arquitetura Hexagonal, zero I/O) que usa computação simbólica — SymPy, não ponto flutuante — pra provar matematicamente a sanidade de uma função antes dela chegar num atuador real. O SignalContinuityAnalyzer compara os limites laterais num ponto crítico: se divergem, é um salto (choque físico); se tendem ao infinito, é um pólo (ressonância catastrófica). O KinematicStressAnalyzer vai além da aceleração e deriva a trajetória até o Jerk (a 3ª derivada da posição) — se uma parada de aceleração for abrupta demais, o Jerk diverge, o equivalente matemático de uma martelada na engrenagem, e a operação é abortada antes do motor ser energizado. Uma API em FastAPI expõe esses serviços como Driving Adapter, com o Pydantic validando o payload na fronteira (Zero Trust) antes de qualquer dado tocar o núcleo matemático.",
+      tags: ["Python", "SymPy", "FastAPI", "Pydantic", "NumPy", "SciPy", "Arquitetura Hexagonal"],
+      links: { live: null, repo: null, details: "projects/terminushorizon.html" },
+    },
+    {
       title: "Ultrafoot 26",
       statusKey: "live",
       status: "LIVE",
@@ -260,6 +301,47 @@ const PROJECTS = {
       satellite: { id: "20", slug: "psique", name: "Psyche" },
     },
     {
+      title: "Heimdall",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A unified SIEM + NOC for the Z2A ecosystem: aggregates telemetry from every satellite, triggers network auto-healing, and revokes access in real time if it spots an anomaly.",
+      description:
+        "The infrastructure's eyes and ears: an observability and active-security middleware split into three domains. Gjallarhorn (NOC) doesn't just alert on network degradation, it acts — queuing failover and container-restart commands over RabbitMQ to Python workers, cutting mitigation time from minutes to milliseconds. The Eye of Asgard extends Zero Trust past login: it watches request behavior in real time, and if it flags an anomaly in a live session, it calls AegisProtocol over gRPC to revoke the token on the spot. And Bifrost Telemetry is the single ingestion endpoint for the whole fleet's logs — with a local SLM (Ollama) summarizing an error's root cause in plain language right on the dashboard, instead of an engineer hunting log-by-log across containers.",
+      tags: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama"],
+      links: { live: null, repo: null, details: "projects/heimdall.html" },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
+    },
+    {
+      title: "Alexandria (Axios)",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A Socratic copilot for teaching programming logic: the scripted engine validates the code, a local SLM steps in only when the student gets stuck — and never hands over the answer.",
+      description:
+        "Born to help college friends, it turned into a study in hybrid architecture: a deterministic scripted layer (Java/Spring, Clean Architecture) controls the student's learning track and runs the exercise's hidden unit tests; when a test fails three times in a row, a Python AI orchestrator (FastAPI + Ollama) steps in as a Socratic tutor — its system prompt explicitly forbids handing over the answer, it can only ask the question that leads the student to spot their own mistake. The SLM's reply arrives token by token over a gRPC stream, masking local-inference latency, while RabbitMQ keeps the heavy lifting (compiling and testing the code in an ephemeral Docker container) off the real-time chat path. Designed to start with Programming Logic and expand into Languages and History — teaching the 'why' behind a paradigm, not just its syntax.",
+      tags: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "gRPC", "RabbitMQ", "Ollama"],
+      links: { live: null, repo: null, details: "projects/alexandria.html" },
+    },
+    {
+      title: "Inari Trails",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "Pokémon-Go-style tourism: users 'platinum' neighborhoods by photographing real points of interest, while local businesses pay to become a featured Stop.",
+      description:
+        "Turns a rigid tourist itinerary into collecting: every point of interest is a Stop with a proximity radius (PostgreSQL + PostGIS, GiST index for fast spatial queries), and each user's photo archive works like a personal Pokédex of discovered places. Splitting the archive into public and private cuts moderation cost at the root — the personal diary is instant, only what gets marked public enters the pipeline: upload via a pre-signed URL straight to S3, a worker that strips EXIF and re-encodes the image to WebP (which alone destroys any script embedded in the original file), and only then does a computer-vision API clear it for publication. A Dead Letter Queue on RabbitMQ makes sure a corrupted photo or a moderation API that's down never stalls the rest of the queue. On the business side, local shops subscribe to appear featured in auto-generated routes — monetizing the foot traffic the app already generates for free.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "PostGIS", "RabbitMQ", "AWS S3", "Redis"],
+      links: { live: null, repo: null, details: "projects/inaritrails.html" },
+    },
+    {
+      title: "Terminus Horizon",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A mission-critical math engine in Python: symbolically audits functions for jumps, poles, and infinite jerk before the hardware ever feels the impact.",
+      description:
+        "A pure Domain Service (Hexagonal Architecture, zero I/O) that uses symbolic computation — SymPy, not floating point — to mathematically prove a function is sane before it ever reaches a real actuator. SignalContinuityAnalyzer compares the one-sided limits at a critical point: if they diverge, that's a jump (physical shock); if they tend to infinity, that's a pole (catastrophic resonance). KinematicStressAnalyzer goes past acceleration and differentiates the trajectory all the way to jerk (the 3rd derivative of position) — if a deceleration is too abrupt, jerk diverges, the mathematical equivalent of a hammer blow to the gears, and the operation is aborted before the motor is ever energized. A FastAPI layer exposes these services as a Driving Adapter, with Pydantic validating the payload at the boundary (Zero Trust) before any data touches the mathematical core.",
+      tags: ["Python", "SymPy", "FastAPI", "Pydantic", "NumPy", "SciPy", "Hexagonal Architecture"],
+      links: { live: null, repo: null, details: "projects/terminushorizon.html" },
+    },
+    {
       title: "Ultrafoot 26",
       statusKey: "live",
       status: "LIVE",
@@ -388,6 +470,47 @@ const PROJECTS = {
       tags: ["Java 21", "Spring Boot 3", "RabbitMQ", "AWS Fargate", "Terraform", "PostgreSQL"],
       links: { live: null, repo: null, details: "projects/kinetixeros.html" },
       satellite: { id: "20", slug: "psique", name: "Psique" },
+    },
+    {
+      title: "Heimdall",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un SIEM + NOC unificado para el ecosistema Z2A: agrega la telemetría de todos los satélites, dispara auto-healing de red y revoca el acceso en tiempo real si detecta una anomalía.",
+      description:
+        "Los ojos y oídos de la infraestructura: un middleware de observabilidad y seguridad activa dividido en tres dominios. Gjallarhorn (NOC) no solo alerta sobre degradación de red, actúa — encola comandos de failover y reinicio de contenedores vía RabbitMQ para workers en Python, reduciendo el tiempo de mitigación de minutos a milisegundos. El Ojo de Asgard extiende el Zero Trust más allá del login: monitorea el comportamiento de las solicitudes en tiempo real y, si detecta una anomalía en una sesión activa, llama a AegisProtocol vía gRPC para revocar el token al instante. Y Bifrost Telemetry es el endpoint único de ingesta de logs de toda la flota — con una SLM local (Ollama) resumiendo la causa raíz de un error en lenguaje natural, directo en el panel, en vez de que el ingeniero tenga que cazar logs contenedor por contenedor.",
+      tags: ["Java 21", "Spring Boot", "Python", "RabbitMQ", "Docker", "Ollama"],
+      links: { live: null, repo: null, details: "projects/heimdall.html" },
+      satellite: { id: "03", slug: "dk-ops", name: "DK-Ops" },
+    },
+    {
+      title: "Alexandria (Axios)",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un copiloto socrático para enseñar lógica de programación: el motor scripteado valida el código, una SLM local interviene solo cuando el alumno se traba — y nunca entrega la respuesta.",
+      description:
+        "Nació para ayudar a compañeros de la universidad y se convirtió en un estudio de arquitectura híbrida: una capa scripteada determinística (Java/Spring, Clean Architecture) controla la trayectoria de evolución del alumno y corre los tests unitarios ocultos del ejercicio; cuando un test falla tres veces seguidas, un orquestador de IA en Python (FastAPI + Ollama) entra en escena como tutor socrático — su system prompt prohíbe explícitamente dar la respuesta, solo puede hacer la pregunta que lleve al alumno a notar su propio error. La respuesta de la SLM llega token a token vía streaming gRPC, enmascarando la latencia de la inferencia local, mientras RabbitMQ aísla el procesamiento pesado (compilar y testear el código en un contenedor Docker efímero) del chat en tiempo real. Diseñado para empezar con Lógica de Programación y expandirse a Idiomas e Historia — enseñando el 'por qué' de un paradigma, no solo su sintaxis.",
+      tags: ["Java 21", "Spring Boot", "Python", "FastAPI", "Angular", "gRPC", "RabbitMQ", "Ollama"],
+      links: { live: null, repo: null, details: "projects/alexandria.html" },
+    },
+    {
+      title: "Inari Trails",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Turismo estilo Pokémon Go: el usuario 'platina' barrios fotografiando puntos de interés reales, mientras comercios locales pagan para volverse un Stop destacado.",
+      description:
+        "Convierte un itinerario turístico rígido en colección: cada punto de interés es un Stop con radio de proximidad (PostgreSQL + PostGIS, índice GiST para consultas espaciales rápidas), y el acervo de fotos de cada usuario funciona como una Pokédex personal de lugares descubiertos. Dividir el acervo en público y privado reduce el costo de moderación de raíz — el diario personal es instantáneo, solo lo que se marca como público entra al pipeline: subida vía Pre-signed URL directo a S3, un worker que arranca el EXIF y reconvierte la imagen a WebP (lo que ya destruye cualquier script malicioso incrustado en el archivo original), y solo entonces una API de visión computacional habilita la publicación. Una Dead Letter Queue en RabbitMQ garantiza que una foto corrupta o una IA de moderación caída nunca traben el resto de la cola. Del lado de negocio, los comercios locales se suscriben para aparecer destacados en la generación automática de rutas — monetizando el flujo de peatones que la app ya genera gratis.",
+      tags: ["Java 21", "Spring Boot", "PostgreSQL", "PostGIS", "RabbitMQ", "AWS S3", "Redis"],
+      links: { live: null, repo: null, details: "projects/inaritrails.html" },
+    },
+    {
+      title: "Terminus Horizon",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un motor matemático de misión crítica en Python: audita funciones simbólicamente para encontrar saltos, polos y Jerk infinito antes de que el hardware sienta el impacto.",
+      description:
+        "Un Domain Service puro (Arquitectura Hexagonal, cero I/O) que usa computación simbólica — SymPy, no punto flotante — para probar matemáticamente la sanidad de una función antes de que llegue a un actuador real. El SignalContinuityAnalyzer compara los límites laterales en un punto crítico: si divergen, es un salto (choque físico); si tienden a infinito, es un polo (resonancia catastrófica). El KinematicStressAnalyzer va más allá de la aceleración y deriva la trayectoria hasta el Jerk (la 3ª derivada de la posición) — si una desaceleración es demasiado abrupta, el Jerk diverge, el equivalente matemático de un martillazo en el engranaje, y la operación se aborta antes de que el motor sea energizado. Una API en FastAPI expone estos servicios como Driving Adapter, con Pydantic validando el payload en la frontera (Zero Trust) antes de que cualquier dato toque el núcleo matemático.",
+      tags: ["Python", "SymPy", "FastAPI", "Pydantic", "NumPy", "SciPy", "Arquitectura Hexagonal"],
+      links: { live: null, repo: null, details: "projects/terminushorizon.html" },
     },
     {
       title: "Ultrafoot 26",
