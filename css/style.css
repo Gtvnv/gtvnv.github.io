@@ -836,13 +836,50 @@ section:last-of-type {
   margin-bottom: 0.9rem;
 }
 
+/* Descrição completa colapsada por padrão: grid-template-rows 0fr->1fr
+   anima a altura sem JS medir pixel nenhum (overflow:hidden no filho
+   esconde o conteúdo enquanto a track está em 0fr). flex-grow fica
+   aqui (não mais em .project-desc) pra continuar empurrando tags/links
+   pro rodapé do card mesmo colapsado. */
+.project-desc-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  flex-grow: 1;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card.desc-expanded .project-desc-collapse {
+  grid-template-rows: 1fr;
+}
+
+.project-desc-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .project-desc {
   color: var(--muted);
   font-size: 0.9rem;
-  margin-bottom: 1.25rem;
-  flex-grow: 1;
+  margin-bottom: 0;
   text-align: justify;
   hyphens: auto;
+}
+
+.project-desc-toggle {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0.7rem 0 1.25rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.project-desc-toggle:hover,
+.project-desc-toggle:focus-visible {
+  text-decoration: underline;
 }
 
 .project-tags {

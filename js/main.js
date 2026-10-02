@@ -280,7 +280,28 @@
         card.appendChild(el("p", "project-impact", `↳ ${project.impact}`));
       }
 
-      card.appendChild(el("p", "project-desc", project.description));
+      // Descrição longa some atrás de "Ver mais": o resumo (project-summary)
+      // já dá o essencial, a descrição completa só carrega quando alguém
+      // pede — resolve o card "denso demais" sem esconder informação de
+      // verdade atrás de um modal/pop-up.
+      const descCollapse = el("div", "project-desc-collapse");
+      const descInner = el("div", "project-desc-inner");
+      descInner.appendChild(el("p", "project-desc", project.description));
+      descCollapse.appendChild(descInner);
+      card.appendChild(descCollapse);
+
+      const expandLabels = UI[locale].projectExpand;
+      if (expandLabels) {
+        const toggle = el("button", "project-desc-toggle", expandLabels.more);
+        toggle.type = "button";
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.addEventListener("click", () => {
+          const expanded = card.classList.toggle("desc-expanded");
+          toggle.setAttribute("aria-expanded", String(expanded));
+          toggle.textContent = expanded ? expandLabels.less : expandLabels.more;
+        });
+        card.appendChild(toggle);
+      }
 
       const tags = el("div", "project-tags");
       project.tags.forEach((tag) => tags.appendChild(el("span", "tag", tag)));
