@@ -333,6 +333,7 @@
     renderProjects(locale);
     renderNotes(locale);
     initScrollReveal(); // novos nós entraram no DOM — observa de novo
+    if (window.ZCAnimations) window.ZCAnimations.refresh(); // reconstrói o pin da seção Formação (js/animations.js)
   }
 
   // ---------- Interactions ----------
@@ -475,13 +476,13 @@
   // Revela seções e cards suavemente conforme entram na tela.
   function initScrollReveal() {
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-      document.querySelectorAll("[data-reveal], .project-card, .timeline-item, .note-item").forEach((n) =>
+      document.querySelectorAll("[data-reveal], .project-card, .timeline-item, .note-item, .language-item").forEach((n) =>
         n.classList.add("revealed")
       );
       return;
     }
     const targets = document.querySelectorAll(
-      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed)"
+      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed), .language-item:not(.revealed)"
     );
     const observer = new IntersectionObserver(
       (entries, obs) => {

@@ -1186,21 +1186,36 @@ section:last-of-type {
 
 /* =========================================================
    SCROLL REVEAL
+   Entrada via clip-path (o conteúdo "sobe" por trás de uma máscara)
+   em vez de só opacity+translateY — mesma classe .revealed de sempre
+   (main.js/project-details.js/zenithcode.js só decidem QUANDO ela
+   entra; a seção Formação, além disso, tem o efeito de pin próprio
+   em js/animations.js, que também só alterna essa mesma classe).
+   Easing cubic-bezier(0.22,1,0.36,1): desacelera forte no final, sem
+   nenhum "bounce" — fica suave, não chamativo.
    ========================================================= */
 [data-reveal],
 .project-card,
 .timeline-item,
-.note-item {
+.note-item,
+.education-item,
+.language-item {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(22px);
+  clip-path: inset(0 0 14% 0);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-reveal].revealed,
 .project-card.revealed,
 .timeline-item.revealed,
-.note-item.revealed {
+.note-item.revealed,
+.education-item.revealed,
+.language-item.revealed {
   opacity: 1;
   transform: translateY(0);
+  clip-path: inset(0 0 0% 0);
 }
 

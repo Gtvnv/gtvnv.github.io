@@ -42,7 +42,9 @@
   <noscript>
     <style>
       /* Sem JS não roda o fade de entrada (main.js) — mostra tudo direto. */
-      .hero-content, .hero-photo-wrap { opacity: 1 !important; }
+      .hero-content, .hero-photo-wrap,
+      [data-reveal], .project-card, .timeline-item, .note-item,
+      .education-item, .language-item { opacity: 1 !important; clip-path: none !important; transform: none !important; }
     </style>
   </noscript>
 </head>
@@ -241,6 +243,8 @@
 
   <button class="back-to-top" data-back-to-top aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/config.js"></script>
   <script src="js/skills-data.js"></script>
@@ -249,6 +253,7 @@
   <script src="js/education-data.js"></script>
   <script src="js/projects-data.js"></script>
   <script src="js/notes-data.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
