@@ -212,11 +212,13 @@ section:last-of-type {
   flex-wrap: wrap;
 }
 
-.section-index {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--muted-dim);
-  letter-spacing: 0.02em;
+/* Usado nas seções da home (index.html): título sozinho, centralizado,
+   sem a "02 / Experiência" que tinha antes. */
+.section-head-centered {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .section-title {
@@ -923,6 +925,8 @@ section:last-of-type {
 .education-list {
   display: flex;
   flex-direction: column;
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .education-item {
@@ -963,6 +967,7 @@ section:last-of-type {
   display: flex;
   flex-direction: column;
   max-width: 420px;
+  margin: 0 auto;
 }
 
 .language-item {
@@ -994,13 +999,6 @@ section:last-of-type {
    ========================================================= */
 .contact-section {
   text-align: center;
-}
-
-.contact-section .section-head {
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
 }
 
 .contact-email {
