@@ -212,13 +212,11 @@ section:last-of-type {
   flex-wrap: wrap;
 }
 
-/* Usado nas seções da home (index.html): título sozinho, centralizado,
-   sem a "02 / Experiência" que tinha antes. */
-.section-head-centered {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.section-index {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted-dim);
+  letter-spacing: 0.02em;
 }
 
 .section-title {
@@ -700,19 +698,10 @@ section:last-of-type {
 /* =========================================================
    PROJECTS
    ========================================================= */
-/* Faixa horizontal com scroll-snap em vez de grid vertical: mostra
-   ~2 cards inteiros + uma "espiada" do próximo na borda, em vez de
-   esconder 11 dos 12 projetos atrás de um carrossel clássico 1-a-1. */
 .project-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-left: 2px;
-  padding-bottom: 0.75rem;
-  margin: 0 -2px;
-  padding-left: 2px;
-  padding-right: 2px;
 }
 
 .project-card {
@@ -724,8 +713,6 @@ section:last-of-type {
   display: flex;
   flex-direction: column;
   transition: border-color 0.15s ease, transform 0.15s ease;
-  flex: 0 0 min(420px, 82vw);
-  scroll-snap-align: start;
 }
 
 .project-card:hover {
@@ -734,35 +721,9 @@ section:last-of-type {
 }
 
 .project-card.featured {
-  flex-basis: min(860px, 88vw);
+  grid-column: 1 / -1;
   background: var(--panel-hover);
   border-color: var(--border);
-}
-
-/* Setas de navegação da faixa — ficam entre o título e os cards. */
-.carousel-controls {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-bottom: 1.25rem;
-}
-
-.carousel-arrow {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-.carousel-arrow:hover,
-.carousel-arrow:focus-visible {
-  border-color: var(--accent-dim);
-  color: var(--accent);
 }
 
 /* Brasão do satélite Z2A do qual o projeto "descende", ao lado do nome.
@@ -873,50 +834,13 @@ section:last-of-type {
   margin-bottom: 0.9rem;
 }
 
-/* Descrição completa colapsada por padrão: grid-template-rows 0fr->1fr
-   anima a altura sem JS medir pixel nenhum (overflow:hidden no filho
-   esconde o conteúdo enquanto a track está em 0fr). flex-grow fica
-   aqui (não mais em .project-desc) pra continuar empurrando tags/links
-   pro rodapé do card mesmo colapsado. */
-.project-desc-collapse {
-  display: grid;
-  grid-template-rows: 0fr;
-  flex-grow: 1;
-  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.project-card.desc-expanded .project-desc-collapse {
-  grid-template-rows: 1fr;
-}
-
-.project-desc-inner {
-  overflow: hidden;
-  min-height: 0;
-}
-
 .project-desc {
   color: var(--muted);
   font-size: 0.9rem;
-  margin-bottom: 0;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
   text-align: justify;
   hyphens: auto;
-}
-
-.project-desc-toggle {
-  align-self: flex-start;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0.7rem 0 1.25rem;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  cursor: pointer;
-}
-
-.project-desc-toggle:hover,
-.project-desc-toggle:focus-visible {
-  text-decoration: underline;
 }
 
 .project-tags {
@@ -999,8 +923,6 @@ section:last-of-type {
 .education-list {
   display: flex;
   flex-direction: column;
-  max-width: 640px;
-  margin: 0 auto;
 }
 
 .education-item {
@@ -1041,7 +963,6 @@ section:last-of-type {
   display: flex;
   flex-direction: column;
   max-width: 420px;
-  margin: 0 auto;
 }
 
 .language-item {
@@ -1073,6 +994,13 @@ section:last-of-type {
    ========================================================= */
 .contact-section {
   text-align: center;
+}
+
+.contact-section .section-head {
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contact-email {
@@ -1168,6 +1096,10 @@ section:last-of-type {
     grid-template-columns: 1fr;
   }
 
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
   }
@@ -1254,36 +1186,21 @@ section:last-of-type {
 
 /* =========================================================
    SCROLL REVEAL
-   Entrada via clip-path (o conteúdo "sobe" por trás de uma máscara)
-   em vez de só opacity+translateY — mesma classe .revealed de sempre
-   (main.js/project-details.js/zenithcode.js só decidem QUANDO ela
-   entra; a seção Formação, além disso, tem o efeito de pin próprio
-   em js/animations.js, que também só alterna essa mesma classe).
-   Easing cubic-bezier(0.22,1,0.36,1): desacelera forte no final, sem
-   nenhum "bounce" — fica suave, não chamativo.
    ========================================================= */
 [data-reveal],
 .project-card,
 .timeline-item,
-.note-item,
-.education-item,
-.language-item {
+.note-item {
   opacity: 0;
-  transform: translateY(22px);
-  clip-path: inset(0 0 14% 0);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    clip-path 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 [data-reveal].revealed,
 .project-card.revealed,
 .timeline-item.revealed,
-.note-item.revealed,
-.education-item.revealed,
-.language-item.revealed {
+.note-item.revealed {
   opacity: 1;
   transform: translateY(0);
-  clip-path: inset(0 0 0% 0);
 }
 

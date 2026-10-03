@@ -280,28 +280,7 @@
         card.appendChild(el("p", "project-impact", `↳ ${project.impact}`));
       }
 
-      // Descrição longa some atrás de "Ver mais": o resumo (project-summary)
-      // já dá o essencial, a descrição completa só carrega quando alguém
-      // pede — resolve o card "denso demais" sem esconder informação de
-      // verdade atrás de um modal/pop-up.
-      const descCollapse = el("div", "project-desc-collapse");
-      const descInner = el("div", "project-desc-inner");
-      descInner.appendChild(el("p", "project-desc", project.description));
-      descCollapse.appendChild(descInner);
-      card.appendChild(descCollapse);
-
-      const expandLabels = UI[locale].projectExpand;
-      if (expandLabels) {
-        const toggle = el("button", "project-desc-toggle", expandLabels.more);
-        toggle.type = "button";
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.addEventListener("click", () => {
-          const expanded = card.classList.toggle("desc-expanded");
-          toggle.setAttribute("aria-expanded", String(expanded));
-          toggle.textContent = expanded ? expandLabels.less : expandLabels.more;
-        });
-        card.appendChild(toggle);
-      }
+      card.appendChild(el("p", "project-desc", project.description));
 
       const tags = el("div", "project-tags");
       project.tags.forEach((tag) => tags.appendChild(el("span", "tag", tag)));
@@ -354,7 +333,6 @@
     renderProjects(locale);
     renderNotes(locale);
     initScrollReveal(); // novos nós entraram no DOM — observa de novo
-    if (window.ZCAnimations) window.ZCAnimations.refresh(); // reconstrói o pin da seção Formação (js/animations.js)
   }
 
   // ---------- Interactions ----------
@@ -497,13 +475,13 @@
   // Revela seções e cards suavemente conforme entram na tela.
   function initScrollReveal() {
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-      document.querySelectorAll("[data-reveal], .project-card, .timeline-item, .note-item, .language-item").forEach((n) =>
+      document.querySelectorAll("[data-reveal], .project-card, .timeline-item, .note-item").forEach((n) =>
         n.classList.add("revealed")
       );
       return;
     }
     const targets = document.querySelectorAll(
-      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed), .language-item:not(.revealed)"
+      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed)"
     );
     const observer = new IntersectionObserver(
       (entries, obs) => {
@@ -519,23 +497,6 @@
     targets.forEach((t) => observer.observe(t));
   }
 
-  // Setas da faixa horizontal de projetos — rola por ~1 card a cada clique.
-  // Os botões e o container vivem fora do que renderProjects() recria a
-  // cada troca de idioma, então isso só precisa rodar uma vez.
-  function setupCarousels() {
-    document.querySelectorAll("[data-carousel-prev], [data-carousel-next]").forEach((btn) => {
-      const key = btn.getAttribute("data-carousel-prev") || btn.getAttribute("data-carousel-next");
-      const track = document.querySelector(`[data-carousel="${key}"]`);
-      if (!track) return;
-      const direction = btn.hasAttribute("data-carousel-prev") ? -1 : 1;
-      btn.addEventListener("click", () => {
-        const card = track.querySelector(".project-card");
-        const step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
-        track.scrollBy({ left: direction * step, behavior: prefersReducedMotion ? "auto" : "smooth" });
-      });
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     renderAll(currentLocale);
     setupNavToggle();
@@ -545,6 +506,5 @@
     setupScrollSpy();
     setupBackToTop();
     setupParallax();
-    setupCarousels();
   });
 })();
