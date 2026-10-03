@@ -502,8 +502,10 @@
       );
       return;
     }
+    // .project-card fica de fora: igual a .education-item, é revelado
+    // exclusivamente pelo pin+stagger de js/animations.js.
     const targets = document.querySelectorAll(
-      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed), .language-item:not(.revealed)"
+      "[data-reveal]:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed), .language-item:not(.revealed)"
     );
     const observer = new IntersectionObserver(
       (entries, obs) => {
@@ -519,23 +521,6 @@
     targets.forEach((t) => observer.observe(t));
   }
 
-  // Setas da faixa horizontal de projetos — rola por ~1 card a cada clique.
-  // Os botões e o container vivem fora do que renderProjects() recria a
-  // cada troca de idioma, então isso só precisa rodar uma vez.
-  function setupCarousels() {
-    document.querySelectorAll("[data-carousel-prev], [data-carousel-next]").forEach((btn) => {
-      const key = btn.getAttribute("data-carousel-prev") || btn.getAttribute("data-carousel-next");
-      const track = document.querySelector(`[data-carousel="${key}"]`);
-      if (!track) return;
-      const direction = btn.hasAttribute("data-carousel-prev") ? -1 : 1;
-      btn.addEventListener("click", () => {
-        const card = track.querySelector(".project-card");
-        const step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
-        track.scrollBy({ left: direction * step, behavior: prefersReducedMotion ? "auto" : "smooth" });
-      });
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     renderAll(currentLocale);
     setupNavToggle();
@@ -545,6 +530,5 @@
     setupScrollSpy();
     setupBackToTop();
     setupParallax();
-    setupCarousels();
   });
 })();
