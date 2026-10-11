@@ -204,6 +204,7 @@ const PROJECTS = {
         "Projeto fundado em parceria pra atacar a saturação de 'cursos de apertar botão': em vez de ensinar a operar uma interface corporativa cara, a Metodologia Lyceum começa pelos fundamentos agnósticos — APIs, webhooks, segurança de credenciais, arquitetura de tratamento de erro — antes de aplicar isso em ferramentas acessíveis (n8n, modelos locais via Ollama) e só depois traduzir pro ecossistema corporativo (Microsoft Power Platform, Copilot Studio). A infraestrutura do MVP é deliberadamente enxuta: em vez de construir um LMS do zero, as turmas fechadas rodam em hospedagem white-label e o braço 'Faculdade Livre' (conteúdo aberto pra gerar autoridade) distribui pelo YouTube. Nomeado em referência a Talos, o autômato de bronze forjado por Hefesto pra proteger Creta seguindo uma lógica programada e inquebrável.",
       tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
       links: { live: null, repo: null, details: "projects/talosacademy.html" },
+      satellite: { id: "09", slug: "catharsis", name: "Catharsis" },
     },
     {
       title: "Ultrafoot 26",
@@ -410,6 +411,7 @@ const PROJECTS = {
         "Co-founded to attack the saturation of 'push-button' courses: instead of teaching how to operate an expensive corporate interface, the Lyceum Methodology starts with tool-agnostic fundamentals — APIs, webhooks, credential security, error-handling architecture — before applying them in accessible tools (n8n, local models via Ollama) and only then translating that into the corporate ecosystem (Microsoft Power Platform, Copilot Studio). The MVP's infrastructure is deliberately lean: instead of building an LMS from scratch, closed cohorts run on white-label hosting while the 'Open Faculty' arm (open content that builds authority) distributes through YouTube. Named after Talos, the bronze automaton forged by Hephaestus to guard Crete, following an unbreakable, programmed logic.",
       tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
       links: { live: null, repo: null, details: "projects/talosacademy.html" },
+      satellite: { id: "09", slug: "catharsis", name: "Catharsis" },
     },
     {
       title: "Ultrafoot 26",
@@ -616,6 +618,7 @@ const PROJECTS = {
         "Proyecto fundado en sociedad para atacar la saturación de 'cursos de apretar botones': en vez de enseñar a operar una interfaz corporativa cara, la Metodología Lyceum empieza por los fundamentos agnósticos — APIs, webhooks, seguridad de credenciales, arquitectura de manejo de errores — antes de aplicarlos en herramientas accesibles (n8n, modelos locales vía Ollama) y solo después traducirlos al ecosistema corporativo (Microsoft Power Platform, Copilot Studio). La infraestructura del MVP es deliberadamente austera: en vez de construir un LMS desde cero, las cohortes cerradas corren en hosting white-label y el brazo 'Facultad Libre' (contenido abierto para generar autoridad) se distribuye por YouTube. Nombrado en referencia a Talos, el autómata de bronce forjado por Hefesto para proteger Creta siguiendo una lógica programada e inquebrantable.",
       tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
       links: { live: null, repo: null, details: "projects/talosacademy.html" },
+      satellite: { id: "09", slug: "catharsis", name: "Catharsis" },
     },
     {
       title: "Ultrafoot 26",
