@@ -776,6 +776,189 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Voltar ao portfólio" },
     },
+    muninsecurity: {
+      meta: {
+        title: "Munin Security — Gustavo Vianna",
+        description: "Orquestrador de OSINT e forense digital: cadeia de custódia auditável, Zero Trust e workers isolados para investigação B2G.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/muninsecurity.png",
+      hero: {
+        eyebrow: "Orquestrador de OSINT & Forense Digital · B2G e Inteligência Privada",
+        title: "Munin Security",
+        subtitle: "Não basta achar a informação — tem que provar como ela foi obtida",
+        summary:
+          "Centraliza o 'canivete suíço' de ferramentas gratuitas de OSINT, scraping e pentest do GitHub atrás de um único gateway Zero Trust: cada requisição passa por um motor RBAC+ABAC antes de qualquer processamento e gera log de auditoria imutável, enquanto workers especializados em C# e Python rodam isolados em containers Docker, saindo pra internet por um pool de proxies rotativos. Nomeado em referência a Munin, o corvo de Odin que vasculha o mundo coletando segredos e os traz de volta.",
+        statusNote: "Em fase de design — arquitetura de ingestão, cadeia de custódia e domínio de Risk Scoring já especificados.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu de uma dor concreta de investigação: ferramentas de OSINT e forense digital são poderosas, mas espalhadas — cada uma exige seu próprio ambiente, suas próprias credenciais, sua própria configuração. O Munin Security existe pra resolver isso de uma vez: um proxy reverso que centraliza esse arsenal atrás de uma única porta de entrada auditável, pensado tanto pra investigação governamental (B2G) quanto pra inteligência corporativa — onde não basta encontrar o dado, é preciso provar como ele foi obtido.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Event-Driven com isolamento estrito: o Gateway nunca executa a busca diretamente, só valida a autorização e publica a intenção. Isso garante que, se uma ferramenta específica quebrar ou um worker cair, o resto da frota de investigação continua operando sem travar.",
+        tree: [
+          "API Gateway (Zero Trust)    valida RBAC/ABAC, gera job_id, log de auditoria imutável",
+          "RabbitMQ                     roteia por exchange: munin.osint.social, munin.scrape.darkweb...",
+          "Workers C# / Python           rodam a ferramenta isolada em container Docker efêmero",
+          "Pool de proxies rotativos     mascara a origem da investigação (residenciais/mobile)",
+          "PostgreSQL + PostGIS          cruza rotas, localizações de antena, metadados de foto",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker", "Redis"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Cada peça existe pra dar validade jurídica a um achado, não só pra encontrá-lo.",
+        items: [
+          { title: "Cadeia de custódia, não só um achado", mechanic: "Cada requisição gera um log de auditoria imutável — quem buscou, quando, qual parâmetro, qual worker executou — pra ter validade jurídica em tribunal." },
+          { title: "Proxy bidirecional contra atribuição", mechanic: "Os workers saem pra internet por um pool de proxies rotativos residenciais/mobile, pra não levantar suspeita no alvo nem queimar o IP da própria infraestrutura." },
+          { title: "RBAC + ABAC, não só login", mechanic: "Um motor de autorização combinando papel e atributo decide se aquele agente pode fazer aquela busca específica, antes de qualquer processamento começar." },
+          { title: "Score de fraude em licitação via DDD", mechanic: "O agregado BiddingRiskAssessment cruza idade da empresa, teia societária e CNAE incompatível pra calcular um RiskScore de 0 a 100 e apontar cartéis." },
+          { title: "Se uma ferramenta quebra, só ela morre", mechanic: "Cada worker roda isolado; se um scraper quebrar com a mudança de layout de um site, o resto da frota de investigação continua operando perfeitamente." },
+        ],
+      },
+      endpoints: {
+        title: "Red Flags do Motor de Score",
+        intro: "Heurísticas que o FraudScoringService cruza pra apontar fraude em licitação pública.",
+        items: [
+          { name: "Shell Company Check", what: "Empresa aberta há menos de 3 meses antes da publicação do edital", role: "Peso Alto" },
+          { name: "Cartel Check", what: "Concorrentes com mesmo endereço físico, contador ou IP de submissão", role: "Peso Crítico" },
+          { name: "Incompatibilidade de CNAE", what: "Ramo de atividade principal incompatível com o objeto da licitação", role: "Peso Médio" },
+        ],
+      },
+      security: {
+        title: "Zero Trust de ponta a ponta",
+        body: "O middleware de autorização nunca confia por padrão: cada requisição passa por um motor combinando RBAC e ABAC antes de tocar qualquer worker, e gera um log de auditoria imutável — quem buscou, quando, com qual parâmetro, qual worker executou a busca. Pra licitações de segurança pública de alto escalão, o modelo pode ser elevado amarrando a chave de acesso à assinatura de um módulo TPM 2.0 físico, recusando login de máquinas não homologadas mesmo com a senha certa.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    pythiascout: {
+      meta: {
+        title: "Pythia Scout — Gustavo Vianna",
+        description: "Motor de Data Science que transforma robôs de scraping em C# num radar de oportunidades de mercado.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/pythiascout.png",
+      hero: {
+        eyebrow: "Motor de Market Intelligence · scouting de oportunidades via Data Science",
+        title: "Pythia Scout",
+        subtitle: "Traduz o caos de dados brutos do mercado num score de viabilidade de 0 a 100",
+        summary:
+          "Reaproveita uma frota de robôs em C# já existente como camada de ingestão de um motor de Data Science agnóstico a vertente de mercado: cada payload raspado passa pelo OmniShift (padronização de esquema) antes de chegar no core preditivo em Python, que combina clusterização, NLP local e uma heurística ponderada pra decidir se aquilo é um 'oceano azul' ou ruído. Nomeado em referência à Pítia, o oráculo de Delfos que traduzia sinais caóticos em profecias claras.",
+        statusNote: "Contrato de ingestão e fórmula do ViabilityScore já desenhados; implementação do pipeline ainda não iniciada.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu de uma necessidade concreta: já existia uma frota de robôs em C# fazendo scraping de mercado, faltava um cérebro central que decidisse o que vale a pena perseguir. Em vez de reescrever os robôs, o Pythia Scout os reaproveita como camada de ingestão (Pipes and Filters) e constrói a inteligência em cima, numa arquitetura agnóstica o suficiente pra atender qualquer vertente de mercado sem tocar no core analítico.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "Pipes and Filters orientado a eventos: cada estágio só conhece o evento que recebe e o que publica. Se o motor de Data Science cair pra um fine-tuning, os robôs continuam raspando e as mensagens ficam seguras na fila — nada se perde.",
+        tree: [
+          "Robôs C# (.NET 8)              extração: scraping/APIs, publica RawDataCollected",
+          "OmniShift (middleware)          valida contrato, padroniza esquema, publica DataNormalized",
+          "RabbitMQ                        pipe entre os três estágios, roteia por nicheHint",
+          "Core Python (Polars + Ollama)   NLP local + clusterização, calcula o ViabilityScore",
+          "Evento OpportunityScored        satélites assinam o tópico e disparam a ação de negócio",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Python", "C# / .NET 8", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars", "Scikit-learn", "FastAPI"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Reaproveita o que já existe, formaliza só o que faltava: o cérebro.",
+        items: [
+          { title: "Reaproveita a frota, não reescreve", mechanic: "Os robôs C# existentes viram a camada de Data Ingestion do motor sem precisar ser reescritos; o OmniShift absorve a responsabilidade de padronizar formatos diferentes." },
+          { title: "Score composto, não um número mágico", mechanic: "ViabilityScore é uma média ponderada de 4 variáveis (Demanda, Concorrência invertida, Urgência, Fit técnico), com o vetor de pesos configurável por nicho via Strategy Pattern." },
+          { title: "NLP local lê a dor do cliente", mechanic: "Um SLM via Ollama extrai Urgência e Demanda direto do texto bruto (reclamação, edital, post), com um system prompt ancorado em régua de pontuação pra evitar alucinação." },
+          { title: "Idempotência via hash", mechanic: "Cada payload recebe um content hash SHA-256 verificado no Redis antes de qualquer inferência, pra nunca pagar o custo de IA duas vezes pelo mesmo dado." },
+          { title: "Heurística hoje, ML amanhã", mechanic: "O cálculo do score vive atrás de uma interface IScoringStrategy; trocar a fórmula ponderada por um Random Forest no futuro não quebra o contrato da entidade." },
+        ],
+      },
+      endpoints: {
+        title: "A Fórmula do ViabilityScore",
+        intro: "Quatro variáveis, pesos configuráveis por nicho — o vetor abaixo é o perfil B2B/industrial.",
+        items: [
+          { name: "Demanda (D)", what: "Frequência e intensidade do problema relatado", role: "peso 0.30" },
+          { name: "Concorrência (C)", what: "Saturação do mercado — entra invertida na fórmula (100−C)", role: "peso 0.20" },
+          { name: "Urgência (U)", what: "Extraída via NLP local: frustração, prazo fatal, prejuízo relatado", role: "peso 0.35" },
+          { name: "Fit técnico (F)", what: "Alinhamento com a capacidade de entrega do ecossistema", role: "peso 0.15" },
+        ],
+      },
+      security: {
+        title: "Anti-Corruption Layer na fronteira",
+        body: "O OmniShift atua como validador de contratos: qualquer payload malformado ou não assinado é rejeitado antes de chegar no broker principal ou no banco relacional. Isso isola o core preditivo de qualquer dado sujo vindo da frota de robôs — o Python nunca processa HTML cru ou JSON fora do esquema, só o que já passou pela Anti-Corruption Layer.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
+    talosacademy: {
+      meta: {
+        title: "Talos Academy — Gustavo Vianna",
+        description: "Plataforma de ensino de automação e IA sem caixas pretas: a Metodologia Lyceum ensina a lógica antes da ferramenta.",
+      },
+      backLabel: "Portfólio",
+      logo: "../assets/projetos/talosacademy.png",
+      hero: {
+        eyebrow: "Learning Platform · fundamentos de automação e IA, sem caixa preta",
+        title: "Talos Academy",
+        subtitle: "Ensina a lógica por trás da automação antes de qualquer ferramenta",
+        summary:
+          "Projeto fundado em parceria pra atacar a saturação de 'cursos de apertar botão': em vez de ensinar a operar uma interface específica, a Metodologia Lyceum começa pelos fundamentos agnósticos (APIs, webhooks, segurança de credenciais, arquitetura de automação) antes de aplicar isso em ferramentas acessíveis (n8n, modelos locais) e só depois no ecossistema corporativo (Microsoft Power Platform). Nomeado em referência a Talos, o autômato de bronze forjado por Hefesto pra proteger Creta — a mesma lógica programada e confiável que o curso ensina a construir.",
+        statusNote: "Ementa do primeiro curso fechada (4 módulos); piloto em fase de gravação.",
+      },
+      about: {
+        title: "Sobre o projeto",
+        body: "Nasceu de uma conversa sobre juntar a vontade de um sócio de colocar a edição de vídeo em prática com a necessidade de estruturar uma plataforma de ensino de verdade. A escolha deliberada: fugir do curso raso que ensina a clicar numa ferramenta corporativa cara (como o Copilot Studio da Microsoft), e construir a base profissional que sobrevive à ferramenta que o mercado estiver usando daqui a dois anos.",
+      },
+      architecture: {
+        title: "Arquitetura",
+        body: "A estratégia de infraestrutura é deliberadamente enxuta no MVP: em vez de construir um LMS do zero, as aulas fechadas usam uma infraestrutura white-label existente, e o braço 'livre' (conteúdo aberto pra gerar autoridade) roda no YouTube — validando o modelo de ensino antes de qualquer investimento em plataforma própria.",
+        tree: [
+          "Metodologia Lyceum         motor pedagógico — lógica antes de ferramenta, em qualquer módulo",
+          "Faculdade Livre (aberta)    distribuição via YouTube, gera autoridade e prova a didática",
+          "Turma fechada               hospedada em infraestrutura white-label, sem LMS próprio no MVP",
+          "Pipeline de vídeo           scripts FFmpeg automatizam corte e normalização de áudio",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["n8n", "Power Platform", "Ollama", "FFmpeg", "Microsoft Copilot Studio"],
+      },
+      features: {
+        title: "Recursos-chave",
+        intro: "Fundamento antes de interface, em todos os módulos.",
+        items: [
+          { title: "Lógica antes da ferramenta", mechanic: "O Módulo 1 nivela a turma em APIs, webhooks e JSON antes de qualquer plataforma de automação ser aberta na tela." },
+          { title: "Agnóstico primeiro, enterprise depois", mechanic: "Os 3 primeiros módulos usam ferramentas abertas e de baixo custo (n8n, Ollama local); só o Módulo 4 traduz os mesmos conceitos pro Power Platform/Copilot Studio." },
+          { title: "Faculdade Livre sem construir um LMS", mechanic: "Valida o modelo de ensino com infraestrutura white-label e YouTube antes de qualquer linha de código de plataforma própria." },
+          { title: "Pipeline de vídeo automatizado", mechanic: "Scripts cuidam do trabalho sujo (normalização de áudio, corte de silêncio) pra liberar 100% da energia da edição pra dinâmica visual e retenção." },
+        ],
+      },
+      endpoints: {
+        title: "Ementa do Primeiro Curso",
+        intro: "'Automação e IA Sem Caixas Pretas' — quatro módulos, do fundamento ao enterprise.",
+        items: [
+          { name: "Módulo 1 — Lógica Invisível", what: "APIs, webhooks, JSON e segurança de credenciais", role: "" },
+          { name: "Módulo 2 — Cérebro da Automação", what: "Anatomia de um fluxo, roteamento, tratamento de erro", role: "" },
+          { name: "Módulo 3 — Mão na Massa", what: "n8n, primeiro assistente, IA local vs. nuvem, memória de contexto", role: "" },
+          { name: "Módulo 4 — Salto pro Enterprise", what: "Power Automate, Copilot Studio, como vender a solução", role: "" },
+        ],
+      },
+      security: {
+        title: "O que evitamos de propósito",
+        body: "O padrão do mercado de automação/IA promove cursos de 'aprenda a ferramenta X em 2 horas' e dinheiro rápido com IA — o Talos Academy se posiciona deliberadamente no oposto: fundamentos de arquitetura e segurança de dados antes de qualquer interface, porque a ferramenta que o mercado usa muda a cada ciclo, mas quem entende o fluxo por trás não fica refém de nenhuma delas.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Voltar ao portfólio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -1603,6 +1786,189 @@ const PROJECT_DETAILS = {
       links: { repo: null, live: null },
       footer: { backCta: "← Back to the portfolio" },
     },
+    muninsecurity: {
+      meta: {
+        title: "Munin Security — Gustavo Vianna",
+        description: "An OSINT and digital-forensics orchestrator: auditable chain of custody, Zero Trust, and isolated workers for B2G investigations.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/muninsecurity.png",
+      hero: {
+        eyebrow: "OSINT & Digital Forensics Orchestrator · B2G and Private Intelligence",
+        title: "Munin Security",
+        subtitle: "Finding the information isn't enough — you have to prove how it was obtained",
+        summary:
+          "Centralizes the 'Swiss Army knife' of free OSINT, scraping, and pentest tools from GitHub behind a single Zero Trust gateway: every request passes through an RBAC+ABAC engine before any processing and generates an immutable audit log, while specialized C# and Python workers run isolated in Docker containers, reaching the internet through a rotating proxy pool. Named after Munin, Odin's raven who roams the world gathering secrets and brings them back.",
+        statusNote: "At the design stage — ingestion architecture, chain of custody, and the Risk Scoring domain are already specified.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born from a concrete investigative pain point: OSINT and digital-forensics tools are powerful but scattered — each demanding its own environment, its own credentials, its own setup. Munin Security exists to solve that once and for all: a reverse proxy that centralizes that arsenal behind a single auditable entry point, built for both government investigation (B2G) and corporate intelligence — where finding the data isn't enough, you have to prove how it was obtained.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Event-driven with strict isolation: the Gateway never runs the search directly, it only validates authorization and publishes the intent. That guarantees that if a specific tool breaks or a worker goes down, the rest of the investigation fleet keeps running without stalling.",
+        tree: [
+          "API Gateway (Zero Trust)    validates RBAC/ABAC, issues a job_id, immutable audit log",
+          "RabbitMQ                     routes by exchange: munin.osint.social, munin.scrape.darkweb...",
+          "C# / Python Workers           run the tool isolated in an ephemeral Docker container",
+          "Rotating proxy pool           masks the investigation's origin (residential/mobile)",
+          "PostgreSQL + PostGIS          cross-references routes, cell-tower locations, photo metadata",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker", "Redis"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Every piece exists to give a finding legal standing, not just to find it.",
+        items: [
+          { title: "Chain of custody, not just a finding", mechanic: "Every request generates an immutable audit log — who searched, when, with what parameter, which worker ran it — to hold up in court." },
+          { title: "Bidirectional proxy against attribution", mechanic: "Workers reach the internet through a rotating pool of residential/mobile proxies, so neither the target gets suspicious nor the infrastructure's own IP gets burned." },
+          { title: "RBAC + ABAC, not just login", mechanic: "An authorization engine combining role and attribute decides whether that agent can run that specific search, before any processing even starts." },
+          { title: "Bid-fraud score via DDD", mechanic: "The BiddingRiskAssessment aggregate cross-references company age, corporate ownership webs, and mismatched activity codes to compute a 0-100 RiskScore and flag cartels." },
+          { title: "If one tool breaks, only it dies", mechanic: "Every worker runs isolated; if a scraper breaks because a site changed its layout, the rest of the investigation fleet keeps running perfectly." },
+        ],
+      },
+      endpoints: {
+        title: "The Scoring Engine's Red Flags",
+        intro: "Heuristics the FraudScoringService cross-references to flag public-bid fraud.",
+        items: [
+          { name: "Shell Company Check", what: "Company incorporated less than 3 months before the bid was published", role: "High weight" },
+          { name: "Cartel Check", what: "Competing bidders sharing an address, accountant, or submission IP", role: "Critical weight" },
+          { name: "Activity Code Mismatch", what: "Company's main business line incompatible with the bid's object", role: "Medium weight" },
+        ],
+      },
+      security: {
+        title: "Zero Trust end to end",
+        body: "The authorization middleware never trusts by default: every request passes through an engine combining RBAC and ABAC before touching any worker, and generates an immutable audit log — who searched, when, with what parameter, which worker ran the search. For high-stakes public-security bids, the model can be raised further by binding the access key to a physical TPM 2.0 module's signature, rejecting login from non-approved machines even with the right password.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    pythiascout: {
+      meta: {
+        title: "Pythia Scout — Gustavo Vianna",
+        description: "A Data Science engine that turns C# scraping bots into a market-opportunity radar.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/pythiascout.png",
+      hero: {
+        eyebrow: "Market Intelligence Engine · opportunity scouting via Data Science",
+        title: "Pythia Scout",
+        subtitle: "Translates the chaos of raw market data into a 0-100 viability score",
+        summary:
+          "Reuses an existing fleet of C# bots as the ingestion layer of a market-agnostic Data Science engine: every scraped payload passes through OmniShift (schema standardization) before reaching the predictive core in Python, which combines clustering, local NLP, and a weighted heuristic to decide whether something is a 'blue ocean' or just noise. Named after Pythia, the Oracle of Delphi who translated chaotic signals into clear prophecy.",
+        statusNote: "The ingestion contract and the ViabilityScore formula are already designed; pipeline implementation hasn't started.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born from a concrete need: a fleet of C# scraping bots already existed, what was missing was a central brain to decide what's worth chasing. Instead of rewriting the bots, Pythia Scout reuses them as the ingestion layer (Pipes and Filters) and builds the intelligence on top, in an architecture agnostic enough to serve any market vertical without touching the analytical core.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "Event-driven Pipes and Filters: each stage only knows the event it receives and the one it publishes. If the Data Science engine goes down for fine-tuning, the bots keep scraping and the messages stay safe in the queue — nothing is lost.",
+        tree: [
+          "C# bots (.NET 8)               extraction: scraping/APIs, publishes RawDataCollected",
+          "OmniShift (middleware)          validates the contract, standardizes schema, publishes DataNormalized",
+          "RabbitMQ                        the pipe between the three stages, routes by nicheHint",
+          "Python core (Polars + Ollama)   local NLP + clustering, computes the ViabilityScore",
+          "OpportunityScored event         satellites subscribe to the topic and trigger the business action",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["Python", "C# / .NET 8", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars", "Scikit-learn", "FastAPI"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Reuses what already exists, formalizes only what was missing: the brain.",
+        items: [
+          { title: "Reuses the fleet, doesn't rewrite it", mechanic: "The existing C# bots become the engine's Data Ingestion layer with no rewrite needed; OmniShift absorbs the job of standardizing different formats." },
+          { title: "Composite score, not a magic number", mechanic: "ViabilityScore is a weighted average of 4 variables (Demand, inverted Competition, Urgency, Technical fit), with the weight vector configurable per niche via Strategy Pattern." },
+          { title: "Local NLP reads the client's pain", mechanic: "An SLM via Ollama extracts Urgency and Demand straight from raw text (a complaint, a bid notice, a post), anchored by a system prompt with a strict scoring rubric to avoid hallucination." },
+          { title: "Idempotency via hashing", mechanic: "Every payload gets a SHA-256 content hash checked against Redis before any inference, so the same data never pays the AI cost twice." },
+          { title: "Heuristic today, ML tomorrow", mechanic: "The score calculation lives behind an IScoringStrategy interface; swapping the weighted formula for a Random Forest later doesn't break the entity's contract." },
+        ],
+      },
+      endpoints: {
+        title: "The ViabilityScore Formula",
+        intro: "Four variables, weights configurable per niche — the vector below is the B2B/industrial profile.",
+        items: [
+          { name: "Demand (D)", what: "Frequency and intensity of the reported problem", role: "weight 0.30" },
+          { name: "Competition (C)", what: "Market saturation — enters the formula inverted (100−C)", role: "weight 0.20" },
+          { name: "Urgency (U)", what: "Extracted via local NLP: frustration, hard deadline, reported losses", role: "weight 0.35" },
+          { name: "Technical fit (F)", what: "Alignment with the ecosystem's delivery capacity", role: "weight 0.15" },
+        ],
+      },
+      security: {
+        title: "An Anti-Corruption Layer at the boundary",
+        body: "OmniShift acts as a contract validator: any malformed or unsigned payload is rejected before it reaches the main broker or the relational database. That isolates the predictive core from any dirty data coming from the bot fleet — the Python side never processes raw HTML or off-schema JSON, only what's already passed through the Anti-Corruption Layer.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
+    talosacademy: {
+      meta: {
+        title: "Talos Academy — Gustavo Vianna",
+        description: "A no-black-boxes automation and AI learning platform: the Lyceum Methodology teaches the logic before the tool.",
+      },
+      backLabel: "Portfolio",
+      logo: "../assets/projetos/talosacademy.png",
+      hero: {
+        eyebrow: "Learning Platform · automation and AI fundamentals, no black boxes",
+        title: "Talos Academy",
+        subtitle: "Teaches the logic behind automation before any tool",
+        summary:
+          "Co-founded to attack the saturation of 'push-button' courses: instead of teaching how to operate one specific interface, the Lyceum Methodology starts with tool-agnostic fundamentals (APIs, webhooks, credential security, automation architecture) before applying them in accessible tools (n8n, local models) and only then in the corporate ecosystem (Microsoft Power Platform). Named after Talos, the bronze automaton forged by Hephaestus to guard Crete — the same reliable, programmed logic the course teaches students to build.",
+        statusNote: "The first course's syllabus is locked (4 modules); the pilot is in the recording stage.",
+      },
+      about: {
+        title: "About the project",
+        body: "Born from a conversation that joined a partner's wish to put video editing into practice with the need to structure a real teaching platform. The deliberate choice: skip the shallow course that teaches you to click through an expensive corporate interface (like Microsoft's Copilot Studio), and build the professional foundation that outlives whatever tool the market happens to be using two years from now.",
+      },
+      architecture: {
+        title: "Architecture",
+        body: "The MVP's infrastructure strategy is deliberately lean: instead of building an LMS from scratch, closed classes run on existing white-label hosting, and the 'open' arm (open content to build authority) runs on YouTube — validating the teaching model before any investment in a proprietary platform.",
+        tree: [
+          "Lyceum Methodology         pedagogical engine — logic before tool, in every module",
+          "Open Faculty (free arm)     distribution via YouTube, builds authority and proves the didactics",
+          "Closed cohort                hosted on white-label infrastructure, no in-house LMS in the MVP",
+          "Video pipeline               FFmpeg scripts automate audio normalization and silence cuts",
+        ],
+      },
+      stack: {
+        title: "Tech stack",
+        items: ["n8n", "Power Platform", "Ollama", "FFmpeg", "Microsoft Copilot Studio"],
+      },
+      features: {
+        title: "Key features",
+        intro: "Fundamentals before interface, in every module.",
+        items: [
+          { title: "Logic before the tool", mechanic: "Module 1 levels the class on APIs, webhooks, and JSON before any automation platform is ever opened on screen." },
+          { title: "Agnostic first, enterprise later", mechanic: "The first 3 modules use open, low-cost tools (n8n, local Ollama); only Module 4 translates the same concepts into Power Platform/Copilot Studio." },
+          { title: "An Open Faculty without building an LMS", mechanic: "Validates the teaching model with white-label hosting and YouTube before a single line of proprietary platform code." },
+          { title: "Automated video pipeline", mechanic: "Scripts handle the dirty work (audio normalization, silence cuts) so editing energy goes 100% into visual dynamics and retention." },
+        ],
+      },
+      endpoints: {
+        title: "First Course Syllabus",
+        intro: "'Automation and AI Without Black Boxes' — four modules, from fundamentals to enterprise.",
+        items: [
+          { name: "Module 1 — The Invisible Logic", what: "APIs, webhooks, JSON, and credential security", role: "" },
+          { name: "Module 2 — Automation's Brain", what: "Anatomy of a flow, routing, error-handling architecture", role: "" },
+          { name: "Module 3 — Hands-On", what: "n8n, the first assistant, local vs. cloud AI, context memory", role: "" },
+          { name: "Module 4 — The Enterprise Leap", what: "Power Automate, Copilot Studio, how to sell the solution", role: "" },
+        ],
+      },
+      security: {
+        title: "What we deliberately avoid",
+        body: "The market standard for automation/AI courses pushes 'learn tool X in 2 hours' and get-rich-quick-with-AI promises — Talos Academy positions itself deliberately against that: architecture and data-security fundamentals before any interface, because the tool the market uses changes every cycle, but whoever understands the flow behind it never stays hostage to any single one of them.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Back to the portfolio" },
+    },
     ultrafoot26: {
       meta: {
         title: "Ultrafoot 26 — Gustavo Vianna",
@@ -2426,6 +2792,189 @@ const PROJECT_DETAILS = {
       security: {
         title: "El límite que no negocia",
         body: "El nombre viene de la mitología romana: Terminus era el dios de los marcos de frontera, el único que se negaba a ceder terreno ni ante Júpiter — la postura exacta que asume el motor. Si el cálculo indica que el Jerk va a divergir o que la trayectoria va a cruzar una asíntota, la operación se aborta, sin importar lo que el software de gestión haya ordenado. La referencia histórica que inspiró el proyecto se corrigió durante el diseño: no fue el Apollo, fue el desastre del transbordador espacial Challenger (1986) — los anillos de sellado de goma (O-rings) tenían un límite térmico de falla que la matemática ya señalaba, pero la decisión gerencial de lanzar de todas formas ignoró lo que el cálculo ya sabía.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    muninsecurity: {
+      meta: {
+        title: "Munin Security — Gustavo Vianna",
+        description: "Orquestador de OSINT y forense digital: cadena de custodia auditable, Zero Trust y workers aislados para investigación B2G.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/muninsecurity.png",
+      hero: {
+        eyebrow: "Orquestador de OSINT & Forense Digital · B2G e Inteligencia Privada",
+        title: "Munin Security",
+        subtitle: "No basta con encontrar la información — hay que probar cómo se obtuvo",
+        summary:
+          "Centraliza la 'navaja suiza' de herramientas gratuitas de OSINT, scraping y pentest de GitHub detrás de un único gateway Zero Trust: cada solicitud pasa por un motor RBAC+ABAC antes de cualquier procesamiento y genera un log de auditoría inmutable, mientras workers especializados en C# y Python corren aislados en contenedores Docker, saliendo a internet a través de un pool de proxies rotativos. Nombrado en referencia a Munin, el cuervo de Odín que recorre el mundo recolectando secretos y los trae de vuelta.",
+        statusNote: "En fase de diseño — arquitectura de ingesta, cadena de custodia y dominio de Risk Scoring ya especificados.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació de un dolor concreto de investigación: las herramientas de OSINT y forense digital son poderosas pero están dispersas — cada una exige su propio entorno, sus propias credenciales, su propia configuración. Munin Security existe para resolver esto de una vez: un proxy inverso que centraliza ese arsenal detrás de una única puerta de entrada auditable, pensado tanto para investigación gubernamental (B2G) como para inteligencia corporativa — donde no basta con encontrar el dato, hay que probar cómo se obtuvo.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Event-Driven con aislamiento estricto: el Gateway nunca ejecuta la búsqueda directamente, solo valida la autorización y publica la intención. Eso garantiza que, si una herramienta específica falla o un worker cae, el resto de la flota de investigación sigue operando sin trabarse.",
+        tree: [
+          "API Gateway (Zero Trust)    valida RBAC/ABAC, genera job_id, log de auditoría inmutable",
+          "RabbitMQ                     enruta por exchange: munin.osint.social, munin.scrape.darkweb...",
+          "Workers C# / Python           ejecutan la herramienta aislada en un contenedor Docker efímero",
+          "Pool de proxies rotativos     enmascara el origen de la investigación (residenciales/móviles)",
+          "PostgreSQL + PostGIS          cruza rutas, ubicaciones de antena, metadatos de fotos",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker", "Redis"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Cada pieza existe para darle validez jurídica a un hallazgo, no solo para encontrarlo.",
+        items: [
+          { title: "Cadena de custodia, no solo un hallazgo", mechanic: "Cada solicitud genera un log de auditoría inmutable — quién buscó, cuándo, con qué parámetro, qué worker lo ejecutó — para tener validez jurídica ante un tribunal." },
+          { title: "Proxy bidireccional contra la atribución", mechanic: "Los workers salen a internet a través de un pool de proxies rotativos residenciales/móviles, para no levantar sospechas en el objetivo ni quemar la IP de la propia infraestructura." },
+          { title: "RBAC + ABAC, no solo login", mechanic: "Un motor de autorización que combina rol y atributo decide si ese agente puede hacer esa búsqueda específica, antes de que empiece cualquier procesamiento." },
+          { title: "Score de fraude en licitación vía DDD", mechanic: "El agregado BiddingRiskAssessment cruza la edad de la empresa, la red societaria y el CNAE incompatible para calcular un RiskScore de 0 a 100 y señalar cárteles." },
+          { title: "Si una herramienta falla, solo ella muere", mechanic: "Cada worker corre aislado; si un scraper falla por un cambio de layout en un sitio, el resto de la flota de investigación sigue operando perfectamente." },
+        ],
+      },
+      endpoints: {
+        title: "Red Flags del Motor de Score",
+        intro: "Heurísticas que el FraudScoringService cruza para señalar fraude en licitación pública.",
+        items: [
+          { name: "Shell Company Check", what: "Empresa constituida hace menos de 3 meses antes de la publicación del edicto", role: "Peso Alto" },
+          { name: "Cartel Check", what: "Competidores con la misma dirección física, contador o IP de envío", role: "Peso Crítico" },
+          { name: "Incompatibilidad de CNAE", what: "Rubro de actividad principal incompatible con el objeto de la licitación", role: "Peso Medio" },
+        ],
+      },
+      security: {
+        title: "Zero Trust de punta a punta",
+        body: "El middleware de autorización nunca confía por defecto: cada solicitud pasa por un motor que combina RBAC y ABAC antes de tocar cualquier worker, y genera un log de auditoría inmutable — quién buscó, cuándo, con qué parámetro, qué worker ejecutó la búsqueda. Para licitaciones de seguridad pública de alto nivel, el modelo puede elevarse atando la clave de acceso a la firma de un módulo TPM 2.0 físico, rechazando el login de máquinas no homologadas aunque la contraseña sea correcta.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    pythiascout: {
+      meta: {
+        title: "Pythia Scout — Gustavo Vianna",
+        description: "Motor de Data Science que convierte robots de scraping en C# en un radar de oportunidades de mercado.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/pythiascout.png",
+      hero: {
+        eyebrow: "Motor de Market Intelligence · scouting de oportunidades vía Data Science",
+        title: "Pythia Scout",
+        subtitle: "Traduce el caos de datos brutos del mercado en un score de viabilidad de 0 a 100",
+        summary:
+          "Reutiliza una flota de robots en C# ya existente como capa de ingesta de un motor de Data Science agnóstico a la vertical de mercado: cada payload raspado pasa por OmniShift (estandarización de esquema) antes de llegar al core predictivo en Python, que combina clustering, NLP local y una heurística ponderada para decidir si eso es un 'océano azul' o solo ruido. Nombrado en referencia a Pitia, el oráculo de Delfos que traducía señales caóticas en profecías claras.",
+        statusNote: "Contrato de ingesta y fórmula del ViabilityScore ya diseñados; implementación del pipeline aún no ha comenzado.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació de una necesidad concreta: ya existía una flota de robots en C# haciendo scraping de mercado, faltaba un cerebro central que decidiera qué vale la pena perseguir. En vez de reescribir los robots, Pythia Scout los reutiliza como capa de ingesta (Pipes and Filters) y construye la inteligencia encima, en una arquitectura lo suficientemente agnóstica para atender cualquier vertical de mercado sin tocar el core analítico.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "Pipes and Filters orientado a eventos: cada etapa solo conoce el evento que recibe y el que publica. Si el motor de Data Science cae para un fine-tuning, los robots siguen raspando y los mensajes quedan seguros en la cola — nada se pierde.",
+        tree: [
+          "Robots C# (.NET 8)              extracción: scraping/APIs, publica RawDataCollected",
+          "OmniShift (middleware)           valida el contrato, estandariza el esquema, publica DataNormalized",
+          "RabbitMQ                         el pipe entre las tres etapas, enruta por nicheHint",
+          "Core Python (Polars + Ollama)    NLP local + clustering, calcula el ViabilityScore",
+          "Evento OpportunityScored         los satélites se suscriben al tópico y disparan la acción de negocio",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["Python", "C# / .NET 8", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars", "Scikit-learn", "FastAPI"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Reutiliza lo que ya existe, formaliza solo lo que faltaba: el cerebro.",
+        items: [
+          { title: "Reutiliza la flota, no la reescribe", mechanic: "Los robots C# existentes se convierten en la capa de Data Ingestion del motor sin necesidad de reescribirse; OmniShift absorbe la responsabilidad de estandarizar formatos distintos." },
+          { title: "Score compuesto, no un número mágico", mechanic: "ViabilityScore es un promedio ponderado de 4 variables (Demanda, Competencia invertida, Urgencia, Fit técnico), con el vector de pesos configurable por nicho vía Strategy Pattern." },
+          { title: "El NLP local lee el dolor del cliente", mechanic: "Un SLM vía Ollama extrae Urgencia y Demanda directo del texto bruto (reclamo, edicto, post), anclado en un system prompt con una regla de puntuación clara para evitar alucinaciones." },
+          { title: "Idempotencia vía hash", mechanic: "Cada payload recibe un content hash SHA-256 verificado en Redis antes de cualquier inferencia, para nunca pagar el costo de IA dos veces por el mismo dato." },
+          { title: "Heurística hoy, ML mañana", mechanic: "El cálculo del score vive detrás de una interfaz IScoringStrategy; cambiar la fórmula ponderada por un Random Forest en el futuro no rompe el contrato de la entidad." },
+        ],
+      },
+      endpoints: {
+        title: "La Fórmula del ViabilityScore",
+        intro: "Cuatro variables, pesos configurables por nicho — el vector de abajo es el perfil B2B/industrial.",
+        items: [
+          { name: "Demanda (D)", what: "Frecuencia e intensidad del problema reportado", role: "peso 0.30" },
+          { name: "Competencia (C)", what: "Saturación del mercado — entra invertida en la fórmula (100−C)", role: "peso 0.20" },
+          { name: "Urgencia (U)", what: "Extraída vía NLP local: frustración, plazo fatal, pérdida reportada", role: "peso 0.35" },
+          { name: "Fit técnico (F)", what: "Alineación con la capacidad de entrega del ecosistema", role: "peso 0.15" },
+        ],
+      },
+      security: {
+        title: "Una Anti-Corruption Layer en la frontera",
+        body: "OmniShift actúa como validador de contratos: cualquier payload malformado o no firmado se rechaza antes de llegar al broker principal o a la base de datos relacional. Eso aísla el core predictivo de cualquier dato sucio proveniente de la flota de robots — el lado Python nunca procesa HTML crudo ni JSON fuera de esquema, solo lo que ya pasó por la Anti-Corruption Layer.",
+      },
+      links: { repo: null, live: null },
+      footer: { backCta: "← Volver al portafolio" },
+    },
+    talosacademy: {
+      meta: {
+        title: "Talos Academy — Gustavo Vianna",
+        description: "Plataforma de enseñanza de automatización e IA sin cajas negras: la Metodología Lyceum enseña la lógica antes que la herramienta.",
+      },
+      backLabel: "Portafolio",
+      logo: "../assets/projetos/talosacademy.png",
+      hero: {
+        eyebrow: "Learning Platform · fundamentos de automatización e IA, sin caja negra",
+        title: "Talos Academy",
+        subtitle: "Enseña la lógica detrás de la automatización antes de cualquier herramienta",
+        summary:
+          "Fundado en sociedad para atacar la saturación de 'cursos de apretar botones': en vez de enseñar a operar una interfaz específica, la Metodología Lyceum empieza por los fundamentos agnósticos (APIs, webhooks, seguridad de credenciales, arquitectura de automatización) antes de aplicarlos en herramientas accesibles (n8n, modelos locales) y solo después en el ecosistema corporativo (Microsoft Power Platform). Nombrado en referencia a Talos, el autómata de bronce forjado por Hefesto para proteger Creta — la misma lógica programada y confiable que el curso enseña a construir.",
+        statusNote: "Ementa del primer curso cerrada (4 módulos); piloto en fase de grabación.",
+      },
+      about: {
+        title: "Sobre el proyecto",
+        body: "Nació de una conversación que unió las ganas de un socio de poner la edición de video en práctica con la necesidad de estructurar una plataforma de enseñanza de verdad. La elección deliberada: huir del curso superficial que enseña a hacer clic en una interfaz corporativa cara (como el Copilot Studio de Microsoft), y construir la base profesional que sobrevive a la herramienta que el mercado esté usando dentro de dos años.",
+      },
+      architecture: {
+        title: "Arquitectura",
+        body: "La estrategia de infraestructura es deliberadamente austera en el MVP: en vez de construir un LMS desde cero, las clases cerradas usan una infraestructura white-label existente, y el brazo 'libre' (contenido abierto para generar autoridad) corre en YouTube — validando el modelo de enseñanza antes de cualquier inversión en plataforma propia.",
+        tree: [
+          "Metodología Lyceum         motor pedagógico — lógica antes que herramienta, en cada módulo",
+          "Facultad Libre (abierta)    distribución vía YouTube, genera autoridad y prueba la didáctica",
+          "Cohorte cerrada              alojada en infraestructura white-label, sin LMS propio en el MVP",
+          "Pipeline de video            scripts FFmpeg automatizan el corte y la normalización de audio",
+        ],
+      },
+      stack: {
+        title: "Stack técnica",
+        items: ["n8n", "Power Platform", "Ollama", "FFmpeg", "Microsoft Copilot Studio"],
+      },
+      features: {
+        title: "Funcionalidades clave",
+        intro: "Fundamento antes que interfaz, en todos los módulos.",
+        items: [
+          { title: "Lógica antes que la herramienta", mechanic: "El Módulo 1 nivela a la clase en APIs, webhooks y JSON antes de abrir cualquier plataforma de automatización en pantalla." },
+          { title: "Agnóstico primero, enterprise después", mechanic: "Los primeros 3 módulos usan herramientas abiertas y de bajo costo (n8n, Ollama local); solo el Módulo 4 traduce los mismos conceptos a Power Platform/Copilot Studio." },
+          { title: "Facultad Libre sin construir un LMS", mechanic: "Valida el modelo de enseñanza con infraestructura white-label y YouTube antes de escribir una sola línea de plataforma propia." },
+          { title: "Pipeline de video automatizado", mechanic: "Los scripts se encargan del trabajo sucio (normalización de audio, corte de silencios) para liberar el 100% de la energía de edición hacia la dinámica visual y la retención." },
+        ],
+      },
+      endpoints: {
+        title: "Ementa del Primer Curso",
+        intro: "'Automatización e IA Sin Cajas Negras' — cuatro módulos, del fundamento al enterprise.",
+        items: [
+          { name: "Módulo 1 — La Lógica Invisible", what: "APIs, webhooks, JSON y seguridad de credenciales", role: "" },
+          { name: "Módulo 2 — El Cerebro de la Automatización", what: "Anatomía de un flujo, enrutamiento, manejo de errores", role: "" },
+          { name: "Módulo 3 — Manos a la Obra", what: "n8n, el primer asistente, IA local vs. nube, memoria de contexto", role: "" },
+          { name: "Módulo 4 — El Salto al Enterprise", what: "Power Automate, Copilot Studio, cómo vender la solución", role: "" },
+        ],
+      },
+      security: {
+        title: "Lo que evitamos a propósito",
+        body: "El estándar del mercado de automatización/IA promueve cursos de 'aprende la herramienta X en 2 horas' y promesas de dinero rápido con IA — Talos Academy se posiciona deliberadamente en el lado opuesto: fundamentos de arquitectura y seguridad de datos antes que cualquier interfaz, porque la herramienta que usa el mercado cambia en cada ciclo, pero quien entiende el flujo detrás no queda rehén de ninguna de ellas.",
       },
       links: { repo: null, live: null },
       footer: { backCta: "← Volver al portafolio" },

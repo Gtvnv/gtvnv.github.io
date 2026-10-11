@@ -174,6 +174,38 @@ const PROJECTS = {
       satellite: { id: "06", slug: "hefesto", name: "Hefesto" },
     },
     {
+      title: "Munin Security",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Orquestrador de OSINT e forense digital: um proxy reverso despacha buscas pra workers especializados, com cadeia de custódia auditável pra investigação B2G.",
+      description:
+        "Centraliza o 'canivete suíço' de ferramentas gratuitas de OSINT, scraping e pentest do GitHub atrás de um único gateway Zero Trust — em vez do investigador configurar um ambiente isolado pra cada ferramenta. Um motor de autorização RBAC+ABAC valida cada requisição antes de qualquer processamento e gera um log de auditoria imutável (cadeia de custódia, com validade jurídica); o Gateway então publica um evento no RabbitMQ, que roteia pra workers especializados em C# e Python — cada um rodando a ferramenta isolada num container Docker efêmero, saindo pra internet por um pool de proxies rotativos pra não queimar a atribuição da investigação. Um domínio de Risk Scoring modelado em DDD cruza dados de prefeituras, quadros societários e CNAE pra apontar fraude em licitação — idade suspeita da empresa, mesmo endereço entre 'concorrentes', ramo de atividade incompatível. Nomeado em referência a Munin, o corvo de Odin que vasculha o mundo coletando segredos.",
+      tags: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker"],
+      links: { live: null, repo: null, details: "projects/muninsecurity.html" },
+      satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
+    },
+    {
+      title: "Pythia Scout",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Motor de Data Science que transforma uma frota de robôs em C# num radar de oportunidades de mercado: cada payload bruto vira um score de viabilidade de 0 a 100.",
+      description:
+        "Reaproveita uma frota de robôs de scraping em C# já existente como camada de ingestão de um motor de Data Science agnóstico a vertente de mercado, numa arquitetura Pipes and Filters orientada a eventos: os robôs publicam o dado bruto, o OmniShift padroniza o esquema (Anti-Corruption Layer) e só então o core em Python processa. O núcleo combina clusterização não supervisionada (achar 'oceanos azuis'), NLP local via Ollama pra extrair urgência e demanda direto do texto bruto, e uma heurística ponderada configurável por nicho que calcula o ViabilityScore final. Um hash SHA-256 verificado no Redis garante idempotência — o mesmo dado nunca paga o custo de inferência duas vezes. Nomeado em referência à Pítia, o oráculo de Delfos que traduzia sinais caóticos em profecias claras.",
+      tags: ["Python", "C#", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars"],
+      links: { live: null, repo: null, details: "projects/pythiascout.html" },
+      satellite: { id: "13", slug: "apolo", name: "Apolo" },
+    },
+    {
+      title: "Talos Academy",
+      statusKey: "development",
+      status: "EM DESENVOLVIMENTO",
+      summary: "Plataforma de ensino de automação e IA sem caixas pretas, fundada em parceria: a Metodologia Lyceum ensina a lógica por trás da ferramenta antes de qualquer interface.",
+      description:
+        "Projeto fundado em parceria pra atacar a saturação de 'cursos de apertar botão': em vez de ensinar a operar uma interface corporativa cara, a Metodologia Lyceum começa pelos fundamentos agnósticos — APIs, webhooks, segurança de credenciais, arquitetura de tratamento de erro — antes de aplicar isso em ferramentas acessíveis (n8n, modelos locais via Ollama) e só depois traduzir pro ecossistema corporativo (Microsoft Power Platform, Copilot Studio). A infraestrutura do MVP é deliberadamente enxuta: em vez de construir um LMS do zero, as turmas fechadas rodam em hospedagem white-label e o braço 'Faculdade Livre' (conteúdo aberto pra gerar autoridade) distribui pelo YouTube. Nomeado em referência a Talos, o autômato de bronze forjado por Hefesto pra proteger Creta seguindo uma lógica programada e inquebrável.",
+      tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
+      links: { live: null, repo: null, details: "projects/talosacademy.html" },
+    },
+    {
       title: "Ultrafoot 26",
       statusKey: "live",
       status: "LIVE",
@@ -348,6 +380,38 @@ const PROJECTS = {
       satellite: { id: "06", slug: "hefesto", name: "Hefesto" },
     },
     {
+      title: "Munin Security",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "An OSINT and digital-forensics orchestrator: a reverse proxy dispatches searches to specialized workers, with an auditable chain of custody for B2G investigations.",
+      description:
+        "Centralizes the 'Swiss Army knife' of free OSINT, scraping, and pentest tools from GitHub behind a single Zero Trust gateway — instead of an investigator configuring an isolated environment for every tool. An RBAC+ABAC authorization engine validates each request before any processing and generates an immutable audit log (chain of custody, with legal standing); the Gateway then publishes an event on RabbitMQ, routed to specialized C# and Python workers — each running the tool isolated in an ephemeral Docker container, reaching the internet through a rotating proxy pool to avoid burning the investigation's attribution. A Risk Scoring domain modeled in DDD cross-references city-hall data, corporate ownership structures, and business-activity codes to flag public-bid fraud — suspiciously young companies, 'competitors' sharing an address, an activity code incompatible with the bid. Named after Munin, Odin's raven who roams the world gathering secrets.",
+      tags: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker"],
+      links: { live: null, repo: null, details: "projects/muninsecurity.html" },
+      satellite: { id: "08", slug: "prometeu", name: "Prometeu" },
+    },
+    {
+      title: "Pythia Scout",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A Data Science engine that turns a fleet of C# scraping bots into a market-opportunity radar: every raw payload becomes a 0-100 viability score.",
+      description:
+        "Reuses an existing fleet of C# scraping bots as the ingestion layer of a market-agnostic Data Science engine, in an event-driven Pipes and Filters architecture: the bots publish the raw data, OmniShift standardizes the schema (Anti-Corruption Layer), and only then does the Python core process it. The engine combines unsupervised clustering (finding 'blue oceans'), local NLP via Ollama to extract urgency and demand straight from raw text, and a niche-configurable weighted heuristic that computes the final ViabilityScore. A SHA-256 hash checked against Redis guarantees idempotency — the same data never pays the inference cost twice. Named after Pythia, the Oracle of Delphi who translated chaotic signals into clear prophecy.",
+      tags: ["Python", "C#", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars"],
+      links: { live: null, repo: null, details: "projects/pythiascout.html" },
+      satellite: { id: "13", slug: "apolo", name: "Apolo" },
+    },
+    {
+      title: "Talos Academy",
+      statusKey: "development",
+      status: "IN DEVELOPMENT",
+      summary: "A no-black-boxes automation and AI learning platform, co-founded with a partner: the Lyceum Methodology teaches the logic behind the tool before any interface.",
+      description:
+        "Co-founded to attack the saturation of 'push-button' courses: instead of teaching how to operate an expensive corporate interface, the Lyceum Methodology starts with tool-agnostic fundamentals — APIs, webhooks, credential security, error-handling architecture — before applying them in accessible tools (n8n, local models via Ollama) and only then translating that into the corporate ecosystem (Microsoft Power Platform, Copilot Studio). The MVP's infrastructure is deliberately lean: instead of building an LMS from scratch, closed cohorts run on white-label hosting while the 'Open Faculty' arm (open content that builds authority) distributes through YouTube. Named after Talos, the bronze automaton forged by Hephaestus to guard Crete, following an unbreakable, programmed logic.",
+      tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
+      links: { live: null, repo: null, details: "projects/talosacademy.html" },
+    },
+    {
       title: "Ultrafoot 26",
       statusKey: "live",
       status: "LIVE",
@@ -520,6 +584,38 @@ const PROJECTS = {
       tags: ["Python", "SymPy", "FastAPI", "Pydantic", "NumPy", "SciPy", "Arquitectura Hexagonal"],
       links: { live: null, repo: null, details: "projects/terminushorizon.html" },
       satellite: { id: "06", slug: "hefesto", name: "Hefesto" },
+    },
+    {
+      title: "Munin Security",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un orquestador de OSINT y forense digital: un proxy inverso despacha búsquedas hacia workers especializados, con cadena de custodia auditable para investigaciones B2G.",
+      description:
+        "Centraliza la 'navaja suiza' de herramientas gratuitas de OSINT, scraping y pentest de GitHub detrás de un único gateway Zero Trust — en vez de que el investigador configure un entorno aislado para cada herramienta. Un motor de autorización RBAC+ABAC valida cada solicitud antes de cualquier procesamiento y genera un log de auditoría inmutable (cadena de custodia, con validez jurídica); el Gateway entonces publica un evento en RabbitMQ, enrutado hacia workers especializados en C# y Python — cada uno ejecutando la herramienta aislada en un contenedor Docker efímero, saliendo a internet a través de un pool de proxies rotativos para no quemar la atribución de la investigación. Un dominio de Risk Scoring modelado en DDD cruza datos de ayuntamientos, estructuras societarias y códigos de actividad económica para señalar fraude en licitaciones — empresas sospechosamente jóvenes, 'competidores' con la misma dirección, un rubro incompatible con el objeto de la licitación. Nombrado en referencia a Munin, el cuervo de Odín que recorre el mundo recolectando secretos.",
+      tags: ["C#", ".NET 8", "Python", "RabbitMQ", "PostgreSQL", "PostGIS", "Docker"],
+      links: { live: null, repo: null, details: "projects/muninsecurity.html" },
+      satellite: { id: "08", slug: "prometeu", name: "Prometeo" },
+    },
+    {
+      title: "Pythia Scout",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Un motor de Data Science que convierte una flota de robots en C# en un radar de oportunidades de mercado: cada payload bruto se vuelve un score de viabilidad de 0 a 100.",
+      description:
+        "Reutiliza una flota de robots de scraping en C# ya existente como capa de ingesta de un motor de Data Science agnóstico a la vertical de mercado, en una arquitectura Pipes and Filters orientada a eventos: los robots publican el dato bruto, OmniShift estandariza el esquema (Anti-Corruption Layer) y solo entonces el core en Python lo procesa. El núcleo combina clustering no supervisado (encontrar 'océanos azules'), NLP local vía Ollama para extraer urgencia y demanda directo del texto bruto, y una heurística ponderada configurable por nicho que calcula el ViabilityScore final. Un hash SHA-256 verificado en Redis garantiza idempotencia — el mismo dato nunca paga el costo de inferencia dos veces. Nombrado en referencia a Pitia, el oráculo de Delfos que traducía señales caóticas en profecías claras.",
+      tags: ["Python", "C#", "RabbitMQ", "PostgreSQL", "Redis", "Ollama", "Polars"],
+      links: { live: null, repo: null, details: "projects/pythiascout.html" },
+      satellite: { id: "13", slug: "apolo", name: "Apolo" },
+    },
+    {
+      title: "Talos Academy",
+      statusKey: "development",
+      status: "EN DESARROLLO",
+      summary: "Una plataforma de enseñanza de automatización e IA sin cajas negras, fundada en sociedad: la Metodología Lyceum enseña la lógica detrás de la herramienta antes de cualquier interfaz.",
+      description:
+        "Proyecto fundado en sociedad para atacar la saturación de 'cursos de apretar botones': en vez de enseñar a operar una interfaz corporativa cara, la Metodología Lyceum empieza por los fundamentos agnósticos — APIs, webhooks, seguridad de credenciales, arquitectura de manejo de errores — antes de aplicarlos en herramientas accesibles (n8n, modelos locales vía Ollama) y solo después traducirlos al ecosistema corporativo (Microsoft Power Platform, Copilot Studio). La infraestructura del MVP es deliberadamente austera: en vez de construir un LMS desde cero, las cohortes cerradas corren en hosting white-label y el brazo 'Facultad Libre' (contenido abierto para generar autoridad) se distribuye por YouTube. Nombrado en referencia a Talos, el autómata de bronce forjado por Hefesto para proteger Creta siguiendo una lógica programada e inquebrantable.",
+      tags: ["n8n", "Power Platform", "Ollama", "FFmpeg", "E-learning"],
+      links: { live: null, repo: null, details: "projects/talosacademy.html" },
     },
     {
       title: "Ultrafoot 26",
