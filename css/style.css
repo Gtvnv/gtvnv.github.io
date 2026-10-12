@@ -798,9 +798,10 @@ section:last-of-type {
 
 .project-head {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 0.5rem 1rem;
   margin-bottom: 0.6rem;
 }
 
@@ -1109,6 +1110,18 @@ section:last-of-type {
 }
 
 @media (max-width: 640px) {
+  /* Nas páginas de projeto/zenithcode o nav-wrap só tem "← Portfólio" +
+     idioma (sem hambúrguer pra esvaziar) — o gap de 1.75rem do desktop
+     + a marca em 0.9rem empurravam "Gustavo Vianna" pra duas linhas,
+     mesmo depois de cortar o gap (a folga ficava zero a zero). */
+  .nav-wrap {
+    gap: 0.75rem;
+  }
+
+  .brand {
+    font-size: 0.78rem;
+  }
+
   .main-nav {
     position: fixed;
     top: 64px;
