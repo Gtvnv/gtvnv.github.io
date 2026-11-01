@@ -515,20 +515,31 @@
     );
     targets.forEach((t) => observer.observe(t));
 
-    // Rede de segurança: em alguns navegadores (Chrome desktop e mobile
-    // inclusos) o IntersectionObserver pode calcular a posição antes do
-    // layout estabilizar — fontes, imagens e o parallax da hero mexem na
-    // altura do documento — e registrar um card logo abaixo da dobra como
-    // "fora da tela" sem nunca reavaliar até o próximo scroll. No mobile a
-    // barra de endereço que recolhe agrava isso. Se o usuário não rolar
-    // exatamente sobre o card, ele ficaria preso invisível. Depois de um
-    // tempo curto, revela à força tudo que o observer ainda não revelou.
+    // Rede de segurança — mas SÓ para o que já está visível na tela.
+    //
+    // Em alguns navegadores (Chrome desktop e mobile inclusos) o
+    // IntersectionObserver pode calcular a posição antes do layout
+    // estabilizar — fontes, imagens e o parallax da hero mexem na altura
+    // do documento — e registrar um elemento que já está na tela como
+    // "fora dela" sem reavaliar até o próximo scroll, deixando-o preso
+    // invisível no carregamento.
+    //
+    // Por isso o fallback NÃO revela tudo de uma vez: isso acenderia os
+    // cards abaixo da dobra antes do usuário rolar até eles, matando a
+    // animação de entrada por scroll. Em vez disso, só revela o que de
+    // fato está dentro do viewport agora. O que está abaixo da dobra
+    // continua esperando o scroll real — o observer cuida desses.
     window.setTimeout(() => {
+      const viewportH = window.innerHeight || document.documentElement.clientHeight;
       document.querySelectorAll(selector).forEach((node) => {
-        node.classList.add("revealed");
-        observer.unobserve(node);
+        const rect = node.getBoundingClientRect();
+        const visivel = rect.top < viewportH && rect.bottom > 0;
+        if (visivel) {
+          node.classList.add("revealed");
+          observer.unobserve(node);
+        }
       });
-    }, 1500);
+    }, 1200);
   }
 
   document.addEventListener("DOMContentLoaded", () => {
