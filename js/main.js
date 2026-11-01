@@ -11,6 +11,12 @@
   // mesmo com "reduzir movimento" ativado no sistema do visitante.
   const prefersReducedMotion = false;
 
+  // Só agora que o JS está rodando declaramos que o estado inicial
+  // invisível do scroll-reveal pode valer (ver css/style.css). Se este
+  // script falhar antes daqui, o CSS mantém os cards visíveis em vez de
+  // deixá-los presos em opacity:0.
+  document.documentElement.classList.add("js-reveal-ready");
+
   function el(tag, className, html) {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -324,14 +330,27 @@
   // ---------- Render pipeline ----------
   function renderAll(locale) {
     currentLocale = locale;
-    renderUI(locale);
-    renderConfig(locale);
-    renderSkills(locale);
-    renderLanguages(locale);
-    renderExperience(locale);
-    renderEducation(locale);
-    renderProjects(locale);
-    renderNotes(locale);
+    // Cada render é isolado: se um deles lançar (ex.: um dado novo que só
+    // existe em um idioma), os demais e principalmente o initScrollReveal
+    // abaixo ainda rodam — senão uma exceção aqui no meio deixaria todos os
+    // cards presos em opacity:0, porque o reveal nunca seria chamado.
+    const steps = [
+      renderUI,
+      renderConfig,
+      renderSkills,
+      renderLanguages,
+      renderExperience,
+      renderEducation,
+      renderProjects,
+      renderNotes,
+    ];
+    steps.forEach((step) => {
+      try {
+        step(locale);
+      } catch (e) {
+        console.error(`Falha ao renderizar (${step.name}):`, e);
+      }
+    });
     initScrollReveal(); // novos nós entraram no DOM — observa de novo
   }
 
@@ -480,9 +499,9 @@
       );
       return;
     }
-    const targets = document.querySelectorAll(
-      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed)"
-    );
+    const selector =
+      "[data-reveal]:not(.revealed), .project-card:not(.revealed), .timeline-item:not(.revealed), .note-item:not(.revealed)";
+    const targets = document.querySelectorAll(selector);
     const observer = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -495,6 +514,21 @@
       { threshold: 0.12 }
     );
     targets.forEach((t) => observer.observe(t));
+
+    // Rede de segurança: em alguns navegadores (Chrome desktop e mobile
+    // inclusos) o IntersectionObserver pode calcular a posição antes do
+    // layout estabilizar — fontes, imagens e o parallax da hero mexem na
+    // altura do documento — e registrar um card logo abaixo da dobra como
+    // "fora da tela" sem nunca reavaliar até o próximo scroll. No mobile a
+    // barra de endereço que recolhe agrava isso. Se o usuário não rolar
+    // exatamente sobre o card, ele ficaria preso invisível. Depois de um
+    // tempo curto, revela à força tudo que o observer ainda não revelou.
+    window.setTimeout(() => {
+      document.querySelectorAll(selector).forEach((node) => {
+        node.classList.add("revealed");
+        observer.unobserve(node);
+      });
+    }, 1500);
   }
 
   document.addEventListener("DOMContentLoaded", () => {

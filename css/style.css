@@ -1198,19 +1198,24 @@ section:last-of-type {
 /* =========================================================
    SCROLL REVEAL
    ========================================================= */
-[data-reveal],
-.project-card,
-.timeline-item,
-.note-item {
+/* O estado inicial invisível SÓ vale quando o JS conseguiu marcar
+   <html class="js-reveal-ready"> (ver main.js). Sem JS, ou se o JS
+   quebrar antes de montar o reveal, o conteúdo fica visível por padrão
+   em vez de sumir — nunca deixe conteúdo preso em opacity:0 por causa
+   de uma falha no caminho de animação. */
+.js-reveal-ready [data-reveal],
+.js-reveal-ready .project-card,
+.js-reveal-ready .timeline-item,
+.js-reveal-ready .note-item {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-[data-reveal].revealed,
-.project-card.revealed,
-.timeline-item.revealed,
-.note-item.revealed {
+.js-reveal-ready [data-reveal].revealed,
+.js-reveal-ready .project-card.revealed,
+.js-reveal-ready .timeline-item.revealed,
+.js-reveal-ready .note-item.revealed {
   opacity: 1;
   transform: translateY(0);
 }
