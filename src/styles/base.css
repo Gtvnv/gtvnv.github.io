@@ -1,0 +1,234 @@
+/* =========================================================
+   BASE — reset, elementos globais, lava-bg, reveal e
+   prefers-reduced-motion (design.md §8.1).
+   Consome exclusivamente tokens de tokens.css.
+   ========================================================= */
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-400);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---- Layout helpers ---- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* =========================================================
+   LAVA BACKGROUND — camada fixa atrás de tudo, "blobs" borrados
+   em roxo/azul/ciano que se movem devagar e se misturam
+   (mix-blend-mode: screen). Técnica atual preservada:
+   borda suave via radial-gradient, SEM filter: blur() animado.
+   ========================================================= */
+.lava-bg {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lava);
+  overflow: hidden;
+  background: var(--bg);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.lava-blob {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  max-width: 640px;
+  max-height: 640px;
+  min-width: 340px;
+  min-height: 340px;
+  border-radius: 50%;
+  opacity: 0.3;
+  mix-blend-mode: screen;
+  will-change: transform;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    var(--lava-color) 0%,
+    var(--lava-color-transparent) 70%
+  );
+}
+
+.lava-blob-1 {
+  --lava-color: #0c3d8f;
+  --lava-color-transparent: rgba(12, 61, 143, 0);
+  top: -14%;
+  left: -12%;
+  animation: lava-drift-1 26s ease-in-out infinite;
+}
+
+.lava-blob-2 {
+  --lava-color: #00c2ff;
+  --lava-color-transparent: rgba(0, 194, 255, 0);
+  top: 26%;
+  right: -16%;
+  animation: lava-drift-2 32s ease-in-out infinite;
+}
+
+.lava-blob-3 {
+  --lava-color: #1450c4;
+  --lava-color-transparent: rgba(20, 80, 196, 0);
+  bottom: -18%;
+  left: 18%;
+  animation: lava-drift-3 22s ease-in-out infinite;
+}
+
+.lava-blob-4 {
+  --lava-color: #ffb100;
+  --lava-color-transparent: rgba(255, 177, 0, 0);
+  bottom: 6%;
+  right: 13%;
+  opacity: 0.12;
+  animation: lava-drift-4 38s ease-in-out infinite;
+}
+
+@keyframes lava-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(9vw, 7vh) scale(1.18);
+  }
+  66% {
+    transform: translate(-5vw, 11vh) scale(0.88);
+  }
+}
+
+@keyframes lava-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  40% {
+    transform: translate(-10vw, 9vh) scale(0.85);
+  }
+  70% {
+    transform: translate(-4vw, -6vh) scale(1.15);
+  }
+}
+
+@keyframes lava-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(7vw, -10vh) scale(1.12);
+  }
+  65% {
+    transform: translate(12vw, -2vh) scale(0.9);
+  }
+}
+
+@keyframes lava-drift-4 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-8vw, -8vh) scale(1.2);
+  }
+}
+
+/* =========================================================
+   SCROLL REVEAL — o conteúdo já nasce no HTML (SSR). O estado
+   inicial escondido só é aplicado quando o JS marca a página
+   como pronta (.js-reveal-ready) e sob movimento permitido,
+   evitando a classe de bug de "conteúdo preso em opacity:0".
+   ========================================================= */
+.js-reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+}
+
+.js-reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* =========================================================
+   PREFERS-REDUCED-MOTION — zera animações da lava, do glow do
+   hero e dos reveals; mostra conteúdo em estado final.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .lava-blob {
+    animation: none;
+  }
+
+  .hero-photo-glow {
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

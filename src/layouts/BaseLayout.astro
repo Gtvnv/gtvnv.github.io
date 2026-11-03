@@ -1,0 +1,41 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { DEFAULT_LOCALE, type Locale } from "../i18n/locales";
+import { withBase } from "../lib/assets";
+import LavaBackground from "../components/LavaBackground.astro";
+import "../styles/tokens.css";
+import "../styles/base.css";
+
+interface Props {
+  locale?: Locale;
+  title?: string;
+}
+
+const { locale = DEFAULT_LOCALE, title = "Gustavo Vianna" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
+    <title>{title}</title>
+    {/* SEO por locale (title/description/OG/hreflang) chega na FEAT-004 via <SEO /> */}
+    <slot name="head" />
+    <ClientRouter />
+  </head>
+  <body>
+    <LavaBackground />
+
+    {/* Placeholder de header — SiteHeader chega na FEAT-003 */}
+    <slot name="header" />
+
+    <main>
+      <slot />
+    </main>
+
+    {/* Placeholder de footer — SiteFooter chega na FEAT-003 */}
+    <slot name="footer" />
+  </body>
+</html>
