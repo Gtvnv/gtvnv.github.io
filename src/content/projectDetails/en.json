@@ -1,0 +1,1685 @@
+{
+  "aegisprotocol": {
+    "meta": {
+      "title": "AegisProtocol — Gustavo Vianna",
+      "description": "Zero-Trust Identity Provider for the ZenithCode ecosystem: authentication, JWT tokens, and granular access policies."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/aegisprotocol.png",
+    "hero": {
+      "eyebrow": "Security & IAM Middleware · a ZenithCode initiative",
+      "title": "AegisProtocol",
+      "subtitle": "A Zero-Trust Identity Provider: no request is trusted by default",
+      "summary": "Security middleware and Identity Provider (IdP) that centralizes authentication, encrypted token issuance, and granular access policies for the whole ZenithCode ecosystem. It's the real-world manifestation of Z2A's Themis satellite.",
+      "statusNote": "Note: this repository holds an older version of AegisProtocol, kept public as an architecture reference (Zero Trust, JWT RS256, Redis-based revocation). Active development continues in a private repository, led by the N.Ú.C.L.E.O. division."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Aegis Core is a security middleware built on Zero-Trust architecture: no request is trusted by default, not even after login. It centralizes authentication, issues JWTs signed with RSA-2048 (RS256, asymmetric signing), and enforces granular access policies via ABAC/RBAC — serving as the identity layer for the ecosystem's other satellite microservices. Distributed under the MIT license."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "An identity sidecar running on Spring Security 6 with a fully stateless filter chain: every request is validated independently, no session kept in memory. It exposes its public key (JWK) so satellite microservices can validate the JWT locally, without calling Aegis on every request — only issuance and revocation go through the central service. Revocation uses a distributed blacklist in Redis, and the KMS is optional: by default the key lives in a local file, with HashiCorp Vault as an alternative (`aegis.jwt.key-source=vault`) for environments that already centralize secrets."
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.4",
+        "Spring Security 6",
+        "JWT (RS256)",
+        "Redis",
+        "PostgreSQL",
+        "HashiCorp Vault (optional)",
+        "Docker"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Five mechanisms that back the Zero-Trust model in practice.",
+      "items": [
+        {
+          "title": "Zero-Trust architecture",
+          "mechanic": "No request is trusted by default."
+        },
+        {
+          "title": "Soft lock",
+          "mechanic": "Users can log in, but sensitive resources require additional claim-based verification."
+        },
+        {
+          "title": "Threat mitigation",
+          "mechanic": "Rate limiting and anomaly detection on registration."
+        },
+        {
+          "title": "Token revocation",
+          "mechanic": "Distributed blacklist via Redis for immediate logout across all devices."
+        },
+        {
+          "title": "Key-rotation ready",
+          "mechanic": "Architecture prepared to rotate signing keys without downtime."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Main endpoints",
+      "intro": "The Identity Provider's REST surface.",
+      "items": [
+        {
+          "name": "POST /auth/login",
+          "what": "Authentication and JWT issuance",
+          "role": ""
+        },
+        {
+          "name": "POST /auth/register",
+          "what": "Registration with anti-spam protection",
+          "role": ""
+        },
+        {
+          "name": "POST /auth/refresh",
+          "what": "Secure session renewal",
+          "role": ""
+        },
+        {
+          "name": "GET /auth/public-key",
+          "what": "Exposes the JWK so satellite microservices can validate tokens without calling Aegis on every request",
+          "role": ""
+        },
+        {
+          "name": "GET /auth/consent/current-version",
+          "what": "Current version of the terms required at registration",
+          "role": ""
+        }
+      ]
+    },
+    "security": {
+      "title": "Security & resilience",
+      "body": "Runs under Zero Trust: a specialized GlobalExceptionHandler prevents infrastructure metadata from leaking in error responses, with native mitigations against Reflected XSS, log forging, and strict claim validation at the authentication layer."
+    },
+    "links": {
+      "repo": "https://github.com/Gtvnv/AegisProtocol-Core",
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "akpl": {
+    "meta": {
+      "title": "AKPL — Access & Billing — Gustavo Vianna",
+      "description": "AKPL's biometric access-control and automatic billing module, built with Hexagonal Architecture."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/akpl.png",
+    "hero": {
+      "eyebrow": "Access & Billing Module · Hexagonal Architecture",
+      "title": "AKPL — Access & Billing",
+      "subtitle": "Simulated biometric turnstile + automatic PIX/invoice billing",
+      "summary": "AKPL's backend module that solves two concrete problems: physical access control via biometric hash and payment delinquency, with business rules isolated from the database and payment gateway by Hexagonal Architecture. It's the backend layer behind the academic-management platform already running Academia de Karatê Pedro Leopoldo."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Solves two concrete problems: physical access control (a simulated turnstile via biometric hash, validated against allowed time windows and \"current\" payment status) and delinquency. The architecture shields the core business rules from any external dependency — database, payment gateway — so swapping one of those implementation details never requires touching the rule."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Ports & Adapters (Hexagonal) applied strictly: the Core knows nothing about frameworks, databases, or external APIs — only interfaces (ports). Infrastructure adapts to the domain, never the other way around.",
+      "tree": [
+        "core/",
+        "├── domain/model        Aluno, RegistroAcesso, CPF, Email (Value Objects)",
+        "├── domain/policies     isolated rules, e.g. PoliticaInadimplencia",
+        "└── ports               input/output contracts",
+        "application/",
+        "├── usecases            LiberarAcessoUseCase and friends",
+        "└── dtos                domain shielding",
+        "infrastructure/",
+        "├── adapters/input      REST Controllers + MQTT (IoT)",
+        "└── adapters/output     Hardware (turnstile), Postgres, Asaas (payments)"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.4",
+        "PostgreSQL",
+        "OpenFeign",
+        "Docker",
+        "GitHub Actions"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "From student registration to the turnstile unlocking itself once payment clears.",
+      "items": [
+        {
+          "title": "Access control",
+          "mechanic": "Entry validation based on business rules: allowed time window and \"current\" payment status."
+        },
+        {
+          "title": "Student management",
+          "mechanic": "Full registration with secure biometric-hash persistence."
+        },
+        {
+          "title": "Asaas integration",
+          "mechanic": "Automatic invoice/PIX generation, customer registration at the gateway, and immediate turnstile unlock via payment-confirmed webhook."
+        },
+        {
+          "title": "CI/CD with semantic versioning",
+          "mechanic": "Conventional Commits + GitHub Actions generate automatic releases (fix → patch, feat → minor, BREAKING CHANGE → major)."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Main endpoints",
+      "intro": "The module's REST surface.",
+      "items": [
+        {
+          "name": "POST /api/financeiro/cobranca",
+          "what": "Generates a charge (invoice or PIX) by CPF and amount",
+          "role": ""
+        },
+        {
+          "name": "POST /api/financeiro/webhook",
+          "what": "Receives Asaas's payment confirmation and unlocks access",
+          "role": ""
+        },
+        {
+          "name": "POST /api/alunos",
+          "what": "Registers a student with a biometric hash",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": "https://github.com/Gtvnv/acesso-alunos",
+      "live": "https://karatepl.zyntraerp.com.br"
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "nidhogg": {
+    "meta": {
+      "title": "Nidhogg — Gustavo Vianna",
+      "description": "The pricing and margin-protection engine in Z2A's financial trinity, built in Java with Hexagonal Architecture and DDD."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/nidhogg.png",
+    "hero": {
+      "eyebrow": "Pricing & Margin Protection · Z2A's financial trinity",
+      "title": "Nidhogg",
+      "subtitle": "Weighs the operation's real cost against external market volatility",
+      "summary": "The financial engine, controllership layer, and strategic business-rule brain of the Z2A ecosystem: it sets and dynamically adjusts pricing, protects contribution margin, and translates infrastructure telemetry into unit economics as a bridge between CTO and CFO."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Reacts to both rising internal compute cost (reported by Panoptes) and competitor moves, with hard locks against any operation that would land on negative contribution margin, short of a deliberate exception policy. Part of Z2A's financial trinity, alongside Panoptes (internal cost) and Fafnir (tax planning)."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal + DDD: the domain (MarketPositionEngine) imports nothing from Spring or JPA, testable without spinning up any context — infrastructure adapts to it. The piece already implemented is the benchmarking engine: it compares a subject's internal value (salary, bonus, payroll charge, hiring model) against the market distribution (p25/median/p75) and classifies it below, at, or above market, within a configurable tolerance band — the foundation the pricing and margin-protection rules build on.",
+      "tree": [
+        "domain/                    core, no framework dependency",
+        "├── model                  Money, MarketBenchmark, MarketEvaluation, EvaluationHold",
+        "├── service                MarketPositionEngine — the classification policy",
+        "└── port (in/out)          use cases + EvaluationSubjectRepository",
+        "application/usecase        MarketEvaluationService, MarketDataImportService",
+        "infrastructure/",
+        "├── adapter.in.web         REST controllers",
+        "├── adapter.out.persistence  JPA + Postgres",
+        "└── adapter.out.marketdata   CsvMarketDataProvider (survey ingestion)"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.3",
+        "PostgreSQL",
+        "Flyway",
+        "DDD",
+        "Hexagonal Architecture"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "The emergency brake matters as much as the classification engine itself.",
+      "items": [
+        {
+          "title": "Emergency brake (hold)",
+          "mechanic": "Freezes any classification for a subject under suspicion, until an operator releases it manually — release is never automatic."
+        },
+        {
+          "title": "Hook with Panoptes",
+          "mechanic": "When Panoptes detects an anomaly (e.g. payroll burn rate off the curve), it triggers the hold automatically via API."
+        },
+        {
+          "title": "Market data ingestion",
+          "mechanic": "Imports benchmarks via CSV today (p25/median/p75 by marketKey), with the port ready to plug in a scraper or a real market API later, without touching domain or controller."
+        },
+        {
+          "title": "Monetary precision",
+          "mechanic": "PostgreSQL with BigDecimal end to end — no float rounding in value comparisons."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "API",
+      "intro": "The engine's REST surface.",
+      "items": [
+        {
+          "name": "POST /api/v1/subjects",
+          "what": "Registers a subject with an initial internal value",
+          "role": ""
+        },
+        {
+          "name": "PATCH .../internal-value",
+          "what": "Updates the internal value (e.g. coming from Panoptes)",
+          "role": ""
+        },
+        {
+          "name": "PUT .../market-benchmark",
+          "what": "Sets the market benchmark (p25/p50/p75)",
+          "role": ""
+        },
+        {
+          "name": "POST .../evaluate",
+          "what": "Classifies the internal value against the market",
+          "role": ""
+        },
+        {
+          "name": "POST .../hold",
+          "what": "Freezes the subject's evaluation",
+          "role": ""
+        },
+        {
+          "name": "DELETE .../hold",
+          "what": "Releases the evaluation (a manual operator action)",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "omnishift": {
+    "meta": {
+      "title": "OmniShift — Gustavo Vianna",
+      "description": "A universal data transformation engine in Java, built with Hexagonal Architecture and SPI-based plugins."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/omnishift.png",
+    "hero": {
+      "eyebrow": "Universal Data Transformation Engine · a ZenithCode initiative",
+      "title": "OmniShift",
+      "subtitle": "Converts any input format into any output format",
+      "summary": "High-performance middleware that translates any input format into an in-memory canonical model and then serializes it into the desired output format — plugging in a new format never requires touching existing business rules.",
+      "statusNote": "Led by ZenithCode's P.O.N.T.E. division."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Instead of converting one format directly into another (JSON→XML), OmniShift translates any input into an in-memory object tree (the OmniNode canonical model), then serializes that tree into the output format. REST and gRPC as input; JSON, XML, YAML, CSV, and SQL (MySQL/PostgreSQL/Oracle/SQL Server) as output."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Multi-module Maven: the domain core (omnishift-core) depends on neither Spring nor Jackson, and each new format enters as an isolated plugin, discovered via Java SPI at runtime — no central class needs to know a new format exists.",
+      "tree": [
+        "omnishift-core                    canonical model (OmniNode), ports, orchestration — zero dependencies",
+        "omnishift-grpc-api                gRPC contract (.proto) + stubs",
+        "omnishift-adapter-json/xml/yaml    parsers/serializers via Jackson",
+        "omnishift-adapter-csv              via Apache Commons CSV",
+        "omnishift-adapter-sql              generates INSERT per dialect (MySQL/Postgres/Oracle/SQL Server)",
+        "omnishift-runtime-spring          executable runtime: exposes REST + gRPC"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.3",
+        "gRPC",
+        "Protobuf",
+        "Jackson",
+        "Multi-module Maven"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Performance and security treated as part of the design, not an afterthought.",
+      "items": [
+        {
+          "title": "Streaming large payloads",
+          "mechanic": "REST reads/writes as a byte stream instead of materializing everything in memory; gRPC gets a bidirectional RPC to work around the ~4MB per-message limit."
+        },
+        {
+          "title": "Reshaping via mapping profile",
+          "mechanic": "The client references a pre-configured profile (X-Mapping-Profile) instead of sending mapping instructions in the body — the API stays 100% data-agnostic."
+        },
+        {
+          "title": "Defense in depth",
+          "mechanic": "XXE blocked, nesting-depth limit enforced, and CSV Injection and SQL Injection mitigations tested with real malicious payloads."
+        },
+        {
+          "title": "Native observability",
+          "mechanic": "A single metric (omnishift.conversions) with count and latency by source/target format and success/error, exposed via Prometheus."
+        },
+        {
+          "title": "Mandatory API key",
+          "mechanic": "No request gets through without X-Api-Key — secure by default, not \"open until someone remembers to lock it down\"."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Main endpoints",
+      "intro": "One central route, driven by headers.",
+      "items": [
+        {
+          "name": "POST /api/v1/shift",
+          "what": "Converts the payload: source/target format set via header (X-Source-Format/X-Target-Format)",
+          "role": ""
+        },
+        {
+          "name": "GET /actuator/health",
+          "what": "Health check — the only route exempt from the API key requirement",
+          "role": ""
+        },
+        {
+          "name": "GET /actuator/prometheus",
+          "what": "Metrics in Prometheus format",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": "https://github.com/Gtvnv/OmniShift",
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "panoptes": {
+    "meta": {
+      "title": "Panoptes — Gustavo Vianna",
+      "description": "A telemetry and cost ingestor in Go, the first engine in Z2A's financial trinity."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/panoptes.png",
+    "hero": {
+      "eyebrow": "Internal Audit · Z2A's financial trinity",
+      "title": "Panoptes",
+      "subtitle": "Resolves the cost of every telemetry event in real time",
+      "summary": "Internal audit service that ingests operational telemetry at high speed, resolves the cost of every event, and keeps a time-series trail for auditing operational health and forecasting financial bottlenecks. It's the first of the three engines in Z2A's financial trinity — the others are Nidhogg (market) and Fafnir (tax planning)."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "A conscious architectural decision: Panoptes doesn't implement an API gateway, protocol translation, or Zero-Trust authentication — that already exists as shared middleware in the Z2A ecosystem. It stays lean and focused on its own domain: resolving cost and detecting consumption anomalies."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal (Ports & Adapters) in Go, with gRPC contracts as the source of truth (code generated from the .proto via buf). Every telemetry event resolves its cost on one of three bases: reported (the sender already knows the cost), converted (a metric→cost conversion rule exists), or estimated (a configurable fallback, with a low-confidence alarm).",
+      "tree": [
+        "api/proto/                     gRPC contracts (source of truth)",
+        "internal/domain/               pure entities and business rules",
+        "internal/application/          use cases, orchestrate ports",
+        "internal/adapters/inbound/     gRPC + scheduler (tickers)",
+        "internal/adapters/outbound/    TimescaleDB, export to Nidhogg, anomaly notification"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Go",
+        "gRPC",
+        "TimescaleDB",
+        "PostgreSQL",
+        "Event-Driven"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Telemetry that's born as a financial metric.",
+      "items": [
+        {
+          "title": "Hourly burn rate",
+          "mechanic": "A TimescaleDB Continuous Aggregate: hourly rollup by source+currency, combining materialized data with real-time ingestion."
+        },
+        {
+          "title": "Automatic export to Nidhogg",
+          "mechanic": "Runs in the background: consolidates the average cost per event and sends it via PATCH to Nidhogg, without waiting for polling."
+        },
+        {
+          "title": "Consumption anomaly detection",
+          "mechanic": "Compares the latest bucket against the baseline of the last few hours; a spike above the threshold locks the product's sales until manually released."
+        },
+        {
+          "title": "Real health check",
+          "mechanic": "Reflects actual database connectivity (checked every 10s), not just whether the process is up."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "gRPC services",
+      "intro": "The service's entire surface is gRPC.",
+      "items": [
+        {
+          "name": "TelemetryIngestService",
+          "what": "Ingest / IngestStream — event ingestion, unary or streaming for high throughput",
+          "role": ""
+        },
+        {
+          "name": "PricingAdminService",
+          "what": "CRUD for metric→cost conversion rules",
+          "role": ""
+        },
+        {
+          "name": "BurnRateService",
+          "what": "GetBurnRate — queries consolidated burn rate, filterable by source and interval",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "vertexflow": {
+    "meta": {
+      "title": "VertexFlow — Gustavo Vianna",
+      "description": "An Internal Developer Platform that turns a YAML Spec-Kit into a ready-to-run Go microservice — Z2A's reference implementation."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/vertexflow.png",
+    "hero": {
+      "eyebrow": "Internal Developer Platform · Z2A's reference implementation",
+      "title": "VertexFlow",
+      "subtitle": "From a YAML Spec-Kit to a ready-to-run Go microservice — with AI never writing code directly",
+      "summary": "An IDP that reads a Spec-Kit YAML file and generates a Hexagonal Go microservice that compiles, passes go vet, and runs, with the Use Case core left empty, waiting for the business rule. Under the product name, the Go module and its whole vocabulary (satellites, \"AI suggests; the rule decides\") still use the original name z2a-idp — it's Z2A's reference implementation.",
+      "statusNote": "340 test functions across 32 packages, clean go build/go vet/gofmt as of this revision. No external dependencies — pure stdlib, in both the generator and the generated service."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Around the generator (M1) grew a full funnel of ~13 deterministic gates — architecture, security, LGPD, FinOps, observability, infrastructure — plus a layer of agents (EVELYN, Prometeu, Quíron) always caged by them. Core philosophy: AI suggests, the rule decides. EVELYN (a local SLM) translates natural-language intent into YAML, but if it hallucinates, the YAML is rejected and the error feeds back into the model — AI never writes code or decides on its own."
+    },
+    "architecture": {
+      "title": "How it works (the funnel)",
+      "body": "A linear, deterministic pipeline, where each stage only passes forward what's already been validated:",
+      "tree": [
+        "intent (natural language)  [optional]",
+        "  └─ EVELYN/SLM + RAG        Ollama + few-shot → YAML (with self-correction)",
+        "YAML (Spec-Kit)",
+        "  └─ parser + Anti-corruption  decode + Validate() — invalid YAML is rejected here",
+        "SpecKitConfig, 100% valid",
+        "  └─ Tribunal (optional)      Prometeu stress-tests requirements before generating",
+        "  └─ generator                 text/template + registry, gofmt built in",
+        "Hexagonal project in Go (empty core)",
+        "  └─ Factory (optional)       agents fill in the Use Case, in a loop with the cage",
+        "  └─ the cage                  go build+test in an ephemeral container (network off)",
+        "  └─ static gates              blackout · sigma · arch · secops · opagate · oraculo · argus",
+        "delivered service"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Go",
+        "YAML (Spec-Kit)",
+        "gRPC",
+        "Docker",
+        "Pulumi",
+        "Ollama (local SLM)"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Five mechanisms that prove the thesis in practice, not just on paper.",
+      "items": [
+        {
+          "title": "The Blackout Test",
+          "mechanic": "Every generated service is born with a test that runs the critical path with 100% of AI offline. If it depends on a probabilistic component to complete, the build breaks."
+        },
+        {
+          "title": "Security cage",
+          "mechanic": "Compiles and tests the generated project in isolation, inside an ephemeral, network-less container with memory/CPU limits — the base image comes pinned by digest, immutable supply chain even with zero configuration."
+        },
+        {
+          "title": "Ephemeral replicas (best-of-N)",
+          "mechanic": "--agents N runs N isolated attempts in parallel; only the winner's files return to the project, and every copy disappears afterward."
+        },
+        {
+          "title": "Interop proven by test with AegisProtocol",
+          "mechanic": "The JWT generated for the Zero-Trust service never shares Go code with the reference — the proof they haven't drifted apart is a test that signs a real token and runs the cage over the generated service."
+        },
+        {
+          "title": "Analyze: diagnostics for an existing repo",
+          "mechanic": "Points the same deterministic gates at a Go repository VertexFlow never generated, and returns a prioritized improvement plan — zero network calls, zero LLM."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Main commands",
+      "intro": "The CLI is the interface — no server, no API.",
+      "items": [
+        {
+          "name": "z2a-cli --spec spec.yaml --out ./out",
+          "what": "Generates the service from the Spec-Kit",
+          "role": ""
+        },
+        {
+          "name": "z2a-cli --spec spec.yaml --out ./out --verify",
+          "what": "Generates and runs every deterministic gate",
+          "role": ""
+        },
+        {
+          "name": "z2a-cli --intent \"...\" --model llama3",
+          "what": "Translates natural-language intent into a Spec-Kit via EVELYN",
+          "role": ""
+        },
+        {
+          "name": "z2a-cli --spec spec.yaml --fill --sandbox docker",
+          "what": "Autonomous Factory: an agent fills in the Use Case, validated in a loop by the cage",
+          "role": ""
+        },
+        {
+          "name": "z2a-cli analyze ./existing-repo",
+          "what": "Runs the deterministic gates over an existing Go repository",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "zyntra": {
+    "meta": {
+      "title": "Zyntra ERP — Gustavo Vianna",
+      "description": "A multi-tenant industrial SaaS ERP in real production: sales, purchasing, production planning, finance, HR, and tax filing in one platform."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/zyntra.png",
+    "hero": {
+      "eyebrow": "Industrial SaaS ERP · in real production",
+      "title": "Zyntra ERP",
+      "subtitle": "Multi-tenant, from the sales order to tax filing, on a stack with no frontend framework",
+      "summary": "A complete, in-production SaaS ERP platform for factories and mid-sized companies: covers the entire operating cycle, from the sales order to Brazilian e-invoicing, from the shop floor to finance, in a single multi-tenant platform. In active production with real customers since January 2026."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "85+ frontend pages in vanilla HTML/CSS/JS — no framework, a deliberate performance choice — covering 11 modules: an executive dashboard, sales, purchasing, production planning, finance, HR, e-invoicing, inventory, customers, logistics, and 50+ configuration categories per tenant."
+    },
+    "architecture": {
+      "title": "Multi-tenant architecture",
+      "body": "Per-company isolation with JWT + refresh tokens and granular per-module ACLs, with tenant context extracted from the JWT itself on every request. Automated deployment to a VPS via PM2, with Nginx as a reverse proxy and Redis for rate limiting and session caching.",
+      "tree": [
+        "empresas_tenant          plan, 14-day trial, status",
+        "usuarios_empresas        N:N user ↔ company link",
+        "middleware/empresa.js    tenant context extracted from the JWT per request",
+        "JWT + refresh tokens     authentication with full session tracking",
+        "ACL granular             per-module, per-role permissions"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Node.js 18",
+        "Express 4",
+        "MySQL 8",
+        "Socket.IO 4",
+        "PM2",
+        "Redis",
+        "PWA",
+        "Capacitor (Android)"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Eleven modules, but five features that stand out the most.",
+      "items": [
+        {
+          "title": "Zyntra Teams",
+          "mechanic": "A corporate chat built into Socket.IO, with Axios (Bob) as a 24/7 support assistant — channels, DMs, audio, files, real-time typing indicators."
+        },
+        {
+          "title": "Full tax integration",
+          "mechanic": "Brazilian e-invoicing via SEFAZ, CNAB 240 banking files, PIX, and invoices, all in real production."
+        },
+        {
+          "title": "36 n8n automations",
+          "mechanic": "Automatic collections, cash-flow forecasting, critical-stock alerts, anomaly audits, and daily reports, each with a dashboard, retry, and log."
+        },
+        {
+          "title": "72+ reports",
+          "mechanic": "Sales, finance, production planning, e-invoicing, billing, purchasing, and HR, each module with its own report center."
+        },
+        {
+          "title": "Native Android app",
+          "mechanic": "Via Capacitor, with a professional splash screen, adaptive icons, and push notifications."
+        }
+      ]
+    },
+    "security": {
+      "title": "Security",
+      "body": "JWT with refresh tokens and automatic rotation, bcrypt for passwords, CSRF tokens, Redis-based rate limiting, XSS sanitization, PII encryption for LGPD compliance, and a full audit trail — every meaningful action gets logged."
+    },
+    "links": {
+      "repo": null,
+      "live": "https://zyntraerp.com.br"
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "fafnir": {
+    "meta": {
+      "title": "Fafnir — Gustavo Vianna",
+      "description": "A tax-elision engine via SLM: intercepts the transaction before Split Payment, with a deterministic rules engine having the final word."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/fafnir.png",
+    "hero": {
+      "eyebrow": "Tax Elision via SLM · Z2A's financial trinity",
+      "title": "Fafnir",
+      "subtitle": "Intercepts the transaction before Split Payment slices up the wrong amount",
+      "summary": "The third engine in Z2A's financial trinity: uses an SLM to suggest the correct tax classification (NCM) for a product from its description, but only applies the optimization if a deterministic rules engine validates the suggestion against the official tables (Sefaz, IBPT). Named after the dragon from Norse mythology that fiercely guards its treasure.",
+      "statusNote": "Still in the design phase — architecture drawn up, implementation not yet started."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born from a concrete problem: Split Payment gateways often charge the wrong tax because they lack the product's exact context, only the transaction's gross value — double taxation and lost exemptions (like single-phase PIS/COFINS products) are common. Fafnir fixes this at the moment of the transaction, not at monthly filing: it applies the Shift-Left concept (like in security) to accounting, correcting the tax classification before the money gets sliced."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal + DDD: the core (TaxOptimizationService) doesn't know whether it's processing a REST API, a messaging event, or an NF-e XML file — it only cares about the business rule. A 4-step pipeline, each stage only passing forward what's already validated:",
+      "tree": [
+        "1. Ingestion and sanitization   normalizes the payload (pre-invoice or NF-e XML)",
+        "2. SLM enrichment               the model suggests an NCM + confidence_score from the description",
+        "3. Deterministic validation     below the threshold it's discarded; above it, cross-checked against Sefaz/IBPT",
+        "4. Split orchestration          calculates the real tax burden and calls the Payment Gateway"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot",
+        "PostgreSQL",
+        "SLM (Llama 3 8B / Phi-3)",
+        "Ollama",
+        "QLoRA (Unsloth)"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "AI suggests; the rule decides — Z2A's own thesis, applied to accounting.",
+      "items": [
+        {
+          "title": "Elision, not evasion",
+          "mechanic": "The SLM never decides alone: below a confidence threshold, the suggestion is discarded and the original NCM is kept."
+        },
+        {
+          "title": "Local fine-tuning, cloud serving",
+          "mechanic": "QLoRA trains the model on a home GPU (12GB of VRAM is enough for a Llama 3 8B); the resulting GGUF export runs via Ollama on a GPU-less cloud instance."
+        },
+        {
+          "title": "LGPD-compliant dataset from ingestion",
+          "mechanic": "The ETL pipeline strips customer, supplier, and total-value tags from the invoice XMLs before any data gets near the training environment."
+        },
+        {
+          "title": "Ground truth by consensus",
+          "mechanic": "When a product description has conflicting NCMs in the history, the pipeline uses the majority classification and discards the exceptions as noise, not truth."
+        },
+        {
+          "title": "Rules engine as policy enforcement point",
+          "mechanic": "Same reasoning as Zero Trust: the tax burden isn't trusted until the deterministic engine validates the state/government's rule."
+        }
+      ]
+    },
+    "security": {
+      "title": "Elision vs. evasion: the legal boundary",
+      "body": "Classifying a product correctly to claim an exemption is tax elision — 100% legal. The technical risk is that language models are probabilistic: if the SLM misclassifies something to optimize the tax, that can look like evasion. That's why the SLM never has the final word — it acts as an oracle that suggests, and the decision to apply the tax rate always goes through a deterministic rules engine."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "kinetixeros": {
+    "meta": {
+      "title": "Kinetix Eros — Gustavo Vianna",
+      "description": "A B2B video orchestration hub: routes jobs across ComfyUI, MoneyPrinterTurbo, and HeyGen behind a single Java 21 API."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/kinetixeros.png",
+    "hero": {
+      "eyebrow": "B2B Video Orchestration Hub · Aetherium/ZenithCode ecosystem",
+      "title": "Kinetix Eros",
+      "subtitle": "One API, three render engines — the Control Plane decides which GPU wakes up",
+      "summary": "A B2B SaaS that orchestrates AI video generation: a Java 21 Control Plane takes the client's job, charges credits from the Ledger, and dispatches it to the right engine — ComfyUI on serverless RunPod GPUs, MoneyPrinterTurbo for volume, or HeyGen for hyper-realistic avatars. The \"engine\" half of the pair is named after Psyche, Z2A's UX satellite, who wears the interface layer.",
+      "statusNote": "Still at the architecture-design stage — no production code written yet, but the whole pipeline (Control Plane, queues, IaC) is already specified."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born as an architecture study for a real B2B agency pain point: generating AI video at scale means orchestrating expensive GPUs (ComfyUI/RunPod) for custom art, cheaper engines (MoneyPrinterTurbo) for volume, and third-party providers (HeyGen) for realistic avatars — three completely different cost and latency profiles behind a single credit-based bill. Kinetix Eros exists to hide that complexity from the client: they send a templateId and a few variables, and the Control Plane alone decides which engine wakes up."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal + Strategy Pattern: the Java 21 Control Plane never talks directly to RunPod, MoneyPrinterTurbo, or HeyGen — it talks to a RenderEngineStrategy, and each adapter decides whether it can handle that engineType. RabbitMQ buffers the spike between the HTTP 202 response and the actual GPU dispatch, with a Dead Letter Queue handling the worst case.",
+      "tree": [
+        "Public API (REST)           takes the B2B job, validates the API Key, returns 202 in ms",
+        "RabbitMQ (buffer)           absorbs the load, routes by engineType",
+        "Strategy: ComfyUI           serverless RunPod, Node Tagging on the workflow graph",
+        "Strategy: MoneyPrinterTurbo  dedicated Docker worker, its own queue (zenith.mpt.queue)",
+        "Strategy: HeyGen             authenticated proxy, waits on the completion Webhook",
+        "Assembly Worker              FFmpeg merges the mute video (S3/R2) with the audio (ElevenLabs)"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3",
+        "RabbitMQ (Amazon MQ)",
+        "PostgreSQL",
+        "AWS Fargate",
+        "Terraform",
+        "AWS WAF",
+        "Testcontainers"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Each piece exists to close off one specific way to lose money or a client.",
+      "items": [
+        {
+          "title": "Node Tagging in ComfyUI",
+          "mechanic": "ComfyUI's workflow is a graph with numeric IDs that shift on every edit; instead of coupling to the ID, the backend scans by node title ([ZENITH_POSITIVE_PROMPT], [ZENITH_AUDIO_INPUT]...) — the AI team can restructure the graph freely without breaking the Java side."
+        },
+        {
+          "title": "Presigned URLs, never public storage",
+          "mechanic": "S3/R2 buckets are 100% private; the client downloads the video through a signed, time-limited URL (2h), never stored in Postgres — only the objectKey is persisted."
+        },
+        {
+          "title": "DLQ with automatic refund",
+          "mechanic": "If rendering fails three times in a row, the message lands in a Dead Letter Queue that refunds the credit in the Ledger and — if that month's invoice already closed — credits the balance straight to Stripe via the Customer Balance API."
+        },
+        {
+          "title": "Zero static keys in CI/CD",
+          "mechanic": "GitHub Actions assumes an IAM Role via OIDC with a lifetime measured in minutes — no AWS_ACCESS_KEY_ID ever sits in secrets."
+        },
+        {
+          "title": "WAF at the edge, Bucket4j inside",
+          "mechanic": "AWS WAF blocks scanners and brute force by IP before they cost any Fargate CPU; Bucket4j, already authenticated, catches the legitimate client stuck in a video-generation loop."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Render Engines",
+      "intro": "The templateId decides which Strategy the Control Plane invokes — the client never picks the infrastructure, only the result.",
+      "items": [
+        {
+          "name": "ComfyUI (RunPod)",
+          "what": "Serverless GPUs for heavy generative art: SDXL, AnimateDiff, ControlNet",
+          "role": "Customization"
+        },
+        {
+          "name": "MoneyPrinterTurbo",
+          "what": "Dedicated queue worker for narrated faceless videos, high volume, low cost",
+          "role": "Scale"
+        },
+        {
+          "name": "HeyGen",
+          "what": "Authenticated proxy for hyper-realistic avatars via a third-party API",
+          "role": "Human realism"
+        }
+      ]
+    },
+    "security": {
+      "title": "Zero Trust end to end",
+      "body": "Every layer re-validates, even while trusting the one before it: RunPod's internal webhook requires a static header secret (X-RunPod-Secret) the public API never uses; AWS WAF filters IP reputation and brute force at the edge before any request reaches Fargate; and the financial Ledger treats every refund as a compensating transaction — never a deletion — to keep a full audit trail."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "heimdall": {
+    "meta": {
+      "title": "Heimdall — Gustavo Vianna",
+      "description": "A unified SIEM + NOC: aggregates telemetry from the whole Z2A fleet, triggers network auto-healing, and revokes access in real time."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/heimdall.png",
+    "hero": {
+      "eyebrow": "Unified SIEM & NOC · the eyes and ears of the Z2A ecosystem",
+      "title": "Heimdall",
+      "subtitle": "It doesn't alert and wait — it queues the failover and revokes access on its own",
+      "summary": "An observability and active-security middleware split into three domains: Gjallarhorn acts on network degradation instead of just alerting, the Eye of Asgard extends Zero Trust past login by watching behavior in real time, and Bifrost Telemetry aggregates logs from the whole fleet with a local SLM summarizing root cause in plain language. Named after the Norse guardian of supreme sight and hearing who protects the Bifrost bridge.",
+      "statusNote": "Still at the design stage — the architecture was drawn up from a real NOC automation script that already cut mitigation time from 17 to 7 minutes."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "In an ecosystem with multiple satellites running at once (Zyntra, Kinetix Eros, OmniShift, AegisProtocol...), debugging by hunting logs across separate containers isn't viable, and waiting for a human to notice a network outage costs expensive minutes. Heimdall exists to solve both problems at once: a single observability endpoint that also acts, instead of just showing a chart."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Three independent domains, all fed by the same telemetry ingestion: the NOC reacts to infrastructure degradation, the SIEM reacts to suspicious user behavior, and the log layer gives the other two human-readable context when something strays from the script.",
+      "tree": [
+        "Bifrost Telemetry       single log-ingestion endpoint for the whole Z2A fleet",
+        "Gjallarhorn (NOC)       detects degradation, queues failover/restart on RabbitMQ",
+        "Python Workers          run the network automation scripts asynchronously",
+        "Eye of Asgard (SIEM)    cross-references AegisProtocol/OmniShift telemetry in real time",
+        "Local SLM (Ollama)      summarizes root cause from a mountain of logs in plain language"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot",
+        "Python",
+        "RabbitMQ",
+        "Docker",
+        "Ollama",
+        "gRPC"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Turns a passive dashboard into an automated network operator and threat hunter.",
+      "items": [
+        {
+          "title": "Auto-healing, not just alerting",
+          "mechanic": "Evolves the logic of a link-manipulation script (that already cut mitigation time from 17 to 7 minutes) into an async microservice: detects degradation and queues failover over RabbitMQ without waiting for a human."
+        },
+        {
+          "title": "Zero Trust that doesn't stop at login",
+          "mechanic": "Watches request behavior after authentication; if an active session starts acting out of pattern, it calls AegisProtocol over gRPC to revoke the token and quarantine the IP on the spot."
+        },
+        {
+          "title": "Root cause in plain language",
+          "mechanic": "A local SLM (Ollama) reads the mountain of structured logs coming from the whole fleet and summarizes the error's root cause right on the dashboard — no engineer hunting logs container by container."
+        },
+        {
+          "title": "One endpoint for the whole fleet",
+          "mechanic": "Zyntra, Kinetix Eros, OmniShift, and any new satellite send telemetry to the same place, instead of each one logging in its own isolated corner."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "The Three Domains",
+      "intro": "Passive observability on one side, automatic action on the other.",
+      "items": [
+        {
+          "name": "Gjallarhorn",
+          "what": "Auto-healing and NOC engine: link failover, Docker container restarts",
+          "role": "Network"
+        },
+        {
+          "name": "Eye of Asgard",
+          "what": "Continuous SIEM and Zero Trust: detects behavioral anomalies, revokes tokens via AegisProtocol",
+          "role": "Security"
+        },
+        {
+          "name": "Bifrost Telemetry",
+          "what": "Log aggregator with a local SLM for plain-language root cause",
+          "role": "Observability"
+        }
+      ]
+    },
+    "security": {
+      "title": "When Heimdall stops trusting you",
+      "body": "Authentication doesn't end at login. OmniShift and AegisProtocol continuously send audit logs and telemetry to Heimdall; if a behavioral anomaly is detected in an already-authenticated session — an unusual access pattern, an unexpected execution —, Heimdall calls AegisProtocol over gRPC or messaging to revoke the access token instantly and quarantine the user or IP, without waiting for the next login to act."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "alexandria": {
+    "meta": {
+      "title": "Alexandria (Axios) — Gustavo Vianna",
+      "description": "A Socratic copilot for teaching programming logic: the AI never hands over the ready-made answer, only the question that leads the student to it."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/alexandria.png",
+    "hero": {
+      "eyebrow": "Socratic Teaching Copilot · Programming Logic",
+      "title": "Alexandria",
+      "subtitle": "The AI never gives the ready-made answer — it asks the right question",
+      "summary": "A hybrid school-reinforcement platform: a deterministic scripted layer controls the student's learning track and validates answers via unit tests; a local SLM (codenamed Axios) steps in only at the moment of difficulty, as a Socratic tutor that guides through questions instead of handing over finished code. Named after the Library of Alexandria — the archive holding the tracks, the historical context, and the etymological references behind every concept taught.",
+      "statusNote": "MVP focused on Programming Logic, tested first with college friends before expanding into Languages and History."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Built to solve a concrete pain point: school-reinforcement tools that throw everything at a generic AI to solve end up either too expensive to run at scale, or hallucinating answers that get in the way of learning instead of helping. Alexandria splits the two responsibilities — the scripted layer guarantees the student follows a solid pedagogical methodology with no hallucination, and the SLM (running locally via Ollama, with room for fine-tuning via QLoRA) only steps in at the exact moment of difficulty, with a Socratic tone that never hands over the answer on a plate."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Polyglot out of necessity, not fashion: the education domain (progress, payment, permissions) calls for a mature DDD ecosystem, while the fine-tuning and LLM-orchestration ecosystem belongs to Python. Splitting gRPC (synchronous chat streaming) from RabbitMQ (heavy async processing) guarantees the Copilot's traffic never stalls the rules engine.",
+      "tree": [
+        "Angular + Monaco Editor     code editor and Copilot chat over WebSocket",
+        "BFF / Gateway                routes 'save progress' to Java, 'chat' to Python",
+        "Core Domain (Spring Boot)    learning track, hidden unit tests, metrics",
+        "Ephemeral Docker              runs the student's code isolated, destroyed after the test",
+        "AI Orchestrator (FastAPI)    builds the Socratic prompt, queries local Ollama",
+        "gRPC streaming               streams the intervention token by token to the Gateway"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot",
+        "Python",
+        "FastAPI",
+        "Angular",
+        "TypeScript",
+        "gRPC",
+        "RabbitMQ",
+        "Ollama",
+        "PostgreSQL",
+        "Redis"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "A Socratic mentor, not a ready-made-answer generator.",
+      "items": [
+        {
+          "title": "Socratic tutor, never the ready-made answer",
+          "mechanic": "The SLM's system prompt explicitly forbids handing over code: 'don't give the answer, ask a question that helps the student spot the mistake themselves'."
+        },
+        {
+          "title": "Ephemeral sandbox against malicious code",
+          "mechanic": "Every submission runs isolated in a disposable Docker container — an accidental (or deliberate, since the first users are future software engineers testing the limits) while(true) never takes down the server."
+        },
+        {
+          "title": "Token-by-token streaming over gRPC",
+          "mechanic": "The student watches the Copilot 'typing' the explanation in real time, masking local-inference latency instead of staring at a loading screen."
+        },
+        {
+          "title": "Polyglot core, not a monolith",
+          "mechanic": "Java handles the business rules (track, progress, payment); Python handles only the AI — neither one needs to know the other's domain."
+        },
+        {
+          "title": "Cross-referenced Languages and History context",
+          "mechanic": "When explaining why it's called 'String', the SLM also pulls in the etymology and historical context of the concept, not just 'how to fix the code'."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Intervention Flow",
+      "intro": "From a syntax error to a Socratic explanation, in five async steps.",
+      "items": [
+        {
+          "name": "1. Submission",
+          "what": "Student tests the code; the Gateway publishes CodeEvaluationRequested on RabbitMQ",
+          "role": ""
+        },
+        {
+          "name": "2. Validation",
+          "what": "Java runs the test in the isolated Docker container and detects the failure",
+          "role": ""
+        },
+        {
+          "name": "3. AI prep",
+          "what": "Python consumes the failure event and builds the Socratic context",
+          "role": ""
+        },
+        {
+          "name": "4. Streaming",
+          "what": "The SLM generates the intervention; Python streams it over gRPC token by token",
+          "role": ""
+        },
+        {
+          "name": "5. Persistence",
+          "what": "Java saves the conversation history to PostgreSQL in the background",
+          "role": ""
+        }
+      ]
+    },
+    "security": {
+      "title": "Zero Trust isolation for student code",
+      "body": "Assuming every submitted code is potentially malicious is the starting point. No submission ever runs loose on the server: every attempt is packaged and executed in an ephemeral Docker container, destroyed right after the test passes or fails. That matters doubly here, because the platform's first real users are software-engineering classmates — exactly the profile that will try to break the isolation's limits just to see if they can, which ends up hardening the system's security fast."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "inaritrails": {
+    "meta": {
+      "title": "Inari Trails — Gustavo Vianna",
+      "description": "Pokémon-Go-style gamified tourism: platinum neighborhoods by photographing real points of interest, with local businesses as sponsored Stops."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/inaritrails.png",
+    "hero": {
+      "eyebrow": "Gamified Tourism · Pokémon-Go-style geolocation",
+      "title": "Inari Trails",
+      "subtitle": "Platinum-ing a neighborhood is the reward; the partner business is who foots the bill",
+      "summary": "Turns a rigid tourist itinerary into collecting: every point of interest is a Stop with a geospatial proximity radius, and each user's photo archive works like a personal Pokédex of discovered places. Named after Inari, the Japanese deity of roads, messenger foxes, and — fundamentally — commerce, the B2B pillar that sustains the business model.",
+      "statusNote": "At the design stage — the image pipeline and geospatial engine architecture are specified, implementation hasn't started."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "The biggest launch challenge for any discovery app is the chicken-and-egg problem: no content, no users; no users, no content. The MVP strategy is to start in one specific, well-bounded tourist region, manually mapping the initial points (seed data) before opening to the public — and using gamification (the 'platinum' trigger for a region, the photo Pokédex) as the retention engine that keeps users coming back once the initial archive already exists."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "The geospatial core needs fast, constant proximity queries (PostGIS with a GiST index), while bulk photo uploads call for an event-driven architecture so the user is never stuck on a loading screen waiting for sanitization and moderation.",
+      "tree": [
+        "Mobile app              map with Stops in a 500m radius, camera for the archive",
+        "BFF                       one lightweight call ('I'm at X,Y') orchestrates map + photos",
+        "PostgreSQL + PostGIS      ST_DWithin spatial query with a GiST index",
+        "Pre-signed URL (S3)       the app uploads the photo straight to the raw bucket, bypassing the API",
+        "Sanitization worker       strips EXIF, re-encodes to WebP, destroys malicious payloads",
+        "Moderation (Vision AI)    only public photos get screened for nudity/violence before publishing"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot",
+        "Hibernate Spatial",
+        "PostgreSQL",
+        "PostGIS",
+        "Redis",
+        "RabbitMQ",
+        "AWS S3"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Gamification for retention, Zero Trust for every photo that comes in.",
+      "items": [
+        {
+          "title": "Platinum-ing as a retention loop",
+          "mechanic": "Achievements by category (e.g. 'History Explorer') and the photo diary becomes a personal Pokédex of discovered places, building emotional attachment to the archive."
+        },
+        {
+          "title": "Public vs. private cuts moderation cost at the root",
+          "mechanic": "The personal diary is instant and never gets reviewed; only what the user marks public enters the sanitization and computer-vision pipeline."
+        },
+        {
+          "title": "EXIF and scripts die in the re-encode",
+          "mechanic": "Converting the image to WebP destroys any malicious payload hidden in the original EXIF header — no dedicated antivirus layer needed on top."
+        },
+        {
+          "title": "Stops pay to get featured",
+          "mechanic": "Local businesses subscribe to appear featured in auto-generated routes, monetizing the foot traffic the app already generates for free."
+        },
+        {
+          "title": "A DLQ so a photo never gets lost",
+          "mechanic": "If the worker fails (corrupted file, moderation-AI timeout), the message goes to a Dead Letter Queue for reprocessing instead of stalling the rest of the queue."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Upload Pipeline",
+      "intro": "From the camera click to showing up on the community map, in five async steps.",
+      "items": [
+        {
+          "name": "1. Pre-signed URL",
+          "what": "App asks the backend for a direct write link to the turismo-raw-images bucket",
+          "role": ""
+        },
+        {
+          "name": "2. Register & queue",
+          "what": "Backend writes PENDING_PROCESSING status and publishes on RabbitMQ",
+          "role": ""
+        },
+        {
+          "name": "3. Sanitization",
+          "what": "Worker strips EXIF and re-encodes the image to WebP",
+          "role": ""
+        },
+        {
+          "name": "4. Moderation",
+          "what": "Only public photos go through the computer-vision API before approval",
+          "role": ""
+        },
+        {
+          "name": "5. Publication",
+          "what": "Approved image moves to the turismo-processed-images bucket, served over CDN",
+          "role": ""
+        }
+      ]
+    },
+    "security": {
+      "title": "Zero Trust on every upload",
+      "body": "Assuming every upload is potentially malicious is the starting point: the original file is never saved straight to the public bucket. The entry (raw) bucket blocks any public read, and the sanitization worker strips the EXIF header — which holds phone metadata and is often used to hide malicious payloads — before re-encoding the image to WebP, which alone already destroys any script embedded in the original file."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "terminushorizon": {
+    "meta": {
+      "title": "Terminus Horizon — Gustavo Vianna",
+      "description": "A mission-critical math engine: symbolically audits functions for jumps, poles, and infinite jerk before the hardware ever feels the impact."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/terminushorizon.png",
+    "hero": {
+      "eyebrow": "Mission-Critical Math Engine · symbolic computation for hardware",
+      "title": "Terminus Horizon",
+      "subtitle": "If the trajectory crosses the physical limit, the operation is aborted before the motor energizes",
+      "summary": "A pure Python Domain Service that uses symbolic computation (SymPy) instead of floating point to mathematically prove a function is sane before it ever touches a real actuator — detecting jumps, resonance poles, and infinite jerk in mechanical trajectories. Named after Terminus, the one Roman god who refused to yield ground even to Jupiter: here too, the laws of physics and math are non-negotiable.",
+      "statusNote": "The math core (SymPy) and API (FastAPI) are already structured; integration with real hardware hasn't started."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born out of a concrete frustration with manually calculating integrals, limits, and trigonometry to validate hardware behavior. The core idea isn't just to compute — it's to flag points of attention before an engineer has to find out the hard way: if a function has a jump or an asymptote, the engine flags it as something to review, not just another result. The historical inspiration got corrected along the way: the failure that first came to mind as 'the rubber seals that blew up Apollo' actually happened on the Challenger space shuttle in 1986 — but the premise still holds: the math modeling had already predicted the thermal failure limit that the management decision ignored."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal Architecture with a pure domain Core — zero I/O dependencies — that takes a math expression, processes it with SymPy, and returns a structured diagnosis. The FastAPI layer acts as a Driving Adapter: the web framework never touches the math logic, it only validates the payload at the boundary via Pydantic before handing it to the domain.",
+      "tree": [
+        "FastAPI (Driving Adapter)    validates the payload via Pydantic before touching the domain",
+        "SignalContinuityAnalyzer     one-sided limits, detects jumps and poles (SymPy)",
+        "KinematicStressAnalyzer      differentiates position → velocity → acceleration → jerk",
+        "mpmath                       arbitrary precision, shields against floating-point error"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Python",
+        "SymPy",
+        "SciPy",
+        "NumPy",
+        "mpmath",
+        "FastAPI",
+        "Pydantic",
+        "Hexagonal Architecture"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Preventive mathematical proof, not blind numerical approximation.",
+      "items": [
+        {
+          "title": "Mathematical proof, not approximation",
+          "mechanic": "SymPy retains 1/3 symbolically instead of computing 0.3333 — the same class of rounding error that caused real aerospace accidents (like the Ariane 5 rocket) is shielded by design."
+        },
+        {
+          "title": "Jump and pole detector",
+          "mechanic": "Compares one-sided limits at a critical point; if they diverge, that's a jump (physical shock to the hardware); if they tend to infinity, that's a pole (catastrophic signal resonance)."
+        },
+        {
+          "title": "Continuous jerk or the operation halts",
+          "mechanic": "Differentiates the trajectory to the 3rd order (jerk, the rate of change of acceleration); an abrupt stop generates infinite jerk — physically, the equivalent of a hammer blow to the gears, not a motion."
+        },
+        {
+          "title": "Pure domain, zero I/O",
+          "mechanic": "The Core never knows whether the data came from a real sensor, a simulation, or an automated test — the API, validation, and all infrastructure live outside, as swappable Adapters."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Endpoints",
+      "intro": "Two math-auditing services exposed as REST, guarded by Pydantic validation at the boundary.",
+      "items": [
+        {
+          "name": "POST /api/v1/horizon/signal/audit",
+          "what": "Evaluates a function for jumps and poles at a critical operating point",
+          "role": "POST"
+        },
+        {
+          "name": "POST /api/v1/horizon/kinematics/audit",
+          "what": "Differentiates a trajectory to jerk and flags mechanical-fatigue risk",
+          "role": "POST"
+        }
+      ]
+    },
+    "security": {
+      "title": "The limit that doesn't negotiate",
+      "body": "The name comes from Roman mythology: Terminus was the god of boundary markers, the only one who refused to yield ground even to Jupiter — the exact stance the engine takes. If the math shows jerk will diverge or the trajectory will cross an asymptote, the operation is aborted, no matter what the management software ordered. The historical reference that inspired the project got corrected during design: it wasn't Apollo, it was the Challenger space shuttle disaster (1986) — the rubber O-rings had a thermal failure limit the math had already flagged, but the management decision to launch anyway ignored what the calculation already knew."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "muninsecurity": {
+    "meta": {
+      "title": "Munin Security — Gustavo Vianna",
+      "description": "An OSINT and digital-forensics orchestrator: auditable chain of custody, Zero Trust, and isolated workers for B2G investigations."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/muninsecurity.png",
+    "hero": {
+      "eyebrow": "OSINT & Digital Forensics Orchestrator · B2G and Private Intelligence",
+      "title": "Munin Security",
+      "subtitle": "Finding the information isn't enough — you have to prove how it was obtained",
+      "summary": "Centralizes the 'Swiss Army knife' of free OSINT, scraping, and pentest tools from GitHub behind a single Zero Trust gateway: every request passes through an RBAC+ABAC engine before any processing and generates an immutable audit log, while specialized C# and Python workers run isolated in Docker containers, reaching the internet through a rotating proxy pool. Named after Munin, Odin's raven who roams the world gathering secrets and brings them back.",
+      "statusNote": "At the design stage — ingestion architecture, chain of custody, and the Risk Scoring domain are already specified."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born from a concrete investigative pain point: OSINT and digital-forensics tools are powerful but scattered — each demanding its own environment, its own credentials, its own setup. Munin Security exists to solve that once and for all: a reverse proxy that centralizes that arsenal behind a single auditable entry point, built for both government investigation (B2G) and corporate intelligence — where finding the data isn't enough, you have to prove how it was obtained."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Event-driven with strict isolation: the Gateway never runs the search directly, it only validates authorization and publishes the intent. That guarantees that if a specific tool breaks or a worker goes down, the rest of the investigation fleet keeps running without stalling.",
+      "tree": [
+        "API Gateway (Zero Trust)    validates RBAC/ABAC, issues a job_id, immutable audit log",
+        "RabbitMQ                     routes by exchange: munin.osint.social, munin.scrape.darkweb...",
+        "C# / Python Workers           run the tool isolated in an ephemeral Docker container",
+        "Rotating proxy pool           masks the investigation's origin (residential/mobile)",
+        "PostgreSQL + PostGIS          cross-references routes, cell-tower locations, photo metadata"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "C#",
+        ".NET 8",
+        "Python",
+        "RabbitMQ",
+        "PostgreSQL",
+        "PostGIS",
+        "Docker",
+        "Redis"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Every piece exists to give a finding legal standing, not just to find it.",
+      "items": [
+        {
+          "title": "Chain of custody, not just a finding",
+          "mechanic": "Every request generates an immutable audit log — who searched, when, with what parameter, which worker ran it — to hold up in court."
+        },
+        {
+          "title": "Bidirectional proxy against attribution",
+          "mechanic": "Workers reach the internet through a rotating pool of residential/mobile proxies, so neither the target gets suspicious nor the infrastructure's own IP gets burned."
+        },
+        {
+          "title": "RBAC + ABAC, not just login",
+          "mechanic": "An authorization engine combining role and attribute decides whether that agent can run that specific search, before any processing even starts."
+        },
+        {
+          "title": "Bid-fraud score via DDD",
+          "mechanic": "The BiddingRiskAssessment aggregate cross-references company age, corporate ownership webs, and mismatched activity codes to compute a 0-100 RiskScore and flag cartels."
+        },
+        {
+          "title": "If one tool breaks, only it dies",
+          "mechanic": "Every worker runs isolated; if a scraper breaks because a site changed its layout, the rest of the investigation fleet keeps running perfectly."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "The Scoring Engine's Red Flags",
+      "intro": "Heuristics the FraudScoringService cross-references to flag public-bid fraud.",
+      "items": [
+        {
+          "name": "Shell Company Check",
+          "what": "Company incorporated less than 3 months before the bid was published",
+          "role": "High weight"
+        },
+        {
+          "name": "Cartel Check",
+          "what": "Competing bidders sharing an address, accountant, or submission IP",
+          "role": "Critical weight"
+        },
+        {
+          "name": "Activity Code Mismatch",
+          "what": "Company's main business line incompatible with the bid's object",
+          "role": "Medium weight"
+        }
+      ]
+    },
+    "security": {
+      "title": "Zero Trust end to end",
+      "body": "The authorization middleware never trusts by default: every request passes through an engine combining RBAC and ABAC before touching any worker, and generates an immutable audit log — who searched, when, with what parameter, which worker ran the search. For high-stakes public-security bids, the model can be raised further by binding the access key to a physical TPM 2.0 module's signature, rejecting login from non-approved machines even with the right password."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "pythiascout": {
+    "meta": {
+      "title": "Pythia Scout — Gustavo Vianna",
+      "description": "A Data Science engine that turns C# scraping bots into a market-opportunity radar."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/pythiascout.png",
+    "hero": {
+      "eyebrow": "Market Intelligence Engine · opportunity scouting via Data Science",
+      "title": "Pythia Scout",
+      "subtitle": "Translates the chaos of raw market data into a 0-100 viability score",
+      "summary": "Reuses an existing fleet of C# bots as the ingestion layer of a market-agnostic Data Science engine: every scraped payload passes through OmniShift (schema standardization) before reaching the predictive core in Python, which combines clustering, local NLP, and a weighted heuristic to decide whether something is a 'blue ocean' or just noise. Named after Pythia, the Oracle of Delphi who translated chaotic signals into clear prophecy.",
+      "statusNote": "The ingestion contract and the ViabilityScore formula are already designed; pipeline implementation hasn't started."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born from a concrete need: a fleet of C# scraping bots already existed, what was missing was a central brain to decide what's worth chasing. Instead of rewriting the bots, Pythia Scout reuses them as the ingestion layer (Pipes and Filters) and builds the intelligence on top, in an architecture agnostic enough to serve any market vertical without touching the analytical core."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Event-driven Pipes and Filters: each stage only knows the event it receives and the one it publishes. If the Data Science engine goes down for fine-tuning, the bots keep scraping and the messages stay safe in the queue — nothing is lost.",
+      "tree": [
+        "C# bots (.NET 8)               extraction: scraping/APIs, publishes RawDataCollected",
+        "OmniShift (middleware)          validates the contract, standardizes schema, publishes DataNormalized",
+        "RabbitMQ                        the pipe between the three stages, routes by nicheHint",
+        "Python core (Polars + Ollama)   local NLP + clustering, computes the ViabilityScore",
+        "OpportunityScored event         satellites subscribe to the topic and trigger the business action"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Python",
+        "C# / .NET 8",
+        "RabbitMQ",
+        "PostgreSQL",
+        "Redis",
+        "Ollama",
+        "Polars",
+        "Scikit-learn",
+        "FastAPI"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Reuses what already exists, formalizes only what was missing: the brain.",
+      "items": [
+        {
+          "title": "Reuses the fleet, doesn't rewrite it",
+          "mechanic": "The existing C# bots become the engine's Data Ingestion layer with no rewrite needed; OmniShift absorbs the job of standardizing different formats."
+        },
+        {
+          "title": "Composite score, not a magic number",
+          "mechanic": "ViabilityScore is a weighted average of 4 variables (Demand, inverted Competition, Urgency, Technical fit), with the weight vector configurable per niche via Strategy Pattern."
+        },
+        {
+          "title": "Local NLP reads the client's pain",
+          "mechanic": "An SLM via Ollama extracts Urgency and Demand straight from raw text (a complaint, a bid notice, a post), anchored by a system prompt with a strict scoring rubric to avoid hallucination."
+        },
+        {
+          "title": "Idempotency via hashing",
+          "mechanic": "Every payload gets a SHA-256 content hash checked against Redis before any inference, so the same data never pays the AI cost twice."
+        },
+        {
+          "title": "Heuristic today, ML tomorrow",
+          "mechanic": "The score calculation lives behind an IScoringStrategy interface; swapping the weighted formula for a Random Forest later doesn't break the entity's contract."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "The ViabilityScore Formula",
+      "intro": "Four variables, weights configurable per niche — the vector below is the B2B/industrial profile.",
+      "items": [
+        {
+          "name": "Demand (D)",
+          "what": "Frequency and intensity of the reported problem",
+          "role": "weight 0.30"
+        },
+        {
+          "name": "Competition (C)",
+          "what": "Market saturation — enters the formula inverted (100−C)",
+          "role": "weight 0.20"
+        },
+        {
+          "name": "Urgency (U)",
+          "what": "Extracted via local NLP: frustration, hard deadline, reported losses",
+          "role": "weight 0.35"
+        },
+        {
+          "name": "Technical fit (F)",
+          "what": "Alignment with the ecosystem's delivery capacity",
+          "role": "weight 0.15"
+        }
+      ]
+    },
+    "security": {
+      "title": "An Anti-Corruption Layer at the boundary",
+      "body": "OmniShift acts as a contract validator: any malformed or unsigned payload is rejected before it reaches the main broker or the relational database. That isolates the predictive core from any dirty data coming from the bot fleet — the Python side never processes raw HTML or off-schema JSON, only what's already passed through the Anti-Corruption Layer."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "talosacademy": {
+    "meta": {
+      "title": "Talos Academy — Gustavo Vianna",
+      "description": "A no-black-boxes automation and AI learning platform: the Lyceum Methodology teaches the logic before the tool."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/talosacademy.png",
+    "hero": {
+      "eyebrow": "Learning Platform · automation and AI fundamentals, no black boxes",
+      "title": "Talos Academy",
+      "subtitle": "Teaches the logic behind automation before any tool",
+      "summary": "Co-founded to attack the saturation of 'push-button' courses: instead of teaching how to operate one specific interface, the Lyceum Methodology starts with tool-agnostic fundamentals (APIs, webhooks, credential security, automation architecture) before applying them in accessible tools (n8n, local models) and only then in the corporate ecosystem (Microsoft Power Platform). Named after Talos, the bronze automaton forged by Hephaestus to guard Crete — the same reliable, programmed logic the course teaches students to build.",
+      "statusNote": "The first course's syllabus is locked (4 modules); the pilot is in the recording stage."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Born from a conversation that joined a partner's wish to put video editing into practice with the need to structure a real teaching platform. The deliberate choice: skip the shallow course that teaches you to click through an expensive corporate interface (like Microsoft's Copilot Studio), and build the professional foundation that outlives whatever tool the market happens to be using two years from now."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "The MVP's infrastructure strategy is deliberately lean: instead of building an LMS from scratch, closed classes run on existing white-label hosting, and the 'open' arm (open content to build authority) runs on YouTube — validating the teaching model before any investment in a proprietary platform.",
+      "tree": [
+        "Lyceum Methodology         pedagogical engine — logic before tool, in every module",
+        "Open Faculty (free arm)     distribution via YouTube, builds authority and proves the didactics",
+        "Closed cohort                hosted on white-label infrastructure, no in-house LMS in the MVP",
+        "Video pipeline               FFmpeg scripts automate audio normalization and silence cuts"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "n8n",
+        "Power Platform",
+        "Ollama",
+        "FFmpeg",
+        "Microsoft Copilot Studio"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Fundamentals before interface, in every module.",
+      "items": [
+        {
+          "title": "Logic before the tool",
+          "mechanic": "Module 1 levels the class on APIs, webhooks, and JSON before any automation platform is ever opened on screen."
+        },
+        {
+          "title": "Agnostic first, enterprise later",
+          "mechanic": "The first 3 modules use open, low-cost tools (n8n, local Ollama); only Module 4 translates the same concepts into Power Platform/Copilot Studio."
+        },
+        {
+          "title": "An Open Faculty without building an LMS",
+          "mechanic": "Validates the teaching model with white-label hosting and YouTube before a single line of proprietary platform code."
+        },
+        {
+          "title": "Automated video pipeline",
+          "mechanic": "Scripts handle the dirty work (audio normalization, silence cuts) so editing energy goes 100% into visual dynamics and retention."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "First Course Syllabus",
+      "intro": "'Automation and AI Without Black Boxes' — four modules, from fundamentals to enterprise.",
+      "items": [
+        {
+          "name": "Module 1 — The Invisible Logic",
+          "what": "APIs, webhooks, JSON, and credential security",
+          "role": ""
+        },
+        {
+          "name": "Module 2 — Automation's Brain",
+          "what": "Anatomy of a flow, routing, error-handling architecture",
+          "role": ""
+        },
+        {
+          "name": "Module 3 — Hands-On",
+          "what": "n8n, the first assistant, local vs. cloud AI, context memory",
+          "role": ""
+        },
+        {
+          "name": "Module 4 — The Enterprise Leap",
+          "what": "Power Automate, Copilot Studio, how to sell the solution",
+          "role": ""
+        }
+      ]
+    },
+    "security": {
+      "title": "What we deliberately avoid",
+      "body": "The market standard for automation/AI courses pushes 'learn tool X in 2 hours' and get-rich-quick-with-AI promises — Talos Academy positions itself deliberately against that: architecture and data-security fundamentals before any interface, because the tool the market uses changes every cycle, but whoever understands the flow behind it never stays hostage to any single one of them."
+    },
+    "links": {
+      "repo": null,
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  },
+  "ultrafoot26": {
+    "meta": {
+      "title": "Ultrafoot 26 — Gustavo Vianna",
+      "description": "Management + Tycoon + Roguelike: a remake of a classic football game with real crisis management."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/ultrafoot26.png",
+    "hero": {
+      "eyebrow": "Management + Tycoon + Roguelike · remake of a classic",
+      "title": "Ultrafoot 26",
+      "subtitle": "Not just another spreadsheet manager: real crisis management for a football club",
+      "summary": "A remake of a classic football game that fuses the direct gameplay of a Management sim with the infrastructure and crisis depth of a Tycoon. The player takes on not just the role of coach, but of manager: political backstage, squad psychology, data security, and the real pressures of modern football.",
+      "statusNote": "Already live — desktop (Windows/Mac/Linux) and mobile, with a free and a paid tier."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "The MVP prioritizes a solid core before any added complexity: a match engine with a real FIFA calendar, a fan-club membership system (revenue floats with team morale), home/away factors with age-based mental modifiers, and basic scouting. Tycoon-level complexity and random events come later, on top of a tested foundation — the architecture avoids heavy processing (no 3D match-physics engine) and uses simplified math simulation for CPU-controlled teams."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Hexagonal + DDD isolates the game engine (the business rules) from the interface: calculating a match and its attribute modifiers never needs to open the game screen to be tested. Status effects (traumas, morale, sponsor pressure) are modeled as a list of modifiers on the Player entity — the match engine just sums base attributes and subtracts the active ones, with no knowledge of the business rule behind each. Domain events connect modules (marketing, health, morale) without coupling their code.",
+      "tree": [
+        "Desktop frontend     Tauri + TypeScript — Windows, Mac, Linux",
+        "Mobile frontend      C# — native version",
+        "Game engine          Java 21 + Spring Boot, event-driven",
+        "Database             PostgreSQL — players, history, contract clauses"
+      ]
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Next.js",
+        "Tauri",
+        "TypeScript",
+        "C#",
+        "Java 21",
+        "Spring Boot",
+        "PostgreSQL"
+      ]
+    },
+    "features": {
+      "title": "Standout mechanics",
+      "intro": "Five systems that break from the football-manager status quo.",
+      "items": [
+        {
+          "title": "Persistent traumas and virtues",
+          "mechanic": "A crushing collapse becomes a fixed condition on the involved players' profile — a -15% debuff removed only by a specific achievement, not by time passing."
+        },
+        {
+          "title": "Geographic factor",
+          "mechanic": "Playing at altitude applies a real stamina-consumption multiplier, forcing squad rotation or consumable purchases."
+        },
+        {
+          "title": "Inter-club data warfare",
+          "mechanic": "If a club's security infrastructure is weak, rival teams can intercept your scouts' reports — the same Zero-Trust logic applied to sports espionage."
+        },
+        {
+          "title": "Locker-room cliques",
+          "mechanic": "The engine detects affinities (nationality, age, former club) and forms groups; punishing a group's leader tanks morale for everyone around him."
+        },
+        {
+          "title": "High-risk marketing",
+          "mechanic": "Aggressive campaigns inject cash fast but create performance clauses — breaking the expectation doubles fan pressure and can void sponsorships."
+        }
+      ]
+    },
+    "endpoints": {
+      "title": "Roadmap",
+      "intro": "MVP first, complexity later — to avoid feature creep.",
+      "items": [
+        {
+          "name": "Phase 1 — Core (MVP)",
+          "what": "Match engine, FIFA calendar, fan-club system, home/away factor, basic scouting",
+          "role": ""
+        },
+        {
+          "name": "Phase 2 — Tycoon",
+          "what": "Stadium infrastructure, private security, geographic/altitude factor",
+          "role": ""
+        },
+        {
+          "name": "Phase 3 — Human factor",
+          "what": "Traumas and virtues, crisis events, locker-room cliques",
+          "role": ""
+        },
+        {
+          "name": "Phase 4 — Modern football",
+          "what": "Association-to-corporate-ownership transition, data warfare, toxic contracts, hybrid real+procedural database",
+          "role": ""
+        }
+      ]
+    },
+    "links": {
+      "repo": "https://github.com/jovemegidio/Ultrafoot26",
+      "live": "https://remake-ultrafoot.vercel.app"
+    },
+    "footer": {
+      "backCta": "← Back to the portfolio"
+    }
+  }
+}

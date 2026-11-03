@@ -1,0 +1,74 @@
+{
+  "htmlLang": "pt-BR",
+  "nav": {
+    "sobre": "Sobre",
+    "experiencia": "Experiência",
+    "projetos": "Projetos",
+    "notas": "Notas Técnicas",
+    "formacao": "Formação",
+    "idiomas": "Idiomas",
+    "contato": "Contato"
+  },
+  "navToggleLabel": "Abrir menu",
+  "heroButtons": {
+    "projects": "Ver projetos",
+    "contact": "Entrar em contato",
+    "resume": "Currículo"
+  },
+  "heroMeta": {
+    "location": "Local",
+    "stack": "Stack"
+  },
+  "sections": {
+    "sobre": {
+      "index": "01 / Sobre",
+      "title": "Como cheguei até aqui"
+    },
+    "experiencia": {
+      "index": "02 / Experiência",
+      "title": "Trajetória profissional"
+    },
+    "projetos": {
+      "index": "03 / Projetos",
+      "title": "O que eu construí"
+    },
+    "notas": {
+      "index": "04 / Notas Técnicas",
+      "title": "Por que eu construo assim"
+    },
+    "formacao": {
+      "index": "05 / Formação",
+      "title": "Formação"
+    },
+    "idiomas": {
+      "index": "06 / Idiomas",
+      "title": "Idiomas"
+    },
+    "contato": {
+      "index": "07 / Contato",
+      "title": "Vamos conversar"
+    }
+  },
+  "projectLinks": {
+    "live": "Ver ao vivo ↗",
+    "repo": "Código ↗",
+    "details": "Ver detalhes →"
+  },
+  "noteLink": "Ler artigo completo ↗",
+  "satelliteLabel": "Satélite Z2A",
+  "copyEmail": {
+    "idle": "copiar e-mail",
+    "done": "Copiado ✓"
+  },
+  "copyPhone": {
+    "idle": "copiar telefone",
+    "done": "Copiado ✓"
+  },
+  "footerNote": "Construído com Astro",
+  "backToTop": "Voltar ao topo",
+  "seo": {
+    "metaDescription": "Gustavo Vianna, engenheiro de software focado em arquitetura, segurança e sistemas SaaS em produção.",
+    "socialDescription": "Arquiteturas seguras, sistemas que aguentam produção.",
+    "ogTitle": "Gustavo Vianna, Engenheiro de Software"
+  }
+}

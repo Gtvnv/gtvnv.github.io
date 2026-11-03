@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "category": "Backend & Architecture",
+      "items": [
+        "Java 17+/21+ / Spring Boot",
+        "Spring Security",
+        "Node.js / Express",
+        "C# / .NET",
+        "Golang / Gin",
+        "Python / FastAPI",
+        "Clean Architecture",
+        "Backend for Frontend (BFF)",
+        "Modular Monoliths & Microservices",
+        "Software-Defined Everything (SDx)",
+        "Hexagonal Architecture",
+        "DDD",
+        "SOLID"
+      ]
+    },
+    {
+      "category": "Security & Identity",
+      "items": [
+        "Zero Trust",
+        "IAM",
+        "RBAC / ABAC",
+        "OAuth2 / JWT",
+        "OIDC (OpenID Connect)",
+        "Keycloak",
+        "OWASP",
+        "GDPR-style / Data protection"
+      ]
+    },
+    {
+      "category": "Frontend",
+      "items": [
+        "Angular",
+        "Next.js",
+        "React",
+        "JavaScript / TypeScript",
+        "Tauri",
+        "Ionic",
+        "Capacitor",
+        "TailwindCSS",
+        "Material UI",
+        "Bootstrap"
+      ]
+    },
+    {
+      "category": "Data & Infrastructure",
+      "items": [
+        "PostgreSQL",
+        "MySQL",
+        "SQL Server",
+        "Redis",
+        "AWS",
+        "Azure",
+        "Azure DevOps",
+        "Docker",
+        "Linux",
+        "CI/CD (GitHub Actions)",
+        "Socket.IO",
+        "Terraform / OpenTofu (IaC)",
+        "Kubernetes / OpenShift",
+        "Pulumi"
+      ]
+    },
+    {
+      "category": "AI & Automation",
+      "items": [
+        "Generative AI / LLMs",
+        "Prompt Engineering",
+        "Spec-Driven Development (SDD)",
+        "GitHub Copilot / Claude Code",
+        "Power Platform (PowerApps / Power Automate)",
+        "Ollama / LM Studio",
+        "LangChain / LlamaIndex",
+        "Auto-GPT / BabyAGI",
+        "RAG (Retrieval-Augmented Generation)"
+      ]
+    },
+    {
+      "category": "Governance & Business",
+      "items": [
+        "FinOps",
+        "Risk management",
+        "Compliance",
+        "Scrum / Kanban"
+      ]
+    },
+    {
+      "category": "Simulations & Engines",
+      "items": [
+        "Unity 3D",
+        "Unreal Engine",
+        "Godot"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "role": "Arquiteto de Soluções",
+  "status": "Aberto a oportunidades",
+  "heroSummary": "Construo backends e produtos SaaS com foco em arquitetura limpa, segurança desde o design e viabilidade de negócio. Hoje transito entre Java/Spring, o ecossistema JS/TS e C#/.NET, sempre olhando pro sistema inteiro, não só pro código.",
+  "heroProof": [
+    {
+      "value": "+3 anos",
+      "label": "de experiência profissional em TI"
+    },
+    {
+      "value": "15 anos → 0",
+      "label": "de estoque em planilha — hoje automatizado no ERP"
+    },
+    {
+      "value": "Promovido 3x",
+      "label": "em três empregos — a mais rápida foi recorde no setor de suporte"
+    }
+  ],
+  "aboutParagraphs": [
+    "Minha primeira inclinação acadêmica foi a Física, mas a decisão pela TI me trouxe um fascínio que eu não esperava: a capacidade de entender como as coisas funcionam na realidade e conseguir traduzir isso para o meio digital.",
+    "Minha base em tecnologia refletiu muito essa relação com o mundo físico. Antes do código, passei pelo almoxarifado e pelo suporte técnico. Lidando com infraestrutura, hardware e redes, aprendi a diagnosticar o problema na origem antes de aplicar qualquer correção, uma mentalidade de análise de causa raiz que se tornou a base da minha visão sobre arquitetura de software e o que me levou, naturalmente, a me especializar em segurança da informação.",
+    "Atualmente, a engenharia de software é o que conecta todas as minhas rotinas. Divido meu dia a dia entre o desenvolvimento com C#/.NET e Angular/Ionic na Rumo Soluções e os desafios de um ERP industrial na Agência do Japa. Lidar diariamente com essas regras de negócio me fez perceber que o código, por si só, não basta. Foi essa vivência que me impulsionou a buscar o MBA em Gestão Financeira e Controladoria: eu queria entender o software pela ótica estratégica e financeira da empresa.",
+    "Como a teoria da faculdade sozinha não cobre tudo, meu método de aprendizado contínuo é a construção. No meu tempo livre, estudo criando ferramentas reais: de middlewares de identidade a motores de transformação de dados. O maior reflexo prático disso é a AKPL. Fora da tecnologia, sou instrutor de karatê e presidente da Associação Ventura e Vianna: eu precisava resolver a gestão e o controle de acesso do meu próprio tatame, então fiz o que mais gosto: peguei uma necessidade palpável da minha realidade e a modelei em um sistema que hoje opera na prática.",
+    "Minha atuação técnica é guiada por uma filosofia de Just-in-Time Learning, onde o estudo não é um fim em si mesmo, mas uma ferramenta pragmática de execução para resolver desafios de arquitetura e negócios. Com a base formal em sistemas estabelecida e consolidando a Engenharia de Software, opero hoje na trincheira do desenvolvimento de soluções Full-Cycle, conectando a lógica de microsserviços em nuvem às rigorosas regras de negócios e compliance.",
+    "Para sustentar a escalabilidade e a governança de projetos complexos, meu plano de aprimoramento contínuo avança em duas frentes simultâneas. Na frente de mercado, sigo um roadmap estruturado de chancelas executivas e operacionais, englobando gestão de serviços (PSM I, ITIL 4, Lean Six Sigma), infraestrutura de redes seguras (CCNA) e orquestração e arquitetura em nuvem (AWS Solutions Architect/Security e CKA).",
+    "Já na fronteira acadêmica, minha visão de longo prazo é aplicar o mais alto rigor científico para embasar ecossistemas corporativos. Esse caminho está projetado para avançar por um Mestrado Profissional em Computação de Missão Crítica (FIEMG/ITA) e culminar em um Doutorado Industrial europeu, visando polos de pesquisa aplicada como o Politecnico di Milano ou a Fraunhofer-Gesellschaft. O propósito deste ecossistema de pesquisa não é puramente acadêmico, mas sim a validação intercontinental de frameworks proprietários de arquitetura Zero-Trust e processamento distribuído diretamente em infraestruturas industriais reais. Meu objetivo final é garantir que o conhecimento tecnológico profundo seja sempre traduzido em expansão de mercado, segurança institucional e mitigação absoluta de riscos operacionais."
+  ]
+}

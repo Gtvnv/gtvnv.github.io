@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "degree": "MBA en Gestión Financiera y Controladuría",
+      "institution": "Descomplica Faculdade Digital",
+      "period": "may. 2026 a may. 2027"
+    },
+    {
+      "degree": "MBA en Seguridad de la Información",
+      "institution": "Descomplica Faculdade Digital",
+      "period": "mar. 2026 a jun. 2026"
+    },
+    {
+      "degree": "Ingeniería en Software (Bachillerato)",
+      "institution": "Descomplica Faculdade Digital",
+      "period": "set. 2025 a may. 2028"
+    },
+    {
+      "degree": "Especialización en Computer Software Engineering",
+      "institution": "Faculdade Famart",
+      "period": "set. 2025 a abr. 2026"
+    },
+    {
+      "degree": "Tecnólogo en Análisis y Desarrollo de Sistemas",
+      "institution": "UniCesumar",
+      "period": "feb. 2023 a ago. 2025"
+    }
+  ]
+}
