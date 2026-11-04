@@ -19,6 +19,7 @@
 import RuleCardGrid from "./RuleCardGrid.astro";
 import { withBase } from "../../lib/assets";
 import { localizedPath, type Locale } from "../../i18n/locales";
+import { DETAIL_LABELS } from "../../i18n/detail";
 
 interface RuleCard {
   title: string;
@@ -110,12 +111,15 @@ for (const sat of zc.satellites.items) {
 }
 
 const backHref = withBase(localizedPath({ kind: "home" }, locale));
+const projectsHref = `${backHref}#projetos`;
+const crumbLabel = DETAIL_LABELS[locale].allProjects;
 ---
 
 <article class="detail-main">
   {/* Hero */}
   <section class="zc-hero" data-reveal>
     <div class="container">
+      <a class="zc-crumb" href={projectsHref}>← {crumbLabel}</a>
       <p class="zc-eyebrow">
         <span class="dot" aria-hidden="true"></span>
         {zc.hero.eyebrow}

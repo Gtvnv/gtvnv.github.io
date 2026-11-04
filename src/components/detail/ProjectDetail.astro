@@ -10,12 +10,16 @@
  *  - features (rule-cards numerados);
  *  - endpoints SÓ quando presente (name/what/role — role sempre string);
  *  - security SÓ quando presente (title/body);
- *  - links (live/repo, omitidos quando null);
+ *  - links (live/repo) como CTAs no hero, omitidos quando null;
+ *  - pager anterior/próximo (ProjectPager);
  *  - footer backCta → home do locale.
  */
 import RuleCardGrid from "./RuleCardGrid.astro";
+import ProjectPager from "./ProjectPager.astro";
 import { withBase } from "../../lib/assets";
 import { localizedPath, type Locale } from "../../i18n/locales";
+import { DETAIL_LABELS } from "../../i18n/detail";
+import type { ProjectNav } from "../../lib/content";
 
 interface RuleCard {
   title: string;
@@ -53,9 +57,12 @@ interface Props {
   locale: Locale;
   /** Rótulos de links (ui.projectLinks): { live, repo, details }. */
   labels: { live: string; repo: string };
+  /** Status do projeto + vizinhos anterior/próximo. */
+  nav: ProjectNav;
 }
 
-const { detail, locale, labels } = Astro.props;
+const { detail, locale, labels, nav } = Astro.props;
+const detailLabels = DETAIL_LABELS[locale];
 
 // logo legado = "../assets/projetos/<slug>.png"; reescrito base-aware.
 const logoSrc = withBase(
@@ -63,21 +70,46 @@ const logoSrc = withBase(
 );
 
 const homeHref = withBase(localizedPath({ kind: "home" }, locale));
+const projectsHref = `${homeHref}#projetos`;
 ---
 
 <article class="detail-main">
   <section class="zc-hero" data-reveal>
     <div class="container">
-      <p class="zc-eyebrow">
-        <span class="dot" aria-hidden="true"></span>
-        {detail.hero.eyebrow}
-      </p>
+      <a class="zc-crumb" href={projectsHref}>← {detailLabels.allProjects}</a>
+      <div class="zc-hero-meta">
+        <p class="zc-eyebrow">
+          <span class="dot" aria-hidden="true"></span>
+          {detail.hero.eyebrow}
+        </p>
+        {nav.status && (
+          <span class="status-pill" data-status-key={nav.status.key}>
+            {nav.status.label}
+          </span>
+        )}
+      </div>
       <div class="zc-hero-title-group">
         <img class="zc-hero-badge" src={logoSrc} alt={detail.hero.title} />
         <h1>{detail.hero.title}</h1>
       </div>
       <p class="zc-subtitle">{detail.hero.subtitle}</p>
       <p class="zc-summary">{detail.hero.summary}</p>
+      {
+        (detail.links.live || detail.links.repo) && (
+          <div class="hero-actions">
+            {detail.links.live && (
+              <a class="btn btn-primary" href={detail.links.live} target="_blank" rel="noopener">
+                {labels.live}
+              </a>
+            )}
+            {detail.links.repo && (
+              <a class="btn btn-ghost" href={detail.links.repo} target="_blank" rel="noopener">
+                {labels.repo}
+              </a>
+            )}
+          </div>
+        )
+      }
     </div>
   </section>
 
@@ -103,7 +135,7 @@ const homeHref = withBase(localizedPath({ kind: "home" }, locale));
           <h2 class="zc-section-title">{detail.architecture.title}</h2>
           <p class="zc-section-body">{detail.architecture.body}</p>
           {detail.architecture.tree && (
-            <pre class="zc-arch-tree">{detail.architecture.tree.join("\n")}</pre>
+            <pre class="zc-arch-tree" tabindex="0">{detail.architecture.tree.join("\n")}</pre>
           )}
         </section>
       )
@@ -153,24 +185,9 @@ const homeHref = withBase(localizedPath({ kind: "home" }, locale));
       )
     }
 
-    {/* CTA final + links */}
+    {/* Anterior / próximo + voltar */}
     <section class="zc-footer-cta" data-reveal>
-      {
-        (detail.links.live || detail.links.repo) && (
-          <div class="project-links">
-            {detail.links.live && (
-              <a href={detail.links.live} target="_blank" rel="noopener">
-                {labels.live}
-              </a>
-            )}
-            {detail.links.repo && (
-              <a href={detail.links.repo} target="_blank" rel="noopener">
-                {labels.repo}
-              </a>
-            )}
-          </div>
-        )
-      }
+      <ProjectPager prev={nav.prev} next={nav.next} locale={locale} />
       <a class="zc-back" href={homeHref}>{detail.footer.backCta}</a>
     </section>
   </div>
