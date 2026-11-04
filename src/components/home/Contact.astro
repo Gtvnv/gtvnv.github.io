@@ -10,8 +10,11 @@ interface Props {
   index: string;
   title: string;
   email: string;
+  phoneDirect: string;
+  phoneDirectDial: string;
   phone: string;
   phoneDial: string;
+  phoneLabels: { direct: string; business: string };
   social: { linkedin: string; github: string; whatsapp: string };
   copyEmail: { idle: string; done: string };
   copyPhone: { idle: string; done: string };
@@ -21,12 +24,21 @@ const {
   index,
   title,
   email,
+  phoneDirect,
+  phoneDirectDial,
   phone,
   phoneDial,
+  phoneLabels,
   social,
   copyEmail,
   copyPhone,
 } = Astro.props;
+
+// Direto (pessoal) primeiro; comercial (da empresa) em seguida.
+const phones = [
+  { label: phoneLabels.direct, display: phoneDirect, dial: phoneDirectDial },
+  { label: phoneLabels.business, display: phone, dial: phoneDial },
+];
 ---
 
 <section class="section contact-section" id="contato">
@@ -47,19 +59,24 @@ const {
       </button>
     </div>
 
-    {/* Ação secundária: telefone, visualmente mais quieto. */}
-    <div class="contact-secondary">
-      <a class="contact-phone" href={`tel:${phoneDial}`}>{phone}</a>
-      <button
-        class="copy-btn"
-        type="button"
-        data-copy-value={phone}
-        data-copy-idle={copyPhone.idle}
-        data-copy-done={copyPhone.done}
-      >
-        {copyPhone.idle}
-      </button>
-    </div>
+    {/* Ação secundária: telefones (direto e comercial), com rótulo e mais quietos. */}
+    {
+      phones.map((p) => (
+        <div class="contact-secondary">
+          <span class="contact-phone-label">{p.label}</span>
+          <a class="contact-phone" href={`tel:${p.dial}`}>{p.display}</a>
+          <button
+            class="copy-btn"
+            type="button"
+            data-copy-value={p.display}
+            data-copy-idle={copyPhone.idle}
+            data-copy-done={copyPhone.done}
+          >
+            {copyPhone.idle}
+          </button>
+        </div>
+      ))
+    }
 
     <div class="contact-links">
       <a href={social.linkedin} target="_blank" rel="noopener">LinkedIn</a>

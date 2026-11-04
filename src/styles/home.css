@@ -1004,9 +1004,20 @@
   border-color: var(--accent);
 }
 
-/* Nível 2 — telefone, mais quieto. */
+/* Nível 2 — telefones, mais quietos. O rótulo (direto/comercial) ocupa a
+   linha de cima; número e botão de copiar ficam juntos abaixo. */
 .contact-secondary {
-  margin-top: var(--space-4);
+  margin-top: var(--space-5);
+  gap: var(--space-1) var(--space-4);
+}
+
+.contact-phone-label {
+  flex-basis: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .contact-phone {
