@@ -1144,7 +1144,9 @@
   }
 }
 
-@media (max-width: 640px) {
+/* Menu hamb├║rguer at├® 900px: com 8 itens, a nav horizontal n├úo cabe entre
+   641px e ~860px (estourava a largura da p├ígina). */
+@media (max-width: 900px) {
   .nav-wrap {
     gap: 0.75rem;
   }
@@ -1182,7 +1184,9 @@
   .nav-toggle {
     display: inline-block;
   }
+}
 
+@media (max-width: 640px) {
   .hero-actions .btn {
     flex: 1 1 auto;
     justify-content: center;
