@@ -393,6 +393,22 @@
   background: var(--panel);
 }
 
+/* Currículo: ação secundária de peso médio. Contorno com acento, sem
+   preenchimento, para ficar acima do ghost (Contato) e abaixo do primário. */
+.btn-outline {
+  border-color: var(--accent-dim);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--panel);
+}
+
+.hero-actions .btn {
+  min-height: 44px;
+}
+
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -780,8 +796,56 @@
   color: var(--accent);
 }
 
+/* ---- Microinteração do hover/foco ----
+   O card reage em três pontos: título (cor), seta de "ver detalhes"
+   (desliza 3px) e corner marks (acendem). Mesmo gatilho para hover e
+   foco de teclado no stretched link. */
+.card-arrow {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.project-title {
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.project-card::before,
+.project-card::after {
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.project-card:hover .project-title,
+.project-card:has(.card-link:focus-visible) .project-title {
+  color: var(--accent);
+}
+
+.project-card:hover .card-arrow,
+.project-card:has(.card-link:focus-visible) .card-arrow {
+  transform: translateX(3px);
+}
+
+.project-card:hover::before,
+.project-card:hover::after,
+.project-card:has(.card-link:focus-visible)::before,
+.project-card:has(.card-link:focus-visible)::after {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .project-card:hover {
+  .project-card,
+  .project-title,
+  .card-arrow,
+  .project-card::before,
+  .project-card::after {
+    transition: none;
+  }
+
+  .project-card:hover,
+  .project-card:hover .card-arrow,
+  .project-card:has(.card-link:focus-visible) .card-arrow {
     transform: none;
   }
 }
@@ -1127,6 +1191,20 @@
   .education-item {
     flex-direction: column;
     gap: 0.2rem;
+  }
+}
+
+/* Hero com 3 ações em telas estreitas: primário em linha própria (largura
+   total), Contato e Currículo dividem a linha de baixo. Sem currículo,
+   o Contato ocupa a linha inteira. */
+@media (max-width: 480px) {
+  .hero-actions .btn {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .hero-actions .btn-primary {
+    flex-basis: 100%;
   }
 }
 
