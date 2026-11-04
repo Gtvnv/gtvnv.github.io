@@ -35,8 +35,11 @@
   --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  /* ---- Layout (preservado) ---- */
-  --max-width: 1080px;
+  /* ---- Layout ----
+     Container amplo mas contido: acompanha a tela até 1360px, sem colar nas
+     bordas (min()). Blocos de texto continuam limitados por --measure para a
+     leitura não ficar larga demais em telas grandes. */
+  --max-width: min(94vw, 1360px);
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --measure: 68ch;
   --section-y: clamp(4.25rem, 9vw, 7.5rem);

@@ -24,7 +24,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Node 22: uma dependência transitiva (undici@8) exige >=22.19.0,
+          # e o npm ci falhava em Node 20. Astro 5 suporta Node 22.
+          node-version: 22
           cache: npm
       # --ignore-scripts: dependências não executam scripts de instalação no CI.
       # Verificado: o build do Astro funciona sem eles.
