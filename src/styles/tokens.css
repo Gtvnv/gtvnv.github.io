@@ -21,6 +21,10 @@
   --accent3: #0072ce;
   --accent-grad: linear-gradient(135deg, #003d82 0%, #0072ce 45%, #00a8ff 100%);
 
+  /* ---- Status (pill de projeto em produção) ---- */
+  --status-production: #6ee7a8;
+  --status-production-border: rgba(110, 231, 168, 0.35);
+
   /* ---- Cores da lava (preservadas) ---- */
   --lava-purple: #0c3d8f;
   --lava-blue: #1450c4;

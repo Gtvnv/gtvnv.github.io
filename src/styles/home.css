@@ -671,8 +671,8 @@
 }
 
 .status-pill[data-status-key="production"] {
-  color: #6ee7a8;
-  border-color: rgba(110, 231, 168, 0.35);
+  color: var(--status-production);
+  border-color: var(--status-production-border);
 }
 
 .status-pill[data-status-key="live"] {
