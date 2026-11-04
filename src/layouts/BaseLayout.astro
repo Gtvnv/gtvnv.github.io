@@ -1,17 +1,29 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import { DEFAULT_LOCALE, type Locale } from "../i18n/locales";
+import {
+  DEFAULT_LOCALE,
+  type Locale,
+  type TranslationKey,
+} from "../i18n/locales";
 import { withBase } from "../lib/assets";
 import LavaBackground from "../components/LavaBackground.astro";
+import SEO from "../components/SEO.astro";
 import "../styles/tokens.css";
 import "../styles/base.css";
 
 interface Props {
   locale?: Locale;
-  title?: string;
+  /** Página (home/zenithcode/project) usada por SEO para canonical/hreflang. */
+  translationKey: TranslationKey;
+  /** Sobreposição de title/description para páginas internas. */
+  meta?: { title?: string; description?: string };
 }
 
-const { locale = DEFAULT_LOCALE, title = "Gustavo Vianna" } = Astro.props;
+const {
+  locale = DEFAULT_LOCALE,
+  translationKey,
+  meta,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -20,8 +32,9 @@ const { locale = DEFAULT_LOCALE, title = "Gustavo Vianna" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
-    <title>{title}</title>
-    {/* SEO por locale (title/description/OG/hreflang) chega na FEAT-004 via <SEO /> */}
+    {/* SEO por locale: title/description/OG/Twitter/canonical/hreflang. */}
+    <SEO locale={locale} translationKey={translationKey} meta={meta} />
+    {/* Slot para metadados extra específicos de uma página, se necessário. */}
     <slot name="head" />
     <ClientRouter />
     {/* Scripts de interação registrados de forma idempotente em astro:page-load

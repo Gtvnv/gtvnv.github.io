@@ -42,10 +42,9 @@ const languages = (await getLanguages(locale)) as any[];
 const skills = (await getSkills(locale)) as any[];
 const notes = (await getNotes(locale)) as any[];
 
-const pageTitle = `${site.name}, ${profile.role}`;
 ---
 
-<BaseLayout locale={locale} title={pageTitle}>
+<BaseLayout locale={locale} translationKey={{ kind: "home" }}>
   <SiteHeader
     slot="header"
     locale={locale}

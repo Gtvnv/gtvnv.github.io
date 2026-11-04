@@ -1,0 +1,108 @@
+---
+/**
+ * SEO — metadados por locale no <head> (title/description/OG/Twitter/canonical
+ * e hreflang). É montado a partir do locale + translationKey da página.
+ *
+ * Regras (design §SEO + review_decisions):
+ * - <title>/og:title/twitter:title = ui.seo.ogTitle do locale (preserva
+ *   "Engenheiro de Software"); páginas internas sobrepõem com `meta.title`.
+ *   Fallback de ogTitle: `${site.name}, ${profile.role}`.
+ * - <meta name="description"> (SERP) = ui.seo.metaDescription; páginas internas
+ *   usam `meta.description`.
+ * - og:description/twitter:description (social) = ui.seo.socialDescription;
+ *   páginas internas usam `meta.description`.
+ * - og:image/twitter:image ABSOLUTOS, 1200x630; canonical absoluto = site +
+ *   localizedPath(key, locale); hreflang para os 3 locales + x-default (→ pt-BR),
+ *   todos montados pelo mesmo localizedPath.
+ */
+import {
+  LOCALES,
+  DEFAULT_LOCALE,
+  localizedPath,
+  type Locale,
+  type TranslationKey,
+} from "../i18n/locales";
+import { getSite, getProfile, getUi } from "../lib/content";
+
+interface MetaOverride {
+  /** Sobrepõe <title>/og:title/twitter:title (páginas internas). */
+  title?: string;
+  /** Sobrepõe description de SERP e social (páginas internas). */
+  description?: string;
+}
+
+interface Props {
+  locale: Locale;
+  translationKey: TranslationKey;
+  /** Sobreposição para páginas internas (zenithcode/project detail). */
+  meta?: MetaOverride;
+}
+
+const { locale, translationKey, meta } = Astro.props;
+
+const site = (await getSite()) as { name: string };
+const profile = (await getProfile(locale)) as { role: string };
+const ui = (await getUi(locale)) as {
+  seo: {
+    metaDescription: string;
+    socialDescription: string;
+    ogTitle?: string;
+  };
+};
+
+const siteOrigin = Astro.site?.href.replace(/\/$/, "") ?? "https://gtvnv.github.io";
+
+// Título/og:title: override da página interna > ogTitle do locale > fallback.
+const ogTitle =
+  meta?.title ?? ui.seo.ogTitle ?? `${site.name}, ${profile.role}`;
+
+// Descrições: páginas internas usam a mesma meta.description em SERP e social.
+const serpDescription = meta?.description ?? ui.seo.metaDescription;
+const socialDescription = meta?.description ?? ui.seo.socialDescription;
+
+// URL canônica absoluta da própria página (no locale atual).
+const canonical = `${siteOrigin}${localizedPath(translationKey, locale)}`;
+
+// og:image absoluto fixo (1200x630), independente de base/locale.
+const ogImage = "https://gtvnv.github.io/assets/og-image.png";
+
+// Alternates: 3 locales + x-default (→ pt-BR). Todos via localizedPath.
+const alternates: { hreflang: string; href: string }[] = [
+  ...LOCALES.map((loc) => ({
+    hreflang: loc,
+    href: `${siteOrigin}${localizedPath(translationKey, loc)}`,
+  })),
+  {
+    hreflang: "x-default",
+    href: `${siteOrigin}${localizedPath(translationKey, DEFAULT_LOCALE)}`,
+  },
+];
+---
+
+<title>{ogTitle}</title>
+<meta name="description" content={serpDescription} />
+<link rel="canonical" href={canonical} />
+
+{/* hreflang: 3 locales + x-default → pt-BR */}
+{
+  alternates.map((alt) => (
+    <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+  ))
+}
+
+{/* Open Graph */}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content={locale} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={socialDescription} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={ogTitle} />
+<meta name="twitter:description" content={socialDescription} />
+<meta name="twitter:image" content={ogImage} />
