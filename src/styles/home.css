@@ -159,7 +159,7 @@
 .lang-switch a {
   background: none;
   border: 1px solid var(--border);
-  color: var(--muted-dim);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: var(--fs-100);
   letter-spacing: 0.02em;
@@ -1144,8 +1144,8 @@
   }
 }
 
-/* Menu hamb├║rguer at├® 900px: com 8 itens, a nav horizontal n├úo cabe entre
-   641px e ~860px (estourava a largura da p├ígina). */
+/* Menu hambúrguer até 900px: com 8 itens, a nav horizontal não cabe entre
+   641px e ~860px (estourava a largura da página). */
 @media (max-width: 900px) {
   .nav-wrap {
     gap: 0.75rem;

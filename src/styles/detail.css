@@ -62,7 +62,7 @@
 .lang-switch a {
   background: none;
   border: 1px solid var(--border);
-  color: var(--muted-dim);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: var(--fs-100);
   letter-spacing: 0.02em;
