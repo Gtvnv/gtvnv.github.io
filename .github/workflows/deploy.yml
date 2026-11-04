@@ -28,10 +28,12 @@ jobs:
           # e o npm ci falhava em Node 20. Astro 5 suporta Node 22.
           node-version: 22
           cache: npm
-      # --ignore-scripts: dependências não executam scripts de instalação no CI.
-      # Verificado: o build do Astro funciona sem eles.
+      # npm install (não npm ci): algumas dependências transitivas (ex.: @types/node)
+      # têm range aberto e resolvem versões diferentes entre máquinas, o que fazia
+      # o 'npm ci' (match exato do lock) falhar no runner. 'npm install' reconcilia
+      # o lock — aceitável para este site estático. --ignore-scripts por segurança.
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: npm install --ignore-scripts --no-audit --no-fund
       - name: Build
         run: npm run build
       - name: Upload artifact
