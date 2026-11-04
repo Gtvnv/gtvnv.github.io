@@ -1,0 +1,362 @@
+{
+  "meta": {
+    "title": "ZenithCode OS / Z2A — Gustavo Vianna",
+    "description": "Deterministic AI governance across the development lifecycle: the research behind the personal Z2A meta-framework."
+  },
+  "backLabel": "Portfolio",
+  "hero": {
+    "eyebrow": "Ongoing research · personal meta-framework",
+    "title": "ZenithCode OS",
+    "subtitle": "Deterministic AI governance across the software development lifecycle",
+    "summary": "AI assistants speed up code production, but empirical literature shows rising defects, vulnerabilities, and technical debt. Z2A is the set of patterns I've been documenting and testing informally at work to treat AI as a non-authoritative probabilistic component — never the system's critical path.",
+    "mastersNote": "It's the foundation of the research I plan to deepen in my Professional Master's in Mission-Critical Computing — with room to grow into a doctoral thesis, if the pilot proves the case."
+  },
+  "epistemic": {
+    "title": "Epistemic status",
+    "body": "This is a well-designed product, not yet empirically validated. No mechanism has gone through a controlled pilot. The one falsifiable scientific claim today: deterministic gating reduces defect density without penalizing lead time beyond a pre-registered threshold. The experimental protocol (baseline, control group, kill criteria) is already written, following the principle of Epistemic Honesty (R6): every rule in the ecosystem carries a pre-registered Kill Criterion — if the metric hasn't improved in 90 days, the rule gets deleted, no exceptions. A null result is a valid result."
+  },
+  "problem": {
+    "title": "The problem",
+    "body": "The industry responded to AI-generated code with isolated quality gates (linters, SAST, loose CI policies). What's missing is a governance model that treats AI as a probabilistic suggestion, decides integration deterministically, and guarantees the business's critical path runs even with zero AI."
+  },
+  "thesis": {
+    "title": "The central thesis",
+    "quote": "AI suggests; the rule decides.",
+    "body": "Generative AI acts as a non-authoritative probabilistic suggestion. What decides whether something ships is deterministic rules over the Abstract Syntax Tree (AST) and dependency contracts — never the model.",
+    "analogy": "Analogy: an extremely creative intern (the LLM) proposes hundreds of lines a minute; a rigid lawyer (the deterministic AST gate) only signs the contract if every clause checks out. If the intern hallucinates, the door doesn't open."
+  },
+  "topology": {
+    "title": "Data topology",
+    "intro": "Three layers separate the source of truth from how each person actually sees the system.",
+    "items": [
+      {
+        "title": "Truth-Layer",
+        "body": "The single source of truth (Segal's Law). Pure math, immutable logs, Event Sourcing, and DORA metrics — lives on the servers and database engines."
+      },
+      {
+        "title": "HUD-Layer (Mythology)",
+        "body": "The sociotechnical interface layer. Uses mythological metaphors — the satellites — to translate backend complexity into cognitively ergonomic concepts for humans."
+      },
+      {
+        "title": "Context Lenses",
+        "body": "The view adapts to the role. A Dev sees the board and their workload; a CFO sees OPEX and the GECON flow; the CEO sees Lead Time and market value."
+      }
+    ]
+  },
+  "coreRules": {
+    "title": "Minimum core — what runs from day one",
+    "intro": "A 5-person squad runs on just this, no platform, no central AI, no internal economy — six CI/CD settings, near-zero cognitive cost.",
+    "items": [
+      {
+        "title": "Mandatory rationale + test",
+        "mechanic": "The PR requires an architectural-rationale header; the build breaks if changed lines have 0% coverage."
+      },
+      {
+        "title": "AST dependency gate",
+        "mechanic": "A static rule (e.g. ArchUnit) blocks infrastructure → domain imports; violate it and deploy is blocked."
+      },
+      {
+        "title": "Error Budget (SLO)",
+        "mechanic": "A reliability budget. Blow it and the squad freezes new features until it recovers."
+      },
+      {
+        "title": "Post-incident review with prevention",
+        "mechanic": "Closing an incident requires the automated rule that prevents recurrence — mitigation alone isn't enough."
+      },
+      {
+        "title": "Dependency firewall",
+        "mechanic": "No direct public library downloads; everything routes through an internal registry with CVE/license scanning."
+      },
+      {
+        "title": "WIP limit",
+        "mechanic": "An explicit cap on work in progress; no new demand enters a saturated squad."
+      }
+    ]
+  },
+  "laws": {
+    "title": "Laws, axioms, and protocols",
+    "intro": "Sociotechnical behavior rules that sit above the pipeline — governing people and decisions, not just code.",
+    "items": [
+      {
+        "title": "T.D.E. (Think-Document-Execute)",
+        "mechanic": "A non-negotiable commit cycle. Requires an architectural rationale and a written unit test before code is accepted."
+      },
+      {
+        "title": "Gilbert's Law (Accountability)",
+        "mechanic": "Responsibility for success belongs to whoever executes. Focus on the solution and strategic outcomes, eliminating blame-shifting and procedural excuses."
+      },
+      {
+        "title": "Steelbert's Law (Trade-offs)",
+        "mechanic": "Every improvement hides a regression. No architecture change or tool adoption moves forward without a \"Certificate of Degradation\" — what will get worse in the process."
+      },
+      {
+        "title": "Fiduciary Override Protocol",
+        "mechanic": "If a business manager needs to force a release over the architecture's objection, the code ships — but the system debits 40% of the team's Error Budget and revokes emergency support. The liability is financial."
+      },
+      {
+        "title": "Three-Front Squad Rescue",
+        "mechanic": "Algorithmic Solidarity (senior architects take on refactoring bounties in exchange for CNFs), Chimera Filter (the junior hire arrives already sprint-ready), and Elite Mercenary (short-term contractor, skips Catharsis, focuses only on the deterministic security gates)."
+      }
+    ]
+  },
+  "blackout": {
+    "title": "The Blackout Test",
+    "tag": "the central proof",
+    "whatIs": "A cyclical pipeline job that switches off 100% of AI (or injects corrupted responses) and runs the critical business flows: authentication, billing, tax filing, deploy.",
+    "criterion": "If any critical path depends on a probabilistic component to complete, the build breaks.",
+    "proves": "Proves AI is an accelerator, not a critical path. The operation survives an AI blackout, a model-poisoning event, a systemic hallucination, or the vendor going down.",
+    "closing": "If the business survives the blackout, the thesis holds. It's falsifiable and automatable — not a promise."
+  },
+  "measurement": {
+    "title": "How it's measured",
+    "intro": "The human and financial dimensions aren't parallel theses — they're the instruments that measure the impact of AI governance.",
+    "items": [
+      {
+        "name": "DORA",
+        "what": "lead time, change failure rate, MTTR, deploy frequency",
+        "role": "primary evidence"
+      },
+      {
+        "name": "Defect density",
+        "what": "defects/KLOC + dependency violations",
+        "role": "primary evidence"
+      },
+      {
+        "name": "Automated TDABC costing",
+        "what": "real cost per cost object, via telemetry",
+        "role": "commercial evidence (ROI)"
+      },
+      {
+        "name": "Cognitive load",
+        "what": "artifact proxies: contexts touched, complexity under ownership",
+        "role": "secondary evidence"
+      }
+    ]
+  },
+  "satellites": {
+    "title": "The 20 satellites",
+    "intro": "The core (Z2A) is the inviolable kernel; each satellite is an optional plugin, attached only once the company crosses a real pain trigger — never a mandatory monolith.",
+    "groups": {
+      "core": "Operational Core & Infrastructure",
+      "market": "Market Expansion & Integration",
+      "labs": "Z2A Labs (R&D)"
+    },
+    "items": [
+      {
+        "id": "01",
+        "slug": "themis",
+        "name": "Themis",
+        "domain": "Security & Compliance",
+        "group": "core",
+        "gloss": "Deterministic security gate: trigger a vulnerability, the build breaks.",
+        "detail": "Its real-world form is AegisProtocol: a Zero-Trust identity sidecar that validates every request by attribute (ABAC/RBAC) with a local cache, keeping authorization latency near zero. Audit logs are write-once (WORM) — not even a database admin can delete a record after it's written. A sibling layer (internally called Sigma) runs preventive SAST/DAST on every commit, so the vulnerability never makes it into an open PR — and the CI pipeline automatically blocks deploys on a failed scan, with no manual override."
+      },
+      {
+        "id": "02",
+        "slug": "argus",
+        "name": "Argus",
+        "domain": "FinOps / GECON",
+        "group": "core",
+        "gloss": "The accounting engine running the system's three currencies: Z-Points, Error Budget, and CNF.",
+        "detail": "GECON is the ledger that manages Z-Points (gamification and bonuses), Error Budget (SLO/reliability), and CNF — Non-Fungible Commits, the reputation currency for whoever fixed the structural problem, not just wrote the line. Every service carries its own error budget and its real cost, computed by automated TDABC. The goal is for architecture decisions and financial decisions to run off the same number instead of two reports that never meet."
+      },
+      {
+        "id": "03",
+        "slug": "dk-ops",
+        "name": "DK-Ops",
+        "domain": "Platform / SRE / IDP",
+        "group": "core",
+        "gloss": "An Internal Developer Platform that absorbs infra complexity — and knows when to kill dead code.",
+        "detail": "Offers \"golden paths\": infrastructure-as-code templates (Pulumi) with security and observability guardrails baked in, so product teams don't rebuild the pipeline from scratch. Deploys are progressive (canary/blue-green) with automatic rollback if error metrics spike. It also runs Apoptosis: a process that identifies and shuts down legacy code with no real traffic, instead of letting it rot in the repo forever. Its real manifestation is Vertex."
+      },
+      {
+        "id": "04",
+        "slug": "quiron",
+        "name": "Quiron",
+        "domain": "Sociotechnical HR / Ergonomics",
+        "group": "core",
+        "gloss": "Tracks and protects the squad's Human Debt and Cognitive Load.",
+        "detail": "Treats cognitive load as an engineering metric, not an opinion: how many different systems a person touches per week, the complexity they own. Crossing the threshold triggers a Victory Landing — a mandatory, non-optional pause — before it turns into burnout, and caps the team's WIP. Career progression is tied to recorded technical evidence, not tenure."
+      },
+      {
+        "id": "05",
+        "slug": "evelyn",
+        "name": "E.V.E.L.Y.N.",
+        "domain": "Central + Edge AI",
+        "group": "core",
+        "gloss": "Local models (SLMs) that suggest, never decide alone.",
+        "detail": "Instead of one general-purpose model, it trains small, domain-specialized language models (SLMs), each exposed only to that domain's data. No AI suggestion reaches production code without passing the pipeline's automated tests, and every response carries a signature of the model/parameters used, so it stays auditable later. Every model update runs two weeks in shadow mode before promotion, and is automatically blocked if it regresses on any case in a fixed security test set."
+      },
+      {
+        "id": "06",
+        "slug": "hefesto",
+        "name": "Hefesto",
+        "domain": "Hardware / IoT / Digital Twins",
+        "group": "core",
+        "gloss": "Cyber-physical simulation before touching real hardware.",
+        "detail": "Before any change touches real physical equipment, it first runs against a digital twin, a simulation of the hardware's real behavior. Updates reach the device over-the-air with a physical circuit breaker that cuts operation if telemetry drifts outside the expected range, so a software bug can't turn into a physical incident."
+      },
+      {
+        "id": "07",
+        "slug": "atlas",
+        "name": "Atlas",
+        "domain": "Corporate / Geographic Governance",
+        "group": "core",
+        "gloss": "Compliance-as-Code: every jurisdiction gets its tax and labor rules versioned.",
+        "detail": "Treats tax and legal compliance as versioned code, not an accountant's spreadsheet: each jurisdiction/legal entity has its tax and labor rules (contractor vs. employee) expressed as testable configuration, with legal risk calculated instead of guessed. It isolates blast radius by legal entity, so an incident in one subsidiary doesn't take down the others."
+      },
+      {
+        "id": "08",
+        "slug": "prometeu",
+        "name": "Prometeu",
+        "domain": "Validation / Red Team",
+        "group": "core",
+        "gloss": "An adversarial council that tries to break every new rule before it counts.",
+        "detail": "A validation committee that reviews structural changes through BADR before they consume budget, with rigor calibrated to blast radius: core changes require full consensus, isolated experiments run in the VORTEX and FÊNIX sandboxes against a small slice of real traffic before any innovation burns OPEX. Every decision becomes a formal record with the accepted trade-off."
+      },
+      {
+        "id": "09",
+        "slug": "catharsis",
+        "name": "Catharsis",
+        "domain": "Mindset Deconstruction",
+        "group": "core",
+        "gloss": "The first step for newcomers: unlearn shortcuts before learning architecture.",
+        "detail": "Mandatory onboarding in three steps: audit a real repository with known security flaws, refactor a module applying clean architecture under Generative Abstinence — a full ban on AI in the Core Domain, to force structural reasoning before outsourcing it to the model — then defend the decisions out loud. Short-term contractors skip this step, with trust resting entirely on automated controls instead."
+      },
+      {
+        "id": "10",
+        "slug": "odyssey",
+        "name": "Odyssey",
+        "domain": "Elite Onboarding",
+        "group": "core",
+        "gloss": "Tests the developer at the architecture Gateways before lowering the bar.",
+        "detail": "Competency-based technical certification, not tenure-based: modules assessed through hands-on tests — decoupling external dependencies, penetration/privilege-escalation testing, performance analysis, and learning a new technology from official docs alone. New hires ship a real production deploy on day one; short-term contractors only take the security module."
+      },
+      {
+        "id": "11",
+        "slug": "oraculo",
+        "name": "Oraculo",
+        "domain": "Data Mesh / LGPD",
+        "group": "core",
+        "gloss": "Data treated as a product, with an owner and a lifecycle, not a dumping ground.",
+        "detail": "Every piece of data has an owner and a defined lifecycle instead of sitting unaccounted for in a data lake. The right to be forgotten (LGPD/GDPR) is handled via crypto-shredding: destroying just that data's encryption key turns it into unrecoverable mathematical noise, without touching the immutable audit logs."
+      },
+      {
+        "id": "12",
+        "slug": "hermes",
+        "name": "Hermes",
+        "domain": "Supply Chain / Logistics",
+        "group": "core",
+        "gloss": "End-to-end traceability for everything physical in the system.",
+        "detail": "Tracks every physical item end-to-end, from supplier to disposal, feeding depreciation telemetry into Argus's real-cost calculation. Any break in the chain — delay, loss — triggers an automatic alert instead of being discovered only at inventory count."
+      },
+      {
+        "id": "13",
+        "slug": "apolo",
+        "name": "Apolo",
+        "domain": "Go-To-Market / Sales",
+        "group": "market",
+        "gloss": "Commercial gateway: where the architecture meets the customer.",
+        "detail": "Works as a commercial gateway that translates internal technical artifacts (access control, compliance, observability) into terminology a customer or external auditor recognizes (ISO, RBAC/ABAC), without touching the underlying technical record — only the presentation layer changes. Also handles B2B contracts, and exports for external audits go through automatic redaction that strips PII and internal identifiers before they leave."
+      },
+      {
+        "id": "14",
+        "slug": "egide",
+        "name": "Egide",
+        "domain": "ITSM / Support",
+        "group": "market",
+        "gloss": "The layer that absorbs the shop floor: incidents, contracts, support.",
+        "detail": "Layered technical support (tier-1 self-service, tier-2 runbook-driven triage, and a read-only observability layer) that shields engineers from direct interruptions; tickets missing standardized information are auto-rejected. An incident only truly closes when a regression test for that specific failure lands in the pipeline."
+      },
+      {
+        "id": "15",
+        "slug": "iris",
+        "name": "Iris",
+        "domain": "Integration Frontier",
+        "group": "market",
+        "gloss": "The ecosystem's customs checkpoint: a controlled border for a client's legacy system to come in.",
+        "detail": "An API Gateway that works like customs: lets external clients plug their legacy systems into the ecosystem without exposing the core directly, isolating each integration under its own contract. No outside system talks to the Truth-Layer directly — everything crosses Iris's border first."
+      },
+      {
+        "id": "16",
+        "slug": "jano",
+        "name": "Janus",
+        "domain": "Spin-off Factory",
+        "group": "market",
+        "gloss": "Cuts the umbilical cord: extracts a mature internal tool and turns it into its own product.",
+        "detail": "Identifies internal tools that matured inside the IDP, cuts the dependency on the corporate core, and packages the tool as an independent SaaS product — with its own release cycle, customers, and financial ownership, instead of staying an undocumented appendage of the main system."
+      },
+      {
+        "id": "17",
+        "slug": "hestia",
+        "name": "Hestia",
+        "domain": "Open-Source Hub",
+        "group": "market",
+        "gloss": "Sanitizes internal code and gives it back to the community, without leaking a single secret.",
+        "detail": "Before any internal repository goes open-source, it runs through a sanitization pass that strips credentials, internal data, and proprietary logic. Once published, it runs Bug Bounties and Developer Relations — open-source becomes a recruiting and technical-reputation channel, not just code charity."
+      },
+      {
+        "id": "18",
+        "slug": "atena",
+        "name": "Athena",
+        "domain": "Scientific Customer Success",
+        "group": "market",
+        "gloss": "Pillar Zero: if shipped code doesn't move the business metric in 30 days, it comes down.",
+        "detail": "Tracks each feature's North Star Metric in the real market, not just whether it ran without errors. If code shipped to production doesn't positively change the business metric within 30 days, Athena triggers the removal order — success is never \"it didn't break,\" it's \"it delivered what it promised.\""
+      },
+      {
+        "id": "19",
+        "slug": "cassandra",
+        "name": "Cassandra",
+        "domain": "Obsolescence Radar",
+        "group": "labs",
+        "gloss": "Watches the market to predict when the stack itself will become legacy.",
+        "detail": "An outward-facing intelligence that continuously scans the technology market, predicting when the company's current stack will become obsolete before it turns into a crisis. Schedules migrations ahead of time instead of waiting for the legacy system to blow up under production pressure."
+      },
+      {
+        "id": "20",
+        "slug": "psique",
+        "name": "Psyche",
+        "domain": "HCI & Neurometrics",
+        "group": "labs",
+        "gloss": "Translates UX friction into a math-backed refactoring ticket.",
+        "detail": "Maps real human behavior — A/B tests, heatmaps, click hesitation — and converts user-experience friction into engineering tickets with a calculated priority, not a designer's opinion. The user's pain becomes a number, and the number becomes backlog."
+      }
+    ]
+  },
+  "tooling": {
+    "title": "Physical tooling",
+    "intro": "Where the mythology turns into binary: the concrete manifestation of each layer in real software.",
+    "items": [
+      {
+        "title": "T.D.E. CLI (z2a-cli)",
+        "mechanic": "The local watchdog on the developer's machine."
+      },
+      {
+        "title": "DK-Ops Linter / Berlin Wall",
+        "mechanic": "A CI/CD pipeline with cloud-side AST blocking."
+      },
+      {
+        "title": "Argus Ledger Core",
+        "mechanic": "An Event Sourcing engine for Error Budgets and financial telemetry."
+      },
+      {
+        "title": "AegisProtocol Sidecar",
+        "mechanic": "The API Gateway and local mesh for Zero-Trust execution — Themis's real-world manifestation."
+      }
+    ]
+  },
+  "whenNot": {
+    "title": "When not to adopt it",
+    "items": [
+      "Pre-PMF startups — you need speed and discovery; gating doesn't pay off when the cost of a defect is low.",
+      "Teams of 2 to 5 people — the overhead crushes the benefit; adopt just the 6 core rules.",
+      "Prototypes and throwaway projects.",
+      "Organizations without the critical mass to run telemetry and a platform."
+    ]
+  },
+  "footer": {
+    "vertexNote": "Vertex is the first piece of this study that turned into real code.",
+    "backCta": "← Back to the portfolio"
+  }
+}

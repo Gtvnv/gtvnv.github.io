@@ -1,0 +1,298 @@
+---
+/**
+ * Zenithcode — render da página ZenithCode OS / Z2A, reproduzindo o renderer
+ * legado (js/zenithcode.js) em paridade, seção a seção e na mesma ordem:
+ * hero → epistemic (callout) → problem → thesis → topology? → coreRules →
+ * laws? → blackout → measurement → satellites (agrupados) → tooling? →
+ * whenNot → footer CTA.
+ *
+ * Satélites: items vêm contíguos por group; a cada troca de group abre-se uma
+ * nova grade com o cabeçalho = satellites.groups[group] (RÓTULO traduzido,
+ * nunca o valor cru "core"/"market"/"labs"). Emblemas via
+ * withBase('assets/z2a/emblemas/<id>_<slug>.png').
+ *
+ * Os rótulos estruturais da <dl> do Teste do Apagão ("O que é / Critério /
+ * O que prova") são chrome de template: no legado eram fixos em pt-BR nos 3
+ * idiomas (o JS só trocava os dados). Preservados verbatim para paridade — a
+ * tradução desses rótulos fica para a rodada de polish.
+ */
+import RuleCardGrid from "./RuleCardGrid.astro";
+import { withBase } from "../../lib/assets";
+import { localizedPath, type Locale } from "../../i18n/locales";
+
+interface RuleCard {
+  title: string;
+  mechanic?: string;
+  body?: string;
+}
+
+interface CardSection {
+  title: string;
+  intro: string;
+  items: RuleCard[];
+}
+
+interface SatelliteItem {
+  id: string;
+  slug: string;
+  name: string;
+  domain: string;
+  group: string;
+  gloss: string;
+  detail?: string;
+}
+
+interface ZenithcodeData {
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    summary: string;
+    mastersNote: string;
+  };
+  epistemic: { title: string; body: string };
+  problem: { title: string; body: string };
+  thesis: { title: string; quote: string; body: string; analogy: string };
+  topology?: CardSection;
+  coreRules: CardSection;
+  laws?: CardSection;
+  blackout: {
+    tag: string;
+    title: string;
+    whatIs: string;
+    criterion: string;
+    proves: string;
+    closing: string;
+  };
+  measurement: {
+    title: string;
+    intro: string;
+    items: { name: string; what: string; role: string }[];
+  };
+  satellites: {
+    title: string;
+    intro: string;
+    groups: Record<string, string>;
+    items: SatelliteItem[];
+  };
+  tooling?: CardSection;
+  whenNot: { title: string; items: string[] };
+  footer: { vertexNote: string; backCta: string };
+}
+
+interface Props {
+  zc: ZenithcodeData;
+  locale: Locale;
+}
+
+const { zc, locale } = Astro.props;
+
+// Rótulos estruturais da <dl> do Teste do Apagão (chrome de template; ver nota).
+const BLACKOUT_LABELS = {
+  whatIs: "O que é",
+  criterion: "Critério",
+  proves: "O que prova",
+} as const;
+
+// Agrupa satélites por group preservando a ordem contígua do array items.
+// Cada grupo vira { label (rótulo traduzido), items }.
+const satGroups: { label: string; items: SatelliteItem[] }[] = [];
+let lastGroup: string | null = null;
+for (const sat of zc.satellites.items) {
+  if (sat.group !== lastGroup) {
+    lastGroup = sat.group;
+    satGroups.push({
+      label: zc.satellites.groups[sat.group] ?? sat.group,
+      items: [],
+    });
+  }
+  satGroups[satGroups.length - 1].items.push(sat);
+}
+
+const backHref = withBase(localizedPath({ kind: "home" }, locale));
+---
+
+<article class="detail-main">
+  {/* Hero */}
+  <section class="zc-hero" data-reveal>
+    <div class="container">
+      <p class="zc-eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        {zc.hero.eyebrow}
+      </p>
+      <div class="zc-hero-title-group">
+        <img
+          class="zc-hero-badge"
+          src={withBase("assets/z2a/emblemas/21_zenithcode.png")}
+          alt=""
+          loading="lazy"
+        />
+        <h1>{zc.hero.title}</h1>
+      </div>
+      <p class="zc-subtitle">{zc.hero.subtitle}</p>
+      <p class="zc-summary">{zc.hero.summary}</p>
+      <p class="zc-masters-note">{zc.hero.mastersNote}</p>
+    </div>
+  </section>
+
+  <div class="container">
+    {/* Estatuto epistêmico (callout) */}
+    <div class="zc-callout" data-reveal>
+      <h2>{zc.epistemic.title}</h2>
+      <p>{zc.epistemic.body}</p>
+    </div>
+
+    {/* O problema */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.problem.title}</h2>
+      <p class="zc-section-body">{zc.problem.body}</p>
+    </section>
+
+    {/* Tese central */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.thesis.title}</h2>
+      <p class="zc-quote">"{zc.thesis.quote}"</p>
+      <p class="zc-section-body">{zc.thesis.body}</p>
+      <p class="zc-analogy">{zc.thesis.analogy}</p>
+    </section>
+
+    {/* Topologia de dados (opcional) */}
+    {
+      zc.topology && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{zc.topology.title}</h2>
+          <p class="zc-rules-intro">{zc.topology.intro}</p>
+          <RuleCardGrid items={zc.topology.items} />
+        </section>
+      )
+    }
+
+    {/* Núcleo mínimo */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.coreRules.title}</h2>
+      <p class="zc-rules-intro">{zc.coreRules.intro}</p>
+      <RuleCardGrid items={zc.coreRules.items} />
+    </section>
+
+    {/* Leis, axiomas e protocolos (opcional) */}
+    {
+      zc.laws && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{zc.laws.title}</h2>
+          <p class="zc-rules-intro">{zc.laws.intro}</p>
+          <RuleCardGrid items={zc.laws.items} />
+        </section>
+      )
+    }
+
+    {/* Teste do Apagão */}
+    <section class="zc-section" data-reveal>
+      <div class="zc-blackout">
+        <span class="zc-blackout-tag">{zc.blackout.tag}</span>
+        <h2>{zc.blackout.title}</h2>
+        <dl>
+          <div>
+            <dt>{BLACKOUT_LABELS.whatIs}</dt>
+            <dd>{zc.blackout.whatIs}</dd>
+          </div>
+          <div>
+            <dt>{BLACKOUT_LABELS.criterion}</dt>
+            <dd>{zc.blackout.criterion}</dd>
+          </div>
+          <div>
+            <dt>{BLACKOUT_LABELS.proves}</dt>
+            <dd>{zc.blackout.proves}</dd>
+          </div>
+        </dl>
+        <p class="zc-blackout-closing">{zc.blackout.closing}</p>
+      </div>
+    </section>
+
+    {/* Como se mede */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.measurement.title}</h2>
+      <p class="zc-measure-intro">{zc.measurement.intro}</p>
+      <div class="zc-measure-list">
+        {
+          zc.measurement.items.map((item) => (
+            <div class="zc-measure-item">
+              <span class="zc-measure-name">{item.name}</span>
+              <span class="zc-measure-what">{item.what}</span>
+              <span class="zc-measure-role">{item.role}</span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* Os 20 satélites (agrupados) */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.satellites.title}</h2>
+      <p class="zc-satellites-intro">{zc.satellites.intro}</p>
+      <div>
+        {
+          satGroups.map((grp) => (
+            <>
+              <h3 class="zc-sat-group-title">{grp.label}</h3>
+              <div class="zc-satellites-grid">
+                {grp.items.map((sat) => (
+                  <div
+                    class="zc-satellite-card"
+                    id={sat.slug}
+                    tabindex="0"
+                    role="button"
+                    aria-expanded="false"
+                    data-sat-toggle={sat.detail ? "" : undefined}
+                  >
+                    <img
+                      src={withBase(`assets/z2a/emblemas/${sat.id}_${sat.slug}.png`)}
+                      alt={sat.name}
+                      loading="lazy"
+                    />
+                    <span class="zc-sat-num">{sat.id}</span>
+                    <h3>{sat.name}</h3>
+                    <span class="zc-sat-domain">{sat.domain}</span>
+                    <p>{sat.gloss}</p>
+                    {sat.detail && (
+                      <>
+                        <p class="zc-sat-detail">{sat.detail}</p>
+                        <span class="zc-sat-chevron" aria-hidden="true">
+                          ▾
+                        </span>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* Ferramental físico (opcional) */}
+    {
+      zc.tooling && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{zc.tooling.title}</h2>
+          <p class="zc-rules-intro">{zc.tooling.intro}</p>
+          <RuleCardGrid items={zc.tooling.items} />
+        </section>
+      )
+    }
+
+    {/* Quando não adotar */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{zc.whenNot.title}</h2>
+      <ul class="zc-when-not">
+        {zc.whenNot.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    {/* CTA final */}
+    <div class="zc-footer-cta" data-reveal>
+      <p>{zc.footer.vertexNote}</p>
+      <a class="zc-back" href={backHref}>{zc.footer.backCta}</a>
+    </div>
+  </div>
+</article>

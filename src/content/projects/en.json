@@ -1,0 +1,446 @@
+{
+  "items": [
+    {
+      "title": "Zyntra ERP",
+      "statusKey": "production",
+      "status": "IN PRODUCTION",
+      "featured": true,
+      "impact": "In real production since Jan 2026, now serving two very different client profiles: a factory and an agency.",
+      "summary": "Multi-tenant industrial SaaS ERP, with real customers since January 2026.",
+      "description": "A platform covering a factory's entire operating cycle: sales, purchasing, production planning, finance, inventory, HR, and tax filing (Brazilian e-invoicing via SEFAZ, CNAB 240 banking files). I work fullstack (from the frontend to business rules), recently focused on tightening access control (RBAC) and reducing the modules' attack surface. It recently gained an internal chat module (Concord, modeled on Discord), with a built-in AI support assistant — Axios, nicknamed Bob by users — that already opens and tracks IT tickets right inside the conversation.",
+      "tags": [
+        "Node.js",
+        "Express",
+        "MySQL",
+        "Socket.IO",
+        "SLM (Python)",
+        "PWA",
+        "Android"
+      ],
+      "links": {
+        "live": "https://zyntraerp.com.br",
+        "liveExtra": [
+          {
+            "href": "https://agenciadojapa.zyntraerp.com.br",
+            "label": "View (Agency) ↗"
+          }
+        ],
+        "repo": "https://github.com/jovemegidio/Zyntra",
+        "details": "zyntra"
+      }
+    },
+    {
+      "title": "AKPL",
+      "statusKey": "live",
+      "status": "LIVE",
+      "featured": true,
+      "impact": "Born out of a real need of mine: it now runs my own martial arts school.",
+      "summary": "Academic management platform: student portal, teacher gradebook, and finance.",
+      "description": "A system with 6 access profiles (admin, front office, finance, teacher, student...) covering everything from course setup to billing: curriculum management, a teacher gradebook with grades and attendance, batch tuition billing with debt renegotiation, and a public site that updates itself from whatever staff registers. Built with attention to accessibility (WCAG 2.1 AA) and session security. I'm an instructor at Academia de Karatê Pedro Leopoldo and preside over Associação Ventura e Vianna, a partner of the school. That real, on-the-mat need is what started this project.",
+      "tags": [
+        "Next.js 15",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Tailwind CSS"
+      ],
+      "links": {
+        "live": "https://karatepl.zyntraerp.com.br",
+        "repo": null,
+        "details": "akpl"
+      }
+    },
+    {
+      "title": "ZenithCode OS",
+      "statusKey": "development",
+      "status": "ONGOING RESEARCH",
+      "featured": true,
+      "summary": "A personal meta-framework on governance, security, and internal platform architecture.",
+      "description": "A set of architecture patterns and decisions I've been documenting and testing informally at work, with an eye toward turning it into my master's research: how to organize squads, security policy, observability, and code lifecycle across internal platforms coherently, instead of deciding each project in isolation. Vertex is the first piece of this study that turned into real code.",
+      "tags": [
+        "Platform Architecture",
+        "DevSecOps",
+        "Technical Governance",
+        "Academic Research"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "zenithcode"
+      },
+      "badge": {
+        "id": "21",
+        "slug": "zenithcode",
+        "name": "ZenithCode"
+      }
+    },
+    {
+      "title": "Vertex",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "An Internal Developer Platform that turns a YAML spec into a ready-to-run Go microservice.",
+      "description": "A deterministic engine that reads a Spec-Kit YAML file and generates a Go microservice in Hexagonal Architecture: it compiles, passes go vet, and runs, with the business-rule core left blank to be filled in. An optional local-LLM layer translates natural-language intent into that spec, but the AI never writes code directly, it only proposes, and a deterministic validator decides. Every generated service goes through isolated verification (build and tests in a network-less container) before it's handed over, with a dedicated test proving the critical path still works with the AI fully offline.",
+      "tags": [
+        "Go",
+        "Internal Developer Platform",
+        "Hexagonal Architecture",
+        "IaC (Pulumi)"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "vertexflow"
+      },
+      "satellite": {
+        "id": "03",
+        "slug": "dk-ops",
+        "name": "DK-Ops"
+      }
+    },
+    {
+      "title": "AegisProtocol",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "Identity and authentication middleware built on Zero Trust architecture.",
+      "description": "A homegrown Identity Provider: JWT tokens signed with RSA-2048, distributed revocation via Redis (blacklist), granular access policies (RBAC/ABAC), and no request trusted by default. Built to serve as the authentication layer for other products in my ecosystem.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "Spring Security",
+        "JWT (RS256)",
+        "Redis",
+        "PostgreSQL"
+      ],
+      "links": {
+        "live": null,
+        "repo": "https://github.com/Gtvnv/AegisProtocol-Core",
+        "details": "aegisprotocol"
+      },
+      "satellite": {
+        "id": "01",
+        "slug": "themis",
+        "name": "Themis"
+      }
+    },
+    {
+      "title": "OmniShift",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A data transformation engine between different formats and protocols.",
+      "description": "Instead of converting one format directly into another, the system translates any input into an in-memory canonical model and then serializes it into the desired output format: a hexagonal architecture, so plugging in a new input or output format never touches the existing business rules.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "gRPC",
+        "Protobuf",
+        "Jackson"
+      ],
+      "links": {
+        "live": null,
+        "repo": "https://github.com/Gtvnv/OmniShift",
+        "details": "omnishift"
+      },
+      "satellite": {
+        "id": "11",
+        "slug": "oraculo",
+        "name": "Oraculo"
+      }
+    },
+    {
+      "title": "Panoptes",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A Go-based metrics ingestor: real-time internal controllership and financial management.",
+      "description": "A controllership system that listens to telemetry and operational events from multiple sources at once (an event-driven pipes-and-filters architecture), filters and consolidates it into cost metrics, and publishes the unit-cost package to a message broker for Nidhogg to consume asynchronously. I use Go for goroutine-based concurrency (high throughput, low infra footprint) and PostgreSQL with TimescaleDB to treat burn rate and telemetry as proper time-series data. It's strictly internal — no screen or API facing external clients, it only feeds the company's own controllership.",
+      "tags": [
+        "Go",
+        "PostgreSQL",
+        "TimescaleDB",
+        "Event-Driven"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "panoptes"
+      },
+      "satellite": {
+        "id": "02",
+        "slug": "argus",
+        "name": "Argus"
+      }
+    },
+    {
+      "title": "Nidhogg",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A Java pricing and margin-protection engine that weighs the operation's real cost against external market volatility to keep the Z2A ecosystem profitable.",
+      "description": "The financial engine, controllership layer, and strategic business-rule brain of the Z2A ecosystem: it weighs the technical operation's real cost against external market volatility to protect financial health and profitability. It sets and dynamically adjusts pricing, reacting to both rising internal compute cost (reported by Panoptes) and competitor moves, with hard locks against any operation that would land on negative contribution margin, short of a deliberate exception policy. It also bridges CTO and CFO: translating telemetry and infrastructure cost into unit-economics language, and watching the macro picture to flag threats to break-even. Shielded by Hexagonal Architecture and DDD, it runs on Java 21 + Spring Boot + PostgreSQL, ingesting Panoptes's cost events asynchronously via messaging — with room to bolt on Python workers when it needs to run predictive market algorithms.",
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "Hexagonal Architecture",
+        "DDD",
+        "PostgreSQL"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "nidhogg"
+      },
+      "satellite": {
+        "id": "08",
+        "slug": "prometeu",
+        "name": "Prometeu"
+      }
+    },
+    {
+      "title": "Fafnir",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "The third engine of Z2A's financial trinity: an SLM suggests the tax classification, a deterministic rule decides whether it applies.",
+      "description": "Completes Z2A's financial trinity alongside Panoptes (internal cost) and Nidhogg (pricing and margin protection): Fafnir intercepts the transaction before Split Payment slices the payment, uses an SLM to suggest the correct tax classification (NCM) from the product description, and only applies the optimization if a deterministic rule engine validates it against the official tables (Sefaz, IBPT) — the same Z2A thesis applied to accounting: the AI suggests, the rule decides. Hexagonal Architecture + DDD, with the core isolated from any framework detail.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "PostgreSQL",
+        "SLM (Ollama)",
+        "Hexagonal Architecture",
+        "DDD"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "fafnir"
+      },
+      "satellite": {
+        "id": "07",
+        "slug": "atlas",
+        "name": "Atlas"
+      }
+    },
+    {
+      "title": "Kinetix Eros",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A B2B video orchestration hub: routes every job across owned GPUs (ComfyUI), volume engines (MoneyPrinterTurbo), and hyper-realistic avatars (HeyGen) behind a single API.",
+      "description": "The video-generation SaaS platform of the Aetherium/ZenithCode ecosystem: a Java 21 Control Plane takes the B2B client's job, debits credits from the Ledger, and dispatches it to the right engine via a Strategy Pattern — serverless RunPod GPUs running ComfyUI for heavy generative art, a MoneyPrinterTurbo worker for high-volume faceless videos, or an authenticated proxy to HeyGen when the client needs a hyper-realistic spokesperson. RabbitMQ buffers the load between the API and the GPUs, with a Dead Letter Queue automatically refunding credits (and crediting the balance straight to Stripe if that month's invoice already closed) whenever an AI provider fails unrecoverably. The B2B client's experience is Psyche's job — Z2A's UX and neurometrics satellite, reused here as the codename for the interface layer that turns all that orchestration complexity into something that feels effortless.",
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "RabbitMQ",
+        "AWS Fargate",
+        "Terraform",
+        "PostgreSQL"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "kinetixeros"
+      },
+      "satellite": {
+        "id": "20",
+        "slug": "psique",
+        "name": "Psyche"
+      }
+    },
+    {
+      "title": "Heimdall",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A unified SIEM + NOC for the Z2A ecosystem: aggregates telemetry from every satellite, triggers network auto-healing, and revokes access in real time if it spots an anomaly.",
+      "description": "The infrastructure's eyes and ears: an observability and active-security middleware split into three domains. Gjallarhorn (NOC) doesn't just alert on network degradation, it acts — queuing failover and container-restart commands over RabbitMQ to Python workers, cutting mitigation time from minutes to milliseconds. The Eye of Asgard extends Zero Trust past login: it watches request behavior in real time, and if it flags an anomaly in a live session, it calls AegisProtocol over gRPC to revoke the token on the spot. And Bifrost Telemetry is the single ingestion endpoint for the whole fleet's logs — with a local SLM (Ollama) summarizing an error's root cause in plain language right on the dashboard, instead of an engineer hunting log-by-log across containers.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "Python",
+        "RabbitMQ",
+        "Docker",
+        "Ollama"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "heimdall"
+      },
+      "satellite": {
+        "id": "03",
+        "slug": "dk-ops",
+        "name": "DK-Ops"
+      }
+    },
+    {
+      "title": "Alexandria (Axios)",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A Socratic copilot for teaching programming logic: the scripted engine validates the code, a local SLM steps in only when the student gets stuck — and never hands over the answer.",
+      "description": "Born to help college friends, it turned into a study in hybrid architecture: a deterministic scripted layer (Java/Spring, Clean Architecture) controls the student's learning track and runs the exercise's hidden unit tests; when a test fails three times in a row, a Python AI orchestrator (FastAPI + Ollama) steps in as a Socratic tutor — its system prompt explicitly forbids handing over the answer, it can only ask the question that leads the student to spot their own mistake. The SLM's reply arrives token by token over a gRPC stream, masking local-inference latency, while RabbitMQ keeps the heavy lifting (compiling and testing the code in an ephemeral Docker container) off the real-time chat path. Designed to start with Programming Logic and expand into Languages and History — teaching the 'why' behind a paradigm, not just its syntax.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "Python",
+        "FastAPI",
+        "Angular",
+        "gRPC",
+        "RabbitMQ",
+        "Ollama"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "alexandria"
+      },
+      "satellite": {
+        "id": "05",
+        "slug": "evelyn",
+        "name": "E.V.E.L.Y.N."
+      }
+    },
+    {
+      "title": "Inari Trails",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "Pokémon-Go-style tourism: users 'platinum' neighborhoods by photographing real points of interest, while local businesses pay to become a featured Stop.",
+      "description": "Turns a rigid tourist itinerary into collecting: every point of interest is a Stop with a proximity radius (PostgreSQL + PostGIS, GiST index for fast spatial queries), and each user's photo archive works like a personal Pokédex of discovered places. Splitting the archive into public and private cuts moderation cost at the root — the personal diary is instant, only what gets marked public enters the pipeline: upload via a pre-signed URL straight to S3, a worker that strips EXIF and re-encodes the image to WebP (which alone destroys any script embedded in the original file), and only then does a computer-vision API clear it for publication. A Dead Letter Queue on RabbitMQ makes sure a corrupted photo or a moderation API that's down never stalls the rest of the queue. On the business side, local shops subscribe to appear featured in auto-generated routes — monetizing the foot traffic the app already generates for free.",
+      "tags": [
+        "Java 21",
+        "Spring Boot",
+        "PostgreSQL",
+        "PostGIS",
+        "RabbitMQ",
+        "AWS S3",
+        "Redis"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "inaritrails"
+      },
+      "satellite": {
+        "id": "20",
+        "slug": "psique",
+        "name": "Psyche"
+      }
+    },
+    {
+      "title": "Terminus Horizon",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A mission-critical math engine in Python: symbolically audits functions for jumps, poles, and infinite jerk before the hardware ever feels the impact.",
+      "description": "A pure Domain Service (Hexagonal Architecture, zero I/O) that uses symbolic computation — SymPy, not floating point — to mathematically prove a function is sane before it ever reaches a real actuator. SignalContinuityAnalyzer compares the one-sided limits at a critical point: if they diverge, that's a jump (physical shock); if they tend to infinity, that's a pole (catastrophic resonance). KinematicStressAnalyzer goes past acceleration and differentiates the trajectory all the way to jerk (the 3rd derivative of position) — if a deceleration is too abrupt, jerk diverges, the mathematical equivalent of a hammer blow to the gears, and the operation is aborted before the motor is ever energized. A FastAPI layer exposes these services as a Driving Adapter, with Pydantic validating the payload at the boundary (Zero Trust) before any data touches the mathematical core.",
+      "tags": [
+        "Python",
+        "SymPy",
+        "FastAPI",
+        "Pydantic",
+        "NumPy",
+        "SciPy",
+        "Hexagonal Architecture"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "terminushorizon"
+      },
+      "satellite": {
+        "id": "06",
+        "slug": "hefesto",
+        "name": "Hefesto"
+      }
+    },
+    {
+      "title": "Munin Security",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "An OSINT and digital-forensics orchestrator: a reverse proxy dispatches searches to specialized workers, with an auditable chain of custody for B2G investigations.",
+      "description": "Centralizes the 'Swiss Army knife' of free OSINT, scraping, and pentest tools from GitHub behind a single Zero Trust gateway — instead of an investigator configuring an isolated environment for every tool. An RBAC+ABAC authorization engine validates each request before any processing and generates an immutable audit log (chain of custody, with legal standing); the Gateway then publishes an event on RabbitMQ, routed to specialized C# and Python workers — each running the tool isolated in an ephemeral Docker container, reaching the internet through a rotating proxy pool to avoid burning the investigation's attribution. A Risk Scoring domain modeled in DDD cross-references city-hall data, corporate ownership structures, and business-activity codes to flag public-bid fraud — suspiciously young companies, 'competitors' sharing an address, an activity code incompatible with the bid. Named after Munin, Odin's raven who roams the world gathering secrets.",
+      "tags": [
+        "C#",
+        ".NET 8",
+        "Python",
+        "RabbitMQ",
+        "PostgreSQL",
+        "PostGIS",
+        "Docker"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "muninsecurity"
+      },
+      "satellite": {
+        "id": "08",
+        "slug": "prometeu",
+        "name": "Prometeu"
+      }
+    },
+    {
+      "title": "Pythia Scout",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A Data Science engine that turns a fleet of C# scraping bots into a market-opportunity radar: every raw payload becomes a 0-100 viability score.",
+      "description": "Reuses an existing fleet of C# scraping bots as the ingestion layer of a market-agnostic Data Science engine, in an event-driven Pipes and Filters architecture: the bots publish the raw data, OmniShift standardizes the schema (Anti-Corruption Layer), and only then does the Python core process it. The engine combines unsupervised clustering (finding 'blue oceans'), local NLP via Ollama to extract urgency and demand straight from raw text, and a niche-configurable weighted heuristic that computes the final ViabilityScore. A SHA-256 hash checked against Redis guarantees idempotency — the same data never pays the inference cost twice. Named after Pythia, the Oracle of Delphi who translated chaotic signals into clear prophecy.",
+      "tags": [
+        "Python",
+        "C#",
+        "RabbitMQ",
+        "PostgreSQL",
+        "Redis",
+        "Ollama",
+        "Polars"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "pythiascout"
+      },
+      "satellite": {
+        "id": "13",
+        "slug": "apolo",
+        "name": "Apolo"
+      }
+    },
+    {
+      "title": "Talos Academy",
+      "statusKey": "development",
+      "status": "IN DEVELOPMENT",
+      "summary": "A no-black-boxes automation and AI learning platform, co-founded with a partner: the Lyceum Methodology teaches the logic behind the tool before any interface.",
+      "description": "Co-founded to attack the saturation of 'push-button' courses: instead of teaching how to operate an expensive corporate interface, the Lyceum Methodology starts with tool-agnostic fundamentals — APIs, webhooks, credential security, error-handling architecture — before applying them in accessible tools (n8n, local models via Ollama) and only then translating that into the corporate ecosystem (Microsoft Power Platform, Copilot Studio). The MVP's infrastructure is deliberately lean: instead of building an LMS from scratch, closed cohorts run on white-label hosting while the 'Open Faculty' arm (open content that builds authority) distributes through YouTube. Named after Talos, the bronze automaton forged by Hephaestus to guard Crete, following an unbreakable, programmed logic.",
+      "tags": [
+        "n8n",
+        "Power Platform",
+        "Ollama",
+        "FFmpeg",
+        "E-learning"
+      ],
+      "links": {
+        "live": null,
+        "repo": null,
+        "details": "talosacademy"
+      },
+      "satellite": {
+        "id": "09",
+        "slug": "catharsis",
+        "name": "Catharsis"
+      }
+    },
+    {
+      "title": "Ultrafoot 26",
+      "statusKey": "live",
+      "status": "LIVE",
+      "summary": "A remake of a classic football game, now cross-platform: desktop and mobile, with a free and a paid tier.",
+      "description": "A personal project outside the day job, already live. It ships as two versions, each with its own stack: desktop (Windows, Mac, and Linux) built with Next.js packaged in Tauri, and mobile built in C#, both with a 3D match viewer. The desktop version has its own release pipeline (versioning and signing via GitHub Actions, with auto-update on the installed client), and both versions share a licensing system that distinguishes free users from full-version users.",
+      "tags": [
+        "Next.js",
+        "Tauri",
+        "TypeScript",
+        "C#",
+        "3D"
+      ],
+      "links": {
+        "live": "https://remake-ultrafoot.vercel.app",
+        "repo": "https://github.com/jovemegidio/Ultrafoot26",
+        "details": "ultrafoot26"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+---
+/**
+ * Notes — notas técnicas: título (accent) + corpo justificado + link opcional
+ * (só a 3a nota tem, apontando para o PDF do artigo, resolvido base-aware).
+ * Cada bloco recebe data-reveal para o enfeite de entrada.
+ */
+import SectionHead from "./SectionHead.astro";
+import { withBase } from "../../lib/assets";
+
+interface NoteItem {
+  title: string;
+  body: string;
+  link?: string;
+}
+
+interface Props {
+  index: string;
+  title: string;
+  notes: NoteItem[];
+  noteLink: string;
+}
+
+const { index, title, notes, noteLink } = Astro.props;
+---
+
+<section class="section" id="notas">
+  <div class="container">
+    <SectionHead index={index} title={title} />
+    <div class="notes-list">
+      {
+        notes.map((note) => (
+          <div class="note-item" data-reveal>
+            <h3 class="note-title">{note.title}</h3>
+            <p class="note-body">{note.body}</p>
+            {note.link && (
+              <a
+                class="note-link"
+                href={withBase(note.link)}
+                target="_blank"
+                rel="noopener"
+              >
+                {noteLink}
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

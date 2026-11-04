@@ -1,0 +1,33 @@
+---
+/**
+ * Detalhe de projeto — en (rota /en/projects/<slug>). Mesmo helper único de
+ * getStaticPaths, trocando só o locale.
+ */
+import DetailLayout from "../../../layouts/DetailLayout.astro";
+import ProjectDetail from "../../../components/detail/ProjectDetail.astro";
+import {
+  getProjectDetailPaths,
+  getProjectDetail,
+  getUi,
+} from "../../../lib/content";
+
+const LOCALE = "en" as const;
+
+export async function getStaticPaths() {
+  return getProjectDetailPaths("en");
+}
+
+const { slug } = Astro.params as { slug: string };
+
+const detail = (await getProjectDetail(LOCALE, slug)) as any;
+const ui = (await getUi(LOCALE)) as any;
+---
+
+<DetailLayout
+  locale={LOCALE}
+  translationKey={{ kind: "project", slug }}
+  meta={{ title: detail.meta.title, description: detail.meta.description }}
+  backLabel={detail.backLabel}
+>
+  <ProjectDetail detail={detail} locale={LOCALE} labels={ui.projectLinks} />
+</DetailLayout>

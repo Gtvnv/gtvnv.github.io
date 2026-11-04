@@ -1,0 +1,34 @@
+---
+/**
+ * Detalhe de projeto — pt-BR (rota /projects/<slug>). As 17 rotas vêm do
+ * helper único getProjectDetailPaths(locale), que deriva os slugs das chaves
+ * de projectDetails/<locale>.json. O segmento "projects" é só a pasta.
+ */
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import ProjectDetail from "../../components/detail/ProjectDetail.astro";
+import {
+  getProjectDetailPaths,
+  getProjectDetail,
+  getUi,
+} from "../../lib/content";
+
+const LOCALE = "pt-BR" as const;
+
+export async function getStaticPaths() {
+  return getProjectDetailPaths("pt-BR");
+}
+
+const { slug } = Astro.params as { slug: string };
+
+const detail = (await getProjectDetail(LOCALE, slug)) as any;
+const ui = (await getUi(LOCALE)) as any;
+---
+
+<DetailLayout
+  locale={LOCALE}
+  translationKey={{ kind: "project", slug }}
+  meta={{ title: detail.meta.title, description: detail.meta.description }}
+  backLabel={detail.backLabel}
+>
+  <ProjectDetail detail={detail} locale={LOCALE} labels={ui.projectLinks} />
+</DetailLayout>

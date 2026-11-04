@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "role": "Fundador y Arquitecto de Software",
+      "company": "ZenithCode · Autónomo",
+      "period": "oct. 2025 a actualidad",
+      "logo": "assets/z2a/emblemas/21_zenithcode.png",
+      "description": "Idealización y fundación de ZenithCode, un ecosistema enfocado en soluciones de software de alto rendimiento, arquitecturas corporativas y productos innovadores: una constitución arquitectónica que dicta los estándares de gobernanza, seguridad y arquitectura de mis plataformas internas. En el ápice está Z2A (Zenith to Aether), el meta-framework que sustenta mi investigación de maestría y orquesta el ciclo de vida de todo el código en producción — sosteniendo proyectos como AegisProtocol, OmniShift, VertexFlow, Panoptes y Nidhogg."
+    },
+    {
+      "role": "Analista Desarrollador de Software",
+      "company": "Agência do Japa",
+      "period": "dic. 2025 a actualidad",
+      "description": "Trabajo fullstack en un ERP industrial en producción: diagnóstico y corrección de módulos, mejora del RBAC con foco en security by design, y desarrollo de punta a punta: del frontend a reglas de negocio complejas y APIs."
+    },
+    {
+      "role": "Pasante de Desarrollo",
+      "company": "Rumo Soluções",
+      "period": "jul. 2026 a actualidad",
+      "description": "Desarrollo y mantenimiento de aplicaciones en C# y .NET, estructurando APIs y reglas de negocio. Construcción de interfaces web y móviles con Angular e Ionic, con foco en usabilidad y corrección de errores."
+    },
+    {
+      "role": "Técnico de Soporte en TI",
+      "company": "R2 Internet",
+      "period": "feb. 2025 a jul. 2026",
+      "description": "Empecé como auxiliar y fui promovido a técnico de soporte en TI — fui el destacado del sector, la promoción más rápida que el equipo había dado. Diagnóstico y resolución de fallas lógicas en sistemas y redes, mantenimiento remoto para clientes y análisis de causa raíz de incidentes en producción, aislando errores de arquitectura de fallas de entorno/red. Construcción de un prototipo en Python para automatizar tareas del sector."
+    },
+    {
+      "role": "Asistente de Supervisión",
+      "company": "Grupo CMD",
+      "period": "abr. 2024 a feb. 2025",
+      "description": "Empecé como auxiliar de almacén y fui promovido a asistente de supervisión, con autonomía para gestionar el inventario de la forma que yo creía que mejoraba el trabajo de mis compañeros. Control y organización de inventario, liderando la digitalización del proceso: migración de hojas de cálculo a un sistema electrónico, mejorando la precisión de los datos."
+    },
+    {
+      "role": "Técnico de Mantenimiento",
+      "company": "Turrek Informática",
+      "period": "jun. 2023 a mar. 2024",
+      "description": "Empecé como auxiliar de tienda y fui promovido a técnico de mantenimiento. Mantenimiento y reparación de electrónicos, control de inventario y atención al cliente en tienda."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+---
+/**
+ * DetailLayout — casca das páginas internas (detalhe de projeto e ZenithCode
+ * OS). Reutiliza o BaseLayout (lava-bg, SEO por locale, ClientRouter, scripts
+ * de interação) e adiciona:
+ *  - header enxuto: link "← {backLabel}" para a home do locale + LangSwitch
+ *    (preservando a página equivalente via translationKey);
+ *  - footer © ano + nome + footerNote;
+ *  - BackToTop.
+ *
+ * O conteúdo da página interna entra pelo <slot /> padrão (dentro de <main>).
+ * SEO/title/description vêm do BaseLayout via translationKey + meta.
+ */
+import BaseLayout from "./BaseLayout.astro";
+import LangSwitch from "../components/LangSwitch.astro";
+import BackToTop from "../components/BackToTop.astro";
+import { withBase } from "../lib/assets";
+import {
+  localizedPath,
+  type Locale,
+  type TranslationKey,
+} from "../i18n/locales";
+import { getSite, getUi } from "../lib/content";
+import "../styles/detail.css";
+
+interface Props {
+  locale: Locale;
+  /** Página interna (zenithcode | project) — usada por SEO e LangSwitch. */
+  translationKey: TranslationKey;
+  /** Sobreposição de title/description (meta.title / meta.description). */
+  meta: { title: string; description: string };
+  /** Rótulo do link de volta ("Portfólio" / "Portfolio" / etc.). */
+  backLabel: string;
+}
+
+const { locale, translationKey, meta, backLabel } = Astro.props;
+
+const site = (await getSite()) as { name: string };
+const ui = (await getUi(locale)) as { footerNote: string; backToTop: string };
+
+const year = new Date().getFullYear();
+// Link de volta → home do locale.
+const homeHref = withBase(localizedPath({ kind: "home" }, locale));
+---
+
+<BaseLayout locale={locale} translationKey={translationKey} meta={meta}>
+  <header class="detail-header" slot="header">
+    <div class="container">
+      <a class="zc-back" href={homeHref}>← {backLabel}</a>
+      <LangSwitch locale={locale} translationKey={translationKey} />
+    </div>
+  </header>
+
+  <slot />
+
+  <Fragment slot="footer">
+    <footer class="detail-footer">
+      <div class="container">
+        <span>© {year} {site.name}</span>
+        <span>{ui.footerNote}</span>
+      </div>
+    </footer>
+    <BackToTop label={ui.backToTop} />
+  </Fragment>
+</BaseLayout>

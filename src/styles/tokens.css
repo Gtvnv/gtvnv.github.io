@@ -1,0 +1,90 @@
+/* =========================================================
+   DESIGN TOKENS
+   Base = tokens do :root legado (css/style.css), preservados e
+   elevados com escalas explícitas (design.md §7.1).
+   ========================================================= */
+:root {
+  /* ---- Paleta (preservada do legado) ---- */
+  --bg: #0b0f14;
+  --bg-deep: #05080b;
+  --panel: #131a22;
+  --panel-hover: #1a232d;
+  --border: #2a3744;
+  --border-soft: #1c242c;
+  --text: #f0f4f8;
+  --muted: #8a99ad;
+  --muted-dim: #5c6b7d;
+  --accent: #00a8ff;
+  --accent-dim: #0080c8;
+  --accent-soft: rgba(0, 168, 255, 0.16);
+  --accent2: #ffb100;
+  --accent3: #0072ce;
+  --accent-grad: linear-gradient(135deg, #003d82 0%, #0072ce 45%, #00a8ff 100%);
+
+  /* ---- Cores da lava (preservadas) ---- */
+  --lava-purple: #0c3d8f;
+  --lava-blue: #1450c4;
+  --lava-cyan: #00c2ff;
+
+  /* ---- Famílias de fonte (preservadas) ---- */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* ---- Layout (preservado) ---- */
+  --max-width: 1080px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --measure: 68ch;
+  --section-y: clamp(3.5rem, 8vw, 6.5rem);
+
+  /* ---- Escala tipográfica fluida (elevação, passo ~1.2) ---- */
+  --fs-100: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);
+  --fs-200: clamp(0.80rem, 0.77rem + 0.14vw, 0.88rem);
+  --fs-300: clamp(0.90rem, 0.86rem + 0.18vw, 1.00rem);
+  --fs-400: clamp(1.00rem, 0.95rem + 0.24vw, 1.13rem);
+  --fs-500: clamp(1.20rem, 1.12rem + 0.38vw, 1.42rem);
+  --fs-600: clamp(1.44rem, 1.32rem + 0.60vw, 1.80rem);
+  --fs-700: clamp(1.73rem, 1.54rem + 0.95vw, 2.28rem);
+  --fs-800: clamp(2.07rem, 1.78rem + 1.46vw, 2.90rem);
+  --fs-900: clamp(2.49rem, 2.04rem + 2.24vw, 3.70rem);
+  --fs-display: clamp(2.80rem, 2.10rem + 3.40vw, 4.80rem);
+  --fs-eyebrow: var(--fs-100);
+
+  /* ---- Escala de espaçamento (elevação, base 4px) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 10rem;
+  --space-12: 12rem;
+
+  /* ---- Raios (elevação) ---- */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* ---- Durações / easing (elevação) ---- */
+  --dur-fast: 0.15s;
+  --dur-base: 0.3s;
+  --dur-slow: 0.6s;
+  --dur-reveal: 0.6s;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* ---- Elevação / sombras (elevação) ---- */
+  --shadow-card: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --shadow-hero-photo: 0 30px 80px rgba(0, 0, 0, 0.5);
+  --shadow-text: 0 2px 20px rgba(0, 0, 0, 0.4);
+
+  /* ---- Z-index (elevação) ---- */
+  --z-lava: -1;
+  --z-header: 50;
+  --z-backtotop: 40;
+}

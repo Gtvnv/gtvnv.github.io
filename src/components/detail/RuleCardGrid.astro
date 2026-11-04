@@ -1,0 +1,31 @@
+---
+/**
+ * RuleCardGrid — grade de cards numerados (01, 02, ...), reaproveitada por
+ * "Recursos-chave" do detalhe de projeto e por Núcleo/Topologia/Leis/
+ * Ferramental da ZenithCode. Reproduz o renderCardGrid legado: número com
+ * padStart(2,'0'), título e UM parágrafo = mechanic (ou body como fallback).
+ */
+interface RuleCard {
+  title: string;
+  mechanic?: string;
+  body?: string;
+}
+
+interface Props {
+  items: RuleCard[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="zc-rules-grid">
+  {
+    items.map((item, i) => (
+      <div class="zc-rule-card">
+        <span class="zc-rule-num">{String(i + 1).padStart(2, "0")}</span>
+        <h3>{item.title}</h3>
+        <p>{item.mechanic ?? item.body ?? ""}</p>
+      </div>
+    ))
+  }
+</div>

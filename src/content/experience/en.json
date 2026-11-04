@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "role": "Founder & Software Architect",
+      "company": "ZenithCode · Independent",
+      "period": "Oct 2025 to present",
+      "logo": "assets/z2a/emblemas/21_zenithcode.png",
+      "description": "Conceived and founded ZenithCode, an ecosystem focused on high-performance software solutions, corporate architectures, and innovative products: an architectural constitution dictating the governance, security, and architecture standards for my internal platforms. At its apex sits Z2A (Zenith to Aether), the meta-framework behind my master's research, orchestrating the lifecycle of all production code — underpinning projects like AegisProtocol, OmniShift, VertexFlow, Panoptes, and Nidhogg."
+    },
+    {
+      "role": "Software Development Analyst",
+      "company": "Agência do Japa",
+      "period": "Dec 2025 to present",
+      "description": "Fullstack work on an industrial ERP in production: diagnosing and fixing modules, improving RBAC with a security-by-design focus, and end-to-end development: from the frontend to complex business rules and APIs."
+    },
+    {
+      "role": "Development Intern",
+      "company": "Rumo Soluções",
+      "period": "Jul 2026 to present",
+      "description": "Development and maintenance of C# and .NET applications, structuring APIs and business rules. Built web and mobile interfaces with Angular and Ionic, with a focus on usability and bug fixing."
+    },
+    {
+      "role": "IT Support Technician",
+      "company": "R2 Internet",
+      "period": "Feb 2025 to Jul 2026",
+      "description": "Started as an assistant and got promoted to IT support technician — I was the department's standout, the fastest promotion the team had ever given. Diagnosed and resolved logic failures in systems and networks, remote maintenance for clients, and root-cause analysis of production incidents, isolating architecture bugs from environment/network failures. Built a Python prototype to automate departmental tasks."
+    },
+    {
+      "role": "Supervisory Assistant",
+      "company": "Grupo CMD",
+      "period": "Apr 2024 to Feb 2025",
+      "description": "Started as a warehouse clerk and got promoted to supervisory assistant, with the autonomy to run inventory the way I thought would work best for my colleagues. Inventory control and organization, leading the digitization of the process: migrating spreadsheets to an electronic system and improving data accuracy."
+    },
+    {
+      "role": "Maintenance Technician",
+      "company": "Turrek Informática",
+      "period": "Jun 2023 to Mar 2024",
+      "description": "Started as a store assistant and got promoted to maintenance technician. Electronics maintenance and repair, inventory control, and in-store customer support."
+    }
+  ]
+}

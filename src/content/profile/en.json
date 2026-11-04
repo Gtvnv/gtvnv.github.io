@@ -1,0 +1,28 @@
+{
+  "role": "Solutions Architect",
+  "status": "Open to opportunities",
+  "heroSummary": "I build backends and SaaS products with a focus on clean architecture, security by design, and business viability. These days I move between Java/Spring, the JS/TS ecosystem, and C#/.NET, always looking at the whole system, not just the code.",
+  "heroProof": [
+    {
+      "value": "+3 years",
+      "label": "of professional experience in IT"
+    },
+    {
+      "value": "15 years → 0",
+      "label": "of spreadsheet inventory — now automated in the ERP"
+    },
+    {
+      "value": "Promoted 3x",
+      "label": "across three jobs — the fastest was a record in the support team"
+    }
+  ],
+  "aboutParagraphs": [
+    "My first academic inclination was Physics, but choosing IT brought me a fascination I didn't expect: the ability to understand how things actually work and translate that into the digital world.",
+    "My technical background closely reflects that relationship with the physical world. Before code, I went through the warehouse and technical support. Working with infrastructure, hardware, and networks, I learned to diagnose the problem at its source before applying any fix, a root-cause mindset that became the foundation of how I think about software architecture, and what naturally led me to specialize in information security.",
+    "Today, software engineering is what connects all my routines. I split my day between developing with C#/.NET and Angular/Ionic at Rumo Soluções and the challenges of an industrial ERP at Agência do Japa. Dealing with those business rules daily made me realize code alone isn't enough. That experience is what pushed me to pursue an MBA in Financial Management and Controllership: I wanted to understand software through the company's strategic and financial lens.",
+    "Since college theory alone doesn't cover everything, my method for continuous learning is building. In my free time, I study by creating real tools: from identity middleware to data transformation engines. The biggest practical outcome of that is AKPL. Outside of tech, I'm a karate instructor and president of Associação Ventura e Vianna: I needed to solve access control and management for my own dojo, so I did what I like best: took a concrete need from my own reality and modeled it into a system that now runs in practice.",
+    "My technical practice is guided by a 'Just-in-Time Learning' philosophy, where study is not an end in itself but a pragmatic execution tool for solving architectural and business challenges. With a solid formal foundation in systems and a strong background in Software Engineering, I currently operate on the front lines of full-cycle solution development, bridging cloud-based microservices logic with rigorous business and compliance rules.",
+    "To support the scalability and governance of complex projects, my continuous improvement plan advances on two simultaneous fronts. On the market front, I follow a structured roadmap of executive and operational certifications, covering service management (PSM I, ITIL 4, Lean Six Sigma), secure network infrastructure (CCNA), and cloud orchestration and architecture (AWS Solutions Architect/Security and CKA).",
+    "On the academic front, my long-term vision is to apply the highest level of scientific rigor to underpin corporate ecosystems. This path is designed to progress through a Professional Master’s in Mission-Critical Computing (FIEMG/ITA) and culminate in a European Industrial Doctorate, targeting applied research hubs such as Politecnico di Milano or the Fraunhofer-Gesellschaft. The purpose of this research ecosystem is not purely academic; rather, it aims for the intercontinental validation of proprietary Zero-Trust architecture and distributed processing frameworks directly within real-world industrial infrastructures. My ultimate goal is to ensure that deep technological knowledge consistently translates into market expansion, institutional security, and the absolute mitigation of operational risks."
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "title": "Por que Clean Architecture",
+      "body": "Toda vez que uma regra de negócio depende diretamente de um framework, de um banco específico ou de uma API externa, ela fica presa a essa decisão pra sempre. Clean Architecture (e Hexagonal, no caso do Vertex e do AegisProtocol) resolve isso invertendo a dependência: o núcleo do sistema define interfaces, e é a infraestrutura que se adapta a ele, nunca o contrário. Na prática, dá pra trocar o banco, o gateway de pagamento ou até o framework web sem reescrever uma linha de regra de negócio. Custa mais tempo no início. Paga a diferença na primeira vez que algo externo muda, e sempre muda."
+    },
+    {
+      "title": "Por que Zero Trust",
+      "body": "A maioria dos sistemas ainda confia por padrão em tudo que está 'dentro da rede'. Zero Trust parte do oposto: nenhuma requisição é confiável até provar quem é, mesmo vindo de dentro. No AegisProtocol isso vira token assinado com RSA-2048, expiração curta, revogação distribuída via Redis e política de acesso granular por recurso, não por usuário. É mais fricção pra implementar. É a diferença entre um vazamento de credencial custar uma sessão e custar o sistema inteiro."
+    },
+    {
+      "title": "Por que formação importa mais que velocidade",
+      "body": "Escrevi um artigo acadêmico sobre exatamente essa tensão: o mercado de TI cobra qualificação em ritmo ágil, enquanto engenharia de verdade exige um amadurecimento lento e estrutural, e é nessa lacuna que nascem 'desenvolvedores' que sabem operar um framework mas nunca questionam a lógica por trás dele. O texto usa casos como o Therac-25 pra argumentar que delegar decisão arquitetural a atalhos (bootcamps rasos, IA usada sem crítica) tem custo jurídico e físico real, não só técnico. É a base teórica por trás de por que eu insisto em Clean Architecture e Zero Trust mesmo quando dá mais trabalho.",
+      "link": "assets/artigo-dissonancia-estrutural-ti.pdf"
+    }
+  ]
+}

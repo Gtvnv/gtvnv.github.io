@@ -1,0 +1,21 @@
+---
+/**
+ * ZenithCode OS / Z2A — en (rota /en/zenithcode).
+ */
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import Zenithcode from "../../components/detail/Zenithcode.astro";
+import { getZenithcode } from "../../lib/content";
+
+const LOCALE = "en" as const;
+
+const zc = (await getZenithcode(LOCALE)) as any;
+---
+
+<DetailLayout
+  locale={LOCALE}
+  translationKey={{ kind: "zenithcode" }}
+  meta={{ title: zc.meta.title, description: zc.meta.description }}
+  backLabel={zc.backLabel}
+>
+  <Zenithcode zc={zc} locale={LOCALE} />
+</DetailLayout>

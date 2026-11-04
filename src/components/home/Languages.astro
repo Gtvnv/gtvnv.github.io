@@ -1,0 +1,35 @@
+---
+/**
+ * Languages — lista language ↔ level, estreita e centralizada.
+ */
+import SectionHead from "./SectionHead.astro";
+
+interface LanguageItem {
+  language: string;
+  level: string;
+}
+
+interface Props {
+  index: string;
+  title: string;
+  items: LanguageItem[];
+}
+
+const { index, title, items } = Astro.props;
+---
+
+<section class="section" id="idiomas">
+  <div class="container">
+    <SectionHead index={index} title={title} centered />
+    <div class="language-list">
+      {
+        items.map((entry) => (
+          <div class="language-item">
+            <span class="language-name">{entry.language}</span>
+            <span class="language-level">{entry.level}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

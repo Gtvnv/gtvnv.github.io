@@ -1,0 +1,704 @@
+/* =========================================================
+   DETAIL — estilos das páginas internas (detalhe de projeto e
+   ZenithCode OS). Portado e elevado de css/zenithcode.css para
+   consumir EXCLUSIVAMENTE os tokens de tokens.css.
+
+   Como as páginas internas NÃO importam home.css, este arquivo
+   traz também as poucas classes compartilhadas que o legado
+   reaproveitava de style.css (container, tag, project-links,
+   header enxuto, back-to-top) — reescritas sobre tokens.
+   Classes específicas usam o prefixo zc-* (como no legado).
+   ========================================================= */
+
+/* ---------------- Casca compartilhada ---------------- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.detail-main {
+  padding-bottom: var(--space-9);
+}
+
+/* Header enxuto das páginas internas: "← Portfólio" + LangSwitch. */
+.detail-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background: rgba(7, 6, 15, 0.75);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.detail-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: var(--space-4);
+}
+
+.zc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  color: var(--muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.zc-back:hover {
+  color: var(--accent);
+}
+
+/* Language switcher — <a> (links), idêntico ao da home. */
+.lang-switch {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.lang-switch a {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.5rem;
+  border-radius: var(--radius-xs);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.lang-switch a:hover {
+  color: var(--text);
+}
+
+.lang-switch a.active {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: var(--accent-soft);
+}
+
+/* Tags (stack técnica) — mesma pílula mono da home. */
+.tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background: var(--panel);
+  white-space: nowrap;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.tag:hover {
+  border-color: var(--accent-dim);
+  color: var(--text);
+}
+
+.zc-stack-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* project-links reaproveitada como CTA de link (dentro do footer-cta). */
+.project-links {
+  display: flex;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap;
+}
+
+.project-links a {
+  font-size: var(--fs-300);
+  font-weight: 500;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.project-links a:hover {
+  color: var(--accent);
+}
+
+/* Back-to-top — idêntico ao da home. */
+.back-to-top {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: var(--fs-500);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  z-index: var(--z-backtotop);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* Footer da casca interna (© ano + nome + nota). */
+.detail-footer {
+  padding: var(--space-6) 0;
+}
+
+.detail-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  color: var(--muted-dim);
+}
+
+/* ---------------- Hero ---------------- */
+.zc-hero {
+  padding-top: clamp(3.5rem, 8vw, 6rem);
+  padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+}
+
+.zc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--space-6);
+}
+
+.zc-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-grad);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.zc-hero-title-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 1.1rem);
+}
+
+.zc-hero-badge {
+  width: clamp(44px, 7vw, 68px);
+  height: clamp(44px, 7vw, 68px);
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.zc-hero h1 {
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.01em;
+  max-width: 18ch;
+  text-shadow: var(--shadow-text);
+}
+
+.zc-hero .zc-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-400);
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 1rem;
+  max-width: 42ch;
+}
+
+.zc-hero .zc-summary {
+  color: var(--muted);
+  max-width: var(--measure);
+  margin-top: 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-hero .zc-masters-note {
+  color: var(--muted-dim);
+  font-size: var(--fs-200);
+  max-width: 60ch;
+  margin-top: 1rem;
+  border-left: 2px solid var(--accent-dim);
+  padding-left: 0.8rem;
+}
+
+/* ---------------- Callout (status note) ---------------- */
+.zc-callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: var(--panel);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: clamp(2rem, 4.5vw, 3.25rem);
+}
+
+.zc-callout h2 {
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+
+.zc-callout p {
+  color: var(--muted);
+  font-size: var(--fs-300);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ---------------- Seções genéricas ---------------- */
+.zc-section {
+  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+}
+
+.zc-section-title {
+  font-size: var(--fs-700);
+  margin-bottom: 1rem;
+  text-shadow: var(--shadow-text);
+}
+
+.zc-section > p,
+.zc-section-body {
+  color: var(--muted);
+  max-width: 72ch;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  font-weight: 600;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 1rem 0 1.5rem;
+  max-width: 18ch;
+}
+
+.zc-analogy {
+  color: var(--muted-dim);
+  font-size: var(--fs-200);
+  max-width: 68ch;
+  margin-top: 1.25rem;
+  border-left: 2px solid var(--border);
+  padding-left: 0.8rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-arch-tree {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  line-height: 1.6;
+  color: var(--muted);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.3rem;
+  margin-top: 1.25rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ---------------- Grade de cards numerados ---------------- */
+.zc-rules-intro {
+  color: var(--muted);
+  max-width: 68ch;
+  margin-bottom: 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.zc-rule-card {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.4rem;
+}
+
+.zc-rule-card .zc-rule-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.zc-rule-card h3 {
+  font-size: var(--fs-400);
+  margin-bottom: 0.5rem;
+}
+
+.zc-rule-card p {
+  color: var(--muted);
+  font-size: var(--fs-300);
+  line-height: 1.55;
+}
+
+/* ---------------- Teste do Apagão (blackout) ---------------- */
+.zc-blackout {
+  border: 1px solid var(--accent-dim);
+  background: linear-gradient(160deg, var(--panel-hover), var(--panel));
+  border-radius: 8px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.zc-blackout::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto auto;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, var(--lava-cyan) 0%, rgba(23, 201, 232, 0) 70%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.zc-blackout-tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.zc-blackout h2 {
+  font-size: var(--fs-600);
+  margin-bottom: 1.1rem;
+}
+
+.zc-blackout dl {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.zc-blackout dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--muted-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+}
+
+.zc-blackout dd {
+  color: var(--text);
+  font-size: var(--fs-300);
+  max-width: 68ch;
+  text-align: justify;
+  hyphens: auto;
+  margin: 0;
+}
+
+.zc-blackout .zc-blackout-closing {
+  color: var(--accent);
+  font-size: var(--fs-300);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------- Como se mede / Endpoints ---------------- */
+.zc-measure-intro {
+  color: var(--muted);
+  max-width: 68ch;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-measure-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.zc-measure-item {
+  display: grid;
+  grid-template-columns: minmax(160px, 220px) 1fr auto;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.zc-measure-item .zc-measure-name {
+  font-weight: 500;
+  color: var(--text);
+  font-size: var(--fs-300);
+}
+
+.zc-measure-item .zc-measure-what {
+  color: var(--muted);
+  font-size: var(--fs-200);
+}
+
+.zc-measure-item .zc-measure-role {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--accent);
+  white-space: nowrap;
+  justify-self: end;
+}
+
+/* ---------------- Satélites ---------------- */
+.zc-satellites-intro {
+  color: var(--muted);
+  max-width: 72ch;
+  margin-bottom: 2rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-sat-group-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.5rem 0 1.1rem;
+}
+
+.zc-sat-group-title:first-child {
+  margin-top: 0;
+}
+
+.zc-satellites-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.zc-satellite-card {
+  flex: 1 1 calc(50% - 0.55rem);
+  max-width: calc(50% - 0.55rem);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 1.25rem 1.1rem;
+  text-align: center;
+  scroll-margin-top: 84px;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    background var(--dur-slow) var(--ease-out);
+}
+
+@media (min-width: 900px) {
+  .zc-satellite-card {
+    flex-basis: calc(25% - 0.825rem);
+    max-width: calc(25% - 0.825rem);
+  }
+}
+
+.zc-satellite-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.zc-satellite-card:target {
+  border-color: var(--accent);
+  background: var(--panel-hover);
+}
+
+.zc-satellite-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.zc-satellite-card img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin: 0 auto 0.85rem;
+  display: block;
+}
+
+.zc-satellite-card .zc-sat-num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--muted-dim);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.zc-satellite-card h3 {
+  font-size: var(--fs-400);
+  margin-bottom: 0.3rem;
+}
+
+.zc-satellite-card .zc-sat-domain {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.zc-satellite-card p {
+  color: var(--muted);
+  font-size: var(--fs-200);
+  line-height: 1.5;
+}
+
+.zc-sat-chevron {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--muted-dim);
+  font-size: var(--fs-100);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.zc-satellite-card:hover .zc-sat-chevron {
+  color: var(--accent);
+}
+
+.zc-satellite-card.expanded .zc-sat-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.zc-sat-detail {
+  text-align: left;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0px solid var(--border-soft);
+  transition:
+    max-height 0.35s ease,
+    opacity var(--dur-base) ease,
+    margin-top 0.35s ease,
+    padding-top 0.35s ease;
+}
+
+.zc-satellite-card.expanded .zc-sat-detail {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ---------------- Quando não adotar ---------------- */
+.zc-when-not {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 72ch;
+}
+
+.zc-when-not li {
+  color: var(--muted);
+  font-size: var(--fs-300);
+  padding-left: 1.4rem;
+  position: relative;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.zc-when-not li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--muted-dim);
+}
+
+/* ---------------- CTA final ---------------- */
+.zc-footer-cta {
+  border-top: 1px solid var(--border-soft);
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  text-align: center;
+}
+
+.zc-footer-cta .project-links {
+  border-top: none;
+  padding-top: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.zc-footer-cta p {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ---------------- Responsivo ---------------- */
+@media (max-width: 640px) {
+  .zc-satellite-card {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  .zc-measure-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .zc-measure-item .zc-measure-role {
+    justify-self: start;
+  }
+}

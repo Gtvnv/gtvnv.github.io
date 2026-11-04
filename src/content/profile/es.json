@@ -1,0 +1,28 @@
+{
+  "role": "Arquitecto de Soluciones",
+  "status": "Abierto a oportunidades",
+  "heroSummary": "Construyo backends y productos SaaS con foco en arquitectura limpia, seguridad desde el diseño y viabilidad de negocio. Hoy transito entre Java/Spring, el ecosistema JS/TS y C#/.NET, siempre mirando el sistema completo, no solo el código.",
+  "heroProof": [
+    {
+      "value": "+3 años",
+      "label": "de experiencia profesional en TI"
+    },
+    {
+      "value": "15 años → 0",
+      "label": "de inventario en planilla — hoy automatizado en el ERP"
+    },
+    {
+      "value": "Promovido 3x",
+      "label": "en tres empleos — la más rápida fue récord en el equipo de soporte"
+    }
+  ],
+  "aboutParagraphs": [
+    "Mi primera inclinación académica fue la Física, pero la decisión de ir por TI me trajo una fascinación que no esperaba: la capacidad de entender cómo funcionan las cosas en la realidad y lograr traducir eso al mundo digital.",
+    "Mi base en tecnología reflejó bastante esa relación con el mundo físico. Antes del código, pasé por el almacén y por el soporte técnico. Trabajando con infraestructura, hardware y redes, aprendí a diagnosticar el problema en su origen antes de aplicar cualquier corrección, una mentalidad de análisis de causa raíz que se convirtió en la base de mi visión sobre arquitectura de software y lo que me llevó, naturalmente, a especializarme en seguridad de la información.",
+    "Actualmente, la ingeniería de software es lo que conecta todas mis rutinas. Divido mi día a día entre el desarrollo con C#/.NET y Angular/Ionic en Rumo Soluções y los desafíos de un ERP industrial en Agência do Japa. Lidiar a diario con esas reglas de negocio me hizo notar que el código, por sí solo, no basta. Fue esa vivencia la que me impulsó a buscar el MBA en Gestión Financiera y Controladuría: quería entender el software desde la óptica estratégica y financiera de la empresa.",
+    "Como la teoría de la universidad sola no lo cubre todo, mi método de aprendizaje continuo es construir. En mi tiempo libre, estudio creando herramientas reales: desde middlewares de identidad hasta motores de transformación de datos. El mayor reflejo práctico de eso es AKPL. Fuera de la tecnología, soy instructor de kárate y presidente de la Associação Ventura e Vianna: necesitaba resolver la gestión y el control de acceso de mi propio tatami, así que hice lo que más me gusta: tomé una necesidad concreta de mi realidad y la modelé en un sistema que hoy funciona en la práctica.",
+    "Mi actuación técnica está guiada por una filosofía de Aprendizaje Justo a Tiempo, donde el estudio no es un fin en sí mismo, sino una herramienta pragmática de ejecución para resolver desafíos de arquitectura y negocios. Con la base formal en sistemas establecida y consolidando la Ingeniería de Software, opero hoy en la trinchera del desarrollo de soluciones Full-Cycle, conectando la lógica de microservicios en la nube con las rigurosas reglas de negocios y cumplimiento.",
+    "Para sustentar la escalabilidad y la gobernanza de proyectos complejos, mi plan de mejora continua avanza en dos frentes simultáneos. En el frente de mercado, sigo una hoja de ruta estructurada de certificaciones ejecutivas y operativas, abarcando gestión de servicios (PSM I, ITIL 4, Lean Six Sigma), infraestructura de redes seguras (CCNA) y orquestación y arquitectura en la nube (AWS Solutions Architect/Security y CKA).",
+    "Ya en la frontera académica, mi visión a largo plazo es aplicar el más alto rigor científico para respaldar ecosistemas corporativos. Este camino está proyectado para avanzar por una Maestría Profesional en Computación de Misión Crítica (FIEMG/ITA) y culminar en un Doctorado Industrial europeo, apuntando a polos de investigación aplicada como el Politecnico di Milano o la Fraunhofer-Gesellschaft. El propósito de este ecosistema de investigación no es puramente académico, sino la validación intercontinental de frameworks propietarios de arquitectura Zero-Trust y procesamiento distribuido directamente en infraestructuras industriales reales. Mi objetivo final es garantizar que el conocimiento tecnológico profundo se traduzca siempre en expansión de mercado, seguridad institucional y mitigación absoluta de riesgos operativos."
+  ]
+}

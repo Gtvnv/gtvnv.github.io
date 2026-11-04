@@ -1,0 +1,18 @@
+{
+  "name": "Gustavo Vianna",
+  "fullName": "Gustavo Ventura Nery Vianna",
+  "location": "Pedro Leopoldo, Minas Gerais, Brasil",
+  "email": "dgprimeweb@gmail.com",
+  "phone": "+55 11 92090-6946",
+  "phoneDial": "+5511920906946",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/gtvnv",
+    "github": "https://github.com/Gtvnv",
+    "whatsapp": "https://wa.me/5511920906946"
+  },
+  "resumeUrl": {
+    "pt-BR": "assets/curriculo-gustavo-vianna-pt.pdf",
+    "en": "assets/curriculo-gustavo-vianna-en.pdf",
+    "es": "assets/curriculo-gustavo-vianna-es.pdf"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "title": "Por qué Clean Architecture",
+      "body": "Cada vez que una regla de negocio depende directamente de un framework, de una base de datos específica o de una API externa, queda atada a esa decisión para siempre. Clean Architecture (y Hexagonal, en el caso de Vertex y AegisProtocol) resuelve esto invirtiendo la dependencia: el núcleo define interfaces, y es la infraestructura la que se adapta a él, nunca al revés. En la práctica, se puede cambiar la base de datos, la pasarela de pago o incluso el framework web sin reescribir una sola línea de regla de negocio. Cuesta más tiempo al principio. Se paga la diferencia la primera vez que algo externo cambia, y siempre cambia."
+    },
+    {
+      "title": "Por qué Zero Trust",
+      "body": "La mayoría de los sistemas todavía confía por defecto en todo lo que está 'dentro de la red'. Zero Trust parte de lo contrario: ninguna solicitud es confiable hasta que prueba quién es, incluso viniendo de adentro. En AegisProtocol eso se traduce en tokens firmados con RSA-2048, expiración corta, revocación distribuida vía Redis y políticas de acceso granulares por recurso, no por usuario. Cuesta más fricción implementarlo. Es la diferencia entre que una credencial filtrada cueste una sesión o cueste el sistema entero."
+    },
+    {
+      "title": "Por qué la formación importa más que la velocidad",
+      "body": "Escribí un artículo académico sobre exactamente esa tensión: el mercado de TI exige calificación al ritmo ágil, mientras que la ingeniería de verdad requiere una maduración lenta y estructural, y en esa brecha nacen 'desarrolladores' que saben operar un framework pero nunca cuestionan la lógica detrás de él. El texto usa casos como el Therac-25 para argumentar que delegar decisiones arquitectónicas a atajos (bootcamps superficiales, IA usada sin crítica) tiene un costo jurídico y físico real, no solo técnico. Es la base teórica detrás de por qué insisto en Clean Architecture y Zero Trust incluso cuando cuesta más trabajo.",
+      "link": "assets/artigo-dissonancia-estrutural-ti.pdf"
+    }
+  ]
+}

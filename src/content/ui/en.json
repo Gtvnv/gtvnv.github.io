@@ -1,0 +1,74 @@
+{
+  "htmlLang": "en",
+  "nav": {
+    "sobre": "About",
+    "experiencia": "Experience",
+    "projetos": "Projects",
+    "notas": "Technical Notes",
+    "formacao": "Education",
+    "idiomas": "Languages",
+    "contato": "Contact"
+  },
+  "navToggleLabel": "Open menu",
+  "heroButtons": {
+    "projects": "View projects",
+    "contact": "Get in touch",
+    "resume": "Résumé"
+  },
+  "heroMeta": {
+    "location": "Location",
+    "stack": "Stack"
+  },
+  "sections": {
+    "sobre": {
+      "index": "01 / About",
+      "title": "How I got here"
+    },
+    "experiencia": {
+      "index": "02 / Experience",
+      "title": "Professional background"
+    },
+    "projetos": {
+      "index": "03 / Projects",
+      "title": "What I've built"
+    },
+    "notas": {
+      "index": "04 / Technical Notes",
+      "title": "Why I build it this way"
+    },
+    "formacao": {
+      "index": "05 / Education",
+      "title": "Education"
+    },
+    "idiomas": {
+      "index": "06 / Languages",
+      "title": "Languages"
+    },
+    "contato": {
+      "index": "07 / Contact",
+      "title": "Let's talk"
+    }
+  },
+  "projectLinks": {
+    "live": "View live ↗",
+    "repo": "Code ↗",
+    "details": "See details →"
+  },
+  "noteLink": "Read the full paper ↗",
+  "satelliteLabel": "Z2A Satellite",
+  "copyEmail": {
+    "idle": "copy email",
+    "done": "Copied ✓"
+  },
+  "copyPhone": {
+    "idle": "copy phone",
+    "done": "Copied ✓"
+  },
+  "footerNote": "Built with Astro",
+  "backToTop": "Back to top",
+  "seo": {
+    "metaDescription": "Gustavo Vianna, software engineer focused on architecture, security, and production SaaS systems.",
+    "socialDescription": "Secure architectures, systems that hold up in production.",
+    "ogTitle": "Gustavo Vianna, Software Engineer"
+  }
+}

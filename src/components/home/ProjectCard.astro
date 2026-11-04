@@ -1,0 +1,144 @@
+---
+/**
+ * ProjectCard — card de projeto da home. Título (+ emblema satélite OU badge),
+ * status pill colorido por statusKey (classe CSS por chave via
+ * data-status-key), featured ocupando as 2 colunas (classe .featured), impact
+ * opcional, summary, description, tags, links (details, live, liveExtra[], repo).
+ *
+ * Resolução de links base-aware por locale:
+ *  - emblema satélite  → /<locale>/zenithcode#<slug> (âncora do satélite)
+ *  - emblema badge     → o destino de links.details (a ZenithCode OS usa 'zenithcode')
+ *  - links.details     → página de detalhe do projeto no locale (ou a ZenithCode
+ *                        quando o valor é o literal 'zenithcode')
+ */
+import { localizedPath, type Locale } from "../../i18n/locales";
+import { withBase } from "../../lib/assets";
+
+interface Emblem {
+  id: string;
+  slug: string;
+  name: string;
+}
+
+interface LinkExtra {
+  href: string;
+  label: string;
+}
+
+interface ProjectLinks {
+  live?: string | null;
+  liveExtra?: LinkExtra[];
+  repo?: string | null;
+  details?: string | null;
+}
+
+interface Project {
+  title: string;
+  statusKey: string;
+  status: string;
+  featured?: boolean;
+  impact?: string;
+  summary: string;
+  description: string;
+  tags: string[];
+  links: ProjectLinks;
+  satellite?: Emblem;
+  badge?: Emblem;
+}
+
+interface Props {
+  project: Project;
+  locale: Locale;
+  labels: { live: string; repo: string; details: string };
+  satelliteLabel: string;
+}
+
+const { project, locale, labels, satelliteLabel } = Astro.props;
+
+/** Resolve o valor de links.details (slug ou 'zenithcode') para a rota do locale. */
+function resolveDetails(details: string): string {
+  if (details === "zenithcode") {
+    return withBase(localizedPath({ kind: "zenithcode" }, locale));
+  }
+  return withBase(localizedPath({ kind: "project", slug: details }, locale));
+}
+
+const emblemHref = (() => {
+  if (project.satellite) {
+    return `${withBase(localizedPath({ kind: "zenithcode" }, locale))}#${project.satellite.slug}`;
+  }
+  if (project.badge) {
+    return project.links.details ? resolveDetails(project.links.details) : "#";
+  }
+  return null;
+})();
+
+const emblem = project.satellite ?? project.badge ?? null;
+const emblemTitle = project.satellite
+  ? `${satelliteLabel}: ${project.satellite.name}`
+  : (project.badge?.name ?? "");
+---
+
+<article class={`project-card${project.featured ? " featured" : ""}`} data-reveal>
+  <div class="project-head">
+    <div class="project-title-group">
+      {
+        emblem && emblemHref && (
+          <a class="project-satellite-badge" href={emblemHref} title={emblemTitle}>
+            <img
+              src={withBase(`assets/z2a/emblemas/${emblem.id}_${emblem.slug}.png`)}
+              alt={emblem.name}
+              loading="lazy"
+            />
+          </a>
+        )
+      }
+      <h3 class="project-title">{project.title}</h3>
+    </div>
+    <span class="status-pill" data-status-key={project.statusKey}>{project.status}</span>
+  </div>
+
+  <p class="project-summary">{project.summary}</p>
+
+  {project.impact && <p class="project-impact">↳ {project.impact}</p>}
+
+  <p class="project-desc">{project.description}</p>
+
+  {
+    project.tags.length > 0 && (
+      <div class="project-tags">
+        {project.tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    (project.links.details ||
+      project.links.live ||
+      project.links.liveExtra?.length ||
+      project.links.repo) && (
+      <div class="project-links">
+        {project.links.details && (
+          <a href={resolveDetails(project.links.details)}>{labels.details}</a>
+        )}
+        {project.links.live && (
+          <a href={project.links.live} target="_blank" rel="noopener">
+            {labels.live}
+          </a>
+        )}
+        {project.links.liveExtra?.map((extra) => (
+          <a href={extra.href} target="_blank" rel="noopener">
+            {extra.label}
+          </a>
+        ))}
+        {project.links.repo && (
+          <a href={project.links.repo} target="_blank" rel="noopener">
+            {labels.repo}
+          </a>
+        )}
+      </div>
+    )
+  }
+</article>
