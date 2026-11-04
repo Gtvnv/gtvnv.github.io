@@ -19,28 +19,14 @@
   border-bottom: none;
 }
 
+/* Respiro título → conteúdo proporcional ao respiro entre seções:
+   em telas pequenas encosta menos, em telas grandes abre mais. */
 .section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-5);
-  margin-bottom: var(--space-7);
-  flex-wrap: wrap;
+  margin-bottom: clamp(var(--space-6), 5vw, var(--space-8));
 }
 
 .section-head-centered {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-}
-
-.section-index {
-  font-family: var(--font-mono);
-  font-size: var(--fs-100);
-  letter-spacing: 0.04em;
-  color: var(--muted-dim);
-  text-transform: uppercase;
 }
 
 .section-title {
@@ -592,7 +578,8 @@
 .project-card.featured {
   grid-column: 1 / -1;
   background: var(--panel-hover);
-  border-color: var(--border);
+  border-color: var(--accent-dim);
+  padding: var(--space-6);
 }
 
 .project-title-group {
@@ -699,13 +686,21 @@
   margin-bottom: 0.9rem;
 }
 
+/* Nos cards não-featured (sem descrição longa), o summary empurra
+   tags/links para a base — rodapés alinhados no grid apesar de summaries
+   de alturas diferentes. Nos featured, a .project-desc cumpre esse papel. */
+.project-card:not(.featured) .project-summary {
+  flex-grow: 1;
+}
+
+/* A descrição longa só aparece nos cards featured (ver ProjectCard.astro).
+   Alinhada à esquerda — justify criava "rios" de espaço em coluna estreita. */
 .project-desc {
   color: var(--muted);
   font-size: var(--fs-300);
   margin-bottom: var(--space-4);
+  max-width: 68ch;
   flex-grow: 1;
-  text-align: justify;
-  hyphens: auto;
 }
 
 .project-tags {
@@ -715,10 +710,13 @@
   margin-bottom: var(--space-4);
 }
 
+/* Tags discretas: informam a stack sem competir com título e summary. */
 .project-tags .tag {
   font-size: var(--fs-100);
-  padding: 0.22rem 0.5rem;
+  padding: 0.18rem 0.5rem;
   background: transparent;
+  color: var(--muted);
+  border-color: var(--border-soft);
 }
 
 .project-links {
@@ -741,6 +739,51 @@
 
 .project-links a:hover {
   color: var(--accent);
+}
+
+/* ---- Card inteiro clicável (stretched link) ----
+   O ::after do link "ver detalhes" cobre o card todo, ampliando a área de
+   toque (mobile). Links secundários (live/repo) e o emblema ficam acima da
+   camada (z-index) para continuarem clicáveis por conta própria. */
+.project-card {
+  cursor: pointer;
+}
+
+.project-links .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.project-links a:not(.card-link),
+.project-satellite-badge {
+  position: relative;
+  z-index: 1;
+}
+
+/* Foco de teclado: o anel acompanha o card inteiro, não só o texto do link. */
+.project-card:has(.card-link:focus-visible) {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Só tira o anel do link quando o navegador sabe desenhar o do card (:has). */
+@supports selector(:has(*)) {
+  .project-card .card-link:focus-visible {
+    outline: none;
+  }
+}
+
+.project-card:hover .card-link {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover {
+    transform: none;
+  }
 }
 
 /* =========================================================
@@ -867,31 +910,45 @@
   text-align: center;
 }
 
+/* Nível 1 — ação principal: e-mail. */
+.contact-primary,
+.contact-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+}
+
 .contact-email {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: var(--fs-600);
-  font-weight: 500;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-700);
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent-dim);
   padding-bottom: 0.3rem;
   transition:
     color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out);
-  word-break: break-all;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .contact-email:hover {
-  color: var(--accent);
+  color: var(--text);
   border-color: var(--accent);
 }
 
+/* Nível 2 — telefone, mais quieto. */
+.contact-secondary {
+  margin-top: var(--space-4);
+}
+
 .contact-phone {
-  display: block;
   font-family: var(--font-mono);
   font-size: var(--fs-400);
   color: var(--muted);
-  margin-top: 0.9rem;
   transition: color var(--dur-fast) var(--ease-out);
 }
 
@@ -899,18 +956,12 @@
   color: var(--accent);
 }
 
-.contact-copy-row {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: wrap;
-  margin-top: var(--space-4);
-}
-
+/* Nível 3 — redes sociais, como chips discretos com área de toque confortável. */
 .contact-links {
   display: flex;
   justify-content: center;
-  gap: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-3);
   margin-top: var(--space-7);
   font-family: var(--font-mono);
   font-size: var(--fs-300);
@@ -918,24 +969,36 @@
 
 .contact-links a {
   color: var(--muted);
-  transition: color var(--dur-fast) var(--ease-out);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem var(--space-4);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
 }
 
 .contact-links a:hover {
   color: var(--text);
+  border-color: var(--accent-dim);
 }
 
+/* Botão de copiar: chip legível (contraste de --muted, não --muted-dim). */
 .copy-btn {
   background: none;
-  border: none;
-  color: var(--muted-dim);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.7rem;
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: var(--fs-200);
-  transition: color var(--dur-fast) var(--ease-out);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
 }
 
 .copy-btn:hover {
-  color: var(--muted);
+  color: var(--text);
+  border-color: var(--accent-dim);
 }
 
 /* =========================================================

@@ -33,10 +33,9 @@ const {
   <div class="container">
     <SectionHead index={index} title={title} centered />
 
-    <a class="contact-email" href={`mailto:${email}`}>{email}</a>
-    <a class="contact-phone" href={`tel:${phoneDial}`}>{phone}</a>
-
-    <div class="contact-copy-row">
+    {/* Ação principal: e-mail em destaque, com o botão de copiar colado nele. */}
+    <div class="contact-primary">
+      <a class="contact-email" href={`mailto:${email}`}>{email}</a>
       <button
         class="copy-btn"
         type="button"
@@ -46,6 +45,11 @@ const {
       >
         {copyEmail.idle}
       </button>
+    </div>
+
+    {/* Ação secundária: telefone, visualmente mais quieto. */}
+    <div class="contact-secondary">
+      <a class="contact-phone" href={`tel:${phoneDial}`}>{phone}</a>
       <button
         class="copy-btn"
         type="button"

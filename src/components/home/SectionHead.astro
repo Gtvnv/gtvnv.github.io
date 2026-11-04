@@ -1,18 +1,19 @@
 ---
 /**
- * SectionHead — cabeçalho de seção da home: índice mono ("01 / Sobre") +
- * título. `centered` usa a variante centralizada (formação/idiomas/contato).
+ * SectionHead — cabeçalho de seção da home: só o título.
+ * `centered` usa a variante centralizada (formação/idiomas/contato).
+ * `index` é aceito por compatibilidade com os componentes que ainda o passam,
+ * mas não é mais renderizado (o índice mono "01 / Sobre" foi removido).
  */
 interface Props {
-  index: string;
+  index?: string;
   title: string;
   centered?: boolean;
 }
 
-const { index, title, centered = false } = Astro.props;
+const { title, centered = false } = Astro.props;
 ---
 
 <div class={`section-head${centered ? " section-head-centered" : ""}`}>
-  <span class="section-index">{index}</span>
   <h2 class="section-title">{title}</h2>
 </div>
