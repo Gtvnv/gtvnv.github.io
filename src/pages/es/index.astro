@@ -1,0 +1,119 @@
+---
+/**
+ * HOME es (rota "/es"). Mesma montagem da home pt-BR, lendo o conteúdo do
+ * locale "es". Todo o conteúdo nasce no HTML (SSR).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import BackToTop from "../../components/BackToTop.astro";
+import Hero from "../../components/home/Hero.astro";
+import About from "../../components/home/About.astro";
+import Experience from "../../components/home/Experience.astro";
+import Projects from "../../components/home/Projects.astro";
+import Notes from "../../components/home/Notes.astro";
+import Education from "../../components/home/Education.astro";
+import Languages from "../../components/home/Languages.astro";
+import Contact from "../../components/home/Contact.astro";
+import {
+  getSite,
+  getProfile,
+  getUi,
+  getProjects,
+  getExperience,
+  getEducation,
+  getLanguages,
+  getSkills,
+  getNotes,
+} from "../../lib/content";
+import { HERO_STACK } from "../../i18n/home";
+import "../../styles/home.css";
+
+const locale = "es" as const;
+
+const site = (await getSite()) as any;
+const profile = (await getProfile(locale)) as any;
+const ui = (await getUi(locale)) as any;
+const projects = (await getProjects(locale)) as any[];
+const experience = (await getExperience(locale)) as any[];
+const education = (await getEducation(locale)) as any[];
+const languages = (await getLanguages(locale)) as any[];
+const skills = (await getSkills(locale)) as any[];
+const notes = (await getNotes(locale)) as any[];
+
+const pageTitle = `${site.name}, ${profile.role}`;
+---
+
+<BaseLayout locale={locale} title={pageTitle}>
+  <SiteHeader
+    slot="header"
+    locale={locale}
+    name={site.name}
+    nav={ui.nav}
+    navToggleLabel={ui.navToggleLabel}
+    translationKey={{ kind: "home" }}
+  />
+
+  <Hero
+    name={site.name}
+    role={profile.role}
+    status={profile.status}
+    summary={profile.heroSummary}
+    heroProof={profile.heroProof}
+    location={site.location}
+    resumeUrl={site.resumeUrl[locale]}
+    labels={ui.heroButtons}
+    meta={ui.heroMeta}
+    stackText={HERO_STACK}
+  />
+  <About
+    index={ui.sections.sobre.index}
+    title={ui.sections.sobre.title}
+    paragraphs={profile.aboutParagraphs}
+    skills={skills}
+  />
+  <Experience
+    index={ui.sections.experiencia.index}
+    title={ui.sections.experiencia.title}
+    items={experience}
+  />
+  <Projects
+    index={ui.sections.projetos.index}
+    title={ui.sections.projetos.title}
+    projects={projects}
+    locale={locale}
+    labels={ui.projectLinks}
+    satelliteLabel={ui.satelliteLabel}
+  />
+  <Notes
+    index={ui.sections.notas.index}
+    title={ui.sections.notas.title}
+    notes={notes}
+    noteLink={ui.noteLink}
+  />
+  <Education
+    index={ui.sections.formacao.index}
+    title={ui.sections.formacao.title}
+    items={education}
+  />
+  <Languages
+    index={ui.sections.idiomas.index}
+    title={ui.sections.idiomas.title}
+    items={languages}
+  />
+  <Contact
+    index={ui.sections.contato.index}
+    title={ui.sections.contato.title}
+    email={site.email}
+    phone={site.phone}
+    phoneDial={site.phoneDial}
+    social={site.social}
+    copyEmail={ui.copyEmail}
+    copyPhone={ui.copyPhone}
+  />
+
+  <Fragment slot="footer">
+    <SiteFooter name={site.name} footerNote={ui.footerNote} />
+    <BackToTop label={ui.backToTop} />
+  </Fragment>
+</BaseLayout>

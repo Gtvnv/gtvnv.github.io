@@ -24,6 +24,12 @@ const { locale = DEFAULT_LOCALE, title = "Gustavo Vianna" } = Astro.props;
     {/* SEO por locale (title/description/OG/hreflang) chega na FEAT-004 via <SEO /> */}
     <slot name="head" />
     <ClientRouter />
+    {/* Scripts de interação registrados de forma idempotente em astro:page-load
+        (sobrevivem às View Transitions). Cada init* checa prefers-reduced-motion
+        por conta própria. São no-op nas páginas sem os elementos esperados. */}
+    <script>
+      import "../scripts/home.ts";
+    </script>
   </head>
   <body>
     <LavaBackground />

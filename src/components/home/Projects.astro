@@ -1,0 +1,39 @@
+---
+/**
+ * Projects — grid de 2 colunas (featured ocupa as 2, via classe no card).
+ * A ordem de exibição vem do array projects (não das chaves de projectDetails).
+ * Todos os 18 cards nascem no HTML (SSR) — não dependem de reveal para existir.
+ */
+import SectionHead from "./SectionHead.astro";
+import ProjectCard from "./ProjectCard.astro";
+import type { Locale } from "../../i18n/locales";
+
+interface Props {
+  index: string;
+  title: string;
+  projects: any[];
+  locale: Locale;
+  labels: { live: string; repo: string; details: string };
+  satelliteLabel: string;
+}
+
+const { index, title, projects, locale, labels, satelliteLabel } = Astro.props;
+---
+
+<section class="section" id="projetos">
+  <div class="container">
+    <SectionHead index={index} title={title} />
+    <div class="project-grid">
+      {
+        projects.map((project) => (
+          <ProjectCard
+            project={project}
+            locale={locale}
+            labels={labels}
+            satelliteLabel={satelliteLabel}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

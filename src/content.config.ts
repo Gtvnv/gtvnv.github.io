@@ -13,8 +13,21 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+/**
+ * generateId preservando o nome do arquivo (sem extensão) como id, SEM a
+ * slugificação padrão do glob() — que lowercasia "pt-BR.json" para "pt-br" e
+ * quebrava getEntry(collection, "pt-BR"). O locale é case-sensitive e precisa
+ * casar 1:1 com DEFAULT_LOCALE/LOCALES ("pt-BR"), então o id tem de ser o nome
+ * do arquivo literal.
+ */
+const localeId = ({ entry }: { entry: string }) => entry.replace(/\.json$/, "");
+
 const localeGlob = (entity: string) =>
-  glob({ pattern: "*.json", base: `./src/content/${entity}` });
+  glob({
+    pattern: "*.json",
+    base: `./src/content/${entity}`,
+    generateId: localeId,
+  });
 
 /* ---------------- site (único, sem locale) ---------------- */
 const siteSchema = z.object({

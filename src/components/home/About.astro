@@ -1,0 +1,48 @@
+---
+/**
+ * About — parágrafos de "sobre" (justificados) + skills por categoria com tags
+ * mono. O conteúdo nasce no HTML; Reveal aplica só o enfeite de entrada.
+ */
+import SectionHead from "./SectionHead.astro";
+import Reveal from "../Reveal.astro";
+
+interface SkillGroup {
+  category: string;
+  items: string[];
+}
+
+interface Props {
+  index: string;
+  title: string;
+  paragraphs: string[];
+  skills: SkillGroup[];
+}
+
+const { index, title, paragraphs, skills } = Astro.props;
+---
+
+<section class="section" id="sobre">
+  <div class="container">
+    <SectionHead index={index} title={title} />
+    <div class="about-grid">
+      <Reveal class="about-text">
+        {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </Reveal>
+
+      <Reveal class="skills-block">
+        {
+          skills.map((group) => (
+            <div class="skill-category">
+              <h3>{group.category}</h3>
+              <div class="skill-tags">
+                {group.items.map((item) => (
+                  <span class="tag">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </Reveal>
+    </div>
+  </div>
+</section>

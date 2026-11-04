@@ -1,0 +1,160 @@
+---
+/**
+ * Hero — o único momento de destaque (design.md §7.2/§7.3). status-pill,
+ * H1 com role em gradiente, summary, proof points em mini-grade, botões
+ * (Ver projetos / Contato / Currículo — Currículo OMITIDO quando resumeUrl
+ * do locale é null), meta (local/stack) e foto com glow cônico.
+ *
+ * O grid-field (blueprint) é o único parallax (data-parallax, movido por
+ * parallax.ts). .hero-content e .hero-photo-wrap recebem o fade de entrada.
+ */
+import { withBase } from "../../lib/assets";
+
+interface HeroProof {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  name: string;
+  role: string;
+  status: string;
+  summary: string;
+  heroProof: HeroProof[];
+  location: string;
+  resumeUrl: string | null;
+  labels: {
+    projects: string;
+    contact: string;
+    resume: string;
+  };
+  meta: { location: string; stack: string };
+  stackText: string;
+}
+
+const {
+  name,
+  role,
+  status,
+  summary,
+  heroProof,
+  location,
+  resumeUrl,
+  labels,
+  meta,
+  stackText,
+} = Astro.props;
+---
+
+<section class="section hero" id="top">
+  <div class="grid-field" data-parallax aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-status">
+        <span class="dot" aria-hidden="true"></span>
+        {status}
+      </span>
+
+      <h1>
+        {name}
+        <span class="role">{role}</span>
+      </h1>
+
+      <p class="hero-summary">{summary}</p>
+
+      {
+        heroProof.length > 0 && (
+          <div class="hero-proof">
+            {heroProof.map((item) => (
+              <div class="hero-proof-item">
+                <span class="hero-proof-value">{item.value}</span>
+                <span class="hero-proof-label">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projetos">{labels.projects}</a>
+        <a class="btn btn-ghost" href="#contato">{labels.contact}</a>
+        {
+          resumeUrl && (
+            <a
+              class="link-plain"
+              href={withBase(resumeUrl)}
+              target="_blank"
+              rel="noopener"
+            >
+              {labels.resume} ↗
+            </a>
+          )
+        }
+      </div>
+
+      <div class="hero-meta">
+        <span><strong>{meta.location}:</strong> {location}</span>
+        <span><strong>{meta.stack}:</strong> {stackText}</span>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-glow" aria-hidden="true"></div>
+      <div class="hero-photo">
+        <img
+          src={withBase("assets/perfil-hero.jpg")}
+          alt={name}
+          width="320"
+          height="426"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* A hero usa .hero-grid nas duas colunas (texto / foto). Como o grid-field
+     é o primeiro filho do .container, aplicamos o grid só ao par
+     .hero-content + .hero-photo-wrap. */
+  .hero .container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: center;
+  }
+
+  .hero .grid-field {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .hero-content {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero-photo-wrap {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  @media (max-width: 820px) {
+    .hero .container {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero-photo-wrap {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero .grid-field {
+      grid-row: 1 / -1;
+    }
+  }
+</style>

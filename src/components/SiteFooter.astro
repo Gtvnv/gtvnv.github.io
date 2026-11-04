@@ -1,0 +1,21 @@
+---
+/**
+ * SiteFooter — © ano + nome + footerNote ("Construído com Astro" / "Built with
+ * Astro" / "Construido con Astro", vindo do ui do locale). O ano é calculado no
+ * build (SSG) — estático, sem depender de JS.
+ */
+interface Props {
+  name: string;
+  footerNote: string;
+}
+
+const { name, footerNote } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© {year} {name}</span>
+    <span>{footerNote}</span>
+  </div>
+</footer>

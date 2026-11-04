@@ -1,0 +1,74 @@
+---
+/**
+ * SiteHeader — header sticky da home: brand (dot + nome), nav com as 7 âncoras
+ * (scroll-spy via underline animada aplicada por JS em nav.ts), nav-toggle
+ * hambúrguer mobile com aria-label, e o LangSwitch como <a>.
+ */
+import LangSwitch from "./LangSwitch.astro";
+import type { Locale, TranslationKey } from "../i18n/locales";
+
+interface NavLabels {
+  sobre: string;
+  experiencia: string;
+  projetos: string;
+  notas: string;
+  formacao: string;
+  idiomas: string;
+  contato: string;
+}
+
+interface Props {
+  locale: Locale;
+  name: string;
+  nav: NavLabels;
+  navToggleLabel: string;
+  translationKey: TranslationKey;
+}
+
+const { locale, name, nav, navToggleLabel, translationKey } = Astro.props;
+
+// Ordem das âncoras = ordem das seções da home; o href casa com o id da seção.
+const navItems: { id: string; label: string }[] = [
+  { id: "sobre", label: nav.sobre },
+  { id: "experiencia", label: nav.experiencia },
+  { id: "projetos", label: nav.projetos },
+  { id: "notas", label: nav.notas },
+  { id: "formacao", label: nav.formacao },
+  { id: "idiomas", label: nav.idiomas },
+  { id: "contato", label: nav.contato },
+];
+---
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top" aria-label={name}>
+      <span class="dot" aria-hidden="true"></span>
+      <span>{name}</span>
+    </a>
+
+    <div class="nav-wrap">
+      <nav class="main-nav" aria-label="Seções">
+        <ul>
+          {
+            navItems.map((item) => (
+              <li>
+                <a href={`#${item.id}`}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <LangSwitch locale={locale} translationKey={translationKey} />
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label={navToggleLabel}
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+</header>

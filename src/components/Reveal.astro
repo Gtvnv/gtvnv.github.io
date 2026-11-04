@@ -1,0 +1,21 @@
+---
+/**
+ * Reveal — wrapper que aplica data-reveal ao elemento raiz para o enfeite de
+ * entrada (reveal.ts). O conteúdo nasce no HTML (SSR); o estado inicial
+ * escondido só vale quando o JS marca a página como pronta e sob movimento
+ * permitido — nunca prende o conteúdo em opacity:0.
+ *
+ * `as` escolhe a tag do wrapper (default div); `class` adiciona classes
+ * extras. Quaisquer outros atributos são repassados ao elemento.
+ */
+interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+}
+
+const { as: Tag = "div", class: className, ...rest } = Astro.props;
+---
+
+<Tag data-reveal class={className} {...rest}>
+  <slot />
+</Tag>

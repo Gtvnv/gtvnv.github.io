@@ -1,0 +1,66 @@
+---
+/**
+ * Contact — e-mail grande (mailto:), telefone (tel:), botões de copiar com
+ * feedback traduzido (idle/done embutidos em data-attributes p/ clipboard.ts),
+ * e links sociais. Os links mailto:/tel: são o fallback do clipboard.
+ */
+import SectionHead from "./SectionHead.astro";
+
+interface Props {
+  index: string;
+  title: string;
+  email: string;
+  phone: string;
+  phoneDial: string;
+  social: { linkedin: string; github: string; whatsapp: string };
+  copyEmail: { idle: string; done: string };
+  copyPhone: { idle: string; done: string };
+}
+
+const {
+  index,
+  title,
+  email,
+  phone,
+  phoneDial,
+  social,
+  copyEmail,
+  copyPhone,
+} = Astro.props;
+---
+
+<section class="section contact-section" id="contato">
+  <div class="container">
+    <SectionHead index={index} title={title} centered />
+
+    <a class="contact-email" href={`mailto:${email}`}>{email}</a>
+    <a class="contact-phone" href={`tel:${phoneDial}`}>{phone}</a>
+
+    <div class="contact-copy-row">
+      <button
+        class="copy-btn"
+        type="button"
+        data-copy-value={email}
+        data-copy-idle={copyEmail.idle}
+        data-copy-done={copyEmail.done}
+      >
+        {copyEmail.idle}
+      </button>
+      <button
+        class="copy-btn"
+        type="button"
+        data-copy-value={phone}
+        data-copy-idle={copyPhone.idle}
+        data-copy-done={copyPhone.done}
+      >
+        {copyPhone.idle}
+      </button>
+    </div>
+
+    <div class="contact-links">
+      <a href={social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={social.github} target="_blank" rel="noopener">GitHub</a>
+      <a href={social.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>

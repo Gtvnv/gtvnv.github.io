@@ -1,0 +1,39 @@
+---
+/**
+ * Education — lista degree/institution ↔ period, estreita e centralizada.
+ */
+import SectionHead from "./SectionHead.astro";
+
+interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+}
+
+interface Props {
+  index: string;
+  title: string;
+  items: EducationItem[];
+}
+
+const { index, title, items } = Astro.props;
+---
+
+<section class="section" id="formacao">
+  <div class="container">
+    <SectionHead index={index} title={title} centered />
+    <div class="education-list">
+      {
+        items.map((entry) => (
+          <div class="education-item">
+            <div>
+              <div class="education-degree">{entry.degree}</div>
+              <div class="education-institution">{entry.institution}</div>
+            </div>
+            <span class="education-period">{entry.period}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

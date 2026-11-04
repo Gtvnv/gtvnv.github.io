@@ -1,0 +1,46 @@
+---
+/**
+ * LangSwitch — troca de idioma preservando a página (RF-07). Renderiza os 3
+ * locales como <a> (não botões JS); cada link aponta para o caminho
+ * equivalente no locale alvo via localizedPath, passando por withBase para
+ * respeitar `base`. O locale atual recebe a classe .active e aria-current.
+ *
+ * A implementação completa de i18n (hreflang/canonical) fica na FEAT-004;
+ * aqui o LangSwitch já funciona para a home com o esqueleto de localizedPath.
+ */
+import {
+  LOCALES,
+  localizedPath,
+  type Locale,
+  type TranslationKey,
+} from "../i18n/locales";
+import { withBase } from "../lib/assets";
+
+interface Props {
+  locale: Locale;
+  translationKey: TranslationKey;
+}
+
+const { locale, translationKey } = Astro.props;
+
+const LABELS: Record<Locale, string> = {
+  "pt-BR": "PT",
+  en: "EN",
+  es: "ES",
+};
+---
+
+<div class="lang-switch" role="group" aria-label="Idioma / Language">
+  {
+    LOCALES.map((target) => (
+      <a
+        href={withBase(localizedPath(translationKey, target))}
+        class={target === locale ? "active" : undefined}
+        aria-current={target === locale ? "true" : undefined}
+        hreflang={target}
+      >
+        {LABELS[target]}
+      </a>
+    ))
+  }
+</div>

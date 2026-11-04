@@ -1,0 +1,21 @@
+---
+/**
+ * BackToTop — botão flutuante que aparece após a dobra (controlado por
+ * backToTop.ts). aria-label/title traduzidos vindos do ui do locale.
+ */
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button
+  class="back-to-top"
+  type="button"
+  data-back-to-top
+  aria-label={label}
+  title={label}
+>
+  ↑
+</button>

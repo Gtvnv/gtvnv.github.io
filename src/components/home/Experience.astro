@@ -1,0 +1,53 @@
+---
+/**
+ * Experience — timeline com period/role/logo/company/description. O logo
+ * (só a ZenithCode tem) resolve base-aware via withBase. Cada item recebe
+ * data-reveal para o enfeite de entrada progressivo.
+ */
+import SectionHead from "./SectionHead.astro";
+import { withBase } from "../../lib/assets";
+
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  logo?: string;
+  description: string;
+}
+
+interface Props {
+  index: string;
+  title: string;
+  items: ExperienceItem[];
+}
+
+const { index, title, items } = Astro.props;
+---
+
+<section class="section" id="experiencia">
+  <div class="container">
+    <SectionHead index={index} title={title} />
+    <div class="timeline">
+      {
+        items.map((job) => (
+          <div class="timeline-item" data-reveal>
+            <span class="timeline-period">{job.period}</span>
+            <div class="timeline-role-group">
+              {job.logo && (
+                <img
+                  class="timeline-logo"
+                  src={withBase(job.logo)}
+                  alt=""
+                  loading="lazy"
+                />
+              )}
+              <h3 class="timeline-role">{job.role}</h3>
+            </div>
+            <span class="timeline-company">{job.company}</span>
+            <p class="timeline-desc">{job.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

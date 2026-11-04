@@ -1,0 +1,18 @@
+---
+/**
+ * SectionHead — cabeçalho de seção da home: índice mono ("01 / Sobre") +
+ * título. `centered` usa a variante centralizada (formação/idiomas/contato).
+ */
+interface Props {
+  index: string;
+  title: string;
+  centered?: boolean;
+}
+
+const { index, title, centered = false } = Astro.props;
+---
+
+<div class={`section-head${centered ? " section-head-centered" : ""}`}>
+  <span class="section-index">{index}</span>
+  <h2 class="section-title">{title}</h2>
+</div>
