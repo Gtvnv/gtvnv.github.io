@@ -1,0 +1,177 @@
+---
+/**
+ * ProjectDetail — render do conteúdo de uma página de detalhe de projeto,
+ * reproduzindo o renderer legado (js/project-details.js) em paridade:
+ *  - hero: eyebrow, print (logo) via withBase, title, subtitle, summary,
+ *    statusNote SÓ quando presente (callout);
+ *  - about (title/body);
+ *  - architecture SÓ quando presente (title/body + tree opcional em <pre>);
+ *  - stack (tags);
+ *  - features (rule-cards numerados);
+ *  - endpoints SÓ quando presente (name/what/role — role sempre string);
+ *  - security SÓ quando presente (title/body);
+ *  - links (live/repo, omitidos quando null);
+ *  - footer backCta → home do locale.
+ */
+import RuleCardGrid from "./RuleCardGrid.astro";
+import { withBase } from "../../lib/assets";
+import { localizedPath, type Locale } from "../../i18n/locales";
+
+interface RuleCard {
+  title: string;
+  mechanic?: string;
+  body?: string;
+}
+
+interface EndpointItem {
+  name: string;
+  what: string;
+  role: string;
+}
+
+interface ProjectDetailData {
+  logo: string;
+  hero: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    summary: string;
+    statusNote?: string;
+  };
+  about: { title: string; body: string };
+  architecture?: { title: string; body: string; tree?: string[] };
+  stack: { title: string; items: string[] };
+  features: { title: string; intro: string; items: RuleCard[] };
+  endpoints?: { title: string; intro: string; items: EndpointItem[] };
+  security?: { title: string; body: string };
+  links: { live?: string | null; repo?: string | null };
+  footer: { backCta: string };
+}
+
+interface Props {
+  detail: ProjectDetailData;
+  locale: Locale;
+  /** Rótulos de links (ui.projectLinks): { live, repo, details }. */
+  labels: { live: string; repo: string };
+}
+
+const { detail, locale, labels } = Astro.props;
+
+// logo legado = "../assets/projetos/<slug>.png"; reescrito base-aware.
+const logoSrc = withBase(
+  detail.logo.replace(/^(\.\.\/)+/, "").replace(/^\/+/, ""),
+);
+
+const homeHref = withBase(localizedPath({ kind: "home" }, locale));
+---
+
+<article class="detail-main">
+  <section class="zc-hero" data-reveal>
+    <div class="container">
+      <p class="zc-eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        {detail.hero.eyebrow}
+      </p>
+      <div class="zc-hero-title-group">
+        <img class="zc-hero-badge" src={logoSrc} alt={detail.hero.title} />
+        <h1>{detail.hero.title}</h1>
+      </div>
+      <p class="zc-subtitle">{detail.hero.subtitle}</p>
+      <p class="zc-summary">{detail.hero.summary}</p>
+    </div>
+  </section>
+
+  <div class="container">
+    {
+      detail.hero.statusNote && (
+        <div class="zc-callout" data-reveal>
+          <p>{detail.hero.statusNote}</p>
+        </div>
+      )
+    }
+
+    {/* Sobre */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{detail.about.title}</h2>
+      <p class="zc-section-body">{detail.about.body}</p>
+    </section>
+
+    {/* Arquitetura (opcional) */}
+    {
+      detail.architecture && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{detail.architecture.title}</h2>
+          <p class="zc-section-body">{detail.architecture.body}</p>
+          {detail.architecture.tree && (
+            <pre class="zc-arch-tree">{detail.architecture.tree.join("\n")}</pre>
+          )}
+        </section>
+      )
+    }
+
+    {/* Stack técnica */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{detail.stack.title}</h2>
+      <div class="zc-stack-grid">
+        {detail.stack.items.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </section>
+
+    {/* Recursos-chave */}
+    <section class="zc-section" data-reveal>
+      <h2 class="zc-section-title">{detail.features.title}</h2>
+      <p class="zc-rules-intro">{detail.features.intro}</p>
+      <RuleCardGrid items={detail.features.items} />
+    </section>
+
+    {/* Endpoints (opcional) */}
+    {
+      detail.endpoints && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{detail.endpoints.title}</h2>
+          <p class="zc-measure-intro">{detail.endpoints.intro}</p>
+          <div class="zc-measure-list">
+            {detail.endpoints.items.map((item) => (
+              <div class="zc-measure-item">
+                <span class="zc-measure-name">{item.name}</span>
+                <span class="zc-measure-what">{item.what}</span>
+                <span class="zc-measure-role">{item.role}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {/* Segurança (opcional) */}
+    {
+      detail.security && (
+        <section class="zc-section" data-reveal>
+          <h2 class="zc-section-title">{detail.security.title}</h2>
+          <p class="zc-section-body">{detail.security.body}</p>
+        </section>
+      )
+    }
+
+    {/* CTA final + links */}
+    <section class="zc-footer-cta" data-reveal>
+      {
+        (detail.links.live || detail.links.repo) && (
+          <div class="project-links">
+            {detail.links.live && (
+              <a href={detail.links.live} target="_blank" rel="noopener">
+                {labels.live}
+              </a>
+            )}
+            {detail.links.repo && (
+              <a href={detail.links.repo} target="_blank" rel="noopener">
+                {labels.repo}
+              </a>
+            )}
+          </div>
+        )
+      }
+      <a class="zc-back" href={homeHref}>{detail.footer.backCta}</a>
+    </section>
+  </div>
+</article>

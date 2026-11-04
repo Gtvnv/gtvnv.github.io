@@ -1,0 +1,34 @@
+---
+/**
+ * Detalhe de projeto — es (rota /es/proyectos/<slug>). O segmento localizado
+ * "proyectos" é só a pasta da rota; o slug e o getStaticPaths continuam vindo
+ * do helper único getProjectDetailPaths("es").
+ */
+import DetailLayout from "../../../layouts/DetailLayout.astro";
+import ProjectDetail from "../../../components/detail/ProjectDetail.astro";
+import {
+  getProjectDetailPaths,
+  getProjectDetail,
+  getUi,
+} from "../../../lib/content";
+
+const LOCALE = "es" as const;
+
+export async function getStaticPaths() {
+  return getProjectDetailPaths("es");
+}
+
+const { slug } = Astro.params as { slug: string };
+
+const detail = (await getProjectDetail(LOCALE, slug)) as any;
+const ui = (await getUi(LOCALE)) as any;
+---
+
+<DetailLayout
+  locale={LOCALE}
+  translationKey={{ kind: "project", slug }}
+  meta={{ title: detail.meta.title, description: detail.meta.description }}
+  backLabel={detail.backLabel}
+>
+  <ProjectDetail detail={detail} locale={LOCALE} labels={ui.projectLinks} />
+</DetailLayout>

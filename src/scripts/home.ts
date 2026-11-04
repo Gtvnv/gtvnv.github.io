@@ -13,6 +13,7 @@ import { initParallax } from "./parallax";
 import { initNav } from "./nav";
 import { initClipboard } from "./clipboard";
 import { initBackToTop } from "./backToTop";
+import { initSatellites } from "./satellites";
 
 function initAll(): void {
   initNav();
@@ -20,6 +21,8 @@ function initAll(): void {
   initBackToTop();
   initReveal();
   initParallax();
+  // No-op fora da página ZenithCode (sem cards de satélite).
+  initSatellites();
 }
 
 document.addEventListener("astro:page-load", initAll);

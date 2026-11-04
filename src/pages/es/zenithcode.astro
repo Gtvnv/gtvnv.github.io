@@ -1,0 +1,22 @@
+---
+/**
+ * ZenithCode OS / Z2A — es (rota /es/zenithcode). O segmento "zenithcode" não
+ * é localizado (só o segmento de detalhe de projeto vira "proyectos").
+ */
+import DetailLayout from "../../layouts/DetailLayout.astro";
+import Zenithcode from "../../components/detail/Zenithcode.astro";
+import { getZenithcode } from "../../lib/content";
+
+const LOCALE = "es" as const;
+
+const zc = (await getZenithcode(LOCALE)) as any;
+---
+
+<DetailLayout
+  locale={LOCALE}
+  translationKey={{ kind: "zenithcode" }}
+  meta={{ title: zc.meta.title, description: zc.meta.description }}
+  backLabel={zc.backLabel}
+>
+  <Zenithcode zc={zc} locale={LOCALE} />
+</DetailLayout>
