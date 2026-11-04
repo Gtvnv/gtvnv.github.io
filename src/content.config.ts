@@ -35,6 +35,9 @@ const siteSchema = z.object({
   fullName: z.string(),
   location: z.string(),
   email: z.string(),
+  // Contato direto (pessoal) e contato comercial da empresa (phone/phoneDial).
+  phoneDirect: z.string(),
+  phoneDirectDial: z.string(),
   phone: z.string(),
   phoneDial: z.string(),
   social: z.object({
@@ -95,6 +98,7 @@ const uiSchema = z.object({
   satelliteLabel: z.string(),
   copyEmail: z.object({ idle: z.string(), done: z.string() }),
   copyPhone: z.object({ idle: z.string(), done: z.string() }),
+  phoneLabels: z.object({ direct: z.string(), business: z.string() }),
   footerNote: z.string(),
   backToTop: z.string(),
   seo: z.object({

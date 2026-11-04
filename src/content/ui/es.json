@@ -64,6 +64,10 @@
     "idle": "copiar teléfono",
     "done": "Copiado ✓"
   },
+  "phoneLabels": {
+    "direct": "Contacto directo",
+    "business": "Contacto comercial"
+  },
   "footerNote": "Construido con Astro",
   "backToTop": "Volver arriba",
   "seo": {

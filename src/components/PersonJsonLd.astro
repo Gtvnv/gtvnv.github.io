@@ -1,0 +1,43 @@
+---
+/**
+ * PersonJsonLd — JSON-LD schema.org `Person` da home, por locale.
+ * Dados vêm das Content Collections (site/shared.json); só o jobTitle é
+ * constante por locale. Não expõe e-mail/telefone. O JSON é serializado com
+ * "<" escapado (\u003c) para não permitir fechar o <script> antecipadamente.
+ */
+import { localizedPath, type Locale } from "../i18n/locales";
+import { getSite } from "../lib/content";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const JOB_TITLE: Record<Locale, string> = {
+  "pt-BR": "Engenheiro de Software",
+  en: "Software Engineer",
+  es: "Ingeniero de Software",
+};
+
+const site = (await getSite()) as {
+  name: string;
+  social: { linkedin: string; github: string };
+};
+
+const siteOrigin = Astro.site?.href.replace(/\/$/, "") ?? "https://gtvnv.github.io";
+
+const data = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: JOB_TITLE[locale],
+  url: `${siteOrigin}${localizedPath({ kind: "home" }, locale)}`,
+  sameAs: [site.social.linkedin, site.social.github],
+  image: `${siteOrigin}/assets/perfil-hero.jpg`,
+};
+
+const json = JSON.stringify(data).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" set:html={json} />

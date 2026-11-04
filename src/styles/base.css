@@ -65,6 +65,18 @@ button {
   outline-offset: 3px;
 }
 
+/* Clique de mouse não mostra anel; teclado sim (via :focus-visible acima). */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Modo de alto contraste do Windows: usa a cor de sistema para o anel. */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}
+
 /* ---- Layout helpers ---- */
 .container {
   max-width: var(--max-width);

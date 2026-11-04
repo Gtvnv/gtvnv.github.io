@@ -62,7 +62,7 @@
 .lang-switch a {
   background: none;
   border: 1px solid var(--border);
-  color: var(--muted-dim);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: var(--fs-100);
   letter-spacing: 0.02em;
@@ -110,27 +110,76 @@
   gap: var(--space-2);
 }
 
-/* project-links reaproveitada como CTA de link (dentro do footer-cta). */
-.project-links {
+/* Botões (CTAs ao vivo/código no hero) — portados de home.css. */
+.hero-actions {
   display: flex;
-  gap: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border-soft);
   flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
 }
 
-.project-links a {
-  font-size: var(--fs-300);
-  font-weight: 500;
-  color: var(--text);
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  transition: color var(--dur-fast) var(--ease-out);
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0.7rem 1.3rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-300);
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
 }
 
-.project-links a:hover {
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent-grad);
+  color: #06040f;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.12);
+}
+
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent-dim);
+  background: var(--panel);
+}
+
+/* Status pill — mesmas cores por statusKey da home. */
+.status-pill {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.55rem;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.status-pill[data-status-key="production"] {
+  color: var(--status-production);
+  border-color: var(--status-production-border);
+}
+
+.status-pill[data-status-key="live"] {
   color: var(--accent);
+  border-color: var(--accent-dim);
 }
 
 /* Back-to-top — idêntico ao da home. */
@@ -188,8 +237,37 @@
 
 /* ---------------- Hero ---------------- */
 .zc-hero {
-  padding-top: clamp(3.5rem, 8vw, 6rem);
-  padding-bottom: clamp(1.5rem, 3.5vw, 2.5rem);
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+
+/* "← Todos os projetos" no topo do conteúdo. */
+.zc-crumb {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-200);
+  color: var(--muted);
+  margin-bottom: var(--space-5);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.zc-crumb:hover {
+  color: var(--accent);
+}
+
+/* Eyebrow + status pill na mesma linha. */
+.zc-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.zc-hero-meta .zc-eyebrow {
+  margin-bottom: 0;
 }
 
 .zc-eyebrow {
@@ -248,15 +326,15 @@
 .zc-hero .zc-summary {
   color: var(--muted);
   max-width: var(--measure);
-  margin-top: 1.75rem;
-  text-align: justify;
-  hyphens: auto;
+  margin-top: var(--space-5);
+  font-size: var(--fs-400);
+  line-height: 1.65;
 }
 
 .zc-hero .zc-masters-note {
   color: var(--muted-dim);
   font-size: var(--fs-200);
-  max-width: 60ch;
+  max-width: var(--measure);
   margin-top: 1rem;
   border-left: 2px solid var(--accent-dim);
   padding-left: 0.8rem;
@@ -268,8 +346,9 @@
   border-left: 3px solid var(--accent);
   background: var(--panel);
   border-radius: var(--radius-md);
-  padding: 1.5rem 1.75rem;
-  margin-bottom: clamp(2rem, 4.5vw, 3.25rem);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-7);
+  max-width: calc(var(--measure) + 2 * var(--space-6));
 }
 
 .zc-callout h2 {
@@ -284,27 +363,29 @@
 .zc-callout p {
   color: var(--muted);
   font-size: var(--fs-300);
-  text-align: justify;
-  hyphens: auto;
+  line-height: 1.65;
 }
 
 /* ---------------- Seções genéricas ---------------- */
+/* Ritmo: filete superior + respiro por tokens; prosa em --measure,
+   alinhada à esquerda (justify criava "rios" em pt/en/es). */
 .zc-section {
-  margin-bottom: clamp(2.25rem, 5vw, 3.75rem);
+  border-top: 1px solid var(--border-soft);
+  padding-top: var(--space-7);
+  margin-bottom: var(--space-7);
 }
 
 .zc-section-title {
   font-size: var(--fs-700);
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
   text-shadow: var(--shadow-text);
 }
 
 .zc-section > p,
 .zc-section-body {
   color: var(--muted);
-  max-width: 72ch;
-  text-align: justify;
-  hyphens: auto;
+  max-width: var(--measure);
+  line-height: 1.7;
 }
 
 .zc-quote {
@@ -322,12 +403,10 @@
 .zc-analogy {
   color: var(--muted-dim);
   font-size: var(--fs-200);
-  max-width: 68ch;
+  max-width: var(--measure);
   margin-top: 1.25rem;
   border-left: 2px solid var(--border);
   padding-left: 0.8rem;
-  text-align: justify;
-  hyphens: auto;
 }
 
 .zc-arch-tree {
@@ -347,23 +426,54 @@
 /* ---------------- Grade de cards numerados ---------------- */
 .zc-rules-intro {
   color: var(--muted);
-  max-width: 68ch;
-  margin-bottom: 1.75rem;
-  text-align: justify;
-  hyphens: auto;
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+  line-height: 1.7;
 }
 
 .zc-rules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-4);
 }
 
 .zc-rule-card {
+  position: relative;
   border: 1px solid var(--border);
   background: var(--panel);
   border-radius: var(--radius-md);
-  padding: 1.25rem 1.4rem;
+  padding: var(--space-5);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.zc-rule-card:hover {
+  border-color: var(--accent-dim);
+}
+
+/* Corner marks HUD, iguais aos de .project-card na home. */
+.zc-rule-card::before,
+.zc-rule-card::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--muted-dim);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.zc-rule-card::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.zc-rule-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
 }
 
 .zc-rule-card .zc-rule-num {
@@ -441,9 +551,7 @@
 .zc-blackout dd {
   color: var(--text);
   font-size: var(--fs-300);
-  max-width: 68ch;
-  text-align: justify;
-  hyphens: auto;
+  max-width: var(--measure);
   margin: 0;
 }
 
@@ -458,10 +566,9 @@
 /* ---------------- Como se mede / Endpoints ---------------- */
 .zc-measure-intro {
   color: var(--muted);
-  max-width: 68ch;
-  margin-bottom: 1.5rem;
-  text-align: justify;
-  hyphens: auto;
+  max-width: var(--measure);
+  margin-bottom: var(--space-5);
+  line-height: 1.7;
 }
 
 .zc-measure-list {
@@ -477,6 +584,11 @@
   align-items: baseline;
   padding: 0.9rem 0;
   border-top: 1px solid var(--border-soft);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.zc-measure-item:hover {
+  border-top-color: var(--accent-dim);
 }
 
 .zc-measure-item .zc-measure-name {
@@ -501,10 +613,9 @@
 /* ---------------- Satélites ---------------- */
 .zc-satellites-intro {
   color: var(--muted);
-  max-width: 72ch;
-  margin-bottom: 2rem;
-  text-align: justify;
-  hyphens: auto;
+  max-width: var(--measure);
+  margin-bottom: var(--space-6);
+  line-height: 1.7;
 }
 
 .zc-sat-group-title {
@@ -649,7 +760,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  max-width: 72ch;
+  max-width: var(--measure);
 }
 
 .zc-when-not li {
@@ -657,8 +768,6 @@
   font-size: var(--fs-300);
   padding-left: 1.4rem;
   position: relative;
-  text-align: justify;
-  hyphens: auto;
 }
 
 .zc-when-not li::before {
@@ -671,21 +780,83 @@
 /* ---------------- CTA final ---------------- */
 .zc-footer-cta {
   border-top: 1px solid var(--border-soft);
-  padding-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: var(--space-7);
   text-align: center;
-}
-
-.zc-footer-cta .project-links {
-  border-top: none;
-  padding-top: 0;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 1.25rem;
 }
 
 .zc-footer-cta p {
   color: var(--muted);
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--space-5);
+}
+
+.zc-footer-cta .zc-back {
+  min-height: 44px;
+}
+
+/* ---------------- Anterior / próximo ---------------- */
+.zc-pager {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .zc-pager {
+    grid-template-columns: 1fr 1fr;
+  }
+  .zc-pager-next {
+    text-align: right;
+  }
+}
+
+.zc-pager-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.zc-pager-link:hover {
+  border-color: var(--accent-dim);
+  background: var(--panel-hover);
+}
+
+.zc-pager-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-100);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted-dim);
+}
+
+.zc-pager-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-500);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.zc-pager-link:hover .zc-pager-title {
+  color: var(--accent);
+}
+
+/* Movimento só onde o usuário aceita (botões têm translate no hover). */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn:hover {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ---------------- Responsivo ---------------- */

@@ -1,0 +1,3 @@
+# HTML intermediário e saídas de rascunho geradas pelo build.mjs
+.build/
+.verify/

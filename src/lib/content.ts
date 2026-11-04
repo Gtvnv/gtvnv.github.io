@@ -90,6 +90,51 @@ export async function getProjectDetailPaths(locale: Locale) {
   }));
 }
 
+export interface ProjectNeighbor {
+  slug: string;
+  title: string;
+}
+
+export interface ProjectNav {
+  status?: { key: string; label: string };
+  prev: ProjectNeighbor;
+  next: ProjectNeighbor;
+}
+
+/**
+ * Navegação de uma página de detalhe: status do projeto e vizinhos
+ * anterior/próximo (com wrap-around). A ordem é a de projects/<locale>.json
+ * filtrada aos itens que têm página de detalhe própria (exclui 'zenithcode').
+ */
+export async function getProjectNav(
+  locale: Locale,
+  slug: string,
+): Promise<ProjectNav> {
+  const items = (await getProjects(locale)) as {
+    title: string;
+    statusKey: string;
+    status: string;
+    links?: { details?: string | null };
+  }[];
+  const withDetail = items.filter(
+    (p) => p.links?.details && p.links.details !== "zenithcode",
+  );
+  const idx = withDetail.findIndex((p) => p.links?.details === slug);
+  if (idx === -1) {
+    throw new Error(`Projeto sem entrada em projects/${locale}.json: "${slug}".`);
+  }
+  const at = (i: number): ProjectNeighbor => {
+    const p = withDetail[(i + withDetail.length) % withDetail.length];
+    return { slug: p.links!.details as string, title: p.title };
+  };
+  const self = withDetail[idx];
+  return {
+    status: { key: self.statusKey, label: self.status },
+    prev: at(idx - 1),
+    next: at(idx + 1),
+  };
+}
+
 /**
  * Getter genérico por entidade + locale. `entity` deve ser uma das collections
  * por-locale. Devolve entry.data cru (sem desembrulhar `items`).

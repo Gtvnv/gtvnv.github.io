@@ -9,6 +9,7 @@ import ProjectDetail from "../../components/detail/ProjectDetail.astro";
 import {
   getProjectDetailPaths,
   getProjectDetail,
+  getProjectNav,
   getUi,
 } from "../../lib/content";
 
@@ -22,6 +23,7 @@ const { slug } = Astro.params as { slug: string };
 
 const detail = (await getProjectDetail(LOCALE, slug)) as any;
 const ui = (await getUi(LOCALE)) as any;
+const nav = await getProjectNav(LOCALE, slug);
 ---
 
 <DetailLayout
@@ -30,5 +32,5 @@ const ui = (await getUi(LOCALE)) as any;
   meta={{ title: detail.meta.title, description: detail.meta.description }}
   backLabel={detail.backLabel}
 >
-  <ProjectDetail detail={detail} locale={LOCALE} labels={ui.projectLinks} />
+  <ProjectDetail detail={detail} locale={LOCALE} labels={ui.projectLinks} nav={nav} />
 </DetailLayout>

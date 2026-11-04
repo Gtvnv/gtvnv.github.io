@@ -64,6 +64,10 @@
     "idle": "copy phone",
     "done": "Copied ✓"
   },
+  "phoneLabels": {
+    "direct": "Direct contact",
+    "business": "Business contact"
+  },
   "footerNote": "Built with Astro",
   "backToTop": "Back to top",
   "seo": {

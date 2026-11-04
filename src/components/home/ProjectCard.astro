@@ -102,7 +102,9 @@ const emblemTitle = project.satellite
 
   {project.impact && <p class="project-impact">↳ {project.impact}</p>}
 
-  <p class="project-desc">{project.description}</p>
+  {/* A descrição longa é mostrada só nos cards em destaque; nos demais ela
+     vive na página de detalhe — o card da home é isca, não o conteúdo todo. */}
+  {project.featured && <p class="project-desc">{project.description}</p>}
 
   {
     project.tags.length > 0 && (
@@ -121,7 +123,10 @@ const emblemTitle = project.satellite
       project.links.repo) && (
       <div class="project-links">
         {project.links.details && (
-          <a href={resolveDetails(project.links.details)}>{labels.details}</a>
+          <a class="card-link" href={resolveDetails(project.links.details)}>
+            {labels.details}
+            <span class="card-arrow" aria-hidden="true">→</span>
+          </a>
         )}
         {project.links.live && (
           <a href={project.links.live} target="_blank" rel="noopener">

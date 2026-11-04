@@ -1,0 +1,33 @@
+---
+/**
+ * ProjectPager — navegação anterior/próximo entre os projetos com página de
+ * detalhe (ordem de projects/<locale>.json, com wrap-around). Cada lado é um
+ * link-cartão com rótulo + título do vizinho.
+ */
+import { withBase } from "../../lib/assets";
+import { localizedPath, type Locale } from "../../i18n/locales";
+import { DETAIL_LABELS } from "../../i18n/detail";
+import type { ProjectNeighbor } from "../../lib/content";
+
+interface Props {
+  prev: ProjectNeighbor;
+  next: ProjectNeighbor;
+  locale: Locale;
+}
+
+const { prev, next, locale } = Astro.props;
+const labels = DETAIL_LABELS[locale];
+const hrefOf = (slug: string) =>
+  withBase(localizedPath({ kind: "project", slug }, locale));
+---
+
+<nav class="zc-pager" aria-label={`${labels.prev} / ${labels.next}`}>
+  <a class="zc-pager-link zc-pager-prev" href={hrefOf(prev.slug)} rel="prev">
+    <span class="zc-pager-label">← {labels.prev}</span>
+    <span class="zc-pager-title">{prev.title}</span>
+  </a>
+  <a class="zc-pager-link zc-pager-next" href={hrefOf(next.slug)} rel="next">
+    <span class="zc-pager-label">{labels.next} →</span>
+    <span class="zc-pager-title">{next.title}</span>
+  </a>
+</nav>
