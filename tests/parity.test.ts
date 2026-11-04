@@ -11,6 +11,8 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
+import { DETAIL_LABELS } from "../src/i18n/detail";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CONTENT = join(__dirname, "..", "src", "content");
 
@@ -134,6 +136,42 @@ describe("paridade de conteúdo entre pt-BR / en / es", () => {
           last = g;
         }
       }
+    }
+  });
+
+  it("DETAIL_LABELS tem as 3 chaves não-vazias e distintas entre locales", () => {
+    for (const key of ["allProjects", "prev", "next"] as const) {
+      const values = LOCALES.map((l) => DETAIL_LABELS[l][key]);
+      for (const v of values) expect(v?.trim(), key).toBeTruthy();
+      expect(new Set(values).size, key).toBe(LOCALES.length);
+    }
+  });
+
+  it("todo detalhe tem entrada em projects com statusKey válido e vizinhos formam ciclo de 17", () => {
+    for (const locale of LOCALES) {
+      const items = load("projects", locale).items;
+      const order: string[] = items
+        .map((p: any) => p.links?.details)
+        .filter((d: string | null) => d && d !== "zenithcode");
+      const slugs = Object.keys(load("projectDetails", locale));
+      expect(order, locale).toHaveLength(17);
+      for (const slug of slugs) {
+        const entry = items.find((p: any) => p.links?.details === slug);
+        expect(["production", "live", "development"], `${slug}/${locale}`).toContain(
+          entry?.statusKey,
+        );
+      }
+      // ciclo: seguindo "próximo" 17 vezes visita todos e volta ao início
+      const seen = new Set<string>();
+      let i = 0;
+      for (let n = 0; n < order.length; n++) {
+        const next = (i + 1) % order.length;
+        expect(order[next], locale).not.toBe(order[i]);
+        seen.add(order[i]);
+        i = next;
+      }
+      expect(seen.size, locale).toBe(17);
+      expect(i, locale).toBe(0);
     }
   });
 
