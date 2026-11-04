@@ -567,10 +567,19 @@
 /* =========================================================
    PROJECTS
    ========================================================= */
+/* 2 colunas por padrão; 3 em telas largas (>=1100px) para aproveitar o
+   container mais amplo. Cards .featured ocupam a linha toda (1 / -1),
+   independente do número de colunas. O mobile (<=820px) vira 1 coluna. */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-5);
+}
+
+@media (min-width: 1100px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .project-card {
