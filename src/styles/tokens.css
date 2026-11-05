@@ -13,7 +13,9 @@
   --border-soft: #1c242c;
   --text: #f0f4f8;
   --muted: #8a99ad;
-  --muted-dim: #5c6b7d;
+  /* Clareado de #5c6b7d (~3.6:1, abaixo de AA) para passar WCAG AA (>=4.5:1)
+     em textos pequenos (datas, legendas), mantendo a hierarquia abaixo de --muted. */
+  --muted-dim: #7c8ba0;
   --accent: #00a8ff;
   --accent-dim: #0080c8;
   --accent-soft: rgba(0, 168, 255, 0.16);
