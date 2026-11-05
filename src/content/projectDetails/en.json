@@ -1,4 +1,76 @@
 {
+  "mobilitudo": {
+    "meta": {
+      "title": "MobiliTudo — Gustavo Vianna",
+      "description": "Collaborative mapping of urban accessibility with accessible routing: an A* weighted by ABNT NBR 9050 over real spatial data (PostgreSQL + PostGIS)."
+    },
+    "backLabel": "Portfolio",
+    "logo": "../assets/projetos/mobilitudo.png",
+    "hero": {
+      "eyebrow": "Urban accessibility · university extension project (Software Eng.)",
+      "title": "MobiliTudo",
+      "subtitle": "Which path can I actually take — not the shortest one",
+      "summary": "Collaborative mapping of urban accessibility with routing that works around barriers according to each person's mobility profile: the returned route tends to be longer in meters and shorter in barriers.",
+      "statusNote": "A non-profit social project, released under the AGPL-3.0 license: the code stays open at all times, including when it runs as a network service."
+    },
+    "about": {
+      "title": "About the project",
+      "body": "Conventional maps answer 'what's the shortest path'. For a wheelchair user, that's the wrong question: the shortest path might have a step, a narrow sidewalk, or a crossing with no curb ramp — any one of which makes it useless. MobiliTudo answers a different question, 'which path can I actually take', returning a route that's usually longer in meters and shorter in barriers. It's a non-profit social project under the AGPL-3.0 license, built by a two-person team, Gustavo Vianna and Yasmim Carmem Mariano Rocha, as a Software Engineering extension project at Faculdade Descomplica, aligned with UN SDGs 9 (Industry, Innovation and Infrastructure) and 11 (Sustainable Cities and Communities)."
+    },
+    "architecture": {
+      "title": "Architecture",
+      "body": "Routing is an A* weighted by accessibility, not distance, with parameters based on ABNT NBR 9050 (1.20 m clear width, ramps up to 8.33%). Four profiles — wheelchair, reduced mobility, visual impairment, and no restrictions — each define what is impassable (a step, clear width below the minimum, slope above the maximum) and what merely makes the route more expensive (narrowing, poor lighting, a crossing without a curb ramp). Spatial data lives in PostgreSQL + PostGIS, with GiST indexes and proximity and mesh-clipping queries. The domain follows hexagonal architecture, framework-free and testable in milliseconds without a database; the front end is Leaflet served statically, with no build step, and the back end is Spring Boot. Curation is authenticated and rate-limited. The system is resilient to failure: without a backend the map still works from the local dataset, and if the default tile provider refuses with a 403 from OpenStreetMap, it switches providers on its own."
+    },
+    "stack": {
+      "title": "Tech stack",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.5",
+        "PostgreSQL + PostGIS 16/3.4",
+        "Leaflet 1.9",
+        "Hexagonal Architecture",
+        "Testcontainers",
+        "Docker"
+      ]
+    },
+    "features": {
+      "title": "Key features",
+      "intro": "Six mechanisms that hold the accessibility map together in practice.",
+      "items": [
+        {
+          "title": "Genuinely accessible routes",
+          "mechanic": "An A* weighted by accessibility, not by the shortest distance, with ABNT NBR 9050 parameters."
+        },
+        {
+          "title": "Real spatial data",
+          "mechanic": "PostgreSQL + PostGIS with GiST indexes, proximity queries, and road-mesh clipping."
+        },
+        {
+          "title": "Collaborative with curation",
+          "mechanic": "Anyone can report a barrier, but only a validated report ever reroutes someone."
+        },
+        {
+          "title": "Authenticated, rate-limited curation",
+          "mechanic": "A dedicated token to validate, reject, and resolve reports, with an hourly report limit."
+        },
+        {
+          "title": "Self-removal of personal data",
+          "mechanic": "A single-use token returned with the report lets you remove your own name later, without an account."
+        },
+        {
+          "title": "Hexagonal architecture",
+          "mechanic": "A framework-free domain, so the accessibility rules and routing algorithm are testable without a database — 138 automated tests in total."
+        }
+      ]
+    },
+    "links": {
+      "repo": "https://github.com/Gtvnv/MobiliTudo",
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Back to portfolio"
+    }
+  },
   "aegisprotocol": {
     "meta": {
       "title": "AegisProtocol — Gustavo Vianna",

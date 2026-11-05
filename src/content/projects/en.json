@@ -424,6 +424,26 @@
       }
     },
     {
+      "title": "MobiliTudo",
+      "statusKey": "live",
+      "status": "LIVE",
+      "impact": "A two-person university extension project, aligned with UN SDGs 9 and 11.",
+      "summary": "Collaborative mapping of urban accessibility, with routing that works around barriers rather than the shortest distance.",
+      "description": "Conventional maps answer 'what's the shortest path'; for a wheelchair user that's the wrong question. MobiliTudo answers 'which path can I actually take': an accessibility-weighted A* (ABNT NBR 9050 parameters) over real spatial data (PostgreSQL + PostGIS). Collaborative with curation: anyone can report a barrier, but only a validated report ever reroutes someone. Hexagonal architecture, 138 automated tests.",
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "PostgreSQL + PostGIS",
+        "Leaflet",
+        "Hexagonal Architecture"
+      ],
+      "links": {
+        "live": null,
+        "repo": "https://github.com/Gtvnv/MobiliTudo",
+        "details": "mobilitudo"
+      }
+    },
+    {
       "title": "Ultrafoot 26",
       "statusKey": "live",
       "status": "LIVE",
