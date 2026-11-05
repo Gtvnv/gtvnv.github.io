@@ -28,12 +28,11 @@ jobs:
           # e o npm ci falhava em Node 20. Astro 5 suporta Node 22.
           node-version: 22
           cache: npm
-      # npm install (não npm ci): algumas dependências transitivas (ex.: @types/node)
-      # têm range aberto e resolvem versões diferentes entre máquinas, o que fazia
-      # o 'npm ci' (match exato do lock) falhar no runner. 'npm install' reconcilia
-      # o lock — aceitável para este site estático. --ignore-scripts por segurança.
+      # npm ci: instalação reprodutível travada no lock. O lock é determinístico
+      # porque @types/node está fixado via "overrides" no package.json (antes
+      # resolvia versões diferentes entre máquinas e quebrava o npm ci).
       - name: Install dependencies
-        run: npm install --ignore-scripts --no-audit --no-fund
+        run: npm ci --ignore-scripts
       - name: Build
         run: npm run build
       - name: Upload artifact

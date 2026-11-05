@@ -22,10 +22,10 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      # npm install (não npm ci): ver nota no deploy.yml — evita falha por
-      # resolução não-determinística de deps transitivas entre ambientes.
+      # npm ci: reprodutível. Lock determinístico via "overrides" de @types/node
+      # no package.json (ver nota no deploy.yml).
       - name: Install dependencies
-        run: npm install --ignore-scripts --no-audit --no-fund
+        run: npm ci --ignore-scripts
       - name: Build
         run: npm run build
       - name: Test
