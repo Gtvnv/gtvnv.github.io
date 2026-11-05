@@ -11,10 +11,14 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/sitemap": "3.7.0",
     "astro": "^5.18.2"
   },
   "devDependencies": {
+    "typescript": "5.9.3",
     "vitest": "^3.2.7"
+  },
+  "overrides": {
+    "@types/node": "22.10.2"
   }
 }
