@@ -13,6 +13,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Compensa o header sticky (64px) ao navegar por âncora, para o título da
+     seção não ficar escondido atrás dele. +1rem de respiro. */
+  scroll-padding-top: calc(64px + 1rem);
 }
 
 body {
@@ -242,5 +245,25 @@ button {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* =========================================================
+   VIEW TRANSITIONS — transição suave entre páginas (ClientRouter).
+   Um fade curto e discreto, não um efeito chamativo. Sob
+   prefers-reduced-motion, corta a animação (troca instantânea).
+   ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.28s;
+    animation-timing-function: var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }
