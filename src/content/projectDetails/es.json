@@ -1,4 +1,76 @@
 {
+  "mobilitudo": {
+    "meta": {
+      "title": "MobiliTudo — Gustavo Vianna",
+      "description": "Mapeo colaborativo de accesibilidad urbana con cálculo de rutas accesibles: un A* ponderado por la ABNT NBR 9050 sobre datos espaciales reales (PostgreSQL + PostGIS)."
+    },
+    "backLabel": "Portafolio",
+    "logo": "../assets/projetos/mobilitudo.png",
+    "hero": {
+      "eyebrow": "Accesibilidad urbana · proyecto de extensión (Ing. de Software)",
+      "title": "MobiliTudo",
+      "subtitle": "Qué camino sí puedo recorrer — no el más corto",
+      "summary": "Mapeo colaborativo de accesibilidad urbana con cálculo de rutas que rodean las barreras según el perfil de movilidad de quien camina: la ruta devuelta suele ser más larga en metros y más corta en barreras.",
+      "statusNote": "Proyecto social, sin fines de lucro, distribuido bajo licencia AGPL-3.0: el código siempre es abierto, incluso cuando corre como servicio de red."
+    },
+    "about": {
+      "title": "Sobre el proyecto",
+      "body": "Los mapas convencionales responden 'cuál es el camino más corto'. Para quien usa silla de ruedas, esa es la pregunta equivocada: el camino más corto puede tener un escalón, una acera estrecha o un cruce sin rebaje de cordón — y cualquiera de ellos lo vuelve inútil. MobiliTudo responde otra pregunta, 'qué camino sí puedo recorrer', devolviendo una ruta por lo general más larga en metros y más corta en barreras. Es un proyecto social, sin fines de lucro y bajo licencia AGPL-3.0, hecho en dupla por Gustavo Vianna y Yasmim Carmem Mariano Rocha como extensión de la Ingeniería de Software de la Faculdade Descomplica, alineado con los ODS 9 (Industria, Innovación e Infraestructura) y 11 (Ciudades y Comunidades Sostenibles) de la ONU."
+    },
+    "architecture": {
+      "title": "Arquitectura",
+      "body": "El cálculo de ruta es un A* ponderado por accesibilidad, no por distancia, con parámetros basados en la ABNT NBR 9050 (franja libre de 1,20 m, rampa de hasta 8,33%). Cuatro perfiles — silla de ruedas, movilidad reducida, discapacidad visual y sin restricciones — definen cada uno qué es intransitable (un escalón, franja libre por debajo del mínimo, inclinación por encima del máximo) y qué solo encarece el trayecto (estrechamiento, mala iluminación, un cruce sin rebaje de cordón). Los datos espaciales viven en PostgreSQL + PostGIS, con índices GiST y consultas por proximidad y recorte de malla. El dominio sigue arquitectura hexagonal, libre de framework y testeable en milisegundos sin base de datos; el front es Leaflet servido estático, sin build, y el back es Spring Boot. La curaduría es autenticada y con límite de abuso. El sistema es resiliente a fallas: sin backend, el mapa sigue funcionando con el acervo local; sin el proveedor de tiles por defecto, cambia de proveedor solo al recibir el 403 de OpenStreetMap."
+    },
+    "stack": {
+      "title": "Stack técnica",
+      "items": [
+        "Java 21",
+        "Spring Boot 3.5",
+        "PostgreSQL + PostGIS 16/3.4",
+        "Leaflet 1.9",
+        "Arquitectura Hexagonal",
+        "Testcontainers",
+        "Docker"
+      ]
+    },
+    "features": {
+      "title": "Recursos clave",
+      "intro": "Seis mecanismos que sostienen el mapa de accesibilidad en la práctica.",
+      "items": [
+        {
+          "title": "Rutas accesibles de verdad",
+          "mechanic": "Un A* ponderado por accesibilidad, no por la distancia más corta, con parámetros de la ABNT NBR 9050."
+        },
+        {
+          "title": "Datos espaciales reales",
+          "mechanic": "PostgreSQL + PostGIS con índices GiST, consultas por proximidad y recorte de malla vial."
+        },
+        {
+          "title": "Colaborativo con curaduría",
+          "mechanic": "Cualquiera reporta una barrera, pero solo un reporte validado llega a desviar la ruta de alguien."
+        },
+        {
+          "title": "Curaduría autenticada y con límite de abuso",
+          "mechanic": "Token dedicado para validar, rechazar y resolver reportes, con límite de reportes por hora."
+        },
+        {
+          "title": "Autoexclusión de dato personal",
+          "mechanic": "Un token de un solo uso devuelto en el reporte permite quitar el propio nombre después, sin cuenta."
+        },
+        {
+          "title": "Arquitectura hexagonal",
+          "mechanic": "Dominio libre de framework, con las reglas de accesibilidad y el algoritmo de ruta testeables sin base de datos — 138 pruebas automatizadas en total."
+        }
+      ]
+    },
+    "links": {
+      "repo": "https://github.com/Gtvnv/MobiliTudo",
+      "live": null
+    },
+    "footer": {
+      "backCta": "← Volver al portafolio"
+    }
+  },
   "aegisprotocol": {
     "meta": {
       "title": "AegisProtocol — Gustavo Vianna",

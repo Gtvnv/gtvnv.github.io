@@ -43,15 +43,15 @@ describe("paridade de conteúdo entre pt-BR / en / es", () => {
     }
   });
 
-  it("18 projetos por locale", () => {
+  it("19 projetos por locale", () => {
     for (const locale of LOCALES) {
-      expect(load("projects", locale).items).toHaveLength(18);
+      expect(load("projects", locale).items).toHaveLength(19);
     }
   });
 
-  it("17 detalhes de projeto por locale", () => {
+  it("18 detalhes de projeto por locale", () => {
     for (const locale of LOCALES) {
-      expect(Object.keys(load("projectDetails", locale))).toHaveLength(17);
+      expect(Object.keys(load("projectDetails", locale))).toHaveLength(18);
     }
   });
 
@@ -147,14 +147,14 @@ describe("paridade de conteúdo entre pt-BR / en / es", () => {
     }
   });
 
-  it("todo detalhe tem entrada em projects com statusKey válido e vizinhos formam ciclo de 17", () => {
+  it("todo detalhe tem entrada em projects com statusKey válido e vizinhos formam ciclo de 18", () => {
     for (const locale of LOCALES) {
       const items = load("projects", locale).items;
       const order: string[] = items
         .map((p: any) => p.links?.details)
         .filter((d: string | null) => d && d !== "zenithcode");
       const slugs = Object.keys(load("projectDetails", locale));
-      expect(order, locale).toHaveLength(17);
+      expect(order, locale).toHaveLength(18);
       for (const slug of slugs) {
         const entry = items.find((p: any) => p.links?.details === slug);
         expect(["production", "live", "development"], `${slug}/${locale}`).toContain(
@@ -170,7 +170,7 @@ describe("paridade de conteúdo entre pt-BR / en / es", () => {
         seen.add(order[i]);
         i = next;
       }
-      expect(seen.size, locale).toBe(17);
+      expect(seen.size, locale).toBe(18);
       expect(i, locale).toBe(0);
     }
   });

@@ -424,6 +424,26 @@
       }
     },
     {
+      "title": "MobiliTudo",
+      "statusKey": "live",
+      "status": "EN VIVO",
+      "impact": "Proyecto de extensión universitaria hecho en dupla, alineado con los ODS 9 y 11 de la ONU.",
+      "summary": "Mapeo colaborativo de accesibilidad urbana, con cálculo de rutas que rodean las barreras en vez de la distancia más corta.",
+      "description": "Los mapas convencionales responden 'cuál es el camino más corto'; para quien usa silla de ruedas esa es la pregunta equivocada. MobiliTudo responde 'qué camino sí puedo recorrer': un A* ponderado por accesibilidad (parámetros de la ABNT NBR 9050), sobre datos espaciales reales (PostgreSQL + PostGIS). Colaborativo con curaduría: cualquiera reporta una barrera, pero solo un reporte validado desvía la ruta de alguien. Arquitectura hexagonal, 138 pruebas automatizadas.",
+      "tags": [
+        "Java 21",
+        "Spring Boot 3",
+        "PostgreSQL + PostGIS",
+        "Leaflet",
+        "Arquitectura Hexagonal"
+      ],
+      "links": {
+        "live": null,
+        "repo": "https://github.com/Gtvnv/MobiliTudo",
+        "details": "mobilitudo"
+      }
+    },
+    {
       "title": "Ultrafoot 26",
       "statusKey": "live",
       "status": "EN VIVO",
