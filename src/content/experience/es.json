@@ -11,13 +11,19 @@
       "role": "Analista Desarrollador de Software",
       "company": "Agência do Japa",
       "period": "dic. 2025 a actualidad",
-      "description": "Trabajo fullstack en un ERP industrial en producción: diagnóstico y corrección de módulos, mejora del RBAC con foco en security by design, y desarrollo de punta a punta: del frontend a reglas de negocio complejas y APIs."
+      "description": "Trabajo fullstack en un ERP industrial en producción: diagnóstico y corrección de módulos, mejora del RBAC con foco en security by design, y desarrollo de punta a punta: del frontend a reglas de negocio complejas y APIs. También creé sistemas de CRM (Concord), agentes de IA (Cleo, Bob y Evelyn) y juegos digitales, como UltraFoot."
     },
     {
       "role": "Desarrollador de Sostenimiento",
       "company": "Rumo Soluções",
       "period": "jul. 2026 a actualidad",
-      "description": "Desarrollo y mantenimiento de aplicaciones en C# y .NET, estructurando APIs y reglas de negocio. Construcción de interfaces web y móviles con Angular e Ionic, con foco en usabilidad y corrección de errores."
+      "description": "Desarrollo y mantenimiento de aplicaciones en C# y .NET, estructurando APIs y reglas de negocio. Construcción de interfaces web y móviles con Angular e Ionic, con foco en usabilidad y corrección de errores. Desarrollo de aplicaciones financieras y de robots de captura web, usados en sistemas de pricing para locadoras y concesionarias."
+    },
+    {
+      "role": "Presidente",
+      "company": "Associação Ventura e Vianna",
+      "period": "2025 a actualidad",
+      "description": "Presido la asociación, que actúa en ayuda social, y soy instructor de kárate. Tuvimos dos leyes aprobadas en la Alcaldía de Pedro Leopoldo: el kárate como patrimonio cultural y la ampliación de plazas de profesores de educación física en los primeros años, quitando esa tarea a las maestras."
     },
     {
       "role": "Técnico de Soporte en TI",

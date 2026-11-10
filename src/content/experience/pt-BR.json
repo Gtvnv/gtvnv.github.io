@@ -11,13 +11,19 @@
       "role": "Analista Desenvolvedor de Software",
       "company": "Agência do Japa",
       "period": "dez. 2025 a atual",
-      "description": "Atuação fullstack em um ERP industrial em produção: diagnóstico e correção de módulos, melhoria do RBAC com foco em security by design, e desenvolvimento ponta a ponta: do frontend até APIs e regras de negócio complexas."
+      "description": "Atuação fullstack em um ERP industrial em produção: diagnóstico e correção de módulos, melhoria do RBAC com foco em security by design, e desenvolvimento ponta a ponta: do frontend até APIs e regras de negócio complexas. Também criei sistemas de CRM (Concord), agentes de IA (Cleo, Bob e Evelyn) e jogos digitais, como o UltraFoot."
     },
     {
       "role": "Desenvolvedor de Sustentação",
       "company": "Rumo Soluções",
       "period": "jul. 2026 a atual",
-      "description": "Desenvolvimento e manutenção de aplicações em C# e .NET, estruturação de APIs e regras de negócio. Construção de interfaces web e mobile com Angular e Ionic, com foco em usabilidade e correção de bugs."
+      "description": "Desenvolvimento e manutenção de aplicações em C# e .NET, estruturação de APIs e regras de negócio. Construção de interfaces web e mobile com Angular e Ionic, com foco em usabilidade e correção de bugs. Desenvolvimento de aplicações financeiras e de robôs de captura web, usados em sistemas de pricing para locadoras e concessionárias."
+    },
+    {
+      "role": "Presidente",
+      "company": "Associação Ventura e Vianna",
+      "period": "2025 a atual",
+      "description": "Presido a associação, que atua com ajuda social, e sou instrutor de karatê. Tivemos duas leis aprovadas na Prefeitura de Pedro Leopoldo: o karatê como patrimônio cultural e a ampliação de vagas de professores de educação física nos anos iniciais, tirando essa tarefa das professoras."
     },
     {
       "role": "Técnico de Suporte em TI",

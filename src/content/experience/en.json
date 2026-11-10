@@ -11,13 +11,19 @@
       "role": "Software Development Analyst",
       "company": "Agência do Japa",
       "period": "Dec 2025 to present",
-      "description": "Fullstack work on an industrial ERP in production: diagnosing and fixing modules, improving RBAC with a security-by-design focus, and end-to-end development: from the frontend to complex business rules and APIs."
+      "description": "Fullstack work on an industrial ERP in production: diagnosing and fixing modules, improving RBAC with a security-by-design focus, and end-to-end development: from the frontend to complex business rules and APIs. I also built CRM systems (Concord), AI agents (Cleo, Bob and Evelyn) and digital games, such as UltraFoot."
     },
     {
       "role": "Sustaining Developer",
       "company": "Rumo Soluções",
       "period": "Jul 2026 to present",
-      "description": "Development and maintenance of C# and .NET applications, structuring APIs and business rules. Built web and mobile interfaces with Angular and Ionic, with a focus on usability and bug fixing."
+      "description": "Development and maintenance of C# and .NET applications, structuring APIs and business rules. Built web and mobile interfaces with Angular and Ionic, with a focus on usability and bug fixing. Development of financial applications and web-scraping bots used in pricing systems for rental companies and dealerships."
+    },
+    {
+      "role": "President",
+      "company": "Associação Ventura e Vianna",
+      "period": "2025 to present",
+      "description": "I preside over the association, which works in social aid, and I am a karate instructor. We had two laws approved by the Pedro Leopoldo city government: karate recognized as cultural heritage, and more physical education teacher positions in the early school years, taking that task off the classroom teachers."
     },
     {
       "role": "IT Support Technician",
