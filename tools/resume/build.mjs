@@ -28,9 +28,15 @@ export function html(r, css = CSS) {
     .map(([label, text]) => `<p><b>${esc(label)}</b> ${esc(text)}</p>`)
     .join("");
 
+  // `compact: true` desenha o cargo numa linha só (cargo · empresa ... data),
+  // sem bullets — usado nos cargos mais antigos para economizar altura.
   const jobs = r.experience.jobs
-    .map(
-      (j) => `<article class="job">
+    .map((j) =>
+      j.compact
+        ? `<article class="job job-compact">
+<div class="job-head"><h3 class="job-title">${esc(j.title)}<span class="job-co"> · ${esc(j.company)}</span></h3><span class="job-date">${esc(j.date)}</span></div>
+</article>`
+        : `<article class="job">
 <div class="job-head"><h3 class="job-title">${esc(j.title)}</h3><span class="job-date">${esc(j.date)}</span></div>
 <p class="job-company">${esc(j.company)}</p>
 <ul>${j.bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
