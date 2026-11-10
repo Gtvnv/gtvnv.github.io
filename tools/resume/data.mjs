@@ -32,15 +32,24 @@ export const resumes = {
           title: "Analista Desenvolvedor de Software", date: "dez. 2025 — atual", company: "Agência do Japa",
           bullets: [
             "Atuo fullstack em um ERP industrial em produção (Zyntra ERP), do frontend a regras de negócio complexas e integrações.",
-            "Reforcei o RBAC do sistema com foco em security by design, reduzindo a superfície de acesso dos módulos.",
-            "Diagnostiquei e corrigi anomalias em produção, sustentando a disponibilidade e a continuidade das operações.",
+            "Reforcei o RBAC com foco em security by design, reduzindo a superfície de acesso.",
+            "Criei CRM (Concord), agentes de IA (Cleo, Bob e Evelyn) e jogos digitais, como o UltraFoot.",
+            "Diagnostiquei e corrigi anomalias em produção, sustentando a disponibilidade.",
           ],
         },
         {
           title: "Desenvolvedor de Sustentação", date: "jul. 2026 — atual", company: "Rumo Soluções",
           bullets: [
             "Desenvolvi e mantive aplicações em C# e .NET, estruturando APIs e regras de negócio.",
+            "Desenvolvi aplicações financeiras e robôs de captura web, usados em sistemas de pricing para locadoras e concessionárias.",
             "Construí interfaces web e mobile com Angular e Ionic, com foco em usabilidade.",
+          ],
+        },
+        {
+          title: "Presidente", date: "2025 — atual", company: "Associação Ventura e Vianna",
+          bullets: [
+            "Presido a associação, com atuação em ajuda social, e sou instrutor de karatê.",
+            "Duas leis aprovadas na Prefeitura de Pedro Leopoldo: karatê como patrimônio cultural e mais professores de educação física nos anos iniciais, tirando a tarefa das professoras.",
           ],
         },
         {
@@ -51,14 +60,12 @@ export const resumes = {
           ],
         },
         {
-          title: "Almoxarife", date: "abr. 2024 — fev. 2025", company: "Grupo CMD",
-          bullets: [
-            "Liderei a digitalização do controle de estoque, migrando planilhas para um sistema eletrônico e elevando a acurácia dos dados.",
-          ],
+          title: "Almoxarife", date: "abr. 2024 — fev. 2025", company: "Grupo CMD", compact: true,
+          bullets: [],
         },
         {
-          title: "Técnico de Manutenção", date: "jun. 2023 — mar. 2024", company: "Turrek Informática",
-          bullets: ["Fiz manutenção e reparo de eletrônicos, controle de estoque e atendimento ao cliente na loja."],
+          title: "Técnico de Manutenção", date: "jun. 2023 — mar. 2024", company: "Turrek Informática", compact: true,
+          bullets: [],
         },
       ],
     },
@@ -72,10 +79,10 @@ export const resumes = {
         },
         {
           title: "Vertex — Internal Developer Platform", tags: "Go · Arquitetura Hexagonal · IaC (Pulumi)",
-          desc: "Motor determinístico que transforma uma especificação YAML num microsserviço Go pronto pra rodar, com Arquitetura Hexagonal. Uma camada opcional de IA local propõe código; um validador determinístico decide.",
+          desc: "Gera um microsserviço Go (Arquitetura Hexagonal) pronto pra rodar a partir de uma especificação YAML. A IA local propõe código; um validador determinístico decide.",
         },
         {
-          title: "AegisProtocol — Middleware de Identidade Zero Trust", tags: "Java 21 · Spring Security · JWT (RS256) · Redis",
+          title: "AegisProtocol — Middleware de Identidade Zero Trust", tags: "Java 21 · JWT · Redis",
           desc: "Identity Provider próprio: tokens assinados com RSA-2048, revogação distribuída e políticas de acesso granulares (RBAC/ABAC).",
           url: "https://github.com/Gtvnv/AegisProtocol-Core",
         },
@@ -123,15 +130,24 @@ export const resumes = {
           title: "Software Development Analyst", date: "Dec 2025 — present", company: "Agência do Japa",
           bullets: [
             "Work fullstack on an industrial ERP in production (Zyntra ERP), from the frontend to complex business rules and integrations.",
-            "Hardened the system's RBAC with a security-by-design focus, reducing the modules' access surface.",
-            "Diagnosed and fixed anomalies in production, sustaining availability and business continuity.",
+            "Hardened the RBAC with a security-by-design focus, reducing the access surface.",
+            "Built CRM (Concord), AI agents (Cleo, Bob and Evelyn) and digital games, such as UltraFoot.",
+            "Diagnosed and fixed anomalies in production, sustaining availability.",
           ],
         },
         {
           title: "Sustaining Developer", date: "Jul 2026 — present", company: "Rumo Soluções",
           bullets: [
             "Developed and maintained C# and .NET applications, structuring APIs and business rules.",
+            "Developed financial applications and web-scraping bots used in pricing systems for rental companies and dealerships.",
             "Built web and mobile interfaces with Angular and Ionic, focused on usability.",
+          ],
+        },
+        {
+          title: "President", date: "2025 — present", company: "Associação Ventura e Vianna",
+          bullets: [
+            "I preside over the association, working in social aid, and I am a karate instructor.",
+            "Two laws approved by the Pedro Leopoldo city government: karate as cultural heritage, and more physical education teachers in the early grades, relieving classroom teachers.",
           ],
         },
         {
@@ -142,14 +158,12 @@ export const resumes = {
           ],
         },
         {
-          title: "Warehouse Clerk", date: "Apr 2024 — Feb 2025", company: "Grupo CMD",
-          bullets: [
-            "Led the digitization of inventory control, migrating spreadsheets to an electronic system and improving data accuracy.",
-          ],
+          title: "Warehouse Clerk", date: "Apr 2024 — Feb 2025", company: "Grupo CMD", compact: true,
+          bullets: [],
         },
         {
-          title: "Maintenance Technician", date: "Jun 2023 — Mar 2024", company: "Turrek Informática",
-          bullets: ["Repaired and maintained electronics, handled inventory control, and supported in-store customers."],
+          title: "Maintenance Technician", date: "Jun 2023 — Mar 2024", company: "Turrek Informática", compact: true,
+          bullets: [],
         },
       ],
     },
@@ -163,10 +177,10 @@ export const resumes = {
         },
         {
           title: "Vertex — Internal Developer Platform", tags: "Go · Hexagonal Architecture · IaC (Pulumi)",
-          desc: "A deterministic engine that turns a YAML spec into a ready-to-run Go microservice with Hexagonal Architecture. An optional local-AI layer proposes code; a deterministic validator decides.",
+          desc: "Generates a ready-to-run Go microservice (Hexagonal Architecture) from a YAML spec. A local AI proposes code; a deterministic validator decides.",
         },
         {
-          title: "AegisProtocol — Zero Trust Identity Middleware", tags: "Java 21 · Spring Security · JWT (RS256) · Redis",
+          title: "AegisProtocol — Zero Trust Identity Middleware", tags: "Java 21 · JWT · Redis",
           desc: "A homegrown Identity Provider: tokens signed with RSA-2048, distributed revocation, and granular access policies (RBAC/ABAC).",
           url: "https://github.com/Gtvnv/AegisProtocol-Core",
         },
@@ -214,15 +228,24 @@ export const resumes = {
           title: "Analista Desarrollador de Software", date: "dic. 2025 — actualidad", company: "Agência do Japa",
           bullets: [
             "Trabajo fullstack en un ERP industrial en producción (Zyntra ERP), del frontend a reglas de negocio complejas e integraciones.",
-            "Reforcé el RBAC del sistema con foco en security by design, reduciendo la superficie de acceso de los módulos.",
-            "Diagnostiqué y corregí anomalías en producción, sosteniendo la disponibilidad y la continuidad del negocio.",
+            "Reforcé el RBAC con foco en security by design, reduciendo la superficie de acceso.",
+            "Creé CRM (Concord), agentes de IA (Cleo, Bob y Evelyn) y juegos digitales, como UltraFoot.",
+            "Diagnostiqué y corregí anomalías en producción, sosteniendo la disponibilidad.",
           ],
         },
         {
           title: "Desarrollador de Sostenimiento", date: "jul. 2026 — actualidad", company: "Rumo Soluções",
           bullets: [
             "Desarrollé y mantuve aplicaciones en C# y .NET, estructurando APIs y reglas de negocio.",
+            "Desarrollé aplicaciones financieras y robots de captura web, usados en sistemas de pricing para locadoras y concesionarias.",
             "Construí interfaces web y móviles con Angular e Ionic, con foco en usabilidad.",
+          ],
+        },
+        {
+          title: "Presidente", date: "2025 — actualidad", company: "Associação Ventura e Vianna",
+          bullets: [
+            "Presido la asociación, con actuación en ayuda social, y soy instructor de kárate.",
+            "Dos leyes aprobadas en la Alcaldía de Pedro Leopoldo: kárate como patrimonio cultural y más profesores de educación física en los primeros años, quitando esa tarea a las maestras.",
           ],
         },
         {
@@ -233,14 +256,12 @@ export const resumes = {
           ],
         },
         {
-          title: "Auxiliar de Almacén", date: "abr. 2024 — feb. 2025", company: "Grupo CMD",
-          bullets: [
-            "Lideré la digitalización del control de inventario, migrando hojas de cálculo a un sistema electrónico y mejorando la precisión de los datos.",
-          ],
+          title: "Auxiliar de Almacén", date: "abr. 2024 — feb. 2025", company: "Grupo CMD", compact: true,
+          bullets: [],
         },
         {
-          title: "Técnico de Mantenimiento", date: "jun. 2023 — mar. 2024", company: "Turrek Informática",
-          bullets: ["Reparé y mantuve electrónicos, gestioné el inventario y atendí a clientes en tienda."],
+          title: "Técnico de Mantenimiento", date: "jun. 2023 — mar. 2024", company: "Turrek Informática", compact: true,
+          bullets: [],
         },
       ],
     },
@@ -254,10 +275,10 @@ export const resumes = {
         },
         {
           title: "Vertex — Internal Developer Platform", tags: "Go · Arquitectura Hexagonal · IaC (Pulumi)",
-          desc: "Motor determinístico que convierte una especificación YAML en un microservicio Go listo para ejecutar, con Arquitectura Hexagonal. Una capa opcional de IA local propone código; un validador determinístico decide.",
+          desc: "Genera un microservicio Go (Arquitectura Hexagonal) listo para ejecutar a partir de una especificación YAML. La IA local propone código; un validador determinístico decide.",
         },
         {
-          title: "AegisProtocol — Middleware de Identidad Zero Trust", tags: "Java 21 · Spring Security · JWT (RS256) · Redis",
+          title: "AegisProtocol — Middleware de Identidad Zero Trust", tags: "Java 21 · JWT · Redis",
           desc: "Identity Provider propio: tokens firmados con RSA-2048, revocación distribuida y políticas de acceso granulares (RBAC/ABAC).",
           url: "https://github.com/Gtvnv/AegisProtocol-Core",
         },
