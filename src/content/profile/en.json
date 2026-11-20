@@ -1,7 +1,7 @@
 {
   "role": "Solutions Architect",
   "status": "Open to opportunities",
-  "heroSummary": "I build backends and SaaS products with a focus on clean architecture, security by design, and business viability. These days I move between Java/Spring, the JS/TS ecosystem, and C#/.NET, always looking at the whole system, not just the code.",
+  "heroSummary": "I build backends and SaaS products with a focus on clean architecture, security by design, and business viability. These days I move between Java/Spring, the JS/TS ecosystem, C#/.NET, and Python, always looking at the whole system, not just the code. I also build AI agents and integrations with local LLMs.",
   "heroProof": [
     {
       "value": "+3 years",

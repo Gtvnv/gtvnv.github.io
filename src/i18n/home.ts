@@ -7,4 +7,4 @@
  * inventar um campo de conteúdo novo.
  */
 export const HERO_STACK =
-  "Java · Node.js · C# · Next.js · TypeScript · PostgreSQL";
+  "Java · Node.js · C# · Python · Next.js · TypeScript · PostgreSQL";
