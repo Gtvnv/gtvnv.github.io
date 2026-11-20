@@ -33,7 +33,7 @@ export const resumes = {
           bullets: [
             "Atuo fullstack em um ERP industrial em produção (Zyntra ERP), do frontend a regras de negócio complexas e integrações.",
             "Reforcei o RBAC com foco em security by design, reduzindo a superfície de acesso.",
-            "Criei CRM (Concord), agentes de IA (Cleo, Bob e Evelyn) e jogos digitais, como o UltraFoot.",
+            "Criei o chat interno Concord, agentes de IA (Cleo, Bob e Evelyn) e jogos como o UltraFoot.",
             "Diagnostiquei e corrigi anomalias em produção, sustentando a disponibilidade.",
           ],
         },
@@ -131,7 +131,7 @@ export const resumes = {
           bullets: [
             "Work fullstack on an industrial ERP in production (Zyntra ERP), from the frontend to complex business rules and integrations.",
             "Hardened the RBAC with a security-by-design focus, reducing the access surface.",
-            "Built CRM (Concord), AI agents (Cleo, Bob and Evelyn) and digital games, such as UltraFoot.",
+            "Built the Concord internal chat, AI agents (Cleo, Bob and Evelyn) and games such as UltraFoot.",
             "Diagnosed and fixed anomalies in production, sustaining availability.",
           ],
         },
@@ -229,7 +229,7 @@ export const resumes = {
           bullets: [
             "Trabajo fullstack en un ERP industrial en producción (Zyntra ERP), del frontend a reglas de negocio complejas e integraciones.",
             "Reforcé el RBAC con foco en security by design, reduciendo la superficie de acceso.",
-            "Creé CRM (Concord), agentes de IA (Cleo, Bob y Evelyn) y juegos digitales, como UltraFoot.",
+            "Creé el chat interno Concord, agentes de IA (Cleo, Bob y Evelyn) y juegos como UltraFoot.",
             "Diagnostiqué y corregí anomalías en producción, sosteniendo la disponibilidad.",
           ],
         },
